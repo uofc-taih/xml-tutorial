@@ -1,0 +1,40 @@
+project:
+    type: book
+
+book:
+    title: "Explainable Machine Learning: A Tutorial"
+    author: "Jane Doe"
+    date: "7/10/2026"
+
+    sidebar:
+        collapse-level: 1
+
+    chapters:
+        - index.qmd
+        - part: 1-basics/1-0-intro.qmd
+          chapters:
+              - 1-basics/1-1-categorization.qmd
+              - 1-basics/1-2-feature-attribution.qmd
+        - part: 2-xllms/2-0-intro.qmd
+          chapters:
+              - 2-xllms/2-1-activation-based-explanations.qmd
+              - 2-xllms/2-2-concept-based-explainability.qmd
+        - part: 3-xrl/3-0-intro.qmd
+          chapters:
+              - 3-xrl/3-1-foundations.qmd
+              - 3-xrl/3-2-taxonomy.qmd
+        - part: 4-xmas/4-0-intro.qmd
+          chapters:
+              - 4-xmas/4-1-foundations.qmd
+              - 4-xmas/4-2-taxonomy.qmd
+        - references.qmd
+
+bibliography: references.bib
+
+format:
+    html:
+        theme:
+            - lumen
+        code-fold: true
+    pdf:
+        documentclass: scrreprt
