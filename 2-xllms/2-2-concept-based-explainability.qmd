@@ -1,1 +1,29 @@
 # Concept-Based Explanations
+
+TODO: One-paragraph bridge from the previous section
+
+TODO: Define concept formally: a function, what is a concept space.
+
+## Preliminaries and Notation
+
+TODO: Shared notation used by every subsection below — define once, reuse.
+
+## Human-Defined Concepts (Supervised)
+
+TODO: These methods relies on human annotated concepts
+
+### Concept Bottleneck Models (CBMs)
+
+TODO: ADD A DIAGRAMS {TRAINING AND INFERENCE}
+
+\paragraph{training regimes}
+TODO: whether it is joint, sequential or indiependent
+
+\paragraph{intervention}
+TODO: at inference, how does editing the concepts affect y and similar things
+
+\paragraph{limitaions and apprpriate use cases}
+
+\paragraph{Future/emerging advancements: label free cbms?}
+
+\paragraph{key take away}

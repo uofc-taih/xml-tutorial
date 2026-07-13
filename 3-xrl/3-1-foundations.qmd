@@ -1,1 +1,7 @@
 # Foundations
+
+There's value-based and policy-based RL.
+
+Why is it important? For example, deploying RL-based algorithms in finance requires algorithmic transparency to comply with regulations; in sequential human-AI collaboration process, users need to understand agent behavior to trust and cooperate.
+
+When it comes to RL, many things are desirable: fast learning (i.e., sample efficiency), high final performance, safety guarantees, transparent behavior processes, etc. To keep this tutorial focused, we consider constrained RL formulations for safe RL out of scope.

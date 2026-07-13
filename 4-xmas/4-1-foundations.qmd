@@ -1,1 +1,68 @@
-# Foundations
+# Foundations and Taxonomy
+
+## What are agents?
+
+Generally, agents refer to _any entity capable of perceiving its environment and taking action_ [@cheng2024exploring]. Namely, large language model (LLM)-based agents leverage the natural language processing capabilities of LLMs (complex reasoning, text summarization, machine translation)
+% https://link.springer.com/article/10.1007/s11704-025-50472-3
+, while attempting to address their fundamental limitations:
+
+% https://www.jair.org/index.php/jair/article/view/18675/27253
+% https://dl.acm.org/doi/abs/10.1145/3787470.3787478
+
+1. **Hallucination.** The tendency of LLMs to produce \textit{plausible yet factually unsupported content}, deriving from data misinformation, pre-training biases, over-confidence, among others.  %https://dl.acm.org/doi/pdf/10.1145/3703155
+2. **Training data.** LLM intelligence is limited by the data available during training.
+3. **Reasoning.** Although LLMs continue to impress in natural language processing, model reasoning remains a well-reported challenge. 
+4. **Prompt Engineering.** LLMs are sensitive to minor details in prompts, making prompt improvement a tedious, manual task. % https://www.jair.org/index.php/jair/article/view/18675/27253
+
+
+% https://arxiv.org/abs/2308.11432
+Consequently, the architecture of LLM-based agents adds four fundamental modules absent from "pure LLMs": 
+- Profiling: Defining agent identity
+- Memory: Storing experience
+- Planning: Decomposing goals
+- Action: Executing plans via tools or internal knowledge
+
+% https://link.springer.com/article/10.1007/s44336-024-00009-2
+Some authours argue for a fifth module, evolution, describing how agents progressively enhance their intelligence through self-reflection.
+
+Analogously, agents can be understood as \textit{proactive} whereas LLMs are \textit{reactive}. Alternatively, LLMs \textit{predict}, and agents \textit{reason, act,} and \textit{interact}.
+% https://www.jair.org/index.php/jair/article/view/18675/27253
+% confirm claim.
+
+Ideally, the foundational agent architecture would address the concerns of LLMs through ...
+% https://www.jair.org/index.php/jair/article/view/18675
+
+Implementations of single-agent systems can be used in ...
+% https://arxiv.org/abs/2512.08296
+
+Nonetheless, single-agent systems have key pitfalls...
+% https://arxiv.org/abs/2511.01149
+
+## What are multi-agent systems?
+
+Multi-agent systems are systems that enclose multiple autonomous LLM-based agents to enable more complex reasoning and simulation. Leveraging the foundational "wisdom of the multitude" is just a natural step in the evolution of agentic AI, addressing the pitfalls of single-agent systems as listed above.
+
+% https://arxiv.org/pdf/2402.01680
+% Politics - aristotle
+
+Specifically, multi-agent systems surpass single-agent systems in...
+% https://arxiv.org/abs/2511.01149 (same as above)
+
+Multi-agent systems are used in ... 
+% couple examples
+
+As the implementations of multi-agent systems become more integrated into society, the need for explainability methods is just as required.
+% tie back to explainability
+
+
+\section{Technical Approaches and Methodologies}
+
+% Single-agent based approaches (but in to multi-agent contexts)
+
+% SAEs, linear probes, logit/tuned lenses, etc.
+
+% Multi-agent based approaches
+
+% describe how certain behaviours occur ONLY in a multi-agent context: collusion, complex scheming
+
+% include black-box tools (LLM-as-a-judge, human-in-the-loop)
