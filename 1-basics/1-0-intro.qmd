@@ -1,3 +1,12 @@
 # Introduction to Explainable Machine Learning
 
 Welcome to the tutorial!
+
+Here are some resources that discuss definitions of terms like explainability, interpretability, transparence, etc.:
+- @puiutta2020explainable, section 1.3
+    -  "while an explanation is focused on what to explain, an interpretation has the additional value of considering how to explain something"
+- @krajna2022explainability, page 4
+    - " while interpretability considers the ML model together with data, and finally in addition to the model and the data, explainability needs to consider human involvement aspect (i.e. providing human-understandable explanations for model prediction according to the level of human specific expertise)"
+- ...
+
+There's an interesting paper on different levels of explanations in AI systems: @dazeley2021levels.
