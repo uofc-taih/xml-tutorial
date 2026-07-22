@@ -1,4 +1,25 @@
-# Foundations
+# Introduction to Explainable RL
+
+Note to self:
+
+Before:
+
+- Foundations and taxonomy
+    - split into two separate pages
+- Visualization-based approaches
+    - mentioned in the text, doesn't need its own section
+- Policy extraction and decision trees
+    - polcicy-level XRL, okay
+- Explaining decisions through critical states
+    - hmm, feature importance?
+- Trajectory-based methods
+    - MDP and/or policy-level
+- Explainability via counterfactual reasoning
+
+
+- Evaluation of XRL methods
+
+## Foundations
 
 There's value-based and policy-based RL.
 

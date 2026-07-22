@@ -1,4 +1,6 @@
-# Categorization of XML Methods
+# Introduction
+
+(This section was previously called: "Categorization of XML Methods")
 
 There are many taxonomies in which interpretability methods can be categorized, they can be categorized according to the nature of the learning algorithm or the stage at which the model becomes interpretable into Intrinsic and Post-Hoc methods, They can also be categorized into Local and Global methods according to the scope of explanations.
 
@@ -42,3 +44,26 @@ Also, Linear Regression models assumes independence between features. Feature co
 ## Global vs. Local Explainability
 
 ##  Model-Agnostic vs. Model-Specific
+
+
+## Practical Considerations
+
+### Selecting an Explainability Method
+
+### Selecting an Explainability Method
+
+### Evaluating Explanations
+
+#### Fidelity
+
+#### Robustness
+
+#### Stability
+
+#### Human Interpretability
+
+### Common Pitfalls
+
+### Best Practices
+
+### Summary

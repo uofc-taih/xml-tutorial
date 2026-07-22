@@ -1,4 +1,4 @@
-# Foundations and Taxonomy
+# Taxonomy
 
 ## What are agents?
 
@@ -65,4 +65,4 @@ As the implementations of multi-agent systems become more integrated into societ
 
 % describe how certain behaviours occur ONLY in a multi-agent context: collusion, complex scheming
 
-% include black-box tools (LLM-as-a-judge, human-in-the-loop)
+% include black-box tools (LLM-as-a-judge, human-in-the-loop)#

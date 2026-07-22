@@ -1,0 +1,3 @@
+# Notation {.unnumbered}
+
+Here, we introduce the notation used consistently throughout this book.

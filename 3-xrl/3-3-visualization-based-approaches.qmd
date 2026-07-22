@@ -1,7 +1,0 @@
-# Visualization-Based Approaches
-
-State-value heatmaps can reveal an agent's strategic understanding of the environment. This is particularly useful in navigation-based settings such as mazes.
-
-For more fine-grained explanations, we can also visualize state-action values (Q values) to identify the agent's understanding of actions from the perspective of a given state.
-
-Visiualization-based explainability toolkits for RL have been proposed such as DQNViz [@wang2018dqnviz], developed for DQN-based agents learning Atari games.

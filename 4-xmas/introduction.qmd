@@ -1,3 +1,3 @@
-# Explainable Multi-Agent Systems
+# Introduction
 
 Explainable multi-agent systems (XMAS) refers to the subfield of artificial intelligence that integrates LLM explainability methods within multi-agent AI systems (MAS). This recently established field of study addresses the emergent behaviours of MAS, which derive from the added complexity of multi-agent settings. As single-agent AI systems become progressively more commercialized (finance, e-commerce, legal services), the natural step towards MAS necessitates the corresponding MAS-specific explainability methods. 
