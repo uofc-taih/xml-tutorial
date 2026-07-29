@@ -45,7 +45,7 @@ book:
           chapters:
               - 3-xrl/introduction.qmd
               - 3-xrl/taxonomy.qmd
-              - 3-xrl/M1-pertubation-based-salience-maps.qmd
+              - 3-xrl/m1-pertubation-based-salience-maps.qmd
               - 3-xrl/method-B.qmd
               - 3-xrl/method-C.qmd
               - 3-xrl/applications.qmd
