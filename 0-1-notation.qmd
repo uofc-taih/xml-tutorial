@@ -1,3 +1,117 @@
 # Notation {.unnumbered}
 
 Here, we introduce the notation used consistently throughout this book.
+We follow the [Deep Learning Book](https://www.deeplearningbook.org/contents/notation.html) wherever possible.
+
+## Numbers and Arrays
+
+| Symbol | Description | 
+| ----- | ----- | 
+| $a$ | A scalar (integer or real) | 
+| $\boldsymbol{a}$ | A vector | 
+| $\boldsymbol{A}$ | A matrix | 
+| $\boldsymbol{\mathsf{A}}$ | A tensor | 
+| $\boldsymbol{I}_n$ | Identity matrix with $n$ rows and $n$ columns | 
+| $\boldsymbol{I}$ | Identity matrix with dimensionality implied by context | 
+| $\boldsymbol{e}^{(i)}$ | Standard basis vector $[0,\dots,0,1,0,\dots,0]$ with a 1 at position $i$ | 
+| $\text{diag}(\boldsymbol{a})$ | A square, diagonal matrix with diagonal entries given by $\boldsymbol{a}$ | 
+| $\mathrm{a}$ | A scalar random variable | 
+| $\mathbf{a}$ | A vector-valued random variable | 
+| $\mathbf{A}$ | A matrix-valued random variable | 
+
+## Sets and Graphs
+
+| Symbol | Description | 
+| ----- | ----- | 
+| $\mathbb{A}$ | A set | 
+| $\mathbb{R}$ | The set of real numbers | 
+| $\{0, 1\}$ | The set containing 0 and 1 | 
+| $\{0, 1, \dots, n \}$ | The set of all integers between $0$ and $n$ | 
+| $[a, b]$ | The real interval including $a$ and $b$ | 
+| $(a, b]$ | The real interval excluding $a$ but including $b$ | 
+| $\mathcal{A} \backslash \mathcal{B}$ | Set subtraction, i.e., the set containing the elements of $\mathcal{A}$ that are not in $\mathcal{B}$ | 
+| $\mathcal{G}$ | A graph | 
+| $Pa_{\mathcal{G}}(\mathrm{x}_i)$ | The parents of $\mathrm{x}_i$ in $\mathcal{G}$ | 
+
+## Indexing
+
+| Symbol | Description | 
+| ----- | ----- | 
+| $a_i$ | Element $i$ of vector $\boldsymbol{a}$, with indexing starting at 1 | 
+| $a_{-i}$ | All elements of vector $\boldsymbol{a}$ except for element $i$ | 
+| $A_{i,j}$ | Element $i, j$ of matrix $\boldsymbol{A}$ | 
+| $\boldsymbol{A}_{i, :}$ | Row $i$ of matrix $\boldsymbol{A}$ | 
+| $\boldsymbol{A}_{:, i}$ | Column $i$ of matrix $\boldsymbol{A}$ | 
+| $\mathsf{A}_{i, j, k}$ | Element $(i, j, k)$ of a 3-D tensor $\boldsymbol{\mathsf{A}}$ | 
+| $\boldsymbol{\mathsf{A}}_{:, :, i}$ | 2-D slice of a 3-D tensor | 
+| $\mathrm{a}_i$ | Element $i$ of the random vector $\mathbf{a}$ | 
+
+## Linear Algebra Operations
+
+| Symbol | Description | 
+| ----- | ----- | 
+| $\boldsymbol{A}^\top$ | Transpose of matrix $\boldsymbol{A}$ | 
+| $\boldsymbol{A}^+$ | Moore-Penrose pseudoinverse of $\boldsymbol{A}$ | 
+| $\boldsymbol{A} \odot \boldsymbol{B}$ | Element-wise (Hadamard) product of $\boldsymbol{A}$ and $\boldsymbol{B}$ | 
+| $\mathrm{det}(\boldsymbol{A})$ | Determinant of $\boldsymbol{A}$ | 
+
+## Calculus
+
+| Symbol | Description | 
+| ----- | ----- | 
+| $\frac{d y} {d x}$ | Derivative of $y$ with respect to $x$ | 
+| $\frac{\partial y} {\partial x}$ | Partial derivative of $y$ with respect to $x$ | 
+| $\nabla_{\boldsymbol{x}} y$ | Gradient of $y$ with respect to $\boldsymbol{x}$ | 
+| $\nabla_{\boldsymbol{X}} y$ | Matrix derivatives of $y$ with respect to $\boldsymbol{X}$ | 
+| $\nabla_{\boldsymbol{\mathsf{X}}} y$ | Tensor containing derivatives of $y$ with respect to $\boldsymbol{\mathsf{X}}$ | 
+| $\frac{\partial f}{\partial \boldsymbol{x}}$ | Jacobian matrix $\boldsymbol{J} \in \mathbb{R}^{m\times n}$ of $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$ | 
+| $\nabla_{\boldsymbol{x}}^2 f(\boldsymbol{x}) \text{ or } \boldsymbol{H}(f)(\boldsymbol{x})$ | The Hessian matrix of $f$ at input point $\boldsymbol{x}$ | 
+| $\int f(\boldsymbol{x}) d\boldsymbol{x}$ | Definite integral over the entire domain of $\boldsymbol{x}$ | 
+| $\int_{\mathbb{S}} f(\boldsymbol{x}) d\boldsymbol{x}$ | Definite integral with respect to $\boldsymbol{x}$ over the set $\mathbb{S}$ | 
+
+
+## Probability and Information Theory
+
+| Symbol | Description | 
+| ----- | ----- | 
+| $\mathrm{a} \bot \mathrm{b}$ | The random variables $\mathrm{a}$ and $\mathrm{b}$ are independent | 
+| $\mathrm{a} \bot \mathrm{b} \mid \mathrm{c}$ | They are conditionally independent given $\mathrm{c}$ | 
+| $P(\mathrm{a})$ | A probability distribution over a discrete variable | 
+| $p(\mathrm{a})$ | A probability distribution over a continuous variable, or over a variable whose type has not been specified | 
+| $\mathrm{a} \sim P$ | Random variable $\mathrm{a}$ has distribution $P$ | 
+| $\mathbb{E}_{\mathrm{x} \sim P} [ f(x) ] \text{ or } \mathbb{E} f(x)$ | Expectation of $f(x)$ with respect to $P(\mathrm{x})$ | 
+| $\text{Var}(f(x))$ | Variance of $f(x)$ under $P(\mathrm{x})$ | 
+| $\text{Cov}(f(x),g(x))$ | Covariance of $f(x)$ and $g(x)$ under $P(\mathrm{x})$ | 
+| $H(\mathrm{x})$ | Shannon entropy of the random variable $\mathrm{x}$ | 
+| $D_{\text{KL}} ( P \Vert Q )$ | Kullback-Leibler divergence of P and Q | 
+| $\mathcal{N} ( \boldsymbol{x} ; \boldsymbol{\mu} , \boldsymbol{\Sigma})$ | Gaussian distribution over $\boldsymbol{x}$ with mean $\boldsymbol{\mu}$ and covariance $\boldsymbol{\Sigma}$ | 
+
+## Functions
+
+| Symbol | Description | 
+| ----- | ----- | 
+| $f: \mathbb{A} \rightarrow \mathbb{B}$ | The function $f$ with domain $\mathbb{A}$ and range $\mathbb{B}$ | 
+| $f \circ g$ | Composition of the functions $f$ and $g$ | 
+| $f(\boldsymbol{x} ; \boldsymbol{\theta})$ | A function of $\boldsymbol{x}$ parametrized by $\boldsymbol{\theta}$. (Sometimes we write $f(\boldsymbol{x})$ and omit the argument $\boldsymbol{\theta}$ to lighten notation) | 
+| $\log x$ | Natural logarithm of $x$ | 
+| $\sigma(x)$ | Logistic sigmoid, $\frac{1} {1 + \exp(-x)}$ | 
+| $\zeta(x)$ | Softplus, $\log(1 + \exp(x))$ | 
+| $\Vert \boldsymbol{x} \Vert_p$ | $L^p$ norm of $\boldsymbol{x}$ | 
+| $\Vert \boldsymbol{x} \Vert_2$ | $L^2$ norm of $\boldsymbol{x}$ | 
+| $x^+$ | Positive part of $x$, i.e., $\max(0,x)$ | 
+| $\mathbf{1}_{\mathrm{condition}}$ | is 1 if the condition is true, 0 otherwise | 
+
+Sometimes we use a function $f$ whose argument is a scalar but apply it to a vector, matrix, or tensor: $f(\boldsymbol{x})$, $f(\boldsymbol{X})$, or $f(\boldsymbol{\mathsf{X}})$. This denotes the application of $f$ to the array element-wise. For example, if $\boldsymbol{\mathsf{C}} = \sigma(\boldsymbol{\mathsf{X}})$, then $\mathsf{C}_{i,j,k} = \sigma(\mathsf{X}_{i,j,k})$ for all valid values of $i$, $j$ and $k$.
+
+## Datasets and Distributions
+
+| Symbol | Description | 
+| ----- | ----- | 
+| $\mathcal{D}$ | A dataset containing training or evaluation examples |
+| $\mathbf{x}^{(i)}, y^{(i)}$ | The $i$-th input feature vector and its corresponding target/label |
+| $p_{\text{data}}$ | The data generating distribution | 
+| $\hat{p}_{\text{data}}$ | The empirical distribution defined by the training set | 
+| $\mathbb{X}$ | A set of training examples | 
+| $\boldsymbol{x}^{(i)}$ | The $i$-th example (input) from a dataset | 
+| $y^{(i)} \text{ or } \boldsymbol{y}^{(i)}$ | The target associated with $\boldsymbol{x}^{(i)}$ for supervised learning | 
+| $\boldsymbol{X}$ | The $m \times n$ matrix with input example $\boldsymbol{x}^{(i)}$ in row $\boldsymbol{X}_{i,:}$ | 
