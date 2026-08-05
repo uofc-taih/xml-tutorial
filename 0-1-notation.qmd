@@ -93,6 +93,8 @@ We follow the [Deep Learning Book](https://www.deeplearningbook.org/contents/not
 | $f: \mathbb{A} \rightarrow \mathbb{B}$ | The function $f$ with domain $\mathbb{A}$ and range $\mathbb{B}$ | 
 | $f \circ g$ | Composition of the functions $f$ and $g$ | 
 | $f(\boldsymbol{x} ; \boldsymbol{\theta})$ | A function of $\boldsymbol{x}$ parametrized by $\boldsymbol{\theta}$. (Sometimes we write $f(\boldsymbol{x})$ and omit the argument $\boldsymbol{\theta}$ to lighten notation) | 
+| $\mathcal{L}(\boldsymbol{\theta})$ | The loss function to be minimized |
+| $\nabla_{\boldsymbol{\theta}} \mathcal{L}$ | The gradient of the loss with respect to parameters $\boldsymbol{\theta}$ |
 | $\log x$ | Natural logarithm of $x$ | 
 | $\sigma(x)$ | Logistic sigmoid, $\frac{1} {1 + \exp(-x)}$ | 
 | $\zeta(x)$ | Softplus, $\log(1 + \exp(x))$ | 
@@ -115,3 +117,26 @@ Sometimes we use a function $f$ whose argument is a scalar but apply it to a vec
 | $\boldsymbol{x}^{(i)}$ | The $i$-th example (input) from a dataset | 
 | $y^{(i)} \text{ or } \boldsymbol{y}^{(i)}$ | The target associated with $\boldsymbol{x}^{(i)}$ for supervised learning | 
 | $\boldsymbol{X}$ | The $m \times n$ matrix with input example $\boldsymbol{x}^{(i)}$ in row $\boldsymbol{X}_{i,:}$ | 
+
+## Reinforcement Learning
+
+| Symbol | Description |
+| ----- | ----- |
+| $\mathcal{S}, \mathcal{A}$ | The set of all possible states and actions |
+| $s_t, a_t, r_t$ | State, action, and reward at time step $t$ |
+| $P(s_{t+1} \vert{} s_t, a_t)$ | Transition dynamics: probability of reaching $s_{t+1}$ given $s_t$ and $a_t$ |
+| $\mathcal{R}(s_t, a_t)$ | The reward function |
+| $\gamma$ | Discount factor, $\gamma \in [0, 1]$ |
+| $\pi(a \vert{} s)$ | A stochastic policy: probability of taking action $a$ in state $s$ |
+| $V^\pi(s)$ | The state-value function under policy $\pi$ |
+| $Q^\pi(s, a)$ | The action-value (Q) function under policy $\pi$ |
+
+## Multi-Agent Systems
+
+| Symbol | Description |
+| ----- | ----- |
+| $N$ | Total number of agents in the environment |
+| $i$ | Index of a specific agent, $i \in \{1, \dots, N\}$ |
+| $\mathbf{a} = \langle a_1, \dots, a_N \rangle$ | Joint action taken by all agents |
+| $\boldsymbol{\pi} = \langle \pi_1, \dots, \pi_N \rangle$ | Joint policy of all agents |
+| $-i$ | Subscript denoting all agents *except* agent $i$ (e.g., $\mathbf{a}_{-i}$) |
