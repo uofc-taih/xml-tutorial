@@ -1,0 +1,582 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Explainable ML Tutorial",
+    "section": "",
+    "text": "Preface\nAcknowledgements etc.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "0-1-notation.html",
+    "href": "0-1-notation.html",
+    "title": "Notation",
+    "section": "",
+    "text": "Numbers and Arrays\nHere, we introduce the notation used consistently throughout this book. We follow the Deep Learning Book wherever possible.",
+    "crumbs": [
+      "Notation"
+    ]
+  },
+  {
+    "objectID": "0-1-notation.html#numbers-and-arrays",
+    "href": "0-1-notation.html#numbers-and-arrays",
+    "title": "Notation",
+    "section": "",
+    "text": "Symbol\nDescription\n\n\n\n\n\\(a\\)\nA scalar (integer or real)\n\n\n\\(\\boldsymbol{a}\\)\nA vector\n\n\n\\(\\boldsymbol{A}\\)\nA matrix\n\n\n\\(\\boldsymbol{\\mathsf{A}}\\)\nA tensor\n\n\n\\(\\boldsymbol{I}_n\\)\nIdentity matrix with \\(n\\) rows and \\(n\\) columns\n\n\n\\(\\boldsymbol{I}\\)\nIdentity matrix with dimensionality implied by context\n\n\n\\(\\boldsymbol{e}^{(i)}\\)\nStandard basis vector \\([0,\\dots,0,1,0,\\dots,0]\\) with a 1 at position \\(i\\)\n\n\n\\(\\text{diag}(\\boldsymbol{a})\\)\nA square, diagonal matrix with diagonal entries given by \\(\\boldsymbol{a}\\)\n\n\n\\(\\mathrm{a}\\)\nA scalar random variable\n\n\n\\(\\mathbf{a}\\)\nA vector-valued random variable\n\n\n\\(\\mathbf{A}\\)\nA matrix-valued random variable",
+    "crumbs": [
+      "Notation"
+    ]
+  },
+  {
+    "objectID": "0-1-notation.html#sets-and-graphs",
+    "href": "0-1-notation.html#sets-and-graphs",
+    "title": "Notation",
+    "section": "Sets and Graphs",
+    "text": "Sets and Graphs\n\n\n\n\n\n\n\nSymbol\nDescription\n\n\n\n\n\\(\\mathbb{A}\\)\nA set\n\n\n\\(\\mathbb{R}\\)\nThe set of real numbers\n\n\n\\(\\{0, 1\\}\\)\nThe set containing 0 and 1\n\n\n\\(\\{0, 1, \\dots, n \\}\\)\nThe set of all integers between \\(0\\) and \\(n\\)\n\n\n\\([a, b]\\)\nThe real interval including \\(a\\) and \\(b\\)\n\n\n\\((a, b]\\)\nThe real interval excluding \\(a\\) but including \\(b\\)\n\n\n\\(\\mathcal{A} \\backslash \\mathcal{B}\\)\nSet subtraction, i.e., the set containing the elements of \\(\\mathcal{A}\\) that are not in \\(\\mathcal{B}\\)\n\n\n\\(\\mathcal{G}\\)\nA graph\n\n\n\\(Pa_{\\mathcal{G}}(\\mathrm{x}_i)\\)\nThe parents of \\(\\mathrm{x}_i\\) in \\(\\mathcal{G}\\)",
+    "crumbs": [
+      "Notation"
+    ]
+  },
+  {
+    "objectID": "0-1-notation.html#indexing",
+    "href": "0-1-notation.html#indexing",
+    "title": "Notation",
+    "section": "Indexing",
+    "text": "Indexing\n\n\n\n\n\n\n\nSymbol\nDescription\n\n\n\n\n\\(a_i\\)\nElement \\(i\\) of vector \\(\\boldsymbol{a}\\), with indexing starting at 1\n\n\n\\(a_{-i}\\)\nAll elements of vector \\(\\boldsymbol{a}\\) except for element \\(i\\)\n\n\n\\(A_{i,j}\\)\nElement \\(i, j\\) of matrix \\(\\boldsymbol{A}\\)\n\n\n\\(\\boldsymbol{A}_{i, :}\\)\nRow \\(i\\) of matrix \\(\\boldsymbol{A}\\)\n\n\n\\(\\boldsymbol{A}_{:, i}\\)\nColumn \\(i\\) of matrix \\(\\boldsymbol{A}\\)\n\n\n\\(\\mathsf{A}_{i, j, k}\\)\nElement \\((i, j, k)\\) of a 3-D tensor \\(\\boldsymbol{\\mathsf{A}}\\)\n\n\n\\(\\boldsymbol{\\mathsf{A}}_{:, :, i}\\)\n2-D slice of a 3-D tensor\n\n\n\\(\\mathrm{a}_i\\)\nElement \\(i\\) of the random vector \\(\\mathbf{a}\\)",
+    "crumbs": [
+      "Notation"
+    ]
+  },
+  {
+    "objectID": "0-1-notation.html#linear-algebra-operations",
+    "href": "0-1-notation.html#linear-algebra-operations",
+    "title": "Notation",
+    "section": "Linear Algebra Operations",
+    "text": "Linear Algebra Operations\n\n\n\n\n\n\n\nSymbol\nDescription\n\n\n\n\n\\(\\boldsymbol{A}^\\top\\)\nTranspose of matrix \\(\\boldsymbol{A}\\)\n\n\n\\(\\boldsymbol{A}^+\\)\nMoore-Penrose pseudoinverse of \\(\\boldsymbol{A}\\)\n\n\n\\(\\boldsymbol{A} \\odot \\boldsymbol{B}\\)\nElement-wise (Hadamard) product of \\(\\boldsymbol{A}\\) and \\(\\boldsymbol{B}\\)\n\n\n\\(\\mathrm{det}(\\boldsymbol{A})\\)\nDeterminant of \\(\\boldsymbol{A}\\)",
+    "crumbs": [
+      "Notation"
+    ]
+  },
+  {
+    "objectID": "0-1-notation.html#calculus",
+    "href": "0-1-notation.html#calculus",
+    "title": "Notation",
+    "section": "Calculus",
+    "text": "Calculus\n\n\n\n\n\n\n\nSymbol\nDescription\n\n\n\n\n\\(\\frac{d y} {d x}\\)\nDerivative of \\(y\\) with respect to \\(x\\)\n\n\n\\(\\frac{\\partial y} {\\partial x}\\)\nPartial derivative of \\(y\\) with respect to \\(x\\)\n\n\n\\(\\nabla_{\\boldsymbol{x}} y\\)\nGradient of \\(y\\) with respect to \\(\\boldsymbol{x}\\)\n\n\n\\(\\nabla_{\\boldsymbol{X}} y\\)\nMatrix derivatives of \\(y\\) with respect to \\(\\boldsymbol{X}\\)\n\n\n\\(\\nabla_{\\boldsymbol{\\mathsf{X}}} y\\)\nTensor containing derivatives of \\(y\\) with respect to \\(\\boldsymbol{\\mathsf{X}}\\)\n\n\n\\(\\frac{\\partial f}{\\partial \\boldsymbol{x}}\\)\nJacobian matrix \\(\\boldsymbol{J} \\in \\mathbb{R}^{m\\times n}\\) of \\(f: \\mathbb{R}^n \\rightarrow \\mathbb{R}^m\\)\n\n\n\\(\\nabla_{\\boldsymbol{x}}^2 f(\\boldsymbol{x}) \\text{ or } \\boldsymbol{H}(f)(\\boldsymbol{x})\\)\nThe Hessian matrix of \\(f\\) at input point \\(\\boldsymbol{x}\\)\n\n\n\\(\\int f(\\boldsymbol{x}) d\\boldsymbol{x}\\)\nDefinite integral over the entire domain of \\(\\boldsymbol{x}\\)\n\n\n\\(\\int_{\\mathbb{S}} f(\\boldsymbol{x}) d\\boldsymbol{x}\\)\nDefinite integral with respect to \\(\\boldsymbol{x}\\) over the set \\(\\mathbb{S}\\)",
+    "crumbs": [
+      "Notation"
+    ]
+  },
+  {
+    "objectID": "0-1-notation.html#probability-and-information-theory",
+    "href": "0-1-notation.html#probability-and-information-theory",
+    "title": "Notation",
+    "section": "Probability and Information Theory",
+    "text": "Probability and Information Theory\n\n\n\n\n\n\n\nSymbol\nDescription\n\n\n\n\n\\(\\mathrm{a} \\bot \\mathrm{b}\\)\nThe random variables \\(\\mathrm{a}\\) and \\(\\mathrm{b}\\) are independent\n\n\n\\(\\mathrm{a} \\bot \\mathrm{b} \\mid \\mathrm{c}\\)\nThey are conditionally independent given \\(\\mathrm{c}\\)\n\n\n\\(P(\\mathrm{a})\\)\nA probability distribution over a discrete variable\n\n\n\\(p(\\mathrm{a})\\)\nA probability distribution over a continuous variable, or over a variable whose type has not been specified\n\n\n\\(\\mathrm{a} \\sim P\\)\nRandom variable \\(\\mathrm{a}\\) has distribution \\(P\\)\n\n\n\\(\\mathbb{E}_{\\mathrm{x} \\sim P} [ f(x) ] \\text{ or } \\mathbb{E} f(x)\\)\nExpectation of \\(f(x)\\) with respect to \\(P(\\mathrm{x})\\)\n\n\n\\(\\text{Var}(f(x))\\)\nVariance of \\(f(x)\\) under \\(P(\\mathrm{x})\\)\n\n\n\\(\\text{Cov}(f(x),g(x))\\)\nCovariance of \\(f(x)\\) and \\(g(x)\\) under \\(P(\\mathrm{x})\\)\n\n\n\\(H(\\mathrm{x})\\)\nShannon entropy of the random variable \\(\\mathrm{x}\\)\n\n\n\\(D_{\\text{KL}} ( P \\Vert Q )\\)\nKullback-Leibler divergence of P and Q\n\n\n\\(\\mathcal{N} ( \\boldsymbol{x} ; \\boldsymbol{\\mu} , \\boldsymbol{\\Sigma})\\)\nGaussian distribution over \\(\\boldsymbol{x}\\) with mean \\(\\boldsymbol{\\mu}\\) and covariance \\(\\boldsymbol{\\Sigma}\\)",
+    "crumbs": [
+      "Notation"
+    ]
+  },
+  {
+    "objectID": "0-1-notation.html#functions",
+    "href": "0-1-notation.html#functions",
+    "title": "Notation",
+    "section": "Functions",
+    "text": "Functions\n\n\n\n\n\n\n\nSymbol\nDescription\n\n\n\n\n\\(f: \\mathbb{A} \\rightarrow \\mathbb{B}\\)\nThe function \\(f\\) with domain \\(\\mathbb{A}\\) and range \\(\\mathbb{B}\\)\n\n\n\\(f \\circ g\\)\nComposition of the functions \\(f\\) and \\(g\\)\n\n\n\\(f(\\boldsymbol{x} ; \\boldsymbol{\\theta})\\)\nA function of \\(\\boldsymbol{x}\\) parametrized by \\(\\boldsymbol{\\theta}\\). (Sometimes we write \\(f(\\boldsymbol{x})\\) and omit the argument \\(\\boldsymbol{\\theta}\\) to lighten notation)\n\n\n\\(\\mathcal{L}(\\boldsymbol{\\theta})\\)\nThe loss function to be minimized\n\n\n\\(\\nabla_{\\boldsymbol{\\theta}} \\mathcal{L}\\)\nThe gradient of the loss with respect to parameters \\(\\boldsymbol{\\theta}\\)\n\n\n\\(\\log x\\)\nNatural logarithm of \\(x\\)\n\n\n\\(\\sigma(x)\\)\nLogistic sigmoid, \\(\\frac{1} {1 + \\exp(-x)}\\)\n\n\n\\(\\zeta(x)\\)\nSoftplus, \\(\\log(1 + \\exp(x))\\)\n\n\n\\(\\Vert \\boldsymbol{x} \\Vert_p\\)\n\\(L^p\\) norm of \\(\\boldsymbol{x}\\)\n\n\n\\(\\Vert \\boldsymbol{x} \\Vert_2\\)\n\\(L^2\\) norm of \\(\\boldsymbol{x}\\)\n\n\n\\(x^+\\)\nPositive part of \\(x\\), i.e., \\(\\max(0,x)\\)\n\n\n\\(\\mathbf{1}_{\\mathrm{condition}}\\)\nis 1 if the condition is true, 0 otherwise\n\n\n\nSometimes we use a function \\(f\\) whose argument is a scalar but apply it to a vector, matrix, or tensor: \\(f(\\boldsymbol{x})\\), \\(f(\\boldsymbol{X})\\), or \\(f(\\boldsymbol{\\mathsf{X}})\\). This denotes the application of \\(f\\) to the array element-wise. For example, if \\(\\boldsymbol{\\mathsf{C}} = \\sigma(\\boldsymbol{\\mathsf{X}})\\), then \\(\\mathsf{C}_{i,j,k} = \\sigma(\\mathsf{X}_{i,j,k})\\) for all valid values of \\(i\\), \\(j\\) and \\(k\\).",
+    "crumbs": [
+      "Notation"
+    ]
+  },
+  {
+    "objectID": "0-1-notation.html#datasets-and-distributions",
+    "href": "0-1-notation.html#datasets-and-distributions",
+    "title": "Notation",
+    "section": "Datasets and Distributions",
+    "text": "Datasets and Distributions\n\n\n\n\n\n\n\nSymbol\nDescription\n\n\n\n\n\\(\\mathcal{D}\\)\nA dataset containing training or evaluation examples\n\n\n\\(\\mathbf{x}^{(i)}, y^{(i)}\\)\nThe \\(i\\)-th input feature vector and its corresponding target/label\n\n\n\\(p_{\\text{data}}\\)\nThe data generating distribution\n\n\n\\(\\hat{p}_{\\text{data}}\\)\nThe empirical distribution defined by the training set\n\n\n\\(\\mathbb{X}\\)\nA set of training examples\n\n\n\\(\\boldsymbol{x}^{(i)}\\)\nThe \\(i\\)-th example (input) from a dataset\n\n\n\\(y^{(i)} \\text{ or } \\boldsymbol{y}^{(i)}\\)\nThe target associated with \\(\\boldsymbol{x}^{(i)}\\) for supervised learning\n\n\n\\(\\boldsymbol{X}\\)\nThe \\(m \\times n\\) matrix with input example \\(\\boldsymbol{x}^{(i)}\\) in row \\(\\boldsymbol{X}_{i,:}\\)",
+    "crumbs": [
+      "Notation"
+    ]
+  },
+  {
+    "objectID": "0-1-notation.html#reinforcement-learning",
+    "href": "0-1-notation.html#reinforcement-learning",
+    "title": "Notation",
+    "section": "Reinforcement Learning",
+    "text": "Reinforcement Learning\n\n\n\n\n\n\n\nSymbol\nDescription\n\n\n\n\n\\(\\mathcal{S}, \\mathcal{A}\\)\nThe set of all possible states and actions\n\n\n\\(s_t, a_t, r_t\\)\nState, action, and reward at time step \\(t\\)\n\n\n\\(P(s_{t+1} \\vert{} s_t, a_t)\\)\nTransition dynamics: probability of reaching \\(s_{t+1}\\) given \\(s_t\\) and \\(a_t\\)\n\n\n\\(\\mathcal{R}(s_t, a_t)\\)\nThe reward function\n\n\n\\(\\gamma\\)\nDiscount factor, \\(\\gamma \\in [0, 1]\\)\n\n\n\\(\\pi(a \\vert{} s)\\)\nA stochastic policy: probability of taking action \\(a\\) in state \\(s\\)\n\n\n\\(V^\\pi(s)\\)\nThe state-value function under policy \\(\\pi\\)\n\n\n\\(Q^\\pi(s, a)\\)\nThe action-value (Q) function under policy \\(\\pi\\)",
+    "crumbs": [
+      "Notation"
+    ]
+  },
+  {
+    "objectID": "0-1-notation.html#multi-agent-systems",
+    "href": "0-1-notation.html#multi-agent-systems",
+    "title": "Notation",
+    "section": "Multi-Agent Systems",
+    "text": "Multi-Agent Systems\n\n\n\n\n\n\n\nSymbol\nDescription\n\n\n\n\n\\(N\\)\nTotal number of agents in the environment\n\n\n\\(i\\)\nIndex of a specific agent, \\(i \\in \\{1, \\dots, N\\}\\)\n\n\n\\(\\mathbf{a} = \\langle a_1, \\dots, a_N \\rangle\\)\nJoint action taken by all agents\n\n\n\\(\\boldsymbol{\\pi} = \\langle \\pi_1, \\dots, \\pi_N \\rangle\\)\nJoint policy of all agents\n\n\n\\(-i\\)\nSubscript denoting all agents except agent \\(i\\) (e.g., \\(\\mathbf{a}_{-i}\\))",
+    "crumbs": [
+      "Notation"
+    ]
+  },
+  {
+    "objectID": "0-2-introduction.html",
+    "href": "0-2-introduction.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "Welcome to the tutorial!",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "1-basics/introduction.html",
+    "href": "1-basics/introduction.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "1.1 Intrinsic vs. Post-Hoc Methods\n(This section was previously called: “Categorization of XML Methods”)\nThere are many taxonomies in which interpretability methods can be categorized, they can be categorized according to the nature of the learning algorithm or the stage at which the model becomes interpretable into Intrinsic and Post-Hoc methods, They can also be categorized into Local and Global methods according to the scope of explanations.\nIntrinsic methods indicate that the model itself is inherently interpretable by design the algorithm itself tends to be less complex and the factors affecting the decision making process are always disentangled (Molnar 2025). Linear Regression, Logistic Regression, Generalized linear models (GLMs) (Wang and Ji 2025) and Decision Trees are examples of models that are interpretable by design, they either show the importance of each feature, or come up with human readable decision rules (Miller 2019; Molnar 2025). While those models are extremely simple, efficient and interpretable they face many limitations when deployed to the real world, For example linear models can be interpreted by measuring the feature importance; by looking into the coefficient of each feature in the weight matrix (Molnar 2025). However, they are built on very strict assumptions and inductive biases such as linearity, independence, and absence of heteroscedasticity which are difficult to gurantee in the real world (Hastie, Tibshirani, and Friedman 2009), this limits the ability of such algorithms to capture true, non-linear patterns underlying the data or even model complex high dimensional data which limits the predictive performance of such models.\nWhile linear models fail to model non-linear data, tree-based models come into play. They work by splitting the data multiple times according to discovered thresholds over the values of the features (Molnar 2025). Each learning algorithm uses a different criterion to grow the optimal tree. For example, ID3 measures the Information Gain criterion to find the best splits (Quinlan 1986), While CART optimizes for the Gini Impurity (Breiman et al. 1984). All tree based algorithms are capable of modeling non-linear data. Those models are Interpretable intrinsically; you can traverse the tree starting from the root to the leaf in order to find the decision in the form of sequential If-Else statements. However, due to the greedy nature of the learning algorithm it tends to increase the depth of the tree drastically leading to a trade-off between error minimization and being easily interpretable (Molnar 2025).\nOn the other hand, Post-Hoc methods work by reporting how an already trained model produces its predictions, For any given input it tries to provide understandable explanations for the learned decision boundaries by the more complex black-box models Molnar (2025). Post-Hoc methods can be categorized into two main categories: Model-Agnostic methods, and model model-specific methods (Arrieta et al. 2019), Where the former can be plugged into any model to explain its decision space, e.g perturbation based approaches like LIME (Ribeiro, Singh, and Guestrin 2016) and SHAP (Lundberg and Lee 2017) that predict how the decision space changes when the input data point is perturbed, While the latter is specific to a model architecture like analyzing attention maps in transformer networks, or gradient-based methods that look into the gradient of the input with respect to the loss function to provide pixel-level explanations like Saliency Maps (Simonyan, Vedaldi, and Zisserman 2014), class activation maps (CAM) (Minh 2023) and it varients like GradCAMs (Selvaraju et al. 2019) in convolutional neural networks (CNNs) are also used to quantify the amount of input activation conditioned on the output class to provide a heat-map for the relevant regions for the predicted class.",
+    "crumbs": [
+      "Basics of Explainable Machine Learning",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "1-basics/introduction.html#intrinsic-vs.-post-hoc-methods",
+    "href": "1-basics/introduction.html#intrinsic-vs.-post-hoc-methods",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "1.1.1 Linear Regression\nLinear regression represents the output variable \\(y\\) as a linear combination of the input features \\(\\mathbf{X}\\) weighted by the scaling coefficient matrix \\(\\boldsymbol{\\beta}\\). Mathematically:\\[\\mathbf{y} = \\mathbf{X}\\boldsymbol{\\beta} + \\boldsymbol{\\varepsilon},\\] \\[\\mathbf{X} \\in \\mathbb{R}^{n \\times p}, \\quad \\mathbf{y} \\in \\mathbb{R}^{n}, \\quad \\boldsymbol{\\beta} \\in \\mathbb{R}^{p}, \\quad \\boldsymbol{\\varepsilon} \\in \\mathbb{R}^{n}.\\]where \\(\\boldsymbol{\\varepsilon}\\) is called the irreducible error term, it is typically considered a random variable with zero mean and constant variance. It captures the noise, and the variations in the data that the model failed to explain using the given features, \\(n\\) is the number of training instances, and \\(p\\) is the number of features.\nWe can run iterative optimization using standard gradient descent algorithm (Ruder 2017) to find the betas that minimize mean squared error (MSE):\\[J(\\boldsymbol{\\beta}) = \\frac{1}{2n} \\left\\Vert{} \\mathbf{y} - \\mathbf{X}\\boldsymbol{\\beta} \\right\\Vert{}_2^2.\\] \\[\\boldsymbol{\\beta}^{(t+1)} = \\boldsymbol{\\beta}^{(t)} - \\eta \\frac{1}{n} \\mathbf{X}^{\\top} (\\mathbf{X}\\boldsymbol{\\beta}^{(t)}-\\mathbf{y}),\\] \\[\\frac{\\partial y}{\\partial x_j} = \\boldsymbol{\\beta}_j,\\]\nLinear Regression models are inherently interpretable through their coefficient vector \\(\\boldsymbol{\\beta}\\). Each coefficient \\(\\beta_j\\) quantifies the effect of the corresponding feature represented by the \\(j\\)-th column of the feature matrix \\(\\mathbf{X}\\) as shown in Figure 1.1.\n\n\n\n\n\n\nFigure 1.1: Linear regression correctly captures the relationship between the feature and the target. The coefficient \\(\\beta\\) corresponds to the constant marginal effect \\(\\frac{\\partial y}{\\partial x}\\), making the model directly interpretable.\n\n\n\nWhile Linear Regression is simple, and interpretable by design, many limitations rise from the implicit inductive biases assumed by this model (Wang and Ji 2025). First, Linear Regression models assumes a linear relationship between the input features and the target variable if the relation is not linear the learned coefficient fails to explain the effect of the feature as shown in Figure 1.2, more formally: \\[\\frac{\\partial y}{\\partial x_j} \\neq \\boldsymbol{\\beta}_j,\\]\n\n\n\n\n\n\nFigure 1.2: When the underlying data distribution is non-linear, linear regression coefficients fails to explain the relationship.\n\n\n\nAlso, Linear Regression models assumes independence between features. Feature correlation can be reflected in the Gram matrix \\(\\mathbf{X}^{\\top}\\mathbf{X}\\), where off-diagonal elements quantify the similarity between feature columns. Strong correlations between features introduce multicollinearity, making the estimated coefficients \\(\\boldsymbol{\\beta}\\) unstable and reduces interpretability as shown in Figure 1.3.\n\n\n\n\n\n\nFigure 1.3: When features are mutually collinear the explanations provided by learned coefficients becomes unstable through multiple runs. In this example we generate a correlated feature using \\(x_2 = x_1 + \\epsilon\\), where \\(\\epsilon_i {\\sim}\\mathcal{N}(0,0.05^2)\\).\n\n\n\n\n\n1.1.2 Logistic Regression\n\n\n1.1.3 Decision Trees\n\n\n1.1.4 K-Nearest Neighbors",
+    "crumbs": [
+      "Basics of Explainable Machine Learning",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "1-basics/introduction.html#global-vs.-local-explainability",
+    "href": "1-basics/introduction.html#global-vs.-local-explainability",
+    "title": "1  Introduction",
+    "section": "1.2 Global vs. Local Explainability",
+    "text": "1.2 Global vs. Local Explainability",
+    "crumbs": [
+      "Basics of Explainable Machine Learning",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "1-basics/introduction.html#model-agnostic-vs.-model-specific",
+    "href": "1-basics/introduction.html#model-agnostic-vs.-model-specific",
+    "title": "1  Introduction",
+    "section": "1.3 Model-Agnostic vs. Model-Specific",
+    "text": "1.3 Model-Agnostic vs. Model-Specific",
+    "crumbs": [
+      "Basics of Explainable Machine Learning",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "1-basics/introduction.html#practical-considerations",
+    "href": "1-basics/introduction.html#practical-considerations",
+    "title": "1  Introduction",
+    "section": "1.4 Practical Considerations",
+    "text": "1.4 Practical Considerations\n\n1.4.1 Selecting an Explainability Method\n\n\n1.4.2 Selecting an Explainability Method\n\n\n1.4.3 Evaluating Explanations\n\n1.4.3.1 Fidelity\n\n\n1.4.3.2 Robustness\n\n\n1.4.3.3 Stability\n\n\n1.4.3.4 Human Interpretability\n\n\n\n1.4.4 Common Pitfalls\n\n\n1.4.5 Best Practices\n\n\n1.4.6 Summary\n\n\n\n\nArrieta, Alejandro Barredo, Natalia Díaz-Rodríguez, Javier Del Ser, Adrien Bennetot, Siham Tabik, Alberto Barbado, Salvador García, et al. 2019. “Explainable Artificial Intelligence (XAI): Concepts, Taxonomies, Opportunities and Challenges Toward Responsible AI.” https://arxiv.org/abs/1910.10045.\n\n\nBreiman, Leo, Jerome H Friedman, Richard A Olshen, and Charles J Stone. 1984. Classification and Regression Trees. Wadsworth & Brooks/Cole Advanced Books & Software.\n\n\nHastie, Trevor, Robert Tibshirani, and Jerome Friedman. 2009. The Elements of Statistical Learning: Data Mining, Inference and Prediction. 2nd ed. springer.\n\n\nLundberg, Scott, and Su-In Lee. 2017. “A Unified Approach to Interpreting Model Predictions.” https://arxiv.org/abs/1705.07874.\n\n\nMiller, Tim. 2019. “Explanation in Artificial Intelligence: Insights from the Social Sciences.” Artificial Intelligence 267: 1–38. https://doi.org/https://doi.org/10.1016/j.artint.2018.07.007.\n\n\nMinh, Anh Pham Thi. 2023. “Overview of Class Activation Maps for Visualization Explainability.” https://arxiv.org/abs/2309.14304.\n\n\nMolnar, Christoph. 2025. Interpretable Machine Learning: A Guide for Making Black Box Models Explainable. 3rd ed. https://christophm.github.io/interpretable-ml-book.\n\n\nQuinlan, J. R. 1986. “Induction of Decision Trees.” Machine Learning 1 (1): 81–106. https://doi.org/10.1007/BF00116251.\n\n\nRibeiro, Marco Tulio, Sameer Singh, and Carlos Guestrin. 2016. “\"Why Should i Trust You?\": Explaining the Predictions of Any Classifier.” https://arxiv.org/abs/1602.04938.\n\n\nRuder, Sebastian. 2017. “An Overview of Gradient Descent Optimization Algorithms.” https://arxiv.org/abs/1609.04747.\n\n\nSelvaraju, Ramprasaath R., Michael Cogswell, Abhishek Das, Ramakrishna Vedantam, Devi Parikh, and Dhruv Batra. 2019. “Grad-CAM: Visual Explanations from Deep Networks via Gradient-Based Localization.” International Journal of Computer Vision 128 (2): 336–59. https://doi.org/10.1007/s11263-019-01228-7.\n\n\nSimonyan, Karen, Andrea Vedaldi, and Andrew Zisserman. 2014. “Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps.” https://arxiv.org/abs/1312.6034.\n\n\nWang, Jingyuan, and Jiahao Ji. 2025. “A Tutorial on Regression Analysis: From Linear Models to Deep Learning – Lecture Notes on Artificial Intelligence.” https://arxiv.org/abs/2512.04747.",
+    "crumbs": [
+      "Basics of Explainable Machine Learning",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "1-basics/taxonomy.html",
+    "href": "1-basics/taxonomy.html",
+    "title": "2  Taxonomy",
+    "section": "",
+    "text": "2.1 Feature Attribution Methods",
+    "crumbs": [
+      "Basics of Explainable Machine Learning",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Taxonomy</span>"
+    ]
+  },
+  {
+    "objectID": "1-basics/taxonomy.html#feature-attribution-methods",
+    "href": "1-basics/taxonomy.html#feature-attribution-methods",
+    "title": "2  Taxonomy",
+    "section": "",
+    "text": "2.1.1 Introduction\n\n\n2.1.2 Gradient-Based Attribution\n\n\n2.1.3 Permutation Feature Importance\n\n\n2.1.4 LIME\n\n\n2.1.5 SHAP\n\n2.1.5.1 Shapley Values\n\n\n2.1.5.2 TreeSHAP\n\n\n2.1.5.3 KernelSHAP\n\n\n\n2.1.6 Integrated Gradients\n\n\n2.1.7 Grad-CAM\n\n\n2.1.8 Comparison of Attribution Methods",
+    "crumbs": [
+      "Basics of Explainable Machine Learning",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Taxonomy</span>"
+    ]
+  },
+  {
+    "objectID": "1-basics/taxonomy.html#concept-bottleneck-methods",
+    "href": "1-basics/taxonomy.html#concept-bottleneck-methods",
+    "title": "2  Taxonomy",
+    "section": "2.2 Concept Bottleneck Methods",
+    "text": "2.2 Concept Bottleneck Methods\n\n2.2.1 Introduction\n\n\n2.2.2 Motivation\n\n\n2.2.3 Model Architecture\n\n\n2.2.4 Training Procedure\n\n\n2.2.5 Applications\n\n\n2.2.6 Advantages\n\n\n2.2.7 Limitations",
+    "crumbs": [
+      "Basics of Explainable Machine Learning",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Taxonomy</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/introduction.html",
+    "href": "2-xlm/introduction.html",
+    "title": "8  Introduction",
+    "section": "",
+    "text": "8.1 Activation-based explanations\nLanguage models transform tokens through a sequence of learned representations before producing an output. Explainability methods study different parts of this process. Some inspect internal activations, some describe predictions using human-readable concepts, and others discover recurring patterns in the model’s representations.\nThis tutorial separates these approaches into three families. The boundary is useful for organizing the methods, although some techniques combine ideas from more than one family.\nActivation-based explanations examine the values produced inside a model as it processes an input. They may study individual units, compare activation patterns across examples, or identify directions in the representation space that are associated with a behavior. These methods work with the model’s internal representation and do not require the final explanation to use a predefined concept vocabulary.",
+    "crumbs": [
+      "Explainability for Language Models",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/introduction.html#concept-based-explainability",
+    "href": "2-xlm/introduction.html#concept-based-explainability",
+    "title": "8  Introduction",
+    "section": "8.2 Concept-based explainability",
+    "text": "8.2 Concept-based explainability\nConcept-based explanations describe model behavior using properties that people can name and understand. For text, examples include contains a negation, mentions poor service, or uses positive language. A useful concept should have a clear meaning, be observable from the input, and be relevant to the task.\nIn supervised concept-based methods, the concept vocabulary is selected before training. Domain experts or dataset designers choose the concepts, and training examples are annotated with both task labels and concept values. This gives the explanation a fixed vocabulary, but its quality depends on whether that vocabulary is complete and consistently annotated.\n\n8.2.1 Concepts and concept space\nA concept is a property of an input. For this tutorial, we use \\(c_j^\\star(x)\\) as an idealized value of concept \\(j\\) for input \\(x\\):\n\\[\nc_j^\\star : \\mathcal{X} \\rightarrow \\mathcal{C}_j,\n\\tag{8.1}\\]\nwhere \\(\\mathcal{X}\\) is the input space and \\(\\mathcal{C}_j\\) is the set of possible values for concept \\(j\\). A binary concept such as contains a negation has \\(\\mathcal{C}_j=\\{0,1\\}\\). An ordinal concept such as sentiment strength could take values in \\(\\{0,1,2,3\\}\\). Concepts may also be categorical or continuous.\nFor \\(k\\) concepts, the concept space is\n\\[\n\\mathcal{C}=\\mathcal{C}_1 \\times \\cdots \\times \\mathcal{C}_k.\n\\tag{8.2}\\]\nAn input \\(x\\) is described by the concept vector\n\\[\n\\mathbf{c}^\\star(x)\n=\\left(c_1^\\star(x),\\ldots,c_k^\\star(x)\\right)\n\\in \\mathcal{C}.\n\\tag{8.3}\\]\nThis is a modeling convention, not a claim that every concept has one objectively correct value. Real annotations are less certain. Annotators may disagree, a concept may be subjective, or the input may not contain enough information to determine its value. An observed annotation \\(c_j\\) should therefore be treated as a measurement of the intended concept, not necessarily as perfect ground truth. When uncertainty matters, a model can predict a distribution \\(p(c_j\\mid x)\\) instead of a single value.\n\n\n8.2.2 Notation\n\n\n\n\n\n\n\nSymbol\nMeaning\n\n\n\n\n\\(x\\in\\mathcal{X}\\)\nInput example\n\n\n\\(y\\in\\mathcal{Y}\\)\nTask label\n\n\n\\(c_j^\\star(x)\\)\nTrue value of concept \\(j\\)\n\n\n\\(c_j\\)\nAnnotated value of concept \\(j\\)\n\n\n\\(\\widehat{c}_j\\)\nModel-predicted value of concept \\(j\\)\n\n\n\\(\\mathbf{c}\\), \\(\\widehat{\\mathbf{c}}\\)\nAnnotated and predicted concept vectors\n\n\n\\(g_\\theta\\)\nConcept predictor\n\n\n\\(f_\\phi\\)\nTask predictor\n\n\n\\(\\widehat{y}\\)\nModel prediction\n\n\n\nThe distinction between \\(c_j^\\star\\), \\(c_j\\), and \\(\\widehat{c}_j\\) matters. The true property may be uncertain, its annotation may be wrong, and the model may make another error when predicting it.\nMethod A introduces the original supervised Concept Bottleneck Model formulation, in which the final prediction is computed only from the predicted concept vector.",
+    "crumbs": [
+      "Explainability for Language Models",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/introduction.html#concept-discovery",
+    "href": "2-xlm/introduction.html#concept-discovery",
+    "title": "8  Introduction",
+    "section": "8.3 Concept discovery",
+    "text": "8.3 Concept discovery\nConcept discovery methods do not begin with a complete, annotated concept vocabulary. Instead, they search a model’s learned representations for recurring clusters, directions, or patterns that may correspond to meaningful properties. A person then interprets and validates the discovered patterns.\nConcept discovery is closely related to concept-based explainability. It is treated as a separate family here because the concepts are learned from representations rather than fully specified before training. A discovered pattern should not be called a meaningful concept until its interpretation is supported across multiple examples and its relationship to model behavior has been tested.",
+    "crumbs": [
+      "Explainability for Language Models",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/taxonomy.html",
+    "href": "2-xlm/taxonomy.html",
+    "title": "9  Taxonomy",
+    "section": "",
+    "text": "9.1 Activation-Based Explanations",
+    "crumbs": [
+      "Explainability for Language Models",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Taxonomy</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/taxonomy.html#concept-based-explanations",
+    "href": "2-xlm/taxonomy.html#concept-based-explanations",
+    "title": "9  Taxonomy",
+    "section": "9.2 Concept-Based Explanations",
+    "text": "9.2 Concept-Based Explanations\nTODO: One-paragraph bridge from the previous section\nTODO: Define concept formally: a function, what is a concept space.\n\n9.2.1 Preliminaries and Notation\nTODO: Shared notation used by every subsection below — define once, reuse.\n\n\n9.2.2 Human-Defined Concepts (Supervised)\nTODO: These methods relies on human annotated concepts\n\n9.2.2.1 Concept Bottleneck Models (CBMs)\nTODO: ADD A DIAGRAMS {TRAINING AND INFERENCE}\nTODO: whether it is joint, sequential or indiependent\nTODO: at inference, how does editing the concepts affect y and similar things",
+    "crumbs": [
+      "Explainability for Language Models",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Taxonomy</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/taxonomy.html#concept-discovery",
+    "href": "2-xlm/taxonomy.html#concept-discovery",
+    "title": "9  Taxonomy",
+    "section": "9.3 Concept Discovery",
+    "text": "9.3 Concept Discovery",
+    "crumbs": [
+      "Explainability for Language Models",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Taxonomy</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/taxonomy.html#mechanistic-interpretability",
+    "href": "2-xlm/taxonomy.html#mechanistic-interpretability",
+    "title": "9  Taxonomy",
+    "section": "9.4 Mechanistic Interpretability",
+    "text": "9.4 Mechanistic Interpretability",
+    "crumbs": [
+      "Explainability for Language Models",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Taxonomy</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/taxonomy.html#attention-visualization-methods",
+    "href": "2-xlm/taxonomy.html#attention-visualization-methods",
+    "title": "9  Taxonomy",
+    "section": "9.5 Attention-Visualization Methods",
+    "text": "9.5 Attention-Visualization Methods",
+    "crumbs": [
+      "Explainability for Language Models",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Taxonomy</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/method-A.html",
+    "href": "2-xlm/method-A.html",
+    "title": "10  Method A: Concept Bottleneck Models",
+    "section": "",
+    "text": "10.1 Architecture and inference\nThe original Concept Bottleneck Model formulation is a supervised concept-based method built around a human-defined concept vocabulary. The broader idea of concept-based explainability, including the definition of a concept and the notation used here, is introduced in the introduction.\nA Concept Bottleneck Model (CBM) makes a prediction in two stages:\n\\[\nx\n\\xrightarrow{\\;g_\\theta\\;}\n\\widehat{\\mathbf{c}}\n\\xrightarrow{\\;f_\\phi\\;}\n\\widehat{y}.\n\\tag{10.1}\\]\nThe concept predictor \\(g_\\theta\\) maps the input to named concept values. The task predictor \\(f_\\phi\\) then uses those values to predict the task output:\n\\[\nh_{\\theta,\\phi}(x)=f_\\phi\\!\\left(g_\\theta(x)\\right).\n\\tag{10.2}\\]\nThe concept vector is called a bottleneck because it is the only information passed to the task predictor. In a strict CBM, there is no separate path from \\(x\\) to \\(\\widehat{y}\\).\nEach coordinate in \\(\\widehat{\\mathbf{c}}\\) has an assigned meaning. For a binary concept, \\(\\widehat{c}_j\\) may be a hard value in \\(\\{0,1\\}\\), a score between 0 and 1, or a logit. A real-valued score gives the task predictor more graded information than a hard value. It should be interpreted as confidence only when the score has been calibrated. Categorical concepts are usually represented by one score per category, while continuous concepts can be represented directly.\nThe architecture of \\(g_\\theta\\) depends on the input. It may be a convolutional network for images or a transformer for text. The task predictor is often smaller. For example, a linear predictor can assign a score to class \\(r\\):\n\\[\ns_r(\\widehat{\\mathbf{c}})\n=b_r+\\sum_{j=1}^{k}w_{rj}\\widehat{c}_j.\n\\tag{10.3}\\]\nHere, \\(w_{rj}\\) describes how concept \\(j\\) is associated with class \\(r\\) across the model, while \\(w_{rj}\\widehat{c}_j\\) is that concept’s contribution to the class score for one example. Weight magnitudes can be compared directly only when the concept variables use comparable scales. These values describe the model’s calculation; they should not be interpreted as causal effects. A nonlinear task predictor can model interactions between concepts, but its decisions are harder to inspect.",
+    "crumbs": [
+      "Explainability for Language Models",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Method A: Concept Bottleneck Models</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/method-A.html#architecture-and-inference",
+    "href": "2-xlm/method-A.html#architecture-and-inference",
+    "title": "10  Method A: Concept Bottleneck Models",
+    "section": "",
+    "text": "Inference and optional concept correction in a strict Concept Bottleneck Model.",
+    "crumbs": [
+      "Explainability for Language Models",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Method A: Concept Bottleneck Models</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/method-A.html#what-does-a-cbm-explain",
+    "href": "2-xlm/method-A.html#what-does-a-cbm-explain",
+    "title": "10  Method A: Concept Bottleneck Models",
+    "section": "10.2 What does a CBM explain?",
+    "text": "10.2 What does a CBM explain?\nA CBM provides a concept-level account of the final prediction. For one input, a reader can inspect:\n\nThe model’s description of the input: which concepts were predicted and their predicted scores. A score represents confidence only when it is calibrated.\nThe task decision: which concepts supported or opposed the predicted class. This is easiest to see with a linear task predictor.\nThe sensitivity to corrections: whether the task prediction changes when an incorrect concept is replaced with a corrected value.\n\nAcross a dataset, the weights of a linear task predictor show which concepts are generally associated with each class. Concept accuracy can also be examined separately for each concept to find systematic errors.\nThe bottleneck does not make the whole system transparent. The concept predictor \\(g_\\theta\\) may still be a complex neural network, so the CBM does not automatically explain why the input produced a particular concept score. It makes the second step, from concepts to the task prediction, easier to inspect.\n\n\n\n\n\n\nNoteExample: classifying a restaurant review\n\n\n\nSuppose a CBM predicts whether a customer recommends a restaurant. For the review “The pasta was excellent, but we waited an hour and will not return,” its concept predictor might produce:\n\n\n\nPredicted concept\nScore\n\n\n\n\nPraises the food\n0.94\n\n\nReports slow service\n0.91\n\n\nIntends to return\n0.08\n\n\n\nThe task predictor combines these three scores to produce the recommendation label. This explanation is more informative than the label alone: it shows that the model detected both the positive comment about the food and the stronger negative signals about the overall experience. If one concept is wrong, it can be corrected and the task prediction can be recomputed.",
+    "crumbs": [
+      "Explainability for Language Models",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Method A: Concept Bottleneck Models</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/method-A.html#training-regimes",
+    "href": "2-xlm/method-A.html#training-regimes",
+    "title": "10  Method A: Concept Bottleneck Models",
+    "section": "10.3 Training regimes",
+    "text": "10.3 Training regimes\nSuppose the training data contain triples \\((x_i,\\mathbf{c}_i,y_i)\\). CBMs are commonly trained in one of three ways:\n\nIndependent training: train \\(g_\\theta\\) to predict the annotated concepts, and separately train \\(f_\\phi\\) using the annotated concepts as input. The task predictor therefore learns from clean annotations but receives predicted concepts at inference time. See Koh et al. (2020), Concept Bottleneck Models.\nSequential training: first train \\(g_\\theta\\), freeze it, and then train \\(f_\\phi\\) on \\(g_\\theta(x_i)\\). The task predictor sees the kinds of concept errors it will encounter at inference time. See Koh et al. (2020), Concept Bottleneck Models.\nJoint training: train both components together using a concept loss and a task loss. The task loss is backpropagated through both \\(f_\\phi\\) and \\(g_\\theta\\), while the concept loss keeps the bottleneck tied to the annotated concepts. See Koh et al. (2020), Concept Bottleneck Models.\nA typical joint objective is\n\\[\n\\mathcal{L}\n=\\lambda\\,\\mathcal{L}_{\\text{concept}}\n  \\left(g_\\theta(x_i),\\mathbf{c}_i\\right)\n+\\mathcal{L}_{\\text{task}}\n  \\left(f_\\phi(g_\\theta(x_i)),y_i\\right),\n\\tag{10.4}\\]\nwhere \\(\\lambda\\) controls the importance of accurate concept prediction. Joint training can improve task performance, but it is still necessary to evaluate whether the predicted concepts match their intended meanings.\nSheth and Kahou (2023), Auxiliary Losses for Learning Generalizable Concept-based Models, extend joint training with cooperative-CBM (coop-CBM). Their method adds an auxiliary head that predicts the task label from the representation shared with the concept predictor. Its objective combines the concept loss, an auxiliary task loss, the final task loss, and a concept orthogonal loss. The orthogonal loss encourages within-concept similarity and separation between different concept representations. The auxiliary head helps shape the shared representation during training, while the final task predictor still receives only the predicted concepts. The paper evaluates the approach on image-classification datasets, including settings with distribution shift.\n\nThe concept loss must match the concept type. Binary concepts commonly use binary cross-entropy, categorical concepts use cross-entropy, and continuous concepts use a regression loss. If only some concepts are annotated for an example, the concept loss can be calculated over the available annotations.",
+    "crumbs": [
+      "Explainability for Language Models",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Method A: Concept Bottleneck Models</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/method-A.html#concept-interventions",
+    "href": "2-xlm/method-A.html#concept-interventions",
+    "title": "10  Method A: Concept Bottleneck Models",
+    "section": "10.4 Concept interventions",
+    "text": "10.4 Concept interventions\nAt inference time, a person can inspect \\(\\widehat{\\mathbf{c}}\\) and correct concepts that are clearly wrong. If \\(S\\) is the set of corrected concepts, define\n\\[\n\\widetilde{c}_j=\n\\begin{cases}\nc_j^{\\text{edit}}, & j\\in S,\\\\\n\\widehat{c}_j, & j\\notin S.\n\\end{cases}\n\\tag{10.5}\\]\nThe revised prediction is \\(\\widetilde{y}=f_\\phi(\\widetilde{\\mathbf{c}})\\). This supports questions such as: Would the prediction change if the concept “contains a negation” were corrected from absent to present?\nAn intervention explains the behavior of the model under a concept edit. It does not prove that changing the corresponding property in the real world would cause the same outcome. Edits can also create unlikely combinations of concepts, so their results should be interpreted carefully.",
+    "crumbs": [
+      "Explainability for Language Models",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Method A: Concept Bottleneck Models</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/method-A.html#evaluating-a-cbm",
+    "href": "2-xlm/method-A.html#evaluating-a-cbm",
+    "title": "10  Method A: Concept Bottleneck Models",
+    "section": "10.5 Evaluating a CBM",
+    "text": "10.5 Evaluating a CBM\nTask accuracy alone is not enough. A useful evaluation should check four parts of the model:\n\nTask performance: how accurately \\(\\widehat{y}\\) predicts the task label.\nConcept performance: how accurately each \\(\\widehat{c}_j\\) predicts its annotated concept. Per-concept results are important because an average can hide a poorly learned concept.\nConcept-set sufficiency: how well the task can be predicted from the annotated concepts. Poor performance may indicate that the vocabulary is missing useful information, but it can also result from noisy concept annotations or an unsuitable task predictor.\nIntervention performance: how the task performance changes as incorrect concept predictions are corrected. This tests whether better concepts lead to better task predictions.\n\nThese measurements answer different questions. A CBM may predict the task well while predicting some concepts poorly. It may also predict every annotated concept well but perform poorly because the concept set is incomplete or the task predictor is unsuitable.",
+    "crumbs": [
+      "Explainability for Language Models",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Method A: Concept Bottleneck Models</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/method-A.html#limitations-and-appropriate-use-cases",
+    "href": "2-xlm/method-A.html#limitations-and-appropriate-use-cases",
+    "title": "10  Method A: Concept Bottleneck Models",
+    "section": "10.6 Limitations and appropriate use cases",
+    "text": "10.6 Limitations and appropriate use cases\nCBMs are most useful when a task has a stable concept vocabulary, reliable concept annotations are available, and a person can meaningfully inspect or correct the concepts. They are particularly suitable when concept-level feedback is more practical than changing the original input.\nTheir main limitations are:\n\nIncomplete vocabulary: if important information is missing from the concept set, a strict CBM may lose predictive accuracy.\nAnnotation cost and noise: concept labels can be expensive to collect and may differ across annotators.\nConcept prediction errors: an understandable concept is not useful when the model predicts it unreliably.\nHidden shortcuts: the concept predictor may use an unintended input pattern to predict the correct concept value.\nInformation in soft scores: small variations in continuous concept scores can carry information beyond the concepts’ stated meanings. This can weaken interpretability and concept interventions, as discussed by Havasi et al. (2022).\nLimited transparency with complex heads: a nonlinear \\(f_\\phi\\) may make the relationship between concepts and predictions difficult to follow.\n\nArchitectures with residual features or a direct path from \\(x\\) to \\(\\widehat{y}\\) may recover some accuracy. However, because named concepts no longer carry all the information used for the prediction, they do not provide the same explanation guarantee as a strict CBM.",
+    "crumbs": [
+      "Explainability for Language Models",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Method A: Concept Bottleneck Models</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/method-A.html#reducing-the-need-for-concept-annotations",
+    "href": "2-xlm/method-A.html#reducing-the-need-for-concept-annotations",
+    "title": "10  Method A: Concept Bottleneck Models",
+    "section": "10.7 Reducing the need for concept annotations",
+    "text": "10.7 Reducing the need for concept annotations\nRecent extensions reduce the amount of per-example concept labeling. Label-free CBMs use a chosen list of concept names together with pretrained representations to construct a concept bottleneck without manually labeling every training example. Post-hoc CBMs project a pretrained model’s representations into a concept space rather than training the entire model from the beginning.\nThe term label-free refers to concept labels: these methods can still require task labels, a human-selected concept vocabulary, and pretrained models. Their concept scores must also be validated. A concept name alone does not guarantee that the score consistently measures the intended property.\n\n\n\n\n\n\nTipKey takeaway\n\n\n\nA strict CBM predicts named concepts first and makes the final prediction only from those concepts. This structure makes concept inspection and correction possible. The explanation is useful only when the concept vocabulary is relevant and the predicted concept values are reliable.",
+    "crumbs": [
+      "Explainability for Language Models",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Method A: Concept Bottleneck Models</span>"
+    ]
+  },
+  {
+    "objectID": "3-xrl/introduction.html",
+    "href": "3-xrl/introduction.html",
+    "title": "15  Introduction to Explainable RL",
+    "section": "",
+    "text": "15.1 Foundations\nNote to self:\nBefore:\nThere’s value-based and policy-based RL.\nWhy is it important? For example, deploying RL-based algorithms in finance requires algorithmic transparency to comply with regulations; in sequential human-AI collaboration process, users need to understand agent behavior to trust and cooperate.\nWhen it comes to RL, many things are desirable: fast learning (i.e., sample efficiency), high final performance, safety guarantees, transparent behavior processes, etc. To keep this tutorial focused, we consider constrained RL formulations for safe RL out of scope.",
+    "crumbs": [
+      "Explainable Reinforcement Learning",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Introduction to Explainable RL</span>"
+    ]
+  },
+  {
+    "objectID": "3-xrl/introduction.html#challenges-in-xrl",
+    "href": "3-xrl/introduction.html#challenges-in-xrl",
+    "title": "15  Introduction to Explainable RL",
+    "section": "15.2 Challenges in XRL",
+    "text": "15.2 Challenges in XRL\n\nlarge number of decisions over a period of time\nactions are not independent of each other -&gt; explanation can’t be either\nno static dataset, agent-generated data",
+    "crumbs": [
+      "Explainable Reinforcement Learning",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Introduction to Explainable RL</span>"
+    ]
+  },
+  {
+    "objectID": "3-xrl/taxonomy.html",
+    "href": "3-xrl/taxonomy.html",
+    "title": "16  Taxonomy",
+    "section": "",
+    "text": "16.1 Feature importance (or: action level)\nDiverse approaches exist to explain RL agents, most of which can be categorized as intrinsic vs. post-hoc, as commonly done for supervised learning. However, in this tutorial we follow the taxonomy by Milani et al. (2024), because it applies directly to the unique setting of RL.\nThis approach works on low-level states, explaining what is important for finding the right actions to explain a specific state. This includes saliency maps.",
+    "crumbs": [
+      "Explainable Reinforcement Learning",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Taxonomy</span>"
+    ]
+  },
+  {
+    "objectID": "3-xrl/taxonomy.html#feature-importance-or-action-level",
+    "href": "3-xrl/taxonomy.html#feature-importance-or-action-level",
+    "title": "16  Taxonomy",
+    "section": "",
+    "text": "feature importance\nexpected outcomess",
+    "crumbs": [
+      "Explainable Reinforcement Learning",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Taxonomy</span>"
+    ]
+  },
+  {
+    "objectID": "3-xrl/taxonomy.html#learning-process-and-mdp-level-or-sequency-level",
+    "href": "3-xrl/taxonomy.html#learning-process-and-mdp-level-or-sequency-level",
+    "title": "16  Taxonomy",
+    "section": "16.2 Learning process and MDP level (or: sequency level)",
+    "text": "16.2 Learning process and MDP level (or: sequency level)\nThis shows the past experiences or the components of the MDP that led to the current behavior; it includes decision trees and finite state machines.\n\ncounterfactual sequency\nimportant elements\nhuman-readable MDP",
+    "crumbs": [
+      "Explainable Reinforcement Learning",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Taxonomy</span>"
+    ]
+  },
+  {
+    "objectID": "3-xrl/taxonomy.html#policy-level",
+    "href": "3-xrl/taxonomy.html#policy-level",
+    "title": "16  Taxonomy",
+    "section": "16.3 Policy level",
+    "text": "16.3 Policy level\nThe vast majority (175 works, whereas sequence-level is only 11) Aiming to explain an agent’s long-term behavior, this includes reward decomposition and counterfactuals.\n\nconstructing interpretable policies\n\nsurrogate model\ninherently understandable\n\nsummarizing policies\nhuman-readable MDP\n\nsurrogate model\ninherently understandable\n\nVisual anlysis\n\nOther taxonomies:\n\nFollowing the general XAI taxonomy, XRL methods can also be divided by scope (local vs. global) and time of extraction (intrinsic, which is always model-specific, vs. post-hoc, which can be model-specific or -agnostic). Bekkemoen (2024) provide a useful taxonomy by further subdividing intrinsic explainability and post-hoc explainability into explanations via generation, representation, and inspection.\nInterpretable inputs can be achieved via structured approaches, extracting symbolic representations, hierarchical approaches {Glanois et al. (2024)}\nQing et al. (2022) divides XRL methods into four categories: agent model-explaining, reward-explaining, state-exlaining, task-explaining.\nDazeley, Vamplew, and Cruz (2023) propose the causal XRL framework (CXF), a wholistic cognitive model for XAI, which uses RL as the backbone. While this presents an ambitious and inspiring perspective for future work, it is not a clear-cut taxonomy for XRL methods.",
+    "crumbs": [
+      "Explainable Reinforcement Learning",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Taxonomy</span>"
+    ]
+  },
+  {
+    "objectID": "3-xrl/taxonomy.html#alternative-taxonomy-structure",
+    "href": "3-xrl/taxonomy.html#alternative-taxonomy-structure",
+    "title": "16  Taxonomy",
+    "section": "16.4 Alternative taxonomy structure:",
+    "text": "16.4 Alternative taxonomy structure:\n\n16.4.1 Visualization-Based Approaches\nState-value heatmaps can reveal an agent’s strategic understanding of the environment. This is particularly useful in navigation-based settings such as mazes.\nFor more fine-grained explanations, we can also visualize state-action values (Q values) to identify the agent’s understanding of actions from the perspective of a given state.\nVisiualization-based explainability toolkits for RL have been proposed such as DQNViz (Wang et al. 2018), developed for DQN-based agents learning Atari games.\n\n\n16.4.2 More stuff to sort in\nDecision trees are inherently interpretable. Once a policy is learned, the reasoning behind every decision can be clearly traced by following the tree’s decision nodes. This works well when individual state features are meaningful (e.g., position, velocity); however, it struggles with high-dimensional state spaces such as raw pixels\nExample: VIPER Bastani, Pu, and Solar-Lezama (2018), an approach to make RL verifiable by learning decision tree policies\nJust like in supervised learning, it is of great interest to understand what kind of internal representations deep networks actually discover. High-dimensional state spaces such as pixels can be mapped to lower-level features using t-SNE.\nExample: StateMask \nAn example of behavior discovery and attribution is this: \nA recent focus in the RL community is using world models for better sample-efficiency and higher performance. By having a world model learn the environment dynamics \\(P(s_{t+1}\\mid s_t,a_t)\\), we can predict future states without interaction with the real environment. This is essential for planning and also has the useful side effect that it enables counterfactual reasoning, useful for generating “what-if” scenarios.\n is among the first to use world models for counterfactual explanations in RL.\n uses backward counterfactuals (“What state would cause agent to do \\(X\\)?”), using a reverse world model \\(P(s_t\\mid s_{t+1},a_t)\\)\nUnique challenges to XRL are the sequential nature of decisions, requiring understanding of strategies rather than single model predictions, temporal dependencies making explanations more complex, and evolving agent behavior during learning.\nThere are three evaluation levels identified by , which are increasingly specific and costly: functionally grounded (computational metrics only), human-grounded (general users + simplified tasks), and application-grounded (domain experts + real tasks).\n\n\n\n\nBastani, Osbert, Yewen Pu, and Armando Solar-Lezama. 2018. “Verifiable Reinforcement Learning via Policy Extraction.” Advances in Neural Information Processing Systems 31.\n\n\nBekkemoen, Yanzhe. 2024. “Explainable Reinforcement Learning (XRL): A Systematic Literature Review and Taxonomy.” Machine Learning 113 (1): 355–441.\n\n\nDazeley, Richard, Peter Vamplew, and Francisco Cruz. 2023. “Explainable Reinforcement Learning for Broad-Xai: A Conceptual Framework and Survey.” Neural Computing and Applications 35 (23): 16893–916.\n\n\nGlanois, Claire, Paul Weng, Matthieu Zimmer, Dong Li, Tianpei Yang, Jianye Hao, and Wulong Liu. 2024. “A Survey on Interpretable Reinforcement Learning.” Machine Learning 113 (8): 5847–90.\n\n\nMilani, Stephanie, Nicholay Topin, Manuela Veloso, and Fei Fang. 2024. “Explainable Reinforcement Learning: A Survey and Comparative Review.” ACM Computing Surveys 56 (7): 1–36.\n\n\nQing, Yunpeng, Shunyu Liu, Jie Song, Yang Zhou, Kaixuan Chen, Huiqiong Wang, and Mingli Song. 2022. “A Survey on Explainable Reinforcement Learning: Concepts, Algorithms, Challenges.” arXiv Preprint arXiv:2211.06665.\n\n\nWang, Junpeng, Liang Gou, Han-Wei Shen, and Hao Yang. 2018. “DNQViz: A Visual Analytics Approach to Understand Deep q-Networks.” IEEE Transactions on Visualization and Computer Graphics 25 (1): 288–98.",
+    "crumbs": [
+      "Explainable Reinforcement Learning",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Taxonomy</span>"
+    ]
+  },
+  {
+    "objectID": "3-xrl/m1-pertubation-based-salience-maps.html",
+    "href": "3-xrl/m1-pertubation-based-salience-maps.html",
+    "title": "17  Pertubation-Based Saliency Maps for RL",
+    "section": "",
+    "text": "Introduction\nKey reference: Greydanus et al. (2018) — paper and code",
+    "crumbs": [
+      "Explainable Reinforcement Learning",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Pertubation-Based Saliency Maps for RL</span>"
+    ]
+  },
+  {
+    "objectID": "3-xrl/m1-pertubation-based-salience-maps.html#introduction",
+    "href": "3-xrl/m1-pertubation-based-salience-maps.html#introduction",
+    "title": "17  Pertubation-Based Saliency Maps for RL",
+    "section": "",
+    "text": "Greydanus et al. (2018) use saliency maps to visualize RL policies in pixel-based environments and evalute they framework on Atari 2600 games.\nIn particular, they use a pertubation-based approach, witih the leading question: “How much does removing information from the region around location (i, j) change the policy?”\nThe saliency maps can be applied at different stages: (1) during training to understand how an agent learns and (2) after training, observing what parts of the state space the agent’s final policy attends to.\n\n\n\n\n\n\n\n\nFigure 17.1: Tunneling strategy in Atari Breakout",
+    "crumbs": [
+      "Explainable Reinforcement Learning",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Pertubation-Based Saliency Maps for RL</span>"
+    ]
+  },
+  {
+    "objectID": "3-xrl/m1-pertubation-based-salience-maps.html#method-pertubation-based-saliency-maps",
+    "href": "3-xrl/m1-pertubation-based-salience-maps.html#method-pertubation-based-saliency-maps",
+    "title": "17  Pertubation-Based Saliency Maps for RL",
+    "section": "Method: Pertubation-based saliency maps",
+    "text": "Method: Pertubation-based saliency maps\nThe core idea behind this method is to measure how much a neural network’s output (its policy and value estimates) changes when information is selectively removed from the input image. Rather than simply blacking out a region, the method introduces spatial uncertainty by locally blurring the image. If the agent’s proposed action or value estimate drastically changes when a specific area is blurred, that region is highly salient to the agent’s decision-making process.\nThe perturbation applied to a localized coordinate \\((i,j)\\) on an image frame \\(I_t\\) is defined by the following key math:\n\\[\\Phi(I_t,i,j)=\\underbrace{I_t}_{\\text{image frame}}\\odot (1-\\underbrace{M(i,j)}_{\\text{mask}})+\\underbrace{A(I_t,\\sigma_A)}_{\\text{blurred frame}}\\odot M(i,j),\\]\nwhere \\(\\odot\\) denotes the Hadamard product and \\(I_{1:t}\\) is a sequence of images.\nThis visualization technique is separate from the RL algorithm used for training. The authors used the A3C algorithm, which yields both a policy and value function. The above procedure for constructing pertubation-based saliency was applied to both the policy \\(\\pi\\) and \\(V^\\pi\\). They use patches of 5x5 pixels to reduce the required computation.",
+    "crumbs": [
+      "Explainable Reinforcement Learning",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Pertubation-Based Saliency Maps for RL</span>"
+    ]
+  },
+  {
+    "objectID": "3-xrl/m1-pertubation-based-salience-maps.html#tradeoffs",
+    "href": "3-xrl/m1-pertubation-based-salience-maps.html#tradeoffs",
+    "title": "17  Pertubation-Based Saliency Maps for RL",
+    "section": "Tradeoffs",
+    "text": "Tradeoffs\n\n\n\n\n\n\nPros\n\n\n\n\nEasy implementation\n\n\nGenerally applicable to any pixel-based state spaces\n\n\n\n\n\n\n\n\n\n\n\nCons\n\n\n\n\nRequires running the model multiple times to test different image locations\n\n\nGives no insights into the weights; model remains black-box",
+    "crumbs": [
+      "Explainable Reinforcement Learning",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Pertubation-Based Saliency Maps for RL</span>"
+    ]
+  },
+  {
+    "objectID": "3-xrl/m1-pertubation-based-salience-maps.html#related",
+    "href": "3-xrl/m1-pertubation-based-salience-maps.html#related",
+    "title": "17  Pertubation-Based Saliency Maps for RL",
+    "section": "Related",
+    "text": "Related\n\nInstead of pertubation-based saliency maps, prior work has used Jacobian-based ones (Wang et al. 2016; Zahavy, Ben-Zrihem, and Mannor 2016).\n\n\n\n\n\nGreydanus, Samuel, Anurag Koul, Jonathan Dodge, and Alan Fern. 2018. “Visualizing and Understanding Atari Agents.” In International Conference on Machine Learning, 1792–1801. PMLR.\n\n\nWang, Ziyu, Tom Schaul, Matteo Hessel, Hado Hasselt, Marc Lanctot, and Nando Freitas. 2016. “Dueling Network Architectures for Deep Reinforcement Learning.” In International Conference on Machine Learning, 1995–2003. PMLR.\n\n\nZahavy, Tom, Nir Ben-Zrihem, and Shie Mannor. 2016. “Graying the Black Box: Understanding DQNs.” In International Conference on Machine Learning, 1899–1908. PMLR.",
+    "crumbs": [
+      "Explainable Reinforcement Learning",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Pertubation-Based Saliency Maps for RL</span>"
+    ]
+  },
+  {
+    "objectID": "4-xmas/introduction.html",
+    "href": "4-xmas/introduction.html",
+    "title": "22  Introduction",
+    "section": "",
+    "text": "Explainable multi-agent systems (XMAS) refers to the subfield of artificial intelligence that integrates LLM explainability methods within multi-agent AI systems (MAS). This recently established field of study addresses the emergent behaviours of MAS, which derive from the added complexity of multi-agent settings. As single-agent AI systems become progressively more commercialized (finance, e-commerce, legal services), the natural step towards MAS necessitates the corresponding MAS-specific explainability methods.",
+    "crumbs": [
+      "Explainability in Multi-Agent Systems",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "4-xmas/taxonomy.html",
+    "href": "4-xmas/taxonomy.html",
+    "title": "23  Taxonomy",
+    "section": "",
+    "text": "23.1 What are agents?\nGenerally, agents refer to any entity capable of perceiving its environment and taking action (Cheng et al. 2024). Namely, large language model (LLM)-based agents leverage the natural language processing capabilities of LLMs (complex reasoning, text summarization, machine translation) % https://link.springer.com/article/10.1007/s11704-025-50472-3 , while attempting to address their fundamental limitations:\n% https://www.jair.org/index.php/jair/article/view/18675/27253 % https://dl.acm.org/doi/abs/10.1145/3787470.3787478\n% https://arxiv.org/abs/2308.11432 Consequently, the architecture of LLM-based agents adds four fundamental modules absent from “pure LLMs”: - Profiling: Defining agent identity - Memory: Storing experience - Planning: Decomposing goals - Action: Executing plans via tools or internal knowledge\n% https://link.springer.com/article/10.1007/s44336-024-00009-2 Some authours argue for a fifth module, evolution, describing how agents progressively enhance their intelligence through self-reflection.\nAnalogously, agents can be understood as whereas LLMs are . Alternatively, LLMs , and agents and . % https://www.jair.org/index.php/jair/article/view/18675/27253 % confirm claim.\nIdeally, the foundational agent architecture would address the concerns of LLMs through … % https://www.jair.org/index.php/jair/article/view/18675\nImplementations of single-agent systems can be used in … % https://arxiv.org/abs/2512.08296\nNonetheless, single-agent systems have key pitfalls… % https://arxiv.org/abs/2511.01149",
+    "crumbs": [
+      "Explainability in Multi-Agent Systems",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Taxonomy</span>"
+    ]
+  },
+  {
+    "objectID": "4-xmas/taxonomy.html#what-are-agents",
+    "href": "4-xmas/taxonomy.html#what-are-agents",
+    "title": "23  Taxonomy",
+    "section": "",
+    "text": "Hallucination. The tendency of LLMs to produce , deriving from data misinformation, pre-training biases, over-confidence, among others. %https://dl.acm.org/doi/pdf/10.1145/3703155\nTraining data. LLM intelligence is limited by the data available during training.\nReasoning. Although LLMs continue to impress in natural language processing, model reasoning remains a well-reported challenge.\nPrompt Engineering. LLMs are sensitive to minor details in prompts, making prompt improvement a tedious, manual task. % https://www.jair.org/index.php/jair/article/view/18675/27253",
+    "crumbs": [
+      "Explainability in Multi-Agent Systems",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Taxonomy</span>"
+    ]
+  },
+  {
+    "objectID": "4-xmas/taxonomy.html#what-are-multi-agent-systems",
+    "href": "4-xmas/taxonomy.html#what-are-multi-agent-systems",
+    "title": "23  Taxonomy",
+    "section": "23.2 What are multi-agent systems?",
+    "text": "23.2 What are multi-agent systems?\nMulti-agent systems are systems that enclose multiple autonomous LLM-based agents to enable more complex reasoning and simulation. Leveraging the foundational “wisdom of the multitude” is just a natural step in the evolution of agentic AI, addressing the pitfalls of single-agent systems as listed above.\n% https://arxiv.org/pdf/2402.01680 % Politics - aristotle\nSpecifically, multi-agent systems surpass single-agent systems in… % https://arxiv.org/abs/2511.01149 (same as above)\nMulti-agent systems are used in … % couple examples\nAs the implementations of multi-agent systems become more integrated into society, the need for explainability methods is just as required. % tie back to explainability\n% Single-agent based approaches (but in to multi-agent contexts)\n% SAEs, linear probes, logit/tuned lenses, etc.\n% Multi-agent based approaches\n% describe how certain behaviours occur ONLY in a multi-agent context: collusion, complex scheming\n% include black-box tools (LLM-as-a-judge, human-in-the-loop)#\n\n\n\n\nCheng, Yuheng, Ceyao Zhang, Zhengwen Zhang, Xiangrui Meng, Sirui Hong, Wenhao Li, Zihao Wang, et al. 2024. “Exploring Large Language Model Based Intelligent Agents: Definitions, Methods, and Prospects.” arXiv Preprint arXiv:2401.03428.",
+    "crumbs": [
+      "Explainability in Multi-Agent Systems",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Taxonomy</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Arrieta, Alejandro Barredo, Natalia Díaz-Rodríguez, Javier Del Ser,\nAdrien Bennetot, Siham Tabik, Alberto Barbado, Salvador García, et al.\n2019. “Explainable Artificial Intelligence (XAI): Concepts,\nTaxonomies, Opportunities and Challenges Toward Responsible AI.”\nhttps://arxiv.org/abs/1910.10045.\n\n\nBastani, Osbert, Yewen Pu, and Armando Solar-Lezama. 2018.\n“Verifiable Reinforcement Learning via Policy Extraction.”\nAdvances in Neural Information Processing Systems 31.\n\n\nBekkemoen, Yanzhe. 2024. “Explainable Reinforcement Learning\n(XRL): A Systematic Literature Review and Taxonomy.” Machine\nLearning 113 (1): 355–441.\n\n\nBreiman, Leo, Jerome H Friedman, Richard A Olshen, and Charles J Stone.\n1984. Classification and Regression Trees. Wadsworth &\nBrooks/Cole Advanced Books & Software.\n\n\nCheng, Yuheng, Ceyao Zhang, Zhengwen Zhang, Xiangrui Meng, Sirui Hong,\nWenhao Li, Zihao Wang, et al. 2024. “Exploring Large Language\nModel Based Intelligent Agents: Definitions, Methods, and\nProspects.” arXiv Preprint arXiv:2401.03428.\n\n\nDazeley, Richard, Peter Vamplew, and Francisco Cruz. 2023.\n“Explainable Reinforcement Learning for Broad-Xai: A Conceptual\nFramework and Survey.” Neural Computing and Applications\n35 (23): 16893–916.\n\n\nGlanois, Claire, Paul Weng, Matthieu Zimmer, Dong Li, Tianpei Yang,\nJianye Hao, and Wulong Liu. 2024. “A Survey on Interpretable\nReinforcement Learning.” Machine Learning 113 (8):\n5847–90.\n\n\nGreydanus, Samuel, Anurag Koul, Jonathan Dodge, and Alan Fern. 2018.\n“Visualizing and Understanding Atari Agents.”\nIn International Conference on Machine Learning, 1792–1801.\nPMLR.\n\n\nHastie, Trevor, Robert Tibshirani, and Jerome Friedman. 2009. The\nElements of Statistical Learning: Data Mining, Inference and\nPrediction. 2nd ed. springer.\n\n\nLundberg, Scott, and Su-In Lee. 2017. “A Unified Approach to\nInterpreting Model Predictions.” https://arxiv.org/abs/1705.07874.\n\n\nMilani, Stephanie, Nicholay Topin, Manuela Veloso, and Fei Fang. 2024.\n“Explainable Reinforcement Learning: A Survey and Comparative\nReview.” ACM Computing Surveys 56 (7): 1–36.\n\n\nMiller, Tim. 2019. “Explanation in Artificial Intelligence:\nInsights from the Social Sciences.” Artificial\nIntelligence 267: 1–38. https://doi.org/https://doi.org/10.1016/j.artint.2018.07.007.\n\n\nMinh, Anh Pham Thi. 2023. “Overview of Class Activation Maps for\nVisualization Explainability.” https://arxiv.org/abs/2309.14304.\n\n\nMolnar, Christoph. 2025. Interpretable Machine Learning: A Guide for\nMaking Black Box Models Explainable. 3rd ed. https://christophm.github.io/interpretable-ml-book.\n\n\nQing, Yunpeng, Shunyu Liu, Jie Song, Yang Zhou, Kaixuan Chen, Huiqiong\nWang, and Mingli Song. 2022. “A Survey on Explainable\nReinforcement Learning: Concepts, Algorithms, Challenges.”\narXiv Preprint arXiv:2211.06665.\n\n\nQuinlan, J. R. 1986. “Induction of Decision Trees.”\nMachine Learning 1 (1): 81–106. https://doi.org/10.1007/BF00116251.\n\n\nRibeiro, Marco Tulio, Sameer Singh, and Carlos Guestrin. 2016.\n“\"Why Should i Trust You?\": Explaining the Predictions of Any\nClassifier.” https://arxiv.org/abs/1602.04938.\n\n\nRuder, Sebastian. 2017. “An Overview of Gradient Descent\nOptimization Algorithms.” https://arxiv.org/abs/1609.04747.\n\n\nSelvaraju, Ramprasaath R., Michael Cogswell, Abhishek Das, Ramakrishna\nVedantam, Devi Parikh, and Dhruv Batra. 2019. “Grad-CAM: Visual\nExplanations from Deep Networks via Gradient-Based Localization.”\nInternational Journal of Computer Vision 128 (2): 336–59. https://doi.org/10.1007/s11263-019-01228-7.\n\n\nSimonyan, Karen, Andrea Vedaldi, and Andrew Zisserman. 2014. “Deep\nInside Convolutional Networks: Visualising Image Classification Models\nand Saliency Maps.” https://arxiv.org/abs/1312.6034.\n\n\nWang, Jingyuan, and Jiahao Ji. 2025. “A Tutorial on Regression\nAnalysis: From Linear Models to Deep Learning – Lecture Notes on\nArtificial Intelligence.” https://arxiv.org/abs/2512.04747.\n\n\nWang, Junpeng, Liang Gou, Han-Wei Shen, and Hao Yang. 2018.\n“DNQViz: A Visual Analytics Approach to Understand\nDeep q-Networks.” IEEE Transactions on Visualization and\nComputer Graphics 25 (1): 288–98.\n\n\nWang, Ziyu, Tom Schaul, Matteo Hessel, Hado Hasselt, Marc Lanctot, and\nNando Freitas. 2016. “Dueling Network Architectures for Deep\nReinforcement Learning.” In International Conference on\nMachine Learning, 1995–2003. PMLR.\n\n\nZahavy, Tom, Nir Ben-Zrihem, and Shie Mannor. 2016. “Graying the\nBlack Box: Understanding DQNs.” In International\nConference on Machine Learning, 1899–1908. PMLR.",
+    "crumbs": [
+      "References"
+    ]
+  }
+]
