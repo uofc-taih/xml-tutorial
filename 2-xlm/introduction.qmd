@@ -1,1 +1,65 @@
 # Introduction
+
+Language models transform tokens through a sequence of learned representations before producing an output. Explainability methods study different parts of this process. Some inspect internal activations, some describe predictions using human-readable concepts, and others discover recurring patterns in the model's representations.
+
+This tutorial separates these approaches into three families. The boundary is useful for organizing the methods, although some techniques combine ideas from more than one family.
+
+## Activation-based explanations
+
+Activation-based explanations examine the values produced inside a model as it processes an input. They may study individual units, compare activation patterns across examples, or identify directions in the representation space that are associated with a behavior. These methods work with the model's internal representation and do not require the final explanation to use a predefined concept vocabulary.
+
+## Concept-based explainability
+
+Concept-based explanations describe model behavior using properties that people can name and understand. For text, examples include *contains a negation*, *mentions poor service*, or *uses positive language*. A useful concept should have a clear meaning, be observable from the input, and be relevant to the task.
+
+In supervised concept-based methods, the concept vocabulary is selected before training. Domain experts or dataset designers choose the concepts, and training examples are annotated with both task labels and concept values. This gives the explanation a fixed vocabulary, but its quality depends on whether that vocabulary is complete and consistently annotated.
+
+### Concepts and concept space
+
+A concept is a property of an input. For this tutorial, we use $c_j^\star(x)$ as an idealized value of concept $j$ for input $x$:
+
+$$
+c_j^\star : \mathcal{X} \rightarrow \mathcal{C}_j,
+$$ {#eq-concept-function}
+
+where $\mathcal{X}$ is the input space and $\mathcal{C}_j$ is the set of possible values for concept $j$. A binary concept such as *contains a negation* has $\mathcal{C}_j=\{0,1\}$. An ordinal concept such as sentiment strength could take values in $\{0,1,2,3\}$. Concepts may also be categorical or continuous.
+
+For $k$ concepts, the concept space is
+
+$$
+\mathcal{C}=\mathcal{C}_1 \times \cdots \times \mathcal{C}_k.
+$$ {#eq-concept-space}
+
+An input $x$ is described by the concept vector
+
+$$
+\mathbf{c}^\star(x)
+=\left(c_1^\star(x),\ldots,c_k^\star(x)\right)
+\in \mathcal{C}.
+$$ {#eq-concept-vector}
+
+This is a modeling convention, not a claim that every concept has one objectively correct value. Real annotations are less certain. Annotators may disagree, a concept may be subjective, or the input may not contain enough information to determine its value. An observed annotation $c_j$ should therefore be treated as a measurement of the intended concept, not necessarily as perfect ground truth. When uncertainty matters, a model can predict a distribution $p(c_j\mid x)$ instead of a single value.
+
+### Notation
+
+| Symbol | Meaning |
+|---|---|
+| $x\in\mathcal{X}$ | Input example |
+| $y\in\mathcal{Y}$ | Task label |
+| $c_j^\star(x)$ | True value of concept $j$ |
+| $c_j$ | Annotated value of concept $j$ |
+| $\widehat{c}_j$ | Model-predicted value of concept $j$ |
+| $\mathbf{c}$, $\widehat{\mathbf{c}}$ | Annotated and predicted concept vectors |
+| $g_\theta$ | Concept predictor |
+| $f_\phi$ | Task predictor |
+| $\widehat{y}$ | Model prediction |
+
+The distinction between $c_j^\star$, $c_j$, and $\widehat{c}_j$ matters. The true property may be uncertain, its annotation may be wrong, and the model may make another error when predicting it.
+
+[Method A](method-A.qmd) introduces the original supervised Concept Bottleneck Model formulation, in which the final prediction is computed only from the predicted concept vector.
+
+## Concept discovery
+
+Concept discovery methods do not begin with a complete, annotated concept vocabulary. Instead, they search a model's learned representations for recurring clusters, directions, or patterns that may correspond to meaningful properties. A person then interprets and validates the discovered patterns.
+
+Concept discovery is closely related to concept-based explainability. It is treated as a separate family here because the concepts are learned from representations rather than fully specified before training. A discovered pattern should not be called a meaningful concept until its interpretation is supported across multiple examples and its relationship to model behavior has been tested.
