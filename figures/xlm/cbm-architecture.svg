@@ -94,7 +94,7 @@
     <title>Task predictor: combines the concept values to predict the task label.</title>
     <rect class="node-box model-box" x="745" y="140" width="200" height="110" rx="12"/>
     <text class="node-title" x="845" y="184">Task predictor</text>
-    <text class="node-symbol" x="845" y="216">f<tspan baseline-shift="sub" font-size="12">φ</tspan></text>
+    <text class="node-symbol" x="845" y="216">f<tspan baseline-shift="sub" font-size="12">ϕ</tspan></text>
     <g class="tooltip">
       <rect class="tooltip-box" x="735" y="68" width="220" height="54" rx="8"/>
       <text class="tooltip-text" x="845" y="90">
