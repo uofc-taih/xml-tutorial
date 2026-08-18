@@ -1,4 +1,4 @@
-# Explainable Multi-Agent Systems
+# Introduction
 
 Explainable multi-agent systems (XMAS) refers to the subfield of artificial
 intelligence that integrates LLM explainability methods within multi-agent AI

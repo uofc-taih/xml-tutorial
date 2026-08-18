@@ -1,43 +1,70 @@
 project:
     type: book
+    output-dir: _book
+    resources:
+    - "CNAME"
 
 book:
-    title: "Explainable Machine Learning: A Tutorial"
+    title: "Explainable ML Tutorial"
     author: "Jane Doe"
     date: "7/10/2026"
 
     sidebar:
+        style: "docked"
+        search: true
         collapse-level: 1
 
     chapters:
+        # --- PRELIMINARIES ---
         - index.qmd
-        - part: 1-basics/1-0-intro.qmd
+        - 0-1-notation.qmd
+        - 0-2-introduction.qmd
+
+        # --- TOPIC 1: XML BASICS ---
+        - part: "Basics of Explainable Machine Learning"
           chapters:
-              - 1-basics/1-1-categorization.qmd
-              - 1-basics/1-2-feature-attribution.qmd
-              - 1-basics/1-3-concept-bottleneck-methods.qmd
-              - 1-basics/1-4-practical-considerations.qmd
-        - part: 2-xllms/2-0-intro.qmd
+              - 1-basics/introduction.qmd
+              - 1-basics/taxonomy.qmd
+              - 1-basics/method-A.qmd
+              - 1-basics/method-B.qmd
+              - 1-basics/method-C.qmd
+              - 1-basics/applications.qmd
+              - 1-basics/conclusion.qmd
+
+        # --- TOPIC 2: XLLM ---
+        - part: "Explainability for Language Models"
           chapters:
-              - 2-xllms/2-1-activation-based-explanations.qmd
-              - 2-xllms/2-2-concept-based-explainability.qmd
-              - 2-xllms/2-3-concept-discovery.qmd
-              - 2-xllms/2-4-mechanistic-interpretability.qmd
-              - 2-xllms/2-5-attention-visualization-methods.qmd
-        - part: 3-xrl/3-0-intro.qmd
+              - 2-xlm/introduction.qmd
+              - 2-xlm/taxonomy.qmd
+              - 2-xlm/method-A.qmd
+              - 2-xlm/method-B.qmd
+              - 2-xlm/method-C.qmd
+              - 2-xlm/applications.qmd
+              - 2-xlm/conclusion.qmd
+
+        # --- TOPIC 3: XRL ---
+        - part: "Explainable Reinforcement Learning"
           chapters:
-              - 3-xrl/3-1-foundations.qmd
-              - 3-xrl/3-2-taxonomy.qmd
-              - 3-xrl/3-3-visualization-based-approaches.qmd
-              - 3-xrl/3-4-policy-extraction-and-decision-trees.qmd
-        - part: 4-xmas/4-0-intro.qmd
+              - 3-xrl/introduction.qmd
+              - 3-xrl/taxonomy.qmd
+              - 3-xrl/m1-pertubation-based-salience-maps.qmd
+              - 3-xrl/method-B.qmd
+              - 3-xrl/method-C.qmd
+              - 3-xrl/applications.qmd
+              - 3-xrl/conclusion.qmd
+
+        # --- TOPIC 4: XMAS ---
+        - part: "Explainability in Multi-Agent Systems"
           chapters:
-              - 4-xmas/4-1-foundations.qmd
-              - 4-xmas/4-2-taxonomy.qmd
-              - 4-xmas/4-3-technical-approaches-and-methodologies.qmd
-              - 4-xmas/4-4-applications.qmd
-              - 4-xmas/4-5-evaluation-metrics.qmd
-              - 4-xmas/4-6-key-challenges-and-open-research-directions.qmd
+              - 4-xmas/introduction.qmd
+              - 4-xmas/taxonomy.qmd
+              - 4-xmas/method-A.qmd
+              - 4-xmas/method-B.qmd
+              - 4-xmas/method-C.qmd
+              - 4-xmas/applications.qmd
+              - 4-xmas/conclusion.qmd
+
+        # --- POSTLIMINARIES ---
         - references.qmd
 
 bibliography: references.bib
@@ -47,5 +74,8 @@ format:
         theme:
             - lumen
         code-fold: true
+        lightbox: auto
+        toc: true
+        toc-depth: 3
     pdf:
         documentclass: scrreprt

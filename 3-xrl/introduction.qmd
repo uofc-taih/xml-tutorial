@@ -1,0 +1,35 @@
+# Introduction to Explainable RL
+
+Note to self:
+
+Before:
+
+- Foundations and taxonomy
+    - split into two separate pages
+- Visualization-based approaches
+    - mentioned in the text, doesn't need its own section
+- Policy extraction and decision trees
+    - polcicy-level XRL, okay
+- Explaining decisions through critical states
+    - hmm, feature importance?
+- Trajectory-based methods
+    - MDP and/or policy-level
+- Explainability via counterfactual reasoning
+
+
+- Evaluation of XRL methods
+
+## Foundations
+
+There's value-based and policy-based RL.
+
+Why is it important? For example, deploying RL-based algorithms in finance requires algorithmic transparency to comply with regulations; in sequential human-AI collaboration process, users need to understand agent behavior to trust and cooperate.
+
+When it comes to RL, many things are desirable: fast learning (i.e., sample efficiency), high final performance, safety guarantees, transparent behavior processes, etc. To keep this tutorial focused, we consider constrained RL formulations for safe RL out of scope.
+
+
+## Challenges in XRL
+
+- large number of decisions over a period of time
+- actions are not independent of each other -> explanation can't be either
+- no static dataset, agent-generated data

@@ -1,0 +1,164 @@
+# Method A: Concept Bottleneck Models
+
+The original Concept Bottleneck Model formulation is a supervised concept-based method built around a human-defined concept vocabulary. The broader idea of [concept-based explainability](introduction.qmd#concept-based-explainability), including the definition of a concept and the notation used here, is introduced in the introduction.
+
+## Architecture and inference
+
+A [Concept Bottleneck Model (CBM)](https://proceedings.mlr.press/v119/koh20a.html) makes a prediction in two stages:
+
+$$
+x
+\xrightarrow{\;g_\theta\;}
+\widehat{\mathbf{c}}
+\xrightarrow{\;f_\phi\;}
+\widehat{y}.
+$$ {#eq-cbm-pipeline}
+
+The concept predictor $g_\theta$ maps the input to named concept values. The task predictor $f_\phi$ then uses those values to predict the task output:
+
+$$
+h_{\theta,\phi}(x)=f_\phi\!\left(g_\theta(x)\right).
+$$ {#eq-cbm-model}
+
+The concept vector is called a *bottleneck* because it is the only information passed to the task predictor. In a strict CBM, there is no separate path from $x$ to $\widehat{y}$.
+
+::: {.content-visible when-format="html"}
+
+```{=html}
+<figure style="margin: 1.5rem 0 2rem; text-align: center;">
+  <object
+    data="../figures/xlm/cbm-architecture.svg"
+    type="image/svg+xml"
+    style="display: block; width: 100%; max-width: 1200px; margin: 0 auto;"
+    aria-label="Interactive diagram of a Concept Bottleneck Model">
+    <img
+      src="../figures/xlm/cbm-architecture.svg"
+      alt="Concept Bottleneck Model pipeline from input to concepts to task prediction, with optional human concept correction."
+      style="width: 100%;"
+    />
+  </object>
+  <figcaption style="margin-top: 0.6rem; color: #64717d; font-size: 0.85rem;">
+    Inference and optional concept correction in a strict Concept Bottleneck Model.
+  </figcaption>
+</figure>
+```
+
+:::
+
+::: {.content-visible unless-format="html"}
+
+![Inference and optional concept correction in a strict Concept Bottleneck Model.](../figures/xlm/cbm-architecture.svg){#fig-cbm-architecture width=100%}
+
+:::
+Each coordinate in $\widehat{\mathbf{c}}$ has an assigned meaning. For a binary concept, $\widehat{c}_j$ may be a hard value in $\{0,1\}$, a score between 0 and 1, or a logit. A real-valued score gives the task predictor more graded information than a hard value. It should be interpreted as confidence only when the score has been calibrated. Categorical concepts are usually represented by one score per category, while continuous concepts can be represented directly.
+
+The architecture of $g_\theta$ depends on the input. It may be a convolutional network for images or a transformer for text. The task predictor is often smaller. For example, a linear predictor can assign a score to class $r$:
+
+$$
+s_r(\widehat{\mathbf{c}})
+=b_r+\sum_{j=1}^{k}w_{rj}\widehat{c}_j.
+$$ {#eq-cbm-linear-head}
+
+Here, $w_{rj}$ describes how concept $j$ is associated with class $r$ across the model, while $w_{rj}\widehat{c}_j$ is that concept's contribution to the class score for one example. Weight magnitudes can be compared directly only when the concept variables use comparable scales. These values describe the model's calculation; they should not be interpreted as causal effects. A nonlinear task predictor can model interactions between concepts, but its decisions are harder to inspect.
+
+## What does a CBM explain?
+
+A CBM provides a concept-level account of the final prediction. For one input, a reader can inspect:
+
+1. **The model's description of the input:** which concepts were predicted and their predicted scores. A score represents confidence only when it is calibrated.
+2. **The task decision:** which concepts supported or opposed the predicted class. This is easiest to see with a linear task predictor.
+3. **The sensitivity to corrections:** whether the task prediction changes when an incorrect concept is replaced with a corrected value.
+
+Across a dataset, the weights of a linear task predictor show which concepts are generally associated with each class. Concept accuracy can also be examined separately for each concept to find systematic errors.
+
+The bottleneck does not make the whole system transparent. The concept predictor $g_\theta$ may still be a complex neural network, so the CBM does not automatically explain *why* the input produced a particular concept score. It makes the second step, from concepts to the task prediction, easier to inspect.
+
+::: {.callout-note title="Example: classifying a restaurant review"}
+Suppose a CBM predicts whether a customer recommends a restaurant. For the review *“The pasta was excellent, but we waited an hour and will not return,”* its concept predictor might produce:
+
+| Predicted concept | Score |
+|---|---:|
+| Praises the food | 0.94 |
+| Reports slow service | 0.91 |
+| Intends to return | 0.08 |
+
+The task predictor combines these three scores to produce the recommendation label. This explanation is more informative than the label alone: it shows that the model detected both the positive comment about the food and the stronger negative signals about the overall experience. If one concept is wrong, it can be corrected and the task prediction can be recomputed.
+:::
+
+## Training regimes
+
+Suppose the training data contain triples $(x_i,\mathbf{c}_i,y_i)$. CBMs are commonly trained in one of three ways:
+
+1. **Independent training:** train $g_\theta$ to predict the annotated concepts, and separately train $f_\phi$ using the annotated concepts as input. The task predictor therefore learns from clean annotations but receives predicted concepts at inference time. See [Koh et al. (2020), *Concept Bottleneck Models*](https://proceedings.mlr.press/v119/koh20a/koh20a.pdf).
+
+2. **Sequential training:** first train $g_\theta$, freeze it, and then train $f_\phi$ on $g_\theta(x_i)$. The task predictor sees the kinds of concept errors it will encounter at inference time. See [Koh et al. (2020), *Concept Bottleneck Models*](https://proceedings.mlr.press/v119/koh20a/koh20a.pdf).
+
+3. **Joint training:** train both components together using a concept loss and a task loss. The task loss is backpropagated through both $f_\phi$ and $g_\theta$, while the concept loss keeps the bottleneck tied to the annotated concepts. See [Koh et al. (2020), *Concept Bottleneck Models*](https://proceedings.mlr.press/v119/koh20a/koh20a.pdf).
+
+   A typical joint objective is
+
+   $$
+   \mathcal{L}
+   =\lambda\,\mathcal{L}_{\text{concept}}
+     \left(g_\theta(x_i),\mathbf{c}_i\right)
+   +\mathcal{L}_{\text{task}}
+     \left(f_\phi(g_\theta(x_i)),y_i\right),
+   $$ {#eq-cbm-joint-loss}
+
+   where $\lambda$ controls the importance of accurate concept prediction. Joint training can improve task performance, but it is still necessary to evaluate whether the predicted concepts match their intended meanings.
+
+   [Sheth and Kahou (2023), *Auxiliary Losses for Learning Generalizable Concept-based Models*](https://arxiv.org/pdf/2311.11108), extend joint training with **cooperative-CBM (coop-CBM)**. Their method adds an auxiliary head that predicts the task label from the representation shared with the concept predictor. Its objective combines the concept loss, an auxiliary task loss, the final task loss, and a concept orthogonal loss. The orthogonal loss encourages within-concept similarity and separation between different concept representations. The auxiliary head helps shape the shared representation during training, while the final task predictor still receives only the predicted concepts. The paper evaluates the approach on image-classification datasets, including settings with distribution shift.
+
+The concept loss must match the concept type. Binary concepts commonly use binary cross-entropy, categorical concepts use cross-entropy, and continuous concepts use a regression loss. If only some concepts are annotated for an example, the concept loss can be calculated over the available annotations.
+
+## Concept interventions
+
+At inference time, a person can inspect $\widehat{\mathbf{c}}$ and correct concepts that are clearly wrong. If $S$ is the set of corrected concepts, define
+
+$$
+\widetilde{c}_j=
+\begin{cases}
+c_j^{\text{edit}}, & j\in S,\\
+\widehat{c}_j, & j\notin S.
+\end{cases}
+$$ {#eq-concept-intervention}
+
+The revised prediction is $\widetilde{y}=f_\phi(\widetilde{\mathbf{c}})$. This supports questions such as: *Would the prediction change if the concept “contains a negation” were corrected from absent to present?*
+
+An intervention explains the behavior of the model under a concept edit. It does not prove that changing the corresponding property in the real world would cause the same outcome. Edits can also create unlikely combinations of concepts, so their results should be interpreted carefully.
+
+## Evaluating a CBM
+
+Task accuracy alone is not enough. A useful evaluation should check four parts of the model:
+
+- **Task performance:** how accurately $\widehat{y}$ predicts the task label.
+- **Concept performance:** how accurately each $\widehat{c}_j$ predicts its annotated concept. Per-concept results are important because an average can hide a poorly learned concept.
+- **Concept-set sufficiency:** how well the task can be predicted from the annotated concepts. Poor performance may indicate that the vocabulary is missing useful information, but it can also result from noisy concept annotations or an unsuitable task predictor.
+- **Intervention performance:** how the task performance changes as incorrect concept predictions are corrected. This tests whether better concepts lead to better task predictions.
+
+These measurements answer different questions. A CBM may predict the task well while predicting some concepts poorly. It may also predict every annotated concept well but perform poorly because the concept set is incomplete or the task predictor is unsuitable.
+
+## Limitations and appropriate use cases
+
+CBMs are most useful when a task has a stable concept vocabulary, reliable concept annotations are available, and a person can meaningfully inspect or correct the concepts. They are particularly suitable when concept-level feedback is more practical than changing the original input.
+
+Their main limitations are:
+
+- **Incomplete vocabulary:** if important information is missing from the concept set, a strict CBM may lose predictive accuracy.
+- **Annotation cost and noise:** concept labels can be expensive to collect and may differ across annotators.
+- **Concept prediction errors:** an understandable concept is not useful when the model predicts it unreliably.
+- **Hidden shortcuts:** the concept predictor may use an unintended input pattern to predict the correct concept value.
+- **Information in soft scores:** small variations in continuous concept scores can carry information beyond the concepts' stated meanings. This can weaken interpretability and concept interventions, as discussed by [Havasi et al. (2022)](https://openreview.net/forum?id=tglniD_fn9).
+- **Limited transparency with complex heads:** a nonlinear $f_\phi$ may make the relationship between concepts and predictions difficult to follow.
+
+Architectures with residual features or a direct path from $x$ to $\widehat{y}$ may recover some accuracy. However, because named concepts no longer carry all the information used for the prediction, they do not provide the same explanation guarantee as a strict CBM.
+
+## Reducing the need for concept annotations
+
+Recent extensions reduce the amount of per-example concept labeling. [Label-free CBMs](https://arxiv.org/abs/2304.06129) use a chosen list of concept names together with pretrained representations to construct a concept bottleneck without manually labeling every training example. [Post-hoc CBMs](https://arxiv.org/abs/2205.15480) project a pretrained model's representations into a concept space rather than training the entire model from the beginning.
+
+The term *label-free* refers to concept labels: these methods can still require task labels, a human-selected concept vocabulary, and pretrained models. Their concept scores must also be validated. A concept name alone does not guarantee that the score consistently measures the intended property.
+
+::: {.callout-tip title="Key takeaway"}
+A strict CBM predicts named concepts first and makes the final prediction only from those concepts. This structure makes concept inspection and correction possible. The explanation is useful only when the concept vocabulary is relevant and the predicted concept values are reliable.
+:::

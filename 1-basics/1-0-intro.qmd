@@ -1,3 +1,0 @@
-# Introduction to Explainable Machine Learning
-
-Welcome to the tutorial!

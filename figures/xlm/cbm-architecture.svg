@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 470" role="img" aria-labelledby="cbm-title cbm-description">
+  <title id="cbm-title">Architecture of a Concept Bottleneck Model</title>
+  <desc id="cbm-description">A two-stage pipeline from an input through a concept predictor and concept bottleneck to a task predictor and final prediction. A human can optionally correct values in the concept bottleneck. Hover over or focus on a component to read more information.</desc>
+
+  <defs>
+    <filter id="shadow" x="-20%" y="-25%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#24313d" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#74818c"/>
+    </marker>
+    <marker id="coral-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#a84f43"/>
+    </marker>
+    <style>
+      .background { fill: #fbfcfd; stroke: #dce3e8; stroke-width: 1.5; }
+      .stage-label { fill: #64717d; font: 700 14px Arial, sans-serif; letter-spacing: 1px; }
+      .stage-line { stroke: #dce3e8; stroke-width: 2; }
+      .flow-arrow { stroke: #74818c; stroke-width: 2.5; marker-end: url(#arrow); }
+      .node { cursor: help; outline: none; }
+      .node-box { stroke-width: 2; filter: url(#shadow); }
+      .data-box { fill: #edf5fb; stroke: #285f8f; }
+      .model-box { fill: #fff7e8; stroke: #a96612; }
+      .concept-box { fill: #eaf7f4; stroke: #18766f; stroke-width: 3; }
+      .human-box { fill: #fff1ee; stroke: #a84f43; stroke-width: 2; stroke-dasharray: 7 5; }
+      .node-title { fill: #24313d; font: 700 18px Arial, sans-serif; text-anchor: middle; }
+      .node-symbol { fill: #566572; font: 17px Georgia, serif; text-anchor: middle; }
+      .human-title { fill: #74362f; font: 700 16px Arial, sans-serif; text-anchor: middle; }
+      .intervention-line { fill: none; stroke: #a84f43; stroke-width: 2.5; stroke-dasharray: 7 5; marker-end: url(#coral-arrow); }
+      .intervention-label { fill: #8d443a; font: 600 13px Arial, sans-serif; text-anchor: middle; }
+      .tooltip { opacity: 0; pointer-events: none; transition: opacity 140ms ease; }
+      .node:hover .tooltip, .node:focus .tooltip { opacity: 1; }
+      .tooltip-box { fill: #24313d; }
+      .tooltip-text { fill: #ffffff; font: 13px Arial, sans-serif; text-anchor: middle; }
+      .legend-text { fill: #64717d; font: 12px Arial, sans-serif; }
+    </style>
+  </defs>
+
+  <rect class="background" x="1" y="1" width="1198" height="468" rx="18"/>
+
+  <text class="stage-label" x="24" y="36">STAGE 1  ·  DESCRIBE THE INPUT</text>
+  <line class="stage-line" x1="24" y1="50" x2="700" y2="50"/>
+  <text class="stage-label" x="745" y="36">STAGE 2  ·  SOLVE THE TASK</text>
+  <line class="stage-line" x1="745" y1="50" x2="1175" y2="50"/>
+
+  <line class="flow-arrow" x1="184" y1="195" x2="219" y2="195"/>
+  <line class="flow-arrow" x1="429" y1="195" x2="464" y2="195"/>
+  <line class="flow-arrow" x1="704" y1="195" x2="739" y2="195"/>
+  <line class="flow-arrow" x1="949" y1="195" x2="984" y2="195"/>
+
+  <g class="node" tabindex="0" aria-label="Input. The original example, such as a document, image, or clinical record.">
+    <title>Input: the original example, such as a document, image, or clinical record.</title>
+    <rect class="node-box data-box" x="24" y="140" width="160" height="110" rx="12"/>
+    <text class="node-title" x="104" y="184">Input</text>
+    <text class="node-symbol" x="104" y="216">x</text>
+    <g class="tooltip">
+      <rect class="tooltip-box" x="12" y="68" width="210" height="54" rx="8"/>
+      <text class="tooltip-text" x="117" y="90">
+        <tspan x="117">The original example, such as a</tspan>
+        <tspan x="117" dy="17">document, image, or clinical record.</tspan>
+      </text>
+    </g>
+  </g>
+
+  <g class="node" tabindex="0" aria-label="Concept predictor. A learned model that produces one value for each named concept.">
+    <title>Concept predictor: a learned model that produces one value for each named concept.</title>
+    <rect class="node-box model-box" x="225" y="140" width="200" height="110" rx="12"/>
+    <text class="node-title" x="325" y="184">Concept predictor</text>
+    <text class="node-symbol" x="325" y="216">g<tspan baseline-shift="sub" font-size="12">θ</tspan></text>
+    <g class="tooltip">
+      <rect class="tooltip-box" x="215" y="68" width="220" height="54" rx="8"/>
+      <text class="tooltip-text" x="325" y="90">
+        <tspan x="325">Produces one value for each named</tspan>
+        <tspan x="325" dy="17">concept in the vocabulary.</tspan>
+      </text>
+    </g>
+  </g>
+
+  <g class="node" tabindex="0" aria-label="Concept bottleneck. The only representation passed to the task predictor in a strict Concept Bottleneck Model.">
+    <title>Concept bottleneck: the only representation passed to the task predictor in a strict CBM.</title>
+    <rect class="node-box concept-box" x="470" y="140" width="230" height="110" rx="12"/>
+    <text class="node-title" x="585" y="184">Concept bottleneck</text>
+    <text class="node-symbol" x="585" y="216">ĉ = (ĉ₁, …, ĉₖ)</text>
+    <g class="tooltip">
+      <rect class="tooltip-box" x="465" y="68" width="240" height="54" rx="8"/>
+      <text class="tooltip-text" x="585" y="90">
+        <tspan x="585">The only representation passed</tspan>
+        <tspan x="585" dy="17">forward in a strict CBM.</tspan>
+      </text>
+    </g>
+  </g>
+
+  <g class="node" tabindex="0" aria-label="Task predictor. A model that combines the concept values to predict the task label.">
+    <title>Task predictor: combines the concept values to predict the task label.</title>
+    <rect class="node-box model-box" x="745" y="140" width="200" height="110" rx="12"/>
+    <text class="node-title" x="845" y="184">Task predictor</text>
+    <text class="node-symbol" x="845" y="216">f<tspan baseline-shift="sub" font-size="12">ϕ</tspan></text>
+    <g class="tooltip">
+      <rect class="tooltip-box" x="735" y="68" width="220" height="54" rx="8"/>
+      <text class="tooltip-text" x="845" y="90">
+        <tspan x="845">Combines concept values to predict</tspan>
+        <tspan x="845" dy="17">the task label.</tspan>
+      </text>
+    </g>
+  </g>
+
+  <g class="node" tabindex="0" aria-label="Task prediction. The final output, computed only from the concept vector in a strict Concept Bottleneck Model.">
+    <title>Task prediction: the final output, computed only from the concept vector in a strict CBM.</title>
+    <rect class="node-box data-box" x="990" y="140" width="170" height="110" rx="12"/>
+    <text class="node-title" x="1075" y="184">Task prediction</text>
+    <text class="node-symbol" x="1075" y="216">ŷ</text>
+    <g class="tooltip">
+      <rect class="tooltip-box" x="950" y="68" width="222" height="54" rx="8"/>
+      <text class="tooltip-text" x="1061" y="90">
+        <tspan x="1061">The final output is computed only</tspan>
+        <tspan x="1061" dy="17">from the concept vector.</tspan>
+      </text>
+    </g>
+  </g>
+
+  <path class="intervention-line" d="M 585 350 L 585 260"/>
+  <rect x="493" y="266" width="184" height="26" rx="5" fill="#fbfcfd"/>
+  <text class="intervention-label" x="585" y="285">OPTIONAL INTERVENTION</text>
+  <g class="node" tabindex="0" aria-label="Optional human correction. A reviewer can replace selected concept values and recompute the prediction.">
+    <title>Optional human correction: replace selected concept values and recompute the prediction.</title>
+    <rect class="human-box" x="475" y="350" width="220" height="58" rx="10"/>
+    <text class="human-title" x="585" y="384">Human correction</text>
+    <g class="tooltip">
+      <rect class="tooltip-box" x="715" y="352" width="290" height="54" rx="8"/>
+      <text class="tooltip-text" x="860" y="374">
+        <tspan x="860">Replace selected concept values, then</tspan>
+        <tspan x="860" dy="17">recompute the task prediction.</tspan>
+      </text>
+    </g>
+  </g>
+
+  <g aria-label="Color legend">
+    <rect x="300" y="427" width="10" height="10" rx="2" fill="#285f8f"/>
+    <text class="legend-text" x="317" y="437">Input and output</text>
+    <rect x="438" y="427" width="10" height="10" rx="2" fill="#a96612"/>
+    <text class="legend-text" x="455" y="437">Learned components</text>
+    <rect x="605" y="427" width="10" height="10" rx="2" fill="#18766f"/>
+    <text class="legend-text" x="622" y="437">Inspectable concepts</text>
+    <rect x="763" y="427" width="10" height="10" rx="2" fill="#a84f43"/>
+    <text class="legend-text" x="780" y="437">Human action</text>
+  </g>
+</svg>
