@@ -1,68 +1,149 @@
-# Taxonomy
+---
+bibliography: references.bib
+---
 
-## What are agents?
+### What are agents?
 
-Generally, agents refer to _any entity capable of perceiving its environment and taking action_ [@cheng2024exploring]. Namely, large language model (LLM)-based agents leverage the natural language processing capabilities of LLMs (complex reasoning, text summarization, machine translation)
-% https://link.springer.com/article/10.1007/s11704-025-50472-3
-, while attempting to address their fundamental limitations:
+Generally, agents refer to *any entity capable of perceiving its environment and taking action* [@cheng2024exploring]. 
+<!-- https://arxiv.org/pdf/2401.03428 <--- idk how to cite papers  -->
+Namely, large language model (LLM) based agents leverage the natural language processing capabilities of LLMs (complex reasoning, text summarization, machine translation) [@qin2026large]
+<!-- https://link.springer.com/article/10.1007/s11704-025-50472-3 -->
+, while attempting to address their fundamental limitations: [@plaat2025agentic; @liu2025unifying]
 
-% https://www.jair.org/index.php/jair/article/view/18675/27253
-% https://dl.acm.org/doi/abs/10.1145/3787470.3787478
+<!-- https://www.jair.org/index.php/jair/article/view/18675/27253 -->
+<!-- https://dl.acm.org/doi/abs/10.1145/3787470.3787478 -->
+1. **Hallucination** The tendency of LLMs to produce *plausible yet factually unsupported content*, deriving from data misinformation, pre-training biases, and over-confidence, among others. [@huang2025hallucination]  <!--https://dl.acm.org/doi/pdf/10.1145/3703155 -->
 
-1. **Hallucination.** The tendency of LLMs to produce \textit{plausible yet factually unsupported content}, deriving from data misinformation, pre-training biases, over-confidence, among others.  %https://dl.acm.org/doi/pdf/10.1145/3703155
-2. **Training data.** LLM intelligence is limited by the data available during training.
-3. **Reasoning.** Although LLMs continue to impress in natural language processing, model reasoning remains a well-reported challenge. 
-4. **Prompt Engineering.** LLMs are sensitive to minor details in prompts, making prompt improvement a tedious, manual task. % https://www.jair.org/index.php/jair/article/view/18675/27253
+2. **Training data** LLM intelligence is limited by the data available during training, which causes struggles in factual accuracy and failure to adapt to new situations.
 
+3. **Reasoning** Although LLMs continue to impress in natural language processing, model reasoning remains a well-reported challenge as LLMs are designed to predict the most probable next words, rather than making logically sound claims. 
 
-% https://arxiv.org/abs/2308.11432
-Consequently, the architecture of LLM-based agents adds four fundamental modules absent from "pure LLMs": 
-- Profiling: Defining agent identity
-- Memory: Storing experience
-- Planning: Decomposing goals
-- Action: Executing plans via tools or internal knowledge
-
-% https://link.springer.com/article/10.1007/s44336-024-00009-2
-Some authours argue for a fifth module, evolution, describing how agents progressively enhance their intelligence through self-reflection.
-
-Analogously, agents can be understood as \textit{proactive} whereas LLMs are \textit{reactive}. Alternatively, LLMs \textit{predict}, and agents \textit{reason, act,} and \textit{interact}.
-% https://www.jair.org/index.php/jair/article/view/18675/27253
-% confirm claim.
-
-Ideally, the foundational agent architecture would address the concerns of LLMs through ...
-% https://www.jair.org/index.php/jair/article/view/18675
-
-Implementations of single-agent systems can be used in ...
-% https://arxiv.org/abs/2512.08296
-
-Nonetheless, single-agent systems have key pitfalls...
-% https://arxiv.org/abs/2511.01149
-
-## What are multi-agent systems?
-
-Multi-agent systems are systems that enclose multiple autonomous LLM-based agents to enable more complex reasoning and simulation. Leveraging the foundational "wisdom of the multitude" is just a natural step in the evolution of agentic AI, addressing the pitfalls of single-agent systems as listed above.
-
-% https://arxiv.org/pdf/2402.01680
-% Politics - aristotle
-
-Specifically, multi-agent systems surpass single-agent systems in...
-% https://arxiv.org/abs/2511.01149 (same as above)
-
-Multi-agent systems are used in ... 
-% couple examples
-
-As the implementations of multi-agent systems become more integrated into society, the need for explainability methods is just as required.
-% tie back to explainability
+4. **Prompt Engineering** LLMs are sensitive to minor details in prompts, making prompt improvement a tedious, manual task. [@plaat2025agentic] <!-- https://www.jair.org/index.php/jair/article/view/18675/27253 -->
 
 
-\section{Technical Approaches and Methodologies}
+<!-- https://arxiv.org/abs/2308.11432 -->
+Consequently, the architecture of LLM-based agents adds four fundamental modules absent from LLMs: [@wang2023autonomous] 
 
-% Single-agent based approaches (but in to multi-agent contexts)
+**Profile**: The identity, role, tendencies, and constraints that define an agent and lead to better, grounded decisions.
 
-% SAEs, linear probes, logit/tuned lenses, etc.
+**Memory**: The persistent system by which agents retain, refine, and recall information while accumulating knowledge.
 
-% Multi-agent based approaches
+**Planning**: The module that decomposes complex, high-level plans into sub-tasks for a simplified sequence of actions.
 
-% describe how certain behaviours occur ONLY in a multi-agent context: collusion, complex scheming
+**Action**: The tools that enable an agent to translate internal decisions into external executions.
 
-% include black-box tools (LLM-as-a-judge, human-in-the-loop)#
+<!-- https://link.springer.com/article/10.1007/s44336-024-00009-2 -->
+Some authors argue for a fifth module **evolution**, describing how agents progressively enhance their intelligence through self-reflection. [@li2024survey]
+
+Analogously, agents can be understood as being *proactive* whereas LLMs are *reactive*. Rather, LLMs *predict* and agents *reason, act* and *interact*. [@plaat2025agentic]
+<!-- https://www.jair.org/index.php/jair/article/view/18675/27253 -->
+
+By adopting a proactive stance, LLM-based agents address the constraints of models by integrating a model within an architectural loop with distinct modules that handle it's limitations. [@liu2025unifying; @plaat2025agentic]
+<!-- https://dl.acm.org/doi/abs/10.1145/3787470.3787478 -->
+<!-- https://www.jair.org/index.php/jair/article/view/18675 -->
+
+Implementations of agent-based systems have rapidly evolved into a variety of industries, (arguably) justifying it's position as the current paradigm in machine learning research. Such areas include healthcare (medical diagnosis [@chen2025cod], cardiology [@zhou2024zodiac], therapeutic counseling [@steenstra2025risk]), research (survey generation [@liang2025surveyx], scientific discovery [@gottweis2025ai]), and software engineering (coding reasoning [@chen2025verbal], code generation [@endla2025autoopticode]). The term *agent* has even become a buzzword within the tech industry, often being misused by marketing teams to excite unbeknownst customers, reflecting the prominence of single-agent systems. [@cheng2024exploring; @ferrag2026review] 
+<!-- https://arxiv.org/abs/2401.03428 -->
+
+<!-- Specific implementations, in order: (all from https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=11540994) -->
+<!-- https://arxiv.org/abs/2407.13301 -->
+<!-- https://arxiv.org/abs/2410.02026 -->
+<!-- https://arxiv.org/html/2505.15108v1 -->
+
+<!-- https://arxiv.org/abs/2502.14776 -->
+<!-- https://research.google/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/ -->
+
+<!-- [179] H.-Y. Chen, C.-P. Huang, and J.-M. Yao, ‘‘Verbal process supervision elicits better coding agents,’’ 2025, arXiv:2503.18494 -->
+<!-- https://ieeexplore.ieee.org/abstract/document/11315793 -->
+
+
+<!-- https://ieeexplore.ieee.org/abstract/document/11315793 -->
+<!-- https://arxiv.org/abs/2512.08296  -->
+
+But as the scopes and complexities of single-agent implementations grow, the more difficult is it for an agent to navigate more dynamic, complex scenarios. An underlying assumption within an abundance of single-agent implementations is static, closed environments, which, of course, is a reductive representation of nuanced, real-world scenarios. [@qi2026beyond; @pan2025modular; @feng2026embodied]
+
+<!-- https://arxiv.org/pdf/2605.14892 -->
+<!-- https://arxiv.org/abs/2511.01149 -->
+<!-- https://link.springer.com/article/10.1007/s11432-025-4820-4 -->
+
+
+### What are multi-agent systems?
+Multi-agent systems (MAS) are systems that enclose multiple autonomous LLM-based agents to enable more complex reasoning, problem-solving, and simulation. Leveraging collective judgment is a natural step in the evolution of agentic AI, addressing the simplistic assumed environments of single-agent systems. As singular agents reach limits in complexity, they may relapse to the initial pitfalls of LLMs (hallucination, limits of reasoning). Containing multiple agents in a cohesive framework allows for dynamic collaboration, flexibility, and emergent collective intelligence. [@guo2024multiagents; @pan2025modular] As Aristotle argued, "*a feast to which many contribute is better than a dinner provided out of a single purse*". [@aristotlePolitics]
+
+<!-- https://arxiv.org/pdf/2402.01680 -->
+<!-- Politics - aristotle, Book iii chapter xi -->
+<!-- https://arxiv.org/abs/2511.01149 (same as above) -->
+
+Unlike the evolution of reactive LLMs to proactive LLM-based agents, the progression of single-agent systems to multi-agent systems is more so a *re-contextualization* than an evolution. Multi-agent systems typically avoid heavily altering the architecture of single-agents, rather enabling it's modules (profiling, memory, planning, action) to adequately handle a multi-agent context through inter-agent means. [@guo2024multiagents; @li2024survey] 
+
+Notably, agents within MAS are more specialized; agent profiles can, for example, contain human personas [@park2023generative] or possess knowledge limited to specific disciplines [@tang2024medagents] to simulate real-world contexts or solve complex tasks. Similarly, planning modules and action modules are equipped with unique mechanisms that address multi-agent complexity, namely, task decomposition and collaborative feedback loops for planning [@li2025agentoriented], and environmental interaction for action. Memory modules extend further: *hybrid memory* provides agents with shared memory, capturing emergent collective intelligence. [@wu2026memory] More exhaustive, MAS architecture surveys elaborate on the methodologies used to handle MAS complexities in distributed knowledge, coordination,  communication, among others. [@guo2024multiagents; @li2024survey] 
+
+<!-- find examples for action  -->
+
+<!-- surveys: https://arxiv.org/abs/2402.01680,  -->
+
+<!-- A survey on LLM-based multi-agent systems: workflow, infrastructure, and challenges -->
+<!--https://link.springer.com/chapter/10.1007/978-981-92-1468-6_10 <- memory in MAS -->
+<!-- https://proceedings.iclr.cc/paper_files/paper/2025/file/31610e68fe41a62e460e044216a10766-Paper-Conference.pdf <- planning -->
+
+Beyond refactoring single-agent architectures, *orchestration* represents the novel mechanisms by which agents are integrated within an MAS, re-contextualizing agents to adequately perform under more complex and nuanced scenarios. [@adimulam2026orchestration; @zhou2026fragmentation] 
+
+Orchestration can be understood as the structured coordination and collaboration of enclosed agents. [@adimulam2026orchestration]
+<!-- https://arxiv.org/pdf/2601.13671v1 -->
+Orchestration is defined by three key dimensions, organizational structure, communication mechanism, and collaboration pattern, through which various MAS can address unique use cases. [@adimulam2026orchestration; @zhou2026fragmentation] 
+
+**Organizational Structure**: Defined as the *interaction topology* of the MAS, which outlines how authority is divided and which agents interact directly . Among others, some structures are:
+
+Hierarchical: A pyramidal chain, akin to a traditional top-down business model. Higher tier agents interact with agents immediately below them, who subsequently continue the chain of command.
+
+Decentralized: Agents communicate with other agents directly, removing any need for a central coordinator. Uniquely, every agent is able to coordinate with any other agent.
+
+Flat Collaborative: Authority is distributed among all agents, but any agent can only communicate with those near it.
+
+
+**Communication Mechanism**: Procedures and protocols used to transmit and synchronize information, including intent, observations, and tasks. Some forms include:
+
+Direct Channels: Communication by which information is explicitly relayed towards another agent, or a group of agents. 
+
+Indirect Channels: Receivers and senders are not explicitly determined during communication, rather, communication involves modifying a shared state.
+
+**Collaboration Pattern**: The methodologies by which agents sequence tasks, distribute responsibilities, and provide feedback. An MAS collaboration pattern defines how each agent works together, utilizing it's structure and communication methods. The key dimensions are the following.
+
+**Collaborative intent**: The relationship between the agents' objectives, defining whether agents pursue a shared positive-sum objective, or mutually competing on a micro-level for a macro-level, aligned goal.
+
+**Collaborative workflows**: The process through which information and tasks are advanced among agents, ranging from feed-forward pipelines, or parallel, aggregation.
+
+**Collaborative protocols**: The standards that define interactions for communication. [@zhou2026fragmentation]
+
+
+<!--https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.176827304.41872996/v2?download=true&redirectToLatest=false <- "orchestration" -->
+
+Orchestration has been proven to be a necessary aspect for scalable MAS, preventing drawbacks such as conflicting goals, circular reasoning, or inconsistent memories which emerge from evolving past single-agent systems. Combined with re-contextualized agent architectures, orchestration helps MAS tackle real-world, complex tasks. [@dextralabs2026fail] 
+<!-- https://dev.to/dextralabs/why-multi-agent-systems-fail-without-orchestration-53jl -->
+
+
+### Why is explainability in multi-agent systems necessary?
+The autonomy and powerful reasoning of agentic systems can easily be seen as a century-defining technology, grasping at the possibilities of superhuman cognitive ability. However, the excitement behind agentic AI, including the growing academic research and commercialization, may be propagating its inherent opacity, the fatal flaw of agentic systems. In the general scope of LLMs, the rapidly growing gap between the ability to interpret models and the widespread usage of these models is called the explainability crisis. [@decisionphysics2026crisis] 
+
+<!-- https://www.decisionphysics.com/articles/explainability-crisis-machine-learning/ -->
+
+The difficulty of interpreting LLMs (as discussed in previous chapters) can be attributed to its opaque systems. As a result, agentic systems that inherit LLMs as fundamental mechanisms would inherit a potentially unintelligible model. Multi-agent systems amplifies this effect by introducing new dimensions to agentic systems, complicating explainability moreover. The most notable reasons are:
+<!-- (cite. also I hope this is true)  -->
+
+1. **Distributed information obscures attribution**: Information parsed and refined between multiple agents in systematic procedures distorts the interpretability of intentions, decisions, and behaviours by introducing layers of abstraction.
+
+2. **Cascading errors and behaviours among agents**: The degradation of communication introduces errors and unwanted behaviours that cascades into system-level effects, making failure attribution difficult. [@tanveer2026orchestration]
+
+<!-- https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6734798 -->
+
+3. **The orchestration layer introduces complexity**: Orchestration, beyond adding structural integrity and coordination, also adds a layer of complexity that disrupts causal attribution. [@adimulam2026orchestration; @zhou2026fragmentation]
+
+
+Although the explainability crisis may be generally applicable to the broader scope of black-box models, multi-agent systems experience this effect amplified. Concerns raise as MAS emerge as viable options to SAS, as to address more specialized challenges.
+
+
+Notably, Anthropic utilizes MAS in the *Claude Research* feature, arguing for it's effectiveness in open-ended research questions. [@hadfield2025multiagent] The idea that the gradual commercialization of MAS necessitates explainability is greater than the field of ML; after all, any technology implemented without systemic understanding seems to be unethical.
+
+
+<!-- https://www.anthropic.com/engineering/multi-agent-research-system -->
+<!--  -->
