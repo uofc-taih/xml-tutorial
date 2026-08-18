@@ -60,7 +60,7 @@ Implementations of agent-based systems have rapidly evolved into a variety of in
 <!-- https://ieeexplore.ieee.org/abstract/document/11315793 -->
 <!-- https://arxiv.org/abs/2512.08296  -->
 
-But as the scopes and complexities of single-agent implementations grow, the more difficult is it for an agent to navigate more dynamic, complex scenarios. An underlying assumption within an abundance of single-agent implementations is static, closed environments (give examples), which, of course, is a reductive representation of nuanced, real-world scenarios. [@qi2026beyond; @pan2025modular; @feng2026embodied]
+But as the scopes and complexities of single-agent implementations grow, the more difficult is it for an agent to navigate more dynamic, complex scenarios. An underlying assumption within an abundance of single-agent implementations is static, closed environments, which, of course, is a reductive representation of nuanced, real-world scenarios. [@qi2026beyond; @pan2025modular; @feng2026embodied]
 
 <!-- https://arxiv.org/pdf/2605.14892 -->
 <!-- https://arxiv.org/abs/2511.01149 -->
@@ -132,7 +132,7 @@ The difficulty of interpreting LLMs (as discussed in previous chapters) can be a
 
 1. **Distributed information obscures attribution**: Information parsed and refined between multiple agents in systematic procedures distorts the interpretability of intentions, decisions, and behaviours by introducing layers of abstraction.
 
-2. **Cascading errors and behaviours among agents**: The degradation of communication introduces errors and unwanted behaviours (hallucination, ...) that cascades into system-level effects, making failure attribution difficult. [@tanveer2026orchestration]
+2. **Cascading errors and behaviours among agents**: The degradation of communication introduces errors and unwanted behaviours that cascades into system-level effects, making failure attribution difficult. [@tanveer2026orchestration]
 
 <!-- https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6734798 -->
 
@@ -142,7 +142,7 @@ The difficulty of interpreting LLMs (as discussed in previous chapters) can be a
 Although the explainability crisis may be generally applicable to the broader scope of black-box models, multi-agent systems experience this effect amplified. Concerns raise as MAS emerge as viable options to SAS, as to address more specialized challenges.
 
 
-Notably, Anthropic utilizes MAS in the *Claude Research* feature, arguing for it's effectiveness in open-ended research questions. [@hadfield2025multiagent] (give another example (s))The idea that the gradual commercialization of MAS necessitates explainability is greater than the field of ML; after all, any technology implemented without systemic understanding seems to be unethical.
+Notably, Anthropic utilizes MAS in the *Claude Research* feature, arguing for it's effectiveness in open-ended research questions. [@hadfield2025multiagent] The idea that the gradual commercialization of MAS necessitates explainability is greater than the field of ML; after all, any technology implemented without systemic understanding seems to be unethical.
 
 
 <!-- https://www.anthropic.com/engineering/multi-agent-research-system -->
