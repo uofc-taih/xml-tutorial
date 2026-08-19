@@ -1,81 +1,81 @@
 project:
-    type: book
-    output-dir: _book
-    resources:
+  type: book
+  output-dir: _book
+  resources:
     - "CNAME"
 
 book:
-    title: "Explainable ML Tutorial"
-    author: "Jane Doe"
-    date: "7/10/2026"
+  title: "Learn XAI: Explainable AI for Everyone"
+  author: "Jane Doe"
+  date: "7/10/2026"
 
-    sidebar:
-        style: "docked"
-        search: true
-        collapse-level: 1
+  sidebar:
+    style: "docked"
+    search: true
+    collapse-level: 1
 
-    chapters:
-        # --- PRELIMINARIES ---
-        - index.qmd
-        - 0-1-notation.qmd
-        - 0-2-introduction.qmd
+  chapters:
+    # --- PRELIMINARIES ---
+    - index.qmd
+    - 0-1-notation.qmd
+    - 0-2-introduction.qmd
 
-        # --- TOPIC 1: XML BASICS ---
-        - part: "Basics of Explainable Machine Learning"
-          chapters:
-              - 1-basics/introduction.qmd
-              - 1-basics/taxonomy.qmd
-              - 1-basics/method-A.qmd
-              - 1-basics/method-B.qmd
-              - 1-basics/method-C.qmd
-              - 1-basics/applications.qmd
-              - 1-basics/conclusion.qmd
+    # --- TOPIC 1: XML BASICS ---
+    - part: "Basics of Explainable Machine Learning"
+      chapters:
+        - 1-basics/introduction.qmd
+        - 1-basics/taxonomy.qmd
+        - 1-basics/method-A.qmd
+        - 1-basics/method-B.qmd
+        - 1-basics/method-C.qmd
+        - 1-basics/applications.qmd
+        - 1-basics/conclusion.qmd
 
-        # --- TOPIC 2: XLLM ---
-        - part: "Explainability for Language Models"
-          chapters:
-              - 2-xlm/introduction.qmd
-              - 2-xlm/taxonomy.qmd
-              - 2-xlm/method-A.qmd
-              - 2-xlm/method-B.qmd
-              - 2-xlm/method-C.qmd
-              - 2-xlm/applications.qmd
-              - 2-xlm/conclusion.qmd
+    # --- TOPIC 2: XLLM ---
+    - part: "Explainability for Language Models"
+      chapters:
+        - 2-xlm/introduction.qmd
+        - 2-xlm/taxonomy.qmd
+        - 2-xlm/method-A.qmd
+        - 2-xlm/method-B.qmd
+        - 2-xlm/method-C.qmd
+        - 2-xlm/applications.qmd
+        - 2-xlm/conclusion.qmd
 
-        # --- TOPIC 3: XRL ---
-        - part: "Explainable Reinforcement Learning"
-          chapters:
-              - 3-xrl/introduction.qmd
-              - 3-xrl/taxonomy.qmd
-              - 3-xrl/m1-pertubation-based-salience-maps.qmd
-              - 3-xrl/method-B.qmd
-              - 3-xrl/method-C.qmd
-              - 3-xrl/applications.qmd
-              - 3-xrl/conclusion.qmd
+    # --- TOPIC 3: XRL ---
+    - part: "Explainable Reinforcement Learning"
+      chapters:
+        - 3-xrl/introduction.qmd
+        - 3-xrl/taxonomy.qmd
+        - 3-xrl/m1-pertubation-based-salience-maps.qmd
+        - 3-xrl/method-B.qmd
+        - 3-xrl/method-C.qmd
+        - 3-xrl/applications.qmd
+        - 3-xrl/conclusion.qmd
 
-        # --- TOPIC 4: XMAS ---
-        - part: "Explainability in Multi-Agent Systems"
-          chapters:
-              - 4-xmas/introduction.qmd
-              - 4-xmas/taxonomy.qmd
-              - 4-xmas/method-A.qmd
-              - 4-xmas/method-B.qmd
-              - 4-xmas/method-C.qmd
-              - 4-xmas/applications.qmd
-              - 4-xmas/conclusion.qmd
+    # --- TOPIC 4: XMAS ---
+    - part: "Explainability in Multi-Agent Systems"
+      chapters:
+        - 4-xmas/introduction.qmd
+        - 4-xmas/taxonomy.qmd
+        - 4-xmas/method-A.qmd
+        - 4-xmas/method-B.qmd
+        - 4-xmas/method-C.qmd
+        - 4-xmas/applications.qmd
+        - 4-xmas/conclusion.qmd
 
-        # --- POSTLIMINARIES ---
-        - references.qmd
+    # --- POSTLIMINARIES ---
+    - references.qmd
 
 bibliography: references.bib
 
 format:
-    html:
-        theme:
-            - lumen
-        code-fold: true
-        lightbox: auto
-        toc: true
-        toc-depth: 3
-    pdf:
-        documentclass: scrreprt
+  html:
+    theme:
+      - lumen
+    code-fold: true
+    lightbox: auto
+    toc: true
+    toc-depth: 3
+  pdf:
+    documentclass: scrreprt
