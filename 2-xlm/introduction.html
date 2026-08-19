@@ -76,35 +76,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -383,20 +354,8 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#activation-based-explanations" id="toc-activation-based-explanations" class="nav-link active" data-scroll-target="#activation-based-explanations"><span class="header-section-number">9.1</span> Activation-based explanations</a></li>
-  <li><a href="#concept-based-explainability" id="toc-concept-based-explainability" class="nav-link" data-scroll-target="#concept-based-explainability"><span class="header-section-number">9.2</span> Concept-based explainability</a>
-  <ul class="collapse">
-  <li><a href="#concepts-and-concept-space" id="toc-concepts-and-concept-space" class="nav-link" data-scroll-target="#concepts-and-concept-space"><span class="header-section-number">9.2.1</span> Concepts and concept space</a></li>
-  <li><a href="#notation" id="toc-notation" class="nav-link" data-scroll-target="#notation"><span class="header-section-number">9.2.2</span> Notation</a></li>
-  </ul></li>
-  <li><a href="#concept-discovery" id="toc-concept-discovery" class="nav-link" data-scroll-target="#concept-discovery"><span class="header-section-number">9.3</span> Concept discovery</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -420,98 +379,8 @@ window.Quarto = {
 </header>
 
 
-<p>Language models transform tokens through a sequence of learned representations before producing an output. Explainability methods study different parts of this process. Some inspect internal activations, some describe predictions using human-readable concepts, and others discover recurring patterns in the model’s representations.</p>
-<p>This tutorial separates these approaches into three families. The boundary is useful for organizing the methods, although some techniques combine ideas from more than one family.</p>
-<section id="activation-based-explanations" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="activation-based-explanations"><span class="header-section-number">9.1</span> Activation-based explanations</h2>
-<p>Activation-based explanations examine the values produced inside a model as it processes an input. They may study individual units, compare activation patterns across examples, or identify directions in the representation space that are associated with a behavior. These methods work with the model’s internal representation and do not require the final explanation to use a predefined concept vocabulary.</p>
-</section>
-<section id="concept-based-explainability" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="concept-based-explainability"><span class="header-section-number">9.2</span> Concept-based explainability</h2>
-<p>Concept-based explanations describe model behavior using properties that people can name and understand. For text, examples include <em>contains a negation</em>, <em>mentions poor service</em>, or <em>uses positive language</em>. A useful concept should have a clear meaning, be observable from the input, and be relevant to the task.</p>
-<p>In supervised concept-based methods, the concept vocabulary is selected before training. Domain experts or dataset designers choose the concepts, and training examples are annotated with both task labels and concept values. This gives the explanation a fixed vocabulary, but its quality depends on whether that vocabulary is complete and consistently annotated.</p>
-<section id="concepts-and-concept-space" class="level3" data-number="9.2.1">
-<h3 data-number="9.2.1" class="anchored" data-anchor-id="concepts-and-concept-space"><span class="header-section-number">9.2.1</span> Concepts and concept space</h3>
-<p>A concept is a property of an input. For this tutorial, we use <span class="math inline">\(c_j^\star(x)\)</span> as an idealized value of concept <span class="math inline">\(j\)</span> for input <span class="math inline">\(x\)</span>:</p>
-<p><span id="eq-concept-function"><span class="math display">\[
-c_j^\star : \mathcal{X} \rightarrow \mathcal{C}_j,
-\tag{9.1}\]</span></span></p>
-<p>where <span class="math inline">\(\mathcal{X}\)</span> is the input space and <span class="math inline">\(\mathcal{C}_j\)</span> is the set of possible values for concept <span class="math inline">\(j\)</span>. A binary concept such as <em>contains a negation</em> has <span class="math inline">\(\mathcal{C}_j=\{0,1\}\)</span>. An ordinal concept such as sentiment strength could take values in <span class="math inline">\(\{0,1,2,3\}\)</span>. Concepts may also be categorical or continuous.</p>
-<p>For <span class="math inline">\(k\)</span> concepts, the concept space is</p>
-<p><span id="eq-concept-space"><span class="math display">\[
-\mathcal{C}=\mathcal{C}_1 \times \cdots \times \mathcal{C}_k.
-\tag{9.2}\]</span></span></p>
-<p>An input <span class="math inline">\(x\)</span> is described by the concept vector</p>
-<p><span id="eq-concept-vector"><span class="math display">\[
-\mathbf{c}^\star(x)
-=\left(c_1^\star(x),\ldots,c_k^\star(x)\right)
-\in \mathcal{C}.
-\tag{9.3}\]</span></span></p>
-<p>This is a modeling convention, not a claim that every concept has one objectively correct value. Real annotations are less certain. Annotators may disagree, a concept may be subjective, or the input may not contain enough information to determine its value. An observed annotation <span class="math inline">\(c_j\)</span> should therefore be treated as a measurement of the intended concept, not necessarily as perfect ground truth. When uncertainty matters, a model can predict a distribution <span class="math inline">\(p(c_j\mid x)\)</span> instead of a single value.</p>
-</section>
-<section id="notation" class="level3" data-number="9.2.2">
-<h3 data-number="9.2.2" class="anchored" data-anchor-id="notation"><span class="header-section-number">9.2.2</span> Notation</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Symbol</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(x\in\mathcal{X}\)</span></td>
-<td>Input example</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(y\in\mathcal{Y}\)</span></td>
-<td>Task label</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(c_j^\star(x)\)</span></td>
-<td>True value of concept <span class="math inline">\(j\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(c_j\)</span></td>
-<td>Annotated value of concept <span class="math inline">\(j\)</span></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\widehat{c}_j\)</span></td>
-<td>Model-predicted value of concept <span class="math inline">\(j\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\mathbf{c}\)</span>, <span class="math inline">\(\widehat{\mathbf{c}}\)</span></td>
-<td>Annotated and predicted concept vectors</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(g_\theta\)</span></td>
-<td>Concept predictor</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(f_\phi\)</span></td>
-<td>Task predictor</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\widehat{y}\)</span></td>
-<td>Model prediction</td>
-</tr>
-</tbody>
-</table>
-<p>The distinction between <span class="math inline">\(c_j^\star\)</span>, <span class="math inline">\(c_j\)</span>, and <span class="math inline">\(\widehat{c}_j\)</span> matters. The true property may be uncertain, its annotation may be wrong, and the model may make another error when predicting it.</p>
-<p><a href="../2-xlm/method-A.html">Method A</a> introduces the original supervised Concept Bottleneck Model formulation, in which the final prediction is computed only from the predicted concept vector.</p>
-</section>
-</section>
-<section id="concept-discovery" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="concept-discovery"><span class="header-section-number">9.3</span> Concept discovery</h2>
-<p>Concept discovery methods do not begin with a complete, annotated concept vocabulary. Instead, they search a model’s learned representations for recurring clusters, directions, or patterns that may correspond to meaningful properties. A person then interprets and validates the discovered patterns.</p>
-<p>Concept discovery is closely related to concept-based explainability. It is treated as a separate family here because the concepts are learned from representations rather than fully specified before training. A discovered pattern should not be called a meaningful concept until its interpretation is supported across multiple examples and its relationship to model behavior has been tested.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

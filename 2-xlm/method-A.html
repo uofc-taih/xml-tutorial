@@ -388,7 +388,13 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#architecture-and-inference" id="toc-architecture-and-inference" class="nav-link active" data-scroll-target="#architecture-and-inference"><span class="header-section-number">11.1</span> Architecture and inference</a></li>
+  <li><a href="#architecture-and-inference" id="toc-architecture-and-inference" class="nav-link active" data-scroll-target="#architecture-and-inference"><span class="header-section-number">11.1</span> Architecture and inference</a>
+  <ul class="collapse">
+  <li><a href="#concept-predictor-and-concept-values" id="toc-concept-predictor-and-concept-values" class="nav-link" data-scroll-target="#concept-predictor-and-concept-values"><span class="header-section-number">11.1.1</span> Concept predictor and concept values</a></li>
+  <li><a href="#task-predictor" id="toc-task-predictor" class="nav-link" data-scroll-target="#task-predictor"><span class="header-section-number">11.1.2</span> Task predictor</a></li>
+  <li><a href="#linear-task-predictor" id="toc-linear-task-predictor" class="nav-link" data-scroll-target="#linear-task-predictor"><span class="header-section-number">11.1.3</span> Linear task predictor</a></li>
+  <li><a href="#nonlinear-task-predictor" id="toc-nonlinear-task-predictor" class="nav-link" data-scroll-target="#nonlinear-task-predictor"><span class="header-section-number">11.1.4</span> Nonlinear task predictor</a></li>
+  </ul></li>
   <li><a href="#what-does-a-cbm-explain" id="toc-what-does-a-cbm-explain" class="nav-link" data-scroll-target="#what-does-a-cbm-explain"><span class="header-section-number">11.2</span> What does a CBM explain?</a></li>
   <li><a href="#training-regimes" id="toc-training-regimes" class="nav-link" data-scroll-target="#training-regimes"><span class="header-section-number">11.3</span> Training regimes</a></li>
   <li><a href="#concept-interventions" id="toc-concept-interventions" class="nav-link" data-scroll-target="#concept-interventions"><span class="header-section-number">11.4</span> Concept interventions</a></li>
@@ -420,10 +426,47 @@ window.Quarto = {
 </header>
 
 
-<p>The original Concept Bottleneck Model formulation is a supervised concept-based method built around a human-defined concept vocabulary. The broader idea of <a href="../2-xlm/introduction.html#concept-based-explainability">concept-based explainability</a>, including the definition of a concept and the notation used here, is introduced in the introduction.</p>
+<p>Concept Bottleneck Model are a supervised concept-based method which require human-defined concept vocabulary. The broader idea and need of <a href="../2-xlm/introduction.html#concept-based-explainability">concept-based explainability</a>, including the definition of a concept and the notation used here, is introduced in the introduction.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Running example: restaurant recommendation">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Running example: restaurant recommendation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Throughout this section, consider a CBM that predicts whether a customer will recommend a restaurant.</p>
+<p>The input is a written restaurant review. The model uses three concepts:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Food quality</td>
+<td>0 means poor and 1 means excellent</td>
+</tr>
+<tr class="even">
+<td>Service speed</td>
+<td>0 means slow and 1 means fast</td>
+</tr>
+<tr class="odd">
+<td>Intention to return</td>
+<td>0 means no and 1 means yes</td>
+</tr>
+</tbody>
+</table>
+<p>For the review <em>“The pasta was excellent, but we waited an hour and will not return,”</em> the concept predictor should assign a high score to food quality and low scores to service speed and intention to return. The task predictor then uses these concept scores to predict whether the customer recommends the restaurant.</p>
+</div>
+</div>
 <section id="architecture-and-inference" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="architecture-and-inference"><span class="header-section-number">11.1</span> Architecture and inference</h2>
-<p>A <a href="https://proceedings.mlr.press/v119/koh20a.html">Concept Bottleneck Model (CBM)</a> makes a prediction in two stages:</p>
+<p>A <a href="https://proceedings.mlr.press/v119/koh20a.html">Concept Bottleneck Model (CBM)</a> makes prediction in two stages:</p>
 <p><span id="eq-cbm-pipeline"><span class="math display">\[
 x
 \xrightarrow{\;g_\theta\;}
@@ -431,11 +474,16 @@ x
 \xrightarrow{\;f_\phi\;}
 \widehat{y}.
 \tag{11.1}\]</span></span></p>
-<p>The concept predictor <span class="math inline">\(g_\theta\)</span> maps the input to named concept values. The task predictor <span class="math inline">\(f_\phi\)</span> then uses those values to predict the task output:</p>
+<p>The concept predictor <span class="math inline">\(g_\theta\)</span> maps the input <span class="math inline">\(x\)</span> to predicted values for a set of human-defined concepts. The task predictor <span class="math inline">\(f_\phi\)</span> then uses the predicted concept vector to produce the task output:</p>
 <p><span id="eq-cbm-model"><span class="math display">\[
-h_{\theta,\phi}(x)=f_\phi\!\left(g_\theta(x)\right).
+\widehat{y}
+=
+h_{\theta,\phi}(x)
+=
+f_\phi\!\left(g_\theta(x)\right).
 \tag{11.2}\]</span></span></p>
-<p>The concept vector is called a <em>bottleneck</em> because it is the only information passed to the task predictor. In a strict CBM, there is no separate path from <span class="math inline">\(x\)</span> to <span class="math inline">\(\widehat{y}\)</span>.</p>
+<p>In the running example, <span class="math inline">\(x\)</span> is the restaurant review. The concept predictor maps the review to predicted values for food quality, service speed, and intention to return. The task predictor then uses these three values to predict whether the customer will recommend the restaurant.</p>
+<p>The concept vector is called a <em>bottleneck</em> because the task prediction is made only from the predicted concept values. In a strict CBM, there is no separate path that passes information directly from <span class="math inline">\(x\)</span> to <span class="math inline">\(\widehat{y}\)</span>. Some CBM variants pass additional features to the task predictor, which relaxes this strict bottleneck.</p>
 <figure style="margin: 1.5rem 0 2rem; text-align: center;" class="figure">
   <object data="../figures/xlm/cbm-architecture.svg" type="image/svg+xml" style="display: block; width: 100%; max-width: 1200px; margin: 0 auto;" aria-label="Interactive diagram of a Concept Bottleneck Model">
     <img src="../figures/xlm/cbm-architecture.svg" alt="Concept Bottleneck Model pipeline from input to concepts to task prediction, with optional human concept correction." style="width: 100%;" class="figure-img">
@@ -444,13 +492,158 @@ h_{\theta,\phi}(x)=f_\phi\!\left(g_\theta(x)\right).
     Inference and optional concept correction in a strict Concept Bottleneck Model.
   </figcaption>
 </figure>
-<p>Each coordinate in <span class="math inline">\(\widehat{\mathbf{c}}\)</span> has an assigned meaning. For a binary concept, <span class="math inline">\(\widehat{c}_j\)</span> may be a hard value in <span class="math inline">\(\{0,1\}\)</span>, a score between 0 and 1, or a logit. A real-valued score gives the task predictor more graded information than a hard value. It should be interpreted as confidence only when the score has been calibrated. Categorical concepts are usually represented by one score per category, while continuous concepts can be represented directly.</p>
-<p>The architecture of <span class="math inline">\(g_\theta\)</span> depends on the input. It may be a convolutional network for images or a transformer for text. The task predictor is often smaller. For example, a linear predictor can assign a score to class <span class="math inline">\(r\)</span>:</p>
-<p><span id="eq-cbm-linear-head"><span class="math display">\[
-s_r(\widehat{\mathbf{c}})
-=b_r+\sum_{j=1}^{k}w_{rj}\widehat{c}_j.
+<section id="concept-predictor-and-concept-values" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="concept-predictor-and-concept-values"><span class="header-section-number">11.1.1</span> Concept predictor and concept values</h3>
+<p>The concept predictor <span class="math inline">\(g_\theta\)</span> maps the original input to the predicted concept vector <span class="math inline">\(\widehat{\mathbf{c}}\)</span>. Its architecture depends on the type of input. It may use a convolutional network for images or a transformer for text. In the running example, a transformer processes the restaurant review and predicts values for food quality, service speed, and intention to return.</p>
+<p>Let <span class="math inline">\(k\)</span> be the number of concepts. The predicted concept vector is</p>
+<p><span class="math display">\[
+\widehat{\mathbf{c}}
+=
+(\widehat{c}_1,\ldots,\widehat{c}_k),
+\]</span></p>
+<p>where <span class="math inline">\(\widehat{c}_j\)</span> denotes the predicted value of concept <span class="math inline">\(j\)</span>. Each concept has a predefined meaning, but its numerical representation depends on the type of concept.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept type</th>
+<th>Example</th>
+<th>Common representation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Binary</td>
+<td>Intends to return</td>
+<td>A value in <span class="math inline">\(\{0,1\}\)</span>, a probability in <span class="math inline">\([0,1]\)</span>, or a logit</td>
+</tr>
+<tr class="even">
+<td>Categorical</td>
+<td>Type of restaurant</td>
+<td>One value for each category</td>
+</tr>
+<tr class="odd">
+<td>Ordinal</td>
+<td>Service rating</td>
+<td>An ordered value such as 1, 2, 3, 4, or 5</td>
+</tr>
+<tr class="even">
+<td>Continuous</td>
+<td>Waiting time</td>
+<td>A real-valued measurement</td>
+</tr>
+</tbody>
+</table>
+<p>A binary concept can be represented as a hard value, where 0 means absent and 1 means present. It can also be represented by a probability. For example,</p>
+<p><span class="math display">\[
+\widehat{c}_{\mathrm{return}}=0.08
+\]</span></p>
+<p>indicates that the model assigns a low probability to the concept <em>intends to return</em>.</p>
+<p>Before applying the sigmoid function, a binary concept predictor may produce a concept logit <span class="math inline">\(\ell_j^{\mathrm{concept}}\in\mathbb{R}\)</span>. The corresponding probability is</p>
+<p><span id="eq-cbm-binary-concept"><span class="math display">\[
+\widehat{c}_j
+=
+\sigma\!\left(\ell_j^{\mathrm{concept}}\right)
+=
+\frac{1}{1+e^{-\ell_j^{\mathrm{concept}}}}.
 \tag{11.3}\]</span></span></p>
-<p>Here, <span class="math inline">\(w_{rj}\)</span> describes how concept <span class="math inline">\(j\)</span> is associated with class <span class="math inline">\(r\)</span> across the model, while <span class="math inline">\(w_{rj}\widehat{c}_j\)</span> is that concept’s contribution to the class score for one example. Weight magnitudes can be compared directly only when the concept variables use comparable scales. These values describe the model’s calculation; they should not be interpreted as causal effects. A nonlinear task predictor can model interactions between concepts, but its decisions are harder to inspect.</p>
+<p>A categorical concept with <span class="math inline">\(M\)</span> possible categories is usually represented by <span class="math inline">\(M\)</span> logits or probabilities. Softmax converts the logits into probabilities that sum to 1:</p>
+<p><span id="eq-cbm-categorical-concept"><span class="math display">\[
+\widehat{c}_{jm}
+=
+\frac{\exp\!\left(\ell_{jm}^{\mathrm{concept}}\right)}
+{\displaystyle\sum_{q=1}^{M}\exp\!\left(\ell_{jq}^{\mathrm{concept}}\right)},
+\qquad m=1,\ldots,M.
+\tag{11.4}\]</span></span></p>
+<p>Continuous concepts can be represented directly using a real-valued prediction. They are often normalized when concepts use very different numerical ranges.</p>
+<p>Soft concept values preserve more information than hard values. For example, probabilities of 0.51 and 0.99 both become 1 after thresholding, even though the model treats them differently. However, a predicted probability should only be interpreted as reliable confidence when the concept predictor has been calibrated.</p>
+</section>
+<section id="task-predictor" class="level3" data-number="11.1.2">
+<h3 data-number="11.1.2" class="anchored" data-anchor-id="task-predictor"><span class="header-section-number">11.1.2</span> Task predictor</h3>
+<p>The task predictor <span class="math inline">\(f_\phi\)</span> receives only the predicted concept vector rather than the original input, so it is usually smaller than the concept predictor. The form of <span class="math inline">\(f_\phi\)</span> determines how the concepts are combined to produce the final prediction. Two common choices are a linear task predictor, which combines concepts using learned weights, and a nonlinear task predictor, which can also model interactions between concepts. We use <span class="math inline">\(\ell^{\mathrm{concept}}\)</span> for logits produced by the concept predictor and <span class="math inline">\(\ell^{\mathrm{task}}\)</span> for logits produced by the task predictor.</p>
+</section>
+<section id="linear-task-predictor" class="level3" data-number="11.1.3">
+<h3 data-number="11.1.3" class="anchored" data-anchor-id="linear-task-predictor"><span class="header-section-number">11.1.3</span> Linear task predictor</h3>
+<p>Suppose the task has <span class="math inline">\(R\)</span> classes. A linear task predictor calculates one <em>logit</em> for each class:</p>
+<p><span id="eq-cbm-general-linear-head"><span class="math display">\[
+\boldsymbol{\ell}^{\mathrm{task}}
+=
+W\widehat{\mathbf{c}}+\mathbf{b},
+\tag{11.5}\]</span></span></p>
+<p>or, for class <span class="math inline">\(r\)</span>,</p>
+<p><span id="eq-cbm-linear-class-logit"><span class="math display">\[
+\ell_r^{\mathrm{task}}(\widehat{\mathbf{c}})
+=
+b_r+\sum_{j=1}^{k}w_{rj}\widehat{c}_j.
+\tag{11.6}\]</span></span></p>
+<p>A logit is an unnormalized real-valued prediction. For a multiclass task, the logits are converted into class probabilities using the softmax function:</p>
+<p><span id="eq-cbm-softmax"><span class="math display">\[
+p(y=r\mid\widehat{\mathbf{c}})
+=
+\frac{\exp\!\left(\ell_r^{\mathrm{task}}\right)}
+{\displaystyle\sum_{q=1}^{R}\exp\!\left(\ell_q^{\mathrm{task}}\right)}.
+\tag{11.7}\]</span></span></p>
+<p>The restaurant example is a binary task. Let <span class="math inline">\(y=1\)</span> mean <em>recommend</em> and <span class="math inline">\(y=0\)</span> mean <em>do not recommend</em>. The task predictor can calculate the recommendation logit as</p>
+<p><span id="eq-cbm-restaurant-linear-head"><span class="math display">\[
+\ell_{\mathrm{rec}}^{\mathrm{task}}(\widehat{\mathbf{c}})
+=
+b
++w_{\mathrm{food}}\widehat{c}_{\mathrm{food}}
++w_{\mathrm{speed}}\widehat{c}_{\mathrm{speed}}
++w_{\mathrm{return}}\widehat{c}_{\mathrm{return}}.
+\tag{11.8}\]</span></span></p>
+<p>The logit is converted into a recommendation probability using the sigmoid function:</p>
+<p><span id="eq-cbm-restaurant-probability"><span class="math display">\[
+p(y=1\mid\widehat{\mathbf{c}})
+=
+\sigma\!\left(\ell_{\mathrm{rec}}^{\mathrm{task}}(\widehat{\mathbf{c}})\right),
+\qquad
+\sigma(u)=\frac{1}{1+e^{-u}}.
+\tag{11.9}\]</span></span></p>
+<p>Each weight describes how the corresponding concept changes the model’s logit while the other concepts remain fixed. For example, a positive value of <span class="math inline">\(w_{\mathrm{speed}}\)</span> means that a higher service-speed value increases the recommendation probability.</p>
+<p>Weight magnitudes can be compared directly only when the concepts use comparable scales. In the running example, all three concepts range from 0 to 1, so this comparison is reasonable.</p>
+<p>These weights describe the model’s calculation. They do not establish cause and effect in the real world. A positive value of <span class="math inline">\(w_{\mathrm{speed}}\)</span> shows that the model associates faster service with a higher recommendation probability. It does not prove that changing the restaurant’s service speed would cause the customer to recommend it.</p>
+</section>
+<section id="nonlinear-task-predictor" class="level3" data-number="11.1.4">
+<h3 data-number="11.1.4" class="anchored" data-anchor-id="nonlinear-task-predictor"><span class="header-section-number">11.1.4</span> Nonlinear task predictor</h3>
+<p>A nonlinear task predictor allows the prediction to depend on more complex relationships between concepts. A common choice is a multilayer perceptron:</p>
+<p><span id="eq-cbm-general-nonlinear-head"><span class="math display">\[
+\boldsymbol{\ell}^{\mathrm{task}}
+=
+f_\phi(\widehat{\mathbf{c}})
+=
+W_2
+\rho\!\left(
+W_1\widehat{\mathbf{c}}+\mathbf{b}_1
+\right)
++\mathbf{b}_2,
+\tag{11.10}\]</span></span></p>
+<p>where <span class="math inline">\(\rho\)</span> is a nonlinear activation function, such as ReLU or GELU. The resulting logits can be converted into probabilities using softmax for a multiclass task or sigmoid for a binary task.</p>
+<p>For the restaurant example, a simple nonlinear predictor can include an interaction between food quality and service speed:</p>
+<p><span id="eq-cbm-restaurant-nonlinear-head"><span class="math display">\[
+\ell_{\mathrm{rec}}^{\mathrm{task}}(\widehat{\mathbf{c}})
+=
+b
++w_{\mathrm{food}}\widehat{c}_{\mathrm{food}}
++w_{\mathrm{speed}}\widehat{c}_{\mathrm{speed}}
++w_{\mathrm{return}}\widehat{c}_{\mathrm{return}}
++w_{\mathrm{food,speed}}
+\widehat{c}_{\mathrm{food}}
+\widehat{c}_{\mathrm{speed}}.
+\tag{11.11}\]</span></span></p>
+<p>The recommendation probability is</p>
+<p><span class="math display">\[
+p(y=1\mid\widehat{\mathbf{c}})
+=
+\sigma\!\left(\ell_{\mathrm{rec}}^{\mathrm{task}}(\widehat{\mathbf{c}})\right).
+\]</span></p>
+<p>The interaction term allows the contribution of food quality to depend on service speed. For example, good food may provide stronger support for a recommendation when service is fast.</p>
+<p>With interactions, the contribution of one concept depends on the values of other concepts. This can capture relationships between concepts, but it becomes harder to isolate the contribution of each concept using a single weight.</p>
+</section>
 </section>
 <section id="what-does-a-cbm-explain" class="level2" data-number="11.2">
 <h2 data-number="11.2" class="anchored" data-anchor-id="what-does-a-cbm-explain"><span class="header-section-number">11.2</span> What does a CBM explain?</h2>
@@ -462,42 +655,7 @@ s_r(\widehat{\mathbf{c}})
 </ol>
 <p>Across a dataset, the weights of a linear task predictor show which concepts are generally associated with each class. Concept accuracy can also be examined separately for each concept to find systematic errors.</p>
 <p>The bottleneck does not make the whole system transparent. The concept predictor <span class="math inline">\(g_\theta\)</span> may still be a complex neural network, so the CBM does not automatically explain <em>why</em> the input produced a particular concept score. It makes the second step, from concepts to the task prediction, easier to inspect.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Example: classifying a restaurant review">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Example: classifying a restaurant review
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Suppose a CBM predicts whether a customer recommends a restaurant. For the review <em>“The pasta was excellent, but we waited an hour and will not return,”</em> its concept predictor might produce:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Predicted concept</th>
-<th style="text-align: right;">Score</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Praises the food</td>
-<td style="text-align: right;">0.94</td>
-</tr>
-<tr class="even">
-<td>Reports slow service</td>
-<td style="text-align: right;">0.91</td>
-</tr>
-<tr class="odd">
-<td>Intends to return</td>
-<td style="text-align: right;">0.08</td>
-</tr>
-</tbody>
-</table>
-<p>The task predictor combines these three scores to produce the recommendation label. This explanation is more informative than the label alone: it shows that the model detected both the positive comment about the food and the stronger negative signals about the overall experience. If one concept is wrong, it can be corrected and the task prediction can be recomputed.</p>
-</div>
-</div>
+<p>For the running review, a predictor concept vector, (=(0.94,0.08,0.05).) suggest that model detected amazing food, slow service and no intention to return for the particular review. The task predictor combines these score to predict the recommendation. This lets a reader inspect how model percieve the review in human defined vocabulary and how it those different percieved concepts were weighted.</p>
 </section>
 <section id="training-regimes" class="level2" data-number="11.3">
 <h2 data-number="11.3" class="anchored" data-anchor-id="training-regimes"><span class="header-section-number">11.3</span> Training regimes</h2>
@@ -513,7 +671,7 @@ s_r(\widehat{\mathbf{c}})
   \left(g_\theta(x_i),\mathbf{c}_i\right)
 +\mathcal{L}_{\text{task}}
   \left(f_\phi(g_\theta(x_i)),y_i\right),
-\tag{11.4}\]</span></span></p>
+\tag{11.12}\]</span></span></p>
 <p>where <span class="math inline">\(\lambda\)</span> controls the importance of accurate concept prediction. Joint training can improve task performance, but it is still necessary to evaluate whether the predicted concepts match their intended meanings.</p>
 <p><a href="https://arxiv.org/pdf/2311.11108">Sheth and Kahou (2023), <em>Auxiliary Losses for Learning Generalizable Concept-based Models</em></a>, extend joint training with <strong>cooperative-CBM (coop-CBM)</strong>. Their method adds an auxiliary head that predicts the task label from the representation shared with the concept predictor. Its objective combines the concept loss, an auxiliary task loss, the final task loss, and a concept orthogonal loss. The orthogonal loss encourages within-concept similarity and separation between different concept representations. The auxiliary head helps shape the shared representation during training, while the final task predictor still receives only the predicted concepts. The paper evaluates the approach on image-classification datasets, including settings with distribution shift.</p></li>
 </ol>
@@ -528,7 +686,7 @@ s_r(\widehat{\mathbf{c}})
 c_j^{\text{edit}}, &amp; j\in S,\\
 \widehat{c}_j, &amp; j\notin S.
 \end{cases}
-\tag{11.5}\]</span></span></p>
+\tag{11.13}\]</span></span></p>
 <p>The revised prediction is <span class="math inline">\(\widetilde{y}=f_\phi(\widetilde{\mathbf{c}})\)</span>. This supports questions such as: <em>Would the prediction change if the concept “contains a negation” were corrected from absent to present?</em></p>
 <p>An intervention explains the behavior of the model under a concept edit. It does not prove that changing the corresponding property in the real world would cause the same outcome. Edits can also create unlikely combinations of concepts, so their results should be interpreted carefully.</p>
 </section>
