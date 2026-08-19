@@ -1,3 +1,28 @@
-# Preface {.unnumbered}
+---
+pagetitle: "Learn XAI"
+page-layout: custom
+sidebar: false
+toc: false
+---
 
-Acknowledgements etc.
+<style>
+/* Nuke the default Quarto book title block, author, date, and version */
+#title-block-header {
+  display: none !important;
+}
+</style>
+
+::: {.container .text-center .py-5 .mt-5}
+
+<span class="badge rounded-pill border border-secondary text-secondary mb-4 px-3 py-2 fw-normal">🚧 Work in Progress</span>
+
+<h1 class="display-4 fw-bold text-dark mb-3">Learn XAI</h1>
+
+::: {.lead .text-muted .mb-5}
+An interactive tutorial and reference guide for explainable artificial intelligence.
+:::
+
+[Start Reading](0-2-introduction.qmd){.btn .btn-dark .btn-lg .px-4 .me-md-2 .mb-2} 
+[View Notebooks](notebooks.qmd){.btn .btn-outline-dark .btn-lg .px-4 .mb-2 .disabled aria-disabled="true" style="pointer-events: none;"}
+
+:::
