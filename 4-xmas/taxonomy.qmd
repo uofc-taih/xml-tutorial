@@ -1,4 +1,6 @@
-### What are agents?
+# Taxonomy
+
+## What are agents?
 
 Generally, agents refer to *any entity capable of perceiving its environment and taking action* [@cheng2024exploring]. 
 <!-- https://arxiv.org/pdf/2401.03428 <--- idk how to cite papers  -->
