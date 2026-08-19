@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>15&nbsp; Introduction to Explainable RL – Learn XAI: Explainable AI for Everyone</title>
+<title>Notation – Learn XAI: Explainable AI for Everyone</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,25 +29,25 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../3-xrl/taxonomy.html" rel="next">
-<link href="../2-xlm/conclusion.html" rel="prev">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-154bd0a5ceb7e046316d8c993cde5dd9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./1-basics/introduction.html" rel="next">
+<link href="./0-1-introduction.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-154bd0a5ceb7e046316d8c993cde5dd9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -76,8 +76,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="../styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -89,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../3-xrl/introduction.html">Explainable Reinforcement Learning</a></li><li class="breadcrumb-item"><a href="../3-xrl/introduction.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Explainable RL</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./0-2-notation.html">Notation</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -104,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Learn XAI: Explainable AI for Everyone</a> 
+      <a href="./">Learn XAI: Explainable AI for Everyone</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -116,19 +145,19 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Learn XAI</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../0-1-introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="./0-1-introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../0-2-notation.html" class="sidebar-item-text sidebar-link">
+  <a href="./0-2-notation.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Notation</span></a>
   </div>
 </li>
@@ -143,43 +172,43 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../1-basics/introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="./1-basics/introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../1-basics/taxonomy.html" class="sidebar-item-text sidebar-link">
+  <a href="./1-basics/taxonomy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Taxonomy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../1-basics/method-A.html" class="sidebar-item-text sidebar-link">
+  <a href="./1-basics/method-A.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Method(s) Page 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../1-basics/method-B.html" class="sidebar-item-text sidebar-link">
+  <a href="./1-basics/method-B.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Method(s) Page 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../1-basics/method-C.html" class="sidebar-item-text sidebar-link">
+  <a href="./1-basics/method-C.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">…</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../1-basics/applications.html" class="sidebar-item-text sidebar-link">
+  <a href="./1-basics/applications.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Applications</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../1-basics/conclusion.html" class="sidebar-item-text sidebar-link">
+  <a href="./1-basics/conclusion.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
@@ -196,43 +225,43 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2-xlm/introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="./2-xlm/introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2-xlm/taxonomy.html" class="sidebar-item-text sidebar-link">
+  <a href="./2-xlm/taxonomy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Taxonomy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2-xlm/method-A.html" class="sidebar-item-text sidebar-link">
+  <a href="./2-xlm/method-A.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Method A: Concept Bottleneck Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2-xlm/method-B.html" class="sidebar-item-text sidebar-link">
+  <a href="./2-xlm/method-B.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Method(s) Page 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2-xlm/method-C.html" class="sidebar-item-text sidebar-link">
+  <a href="./2-xlm/method-C.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">…</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2-xlm/applications.html" class="sidebar-item-text sidebar-link">
+  <a href="./2-xlm/applications.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Applications</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2-xlm/conclusion.html" class="sidebar-item-text sidebar-link">
+  <a href="./2-xlm/conclusion.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
@@ -240,52 +269,52 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Explainable Reinforcement Learning</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../3-xrl/introduction.html" class="sidebar-item-text sidebar-link active">
+  <a href="./3-xrl/introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Explainable RL</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../3-xrl/taxonomy.html" class="sidebar-item-text sidebar-link">
+  <a href="./3-xrl/taxonomy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Taxonomy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../3-xrl/m1-perturbation-based-salience-maps.html" class="sidebar-item-text sidebar-link">
+  <a href="./3-xrl/m1-perturbation-based-salience-maps.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Perturbation-Based Saliency Maps for RL</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../3-xrl/method-B.html" class="sidebar-item-text sidebar-link">
+  <a href="./3-xrl/method-B.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Method(s) Page 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../3-xrl/method-C.html" class="sidebar-item-text sidebar-link">
+  <a href="./3-xrl/method-C.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">…</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../3-xrl/applications.html" class="sidebar-item-text sidebar-link">
+  <a href="./3-xrl/applications.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Applications</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../3-xrl/conclusion.html" class="sidebar-item-text sidebar-link">
+  <a href="./3-xrl/conclusion.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
@@ -302,43 +331,43 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../4-xmas/introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-xmas/introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../4-xmas/taxonomy.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-xmas/taxonomy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Taxonomy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../4-xmas/method-A.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-xmas/method-A.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Method(s) Page 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../4-xmas/method-B.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-xmas/method-B.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Method(s) Page 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../4-xmas/method-C.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-xmas/method-C.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">…</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../4-xmas/applications.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-xmas/applications.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Applications</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../4-xmas/conclusion.html" class="sidebar-item-text sidebar-link">
+  <a href="./4-xmas/conclusion.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
@@ -346,7 +375,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../references.html" class="sidebar-item-text sidebar-link">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -360,17 +389,25 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#foundations" id="toc-foundations" class="nav-link active" data-scroll-target="#foundations"><span class="header-section-number">15.1</span> Foundations</a></li>
-  <li><a href="#challenges-in-xrl" id="toc-challenges-in-xrl" class="nav-link" data-scroll-target="#challenges-in-xrl"><span class="header-section-number">15.2</span> Challenges in XRL</a></li>
+  <li><a href="#numbers-and-arrays" id="toc-numbers-and-arrays" class="nav-link active" data-scroll-target="#numbers-and-arrays">Numbers and Arrays</a></li>
+  <li><a href="#sets-and-graphs" id="toc-sets-and-graphs" class="nav-link" data-scroll-target="#sets-and-graphs">Sets and Graphs</a></li>
+  <li><a href="#indexing" id="toc-indexing" class="nav-link" data-scroll-target="#indexing">Indexing</a></li>
+  <li><a href="#linear-algebra-operations" id="toc-linear-algebra-operations" class="nav-link" data-scroll-target="#linear-algebra-operations">Linear Algebra Operations</a></li>
+  <li><a href="#calculus" id="toc-calculus" class="nav-link" data-scroll-target="#calculus">Calculus</a></li>
+  <li><a href="#probability-and-information-theory" id="toc-probability-and-information-theory" class="nav-link" data-scroll-target="#probability-and-information-theory">Probability and Information Theory</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
+  <li><a href="#datasets-and-distributions" id="toc-datasets-and-distributions" class="nav-link" data-scroll-target="#datasets-and-distributions">Datasets and Distributions</a></li>
+  <li><a href="#reinforcement-learning" id="toc-reinforcement-learning" class="nav-link" data-scroll-target="#reinforcement-learning">Reinforcement Learning</a></li>
+  <li><a href="#multi-agent-systems" id="toc-multi-agent-systems" class="nav-link" data-scroll-target="#multi-agent-systems">Multi-Agent Systems</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../3-xrl/introduction.html">Explainable Reinforcement Learning</a></li><li class="breadcrumb-item"><a href="../3-xrl/introduction.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Explainable RL</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Explainable RL</span></h1>
+<h1 class="title">Notation</h1>
 </div>
 
 
@@ -387,45 +424,517 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Note to self:</p>
-<p>Before:</p>
-<ul>
-<li><p>Foundations and taxonomy</p>
-<ul>
-<li>split into two separate pages</li>
-</ul></li>
-<li><p>Visualization-based approaches</p>
-<ul>
-<li>mentioned in the text, doesn’t need its own section</li>
-</ul></li>
-<li><p>Policy extraction and decision trees</p>
-<ul>
-<li>polcicy-level XRL, okay</li>
-</ul></li>
-<li><p>Explaining decisions through critical states</p>
-<ul>
-<li>hmm, feature importance?</li>
-</ul></li>
-<li><p>Trajectory-based methods</p>
-<ul>
-<li>MDP and/or policy-level</li>
-</ul></li>
-<li><p>Explainability via counterfactual reasoning</p></li>
-<li><p>Evaluation of XRL methods</p></li>
-</ul>
-<section id="foundations" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="foundations"><span class="header-section-number">15.1</span> Foundations</h2>
-<p>There’s value-based and policy-based RL.</p>
-<p>Why is it important? For example, deploying RL-based algorithms in finance requires algorithmic transparency to comply with regulations; in sequential human-AI collaboration process, users need to understand agent behavior to trust and cooperate.</p>
-<p>When it comes to RL, many things are desirable: fast learning (i.e., sample efficiency), high final performance, safety guarantees, transparent behavior processes, etc. To keep this tutorial focused, we consider constrained RL formulations for safe RL out of scope.</p>
+<p>Here, we introduce the notation used consistently throughout this book. We follow the <a href="https://www.deeplearningbook.org/contents/notation.html">Deep Learning Book</a> wherever possible.</p>
+<section id="numbers-and-arrays" class="level2">
+<h2 class="anchored" data-anchor-id="numbers-and-arrays">Numbers and Arrays</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(a\)</span></td>
+<td>A scalar (integer or real)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\boldsymbol{a}\)</span></td>
+<td>A vector</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\boldsymbol{A}\)</span></td>
+<td>A matrix</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\boldsymbol{\mathsf{A}}\)</span></td>
+<td>A tensor</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\boldsymbol{I}_n\)</span></td>
+<td>Identity matrix with <span class="math inline">\(n\)</span> rows and <span class="math inline">\(n\)</span> columns</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\boldsymbol{I}\)</span></td>
+<td>Identity matrix with dimensionality implied by context</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\boldsymbol{e}^{(i)}\)</span></td>
+<td>Standard basis vector <span class="math inline">\([0,\dots,0,1,0,\dots,0]\)</span> with a 1 at position <span class="math inline">\(i\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\text{diag}(\boldsymbol{a})\)</span></td>
+<td>A square, diagonal matrix with diagonal entries given by <span class="math inline">\(\boldsymbol{a}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mathrm{a}\)</span></td>
+<td>A scalar random variable</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mathbf{a}\)</span></td>
+<td>A vector-valued random variable</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mathbf{A}\)</span></td>
+<td>A matrix-valued random variable</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="challenges-in-xrl" class="level2" data-number="15.2">
-<h2 data-number="15.2" class="anchored" data-anchor-id="challenges-in-xrl"><span class="header-section-number">15.2</span> Challenges in XRL</h2>
-<ul>
-<li>large number of decisions over a period of time</li>
-<li>actions are not independent of each other -&gt; explanation can’t be either</li>
-<li>no static dataset, agent-generated data</li>
-</ul>
+<section id="sets-and-graphs" class="level2">
+<h2 class="anchored" data-anchor-id="sets-and-graphs">Sets and Graphs</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\mathbb{A}\)</span></td>
+<td>A set</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mathbb{R}\)</span></td>
+<td>The set of real numbers</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\{0, 1\}\)</span></td>
+<td>The set containing 0 and 1</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\{0, 1, \dots, n \}\)</span></td>
+<td>The set of all integers between <span class="math inline">\(0\)</span> and <span class="math inline">\(n\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\([a, b]\)</span></td>
+<td>The real interval including <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\((a, b]\)</span></td>
+<td>The real interval excluding <span class="math inline">\(a\)</span> but including <span class="math inline">\(b\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mathcal{A} \backslash \mathcal{B}\)</span></td>
+<td>Set subtraction, i.e., the set containing the elements of <span class="math inline">\(\mathcal{A}\)</span> that are not in <span class="math inline">\(\mathcal{B}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mathcal{G}\)</span></td>
+<td>A graph</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(Pa_{\mathcal{G}}(\mathrm{x}_i)\)</span></td>
+<td>The parents of <span class="math inline">\(\mathrm{x}_i\)</span> in <span class="math inline">\(\mathcal{G}\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="indexing" class="level2">
+<h2 class="anchored" data-anchor-id="indexing">Indexing</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(a_i\)</span></td>
+<td>Element <span class="math inline">\(i\)</span> of vector <span class="math inline">\(\boldsymbol{a}\)</span>, with indexing starting at 1</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(a_{-i}\)</span></td>
+<td>All elements of vector <span class="math inline">\(\boldsymbol{a}\)</span> except for element <span class="math inline">\(i\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(A_{i,j}\)</span></td>
+<td>Element <span class="math inline">\(i, j\)</span> of matrix <span class="math inline">\(\boldsymbol{A}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\boldsymbol{A}_{i, :}\)</span></td>
+<td>Row <span class="math inline">\(i\)</span> of matrix <span class="math inline">\(\boldsymbol{A}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\boldsymbol{A}_{:, i}\)</span></td>
+<td>Column <span class="math inline">\(i\)</span> of matrix <span class="math inline">\(\boldsymbol{A}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mathsf{A}_{i, j, k}\)</span></td>
+<td>Element <span class="math inline">\((i, j, k)\)</span> of a 3-D tensor <span class="math inline">\(\boldsymbol{\mathsf{A}}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\boldsymbol{\mathsf{A}}_{:, :, i}\)</span></td>
+<td>2-D slice of a 3-D tensor</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mathrm{a}_i\)</span></td>
+<td>Element <span class="math inline">\(i\)</span> of the random vector <span class="math inline">\(\mathbf{a}\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="linear-algebra-operations" class="level2">
+<h2 class="anchored" data-anchor-id="linear-algebra-operations">Linear Algebra Operations</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\boldsymbol{A}^\top\)</span></td>
+<td>Transpose of matrix <span class="math inline">\(\boldsymbol{A}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\boldsymbol{A}^+\)</span></td>
+<td>Moore-Penrose pseudoinverse of <span class="math inline">\(\boldsymbol{A}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\boldsymbol{A} \odot \boldsymbol{B}\)</span></td>
+<td>Element-wise (Hadamard) product of <span class="math inline">\(\boldsymbol{A}\)</span> and <span class="math inline">\(\boldsymbol{B}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mathrm{det}(\boldsymbol{A})\)</span></td>
+<td>Determinant of <span class="math inline">\(\boldsymbol{A}\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="calculus" class="level2">
+<h2 class="anchored" data-anchor-id="calculus">Calculus</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\frac{d y} {d x}\)</span></td>
+<td>Derivative of <span class="math inline">\(y\)</span> with respect to <span class="math inline">\(x\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\frac{\partial y} {\partial x}\)</span></td>
+<td>Partial derivative of <span class="math inline">\(y\)</span> with respect to <span class="math inline">\(x\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\nabla_{\boldsymbol{x}} y\)</span></td>
+<td>Gradient of <span class="math inline">\(y\)</span> with respect to <span class="math inline">\(\boldsymbol{x}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\nabla_{\boldsymbol{X}} y\)</span></td>
+<td>Matrix derivatives of <span class="math inline">\(y\)</span> with respect to <span class="math inline">\(\boldsymbol{X}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\nabla_{\boldsymbol{\mathsf{X}}} y\)</span></td>
+<td>Tensor containing derivatives of <span class="math inline">\(y\)</span> with respect to <span class="math inline">\(\boldsymbol{\mathsf{X}}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\frac{\partial f}{\partial \boldsymbol{x}}\)</span></td>
+<td>Jacobian matrix <span class="math inline">\(\boldsymbol{J} \in \mathbb{R}^{m\times n}\)</span> of <span class="math inline">\(f: \mathbb{R}^n \rightarrow \mathbb{R}^m\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\nabla_{\boldsymbol{x}}^2 f(\boldsymbol{x}) \text{ or } \boldsymbol{H}(f)(\boldsymbol{x})\)</span></td>
+<td>The Hessian matrix of <span class="math inline">\(f\)</span> at input point <span class="math inline">\(\boldsymbol{x}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\int f(\boldsymbol{x}) d\boldsymbol{x}\)</span></td>
+<td>Definite integral over the entire domain of <span class="math inline">\(\boldsymbol{x}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\int_{\mathbb{S}} f(\boldsymbol{x}) d\boldsymbol{x}\)</span></td>
+<td>Definite integral with respect to <span class="math inline">\(\boldsymbol{x}\)</span> over the set <span class="math inline">\(\mathbb{S}\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="probability-and-information-theory" class="level2">
+<h2 class="anchored" data-anchor-id="probability-and-information-theory">Probability and Information Theory</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\mathrm{a} \bot \mathrm{b}\)</span></td>
+<td>The random variables <span class="math inline">\(\mathrm{a}\)</span> and <span class="math inline">\(\mathrm{b}\)</span> are independent</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mathrm{a} \bot \mathrm{b} \mid \mathrm{c}\)</span></td>
+<td>They are conditionally independent given <span class="math inline">\(\mathrm{c}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(P(\mathrm{a})\)</span></td>
+<td>A probability distribution over a discrete variable</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(p(\mathrm{a})\)</span></td>
+<td>A probability distribution over a continuous variable, or over a variable whose type has not been specified</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mathrm{a} \sim P\)</span></td>
+<td>Random variable <span class="math inline">\(\mathrm{a}\)</span> has distribution <span class="math inline">\(P\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mathbb{E}_{\mathrm{x} \sim P} [ f(x) ] \text{ or } \mathbb{E} f(x)\)</span></td>
+<td>Expectation of <span class="math inline">\(f(x)\)</span> with respect to <span class="math inline">\(P(\mathrm{x})\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\text{Var}(f(x))\)</span></td>
+<td>Variance of <span class="math inline">\(f(x)\)</span> under <span class="math inline">\(P(\mathrm{x})\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\text{Cov}(f(x),g(x))\)</span></td>
+<td>Covariance of <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(g(x)\)</span> under <span class="math inline">\(P(\mathrm{x})\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(H(\mathrm{x})\)</span></td>
+<td>Shannon entropy of the random variable <span class="math inline">\(\mathrm{x}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(D_{\text{KL}} ( P \Vert Q )\)</span></td>
+<td>Kullback-Leibler divergence of P and Q</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mathcal{N} ( \boldsymbol{x} ; \boldsymbol{\mu} , \boldsymbol{\Sigma})\)</span></td>
+<td>Gaussian distribution over <span class="math inline">\(\boldsymbol{x}\)</span> with mean <span class="math inline">\(\boldsymbol{\mu}\)</span> and covariance <span class="math inline">\(\boldsymbol{\Sigma}\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="functions" class="level2">
+<h2 class="anchored" data-anchor-id="functions">Functions</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(f: \mathbb{A} \rightarrow \mathbb{B}\)</span></td>
+<td>The function <span class="math inline">\(f\)</span> with domain <span class="math inline">\(\mathbb{A}\)</span> and range <span class="math inline">\(\mathbb{B}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(f \circ g\)</span></td>
+<td>Composition of the functions <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(f(\boldsymbol{x} ; \boldsymbol{\theta})\)</span></td>
+<td>A function of <span class="math inline">\(\boldsymbol{x}\)</span> parametrized by <span class="math inline">\(\boldsymbol{\theta}\)</span>. (Sometimes we write <span class="math inline">\(f(\boldsymbol{x})\)</span> and omit the argument <span class="math inline">\(\boldsymbol{\theta}\)</span> to lighten notation)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mathcal{L}(\boldsymbol{\theta})\)</span></td>
+<td>The loss function to be minimized</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\nabla_{\boldsymbol{\theta}} \mathcal{L}\)</span></td>
+<td>The gradient of the loss with respect to parameters <span class="math inline">\(\boldsymbol{\theta}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\log x\)</span></td>
+<td>Natural logarithm of <span class="math inline">\(x\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\sigma(x)\)</span></td>
+<td>Logistic sigmoid, <span class="math inline">\(\frac{1} {1 + \exp(-x)}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\zeta(x)\)</span></td>
+<td>Softplus, <span class="math inline">\(\log(1 + \exp(x))\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\Vert \boldsymbol{x} \Vert_p\)</span></td>
+<td><span class="math inline">\(L^p\)</span> norm of <span class="math inline">\(\boldsymbol{x}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\Vert \boldsymbol{x} \Vert_2\)</span></td>
+<td><span class="math inline">\(L^2\)</span> norm of <span class="math inline">\(\boldsymbol{x}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(x^+\)</span></td>
+<td>Positive part of <span class="math inline">\(x\)</span>, i.e., <span class="math inline">\(\max(0,x)\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mathbf{1}_{\mathrm{condition}}\)</span></td>
+<td>is 1 if the condition is true, 0 otherwise</td>
+</tr>
+</tbody>
+</table>
+<p>Sometimes we use a function <span class="math inline">\(f\)</span> whose argument is a scalar but apply it to a vector, matrix, or tensor: <span class="math inline">\(f(\boldsymbol{x})\)</span>, <span class="math inline">\(f(\boldsymbol{X})\)</span>, or <span class="math inline">\(f(\boldsymbol{\mathsf{X}})\)</span>. This denotes the application of <span class="math inline">\(f\)</span> to the array element-wise. For example, if <span class="math inline">\(\boldsymbol{\mathsf{C}} = \sigma(\boldsymbol{\mathsf{X}})\)</span>, then <span class="math inline">\(\mathsf{C}_{i,j,k} = \sigma(\mathsf{X}_{i,j,k})\)</span> for all valid values of <span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span> and <span class="math inline">\(k\)</span>.</p>
+</section>
+<section id="datasets-and-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="datasets-and-distributions">Datasets and Distributions</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\mathcal{D}\)</span></td>
+<td>A dataset containing training or evaluation examples</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mathbf{x}^{(i)}, y^{(i)}\)</span></td>
+<td>The <span class="math inline">\(i\)</span>-th input feature vector and its corresponding target/label</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(p_{\text{data}}\)</span></td>
+<td>The data generating distribution</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\hat{p}_{\text{data}}\)</span></td>
+<td>The empirical distribution defined by the training set</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mathbb{X}\)</span></td>
+<td>A set of training examples</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\boldsymbol{x}^{(i)}\)</span></td>
+<td>The <span class="math inline">\(i\)</span>-th example (input) from a dataset</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(y^{(i)} \text{ or } \boldsymbol{y}^{(i)}\)</span></td>
+<td>The target associated with <span class="math inline">\(\boldsymbol{x}^{(i)}\)</span> for supervised learning</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\boldsymbol{X}\)</span></td>
+<td>The <span class="math inline">\(m \times n\)</span> matrix with input example <span class="math inline">\(\boldsymbol{x}^{(i)}\)</span> in row <span class="math inline">\(\boldsymbol{X}_{i,:}\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reinforcement-learning" class="level2">
+<h2 class="anchored" data-anchor-id="reinforcement-learning">Reinforcement Learning</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\mathcal{S}, \mathcal{A}\)</span></td>
+<td>The set of all possible states and actions</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(s_t, a_t, r_t\)</span></td>
+<td>State, action, and reward at time step <span class="math inline">\(t\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(P(s_{t+1} \vert{} s_t, a_t)\)</span></td>
+<td>Transition dynamics: probability of reaching <span class="math inline">\(s_{t+1}\)</span> given <span class="math inline">\(s_t\)</span> and <span class="math inline">\(a_t\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mathcal{R}(s_t, a_t)\)</span></td>
+<td>The reward function</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\gamma\)</span></td>
+<td>Discount factor, <span class="math inline">\(\gamma \in [0, 1]\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\pi(a \vert{} s)\)</span></td>
+<td>A stochastic policy: probability of taking action <span class="math inline">\(a\)</span> in state <span class="math inline">\(s\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(V^\pi(s)\)</span></td>
+<td>The state-value function under policy <span class="math inline">\(\pi\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(Q^\pi(s, a)\)</span></td>
+<td>The action-value (Q) function under policy <span class="math inline">\(\pi\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="multi-agent-systems" class="level2">
+<h2 class="anchored" data-anchor-id="multi-agent-systems">Multi-Agent Systems</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(N\)</span></td>
+<td>Total number of agents in the environment</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(i\)</span></td>
+<td>Index of a specific agent, <span class="math inline">\(i \in \{1, \dots, N\}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mathbf{a} = \langle a_1, \dots, a_N \rangle\)</span></td>
+<td>Joint action taken by all agents</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\boldsymbol{\pi} = \langle \pi_1, \dots, \pi_N \rangle\)</span></td>
+<td>Joint policy of all agents</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(-i\)</span></td>
+<td>Subscript denoting all agents <em>except</em> agent <span class="math inline">\(i\)</span> (e.g., <span class="math inline">\(\mathbf{a}_{-i}\)</span>)</td>
+</tr>
+</tbody>
+</table>
 
 
 </section>
@@ -833,13 +1342,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../2-xlm/conclusion.html" class="pagination-link" aria-label="Conclusion">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Conclusion</span></span>
+      <a href="./0-1-introduction.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../3-xrl/taxonomy.html" class="pagination-link" aria-label="Taxonomy">
-        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Taxonomy</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./1-basics/introduction.html" class="pagination-link" aria-label="Introduction">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

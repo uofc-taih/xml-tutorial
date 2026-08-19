@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; Method A: Concept Bottleneck Models – Learn XAI: Explainable AI for Everyone</title>
+<title>10&nbsp; Method A: Concept Bottleneck Models – Learn XAI: Explainable AI for Everyone</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -106,6 +106,7 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -117,7 +118,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2-xlm/introduction.html">Explainability for Language Models</a></li><li class="breadcrumb-item"><a href="../2-xlm/method-A.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Method A: Concept Bottleneck Models</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2-xlm/introduction.html">Explainability for Language Models</a></li><li class="breadcrumb-item"><a href="../2-xlm/method-A.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Method A: Concept Bottleneck Models</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -145,19 +146,19 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">index.html</span></span></a>
+ <span class="menu-text">Learn XAI</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../0-1-notation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../0-2-introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../0-1-introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../0-2-notation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notation</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -172,43 +173,43 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../1-basics/introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../1-basics/taxonomy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Taxonomy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Taxonomy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../1-basics/method-A.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Method(s) Page 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Method(s) Page 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../1-basics/method-B.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Method(s) Page 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Method(s) Page 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../1-basics/method-C.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">…</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">…</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../1-basics/applications.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Applications</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Applications</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../1-basics/conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
       </ul>
@@ -225,43 +226,43 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2-xlm/introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2-xlm/taxonomy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Taxonomy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Taxonomy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2-xlm/method-A.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Method A: Concept Bottleneck Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Method A: Concept Bottleneck Models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2-xlm/method-B.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Method(s) Page 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Method(s) Page 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2-xlm/method-C.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">…</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">…</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2-xlm/applications.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Applications</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Applications</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2-xlm/conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
       </ul>
@@ -278,43 +279,43 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../3-xrl/introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Introduction to Explainable RL</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Explainable RL</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../3-xrl/taxonomy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Taxonomy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Taxonomy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../3-xrl/m1-pertubation-based-salience-maps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Pertubation-Based Saliency Maps for RL</span></span></a>
+  <a href="../3-xrl/m1-perturbation-based-salience-maps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Perturbation-Based Saliency Maps for RL</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../3-xrl/method-B.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Method(s) Page 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Method(s) Page 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../3-xrl/method-C.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">…</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">…</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../3-xrl/applications.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Applications</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Applications</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../3-xrl/conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
       </ul>
@@ -331,43 +332,43 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../4-xmas/introduction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../4-xmas/taxonomy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Taxonomy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Taxonomy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../4-xmas/method-A.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Method(s) Page 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Method(s) Page 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../4-xmas/method-B.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Method(s) Page 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Method(s) Page 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../4-xmas/method-C.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">…</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">…</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../4-xmas/applications.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Applications</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Applications</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../4-xmas/conclusion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
       </ul>
@@ -388,28 +389,28 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#architecture-and-inference" id="toc-architecture-and-inference" class="nav-link active" data-scroll-target="#architecture-and-inference"><span class="header-section-number">11.1</span> Architecture and inference</a>
+  <li><a href="#architecture-and-inference" id="toc-architecture-and-inference" class="nav-link active" data-scroll-target="#architecture-and-inference"><span class="header-section-number">10.1</span> Architecture and inference</a>
   <ul class="collapse">
-  <li><a href="#concept-predictor-and-concept-values" id="toc-concept-predictor-and-concept-values" class="nav-link" data-scroll-target="#concept-predictor-and-concept-values"><span class="header-section-number">11.1.1</span> Concept predictor and concept values</a></li>
-  <li><a href="#task-predictor" id="toc-task-predictor" class="nav-link" data-scroll-target="#task-predictor"><span class="header-section-number">11.1.2</span> Task predictor</a></li>
-  <li><a href="#linear-task-predictor" id="toc-linear-task-predictor" class="nav-link" data-scroll-target="#linear-task-predictor"><span class="header-section-number">11.1.3</span> Linear task predictor</a></li>
-  <li><a href="#nonlinear-task-predictor" id="toc-nonlinear-task-predictor" class="nav-link" data-scroll-target="#nonlinear-task-predictor"><span class="header-section-number">11.1.4</span> Nonlinear task predictor</a></li>
+  <li><a href="#concept-predictor-and-concept-values" id="toc-concept-predictor-and-concept-values" class="nav-link" data-scroll-target="#concept-predictor-and-concept-values"><span class="header-section-number">10.1.1</span> Concept predictor and concept values</a></li>
+  <li><a href="#task-predictor" id="toc-task-predictor" class="nav-link" data-scroll-target="#task-predictor"><span class="header-section-number">10.1.2</span> Task predictor</a></li>
+  <li><a href="#linear-task-predictor" id="toc-linear-task-predictor" class="nav-link" data-scroll-target="#linear-task-predictor"><span class="header-section-number">10.1.3</span> Linear task predictor</a></li>
+  <li><a href="#nonlinear-task-predictor" id="toc-nonlinear-task-predictor" class="nav-link" data-scroll-target="#nonlinear-task-predictor"><span class="header-section-number">10.1.4</span> Nonlinear task predictor</a></li>
   </ul></li>
-  <li><a href="#what-does-a-cbm-explain" id="toc-what-does-a-cbm-explain" class="nav-link" data-scroll-target="#what-does-a-cbm-explain"><span class="header-section-number">11.2</span> What does a CBM explain?</a></li>
-  <li><a href="#training-regimes" id="toc-training-regimes" class="nav-link" data-scroll-target="#training-regimes"><span class="header-section-number">11.3</span> Training regimes</a></li>
-  <li><a href="#concept-interventions" id="toc-concept-interventions" class="nav-link" data-scroll-target="#concept-interventions"><span class="header-section-number">11.4</span> Concept interventions</a></li>
-  <li><a href="#evaluating-a-cbm" id="toc-evaluating-a-cbm" class="nav-link" data-scroll-target="#evaluating-a-cbm"><span class="header-section-number">11.5</span> Evaluating a CBM</a></li>
-  <li><a href="#limitations-and-appropriate-use-cases" id="toc-limitations-and-appropriate-use-cases" class="nav-link" data-scroll-target="#limitations-and-appropriate-use-cases"><span class="header-section-number">11.6</span> Limitations and appropriate use cases</a></li>
-  <li><a href="#reducing-the-need-for-concept-annotations" id="toc-reducing-the-need-for-concept-annotations" class="nav-link" data-scroll-target="#reducing-the-need-for-concept-annotations"><span class="header-section-number">11.7</span> Reducing the need for concept annotations</a></li>
+  <li><a href="#what-does-a-cbm-explain" id="toc-what-does-a-cbm-explain" class="nav-link" data-scroll-target="#what-does-a-cbm-explain"><span class="header-section-number">10.2</span> What does a CBM explain?</a></li>
+  <li><a href="#training-regimes" id="toc-training-regimes" class="nav-link" data-scroll-target="#training-regimes"><span class="header-section-number">10.3</span> Training regimes</a></li>
+  <li><a href="#concept-interventions" id="toc-concept-interventions" class="nav-link" data-scroll-target="#concept-interventions"><span class="header-section-number">10.4</span> Concept interventions</a></li>
+  <li><a href="#evaluating-a-cbm" id="toc-evaluating-a-cbm" class="nav-link" data-scroll-target="#evaluating-a-cbm"><span class="header-section-number">10.5</span> Evaluating a CBM</a></li>
+  <li><a href="#limitations-and-appropriate-use-cases" id="toc-limitations-and-appropriate-use-cases" class="nav-link" data-scroll-target="#limitations-and-appropriate-use-cases"><span class="header-section-number">10.6</span> Limitations and appropriate use cases</a></li>
+  <li><a href="#reducing-the-need-for-concept-annotations" id="toc-reducing-the-need-for-concept-annotations" class="nav-link" data-scroll-target="#reducing-the-need-for-concept-annotations"><span class="header-section-number">10.7</span> Reducing the need for concept annotations</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2-xlm/introduction.html">Explainability for Language Models</a></li><li class="breadcrumb-item"><a href="../2-xlm/method-A.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Method A: Concept Bottleneck Models</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2-xlm/introduction.html">Explainability for Language Models</a></li><li class="breadcrumb-item"><a href="../2-xlm/method-A.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Method A: Concept Bottleneck Models</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Method A: Concept Bottleneck Models</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Method A: Concept Bottleneck Models</span></h1>
 </div>
 
 
@@ -464,8 +465,8 @@ window.Quarto = {
 <p>For the review <em>“The pasta was excellent, but we waited an hour and will not return,”</em> the concept predictor should assign a high score to food quality and low scores to service speed and intention to return. The task predictor then uses these concept scores to predict whether the customer recommends the restaurant.</p>
 </div>
 </div>
-<section id="architecture-and-inference" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="architecture-and-inference"><span class="header-section-number">11.1</span> Architecture and inference</h2>
+<section id="architecture-and-inference" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="architecture-and-inference"><span class="header-section-number">10.1</span> Architecture and inference</h2>
 <p>A <a href="https://proceedings.mlr.press/v119/koh20a.html">Concept Bottleneck Model (CBM)</a> makes prediction in two stages:</p>
 <p><span id="eq-cbm-pipeline"><span class="math display">\[
 x
@@ -473,7 +474,7 @@ x
 \widehat{\mathbf{c}}
 \xrightarrow{\;f_\phi\;}
 \widehat{y}.
-\tag{11.1}\]</span></span></p>
+\tag{10.1}\]</span></span></p>
 <p>The concept predictor <span class="math inline">\(g_\theta\)</span> maps the input <span class="math inline">\(x\)</span> to predicted values for a set of human-defined concepts. The task predictor <span class="math inline">\(f_\phi\)</span> then uses the predicted concept vector to produce the task output:</p>
 <p><span id="eq-cbm-model"><span class="math display">\[
 \widehat{y}
@@ -481,7 +482,7 @@ x
 h_{\theta,\phi}(x)
 =
 f_\phi\!\left(g_\theta(x)\right).
-\tag{11.2}\]</span></span></p>
+\tag{10.2}\]</span></span></p>
 <p>In the running example, <span class="math inline">\(x\)</span> is the restaurant review. The concept predictor maps the review to predicted values for food quality, service speed, and intention to return. The task predictor then uses these three values to predict whether the customer will recommend the restaurant.</p>
 <p>The concept vector is called a <em>bottleneck</em> because the task prediction is made only from the predicted concept values. In a strict CBM, there is no separate path that passes information directly from <span class="math inline">\(x\)</span> to <span class="math inline">\(\widehat{y}\)</span>. Some CBM variants pass additional features to the task predictor, which relaxes this strict bottleneck.</p>
 <figure style="margin: 1.5rem 0 2rem; text-align: center;" class="figure">
@@ -492,8 +493,8 @@ f_\phi\!\left(g_\theta(x)\right).
     Inference and optional concept correction in a strict Concept Bottleneck Model.
   </figcaption>
 </figure>
-<section id="concept-predictor-and-concept-values" class="level3" data-number="11.1.1">
-<h3 data-number="11.1.1" class="anchored" data-anchor-id="concept-predictor-and-concept-values"><span class="header-section-number">11.1.1</span> Concept predictor and concept values</h3>
+<section id="concept-predictor-and-concept-values" class="level3" data-number="10.1.1">
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="concept-predictor-and-concept-values"><span class="header-section-number">10.1.1</span> Concept predictor and concept values</h3>
 <p>The concept predictor <span class="math inline">\(g_\theta\)</span> maps the original input to the predicted concept vector <span class="math inline">\(\widehat{\mathbf{c}}\)</span>. Its architecture depends on the type of input. It may use a convolutional network for images or a transformer for text. In the running example, a transformer processes the restaurant review and predicts values for food quality, service speed, and intention to return.</p>
 <p>Let <span class="math inline">\(k\)</span> be the number of concepts. The predicted concept vector is</p>
 <p><span class="math display">\[
@@ -550,7 +551,7 @@ f_\phi\!\left(g_\theta(x)\right).
 \sigma\!\left(\ell_j^{\mathrm{concept}}\right)
 =
 \frac{1}{1+e^{-\ell_j^{\mathrm{concept}}}}.
-\tag{11.3}\]</span></span></p>
+\tag{10.3}\]</span></span></p>
 <p>A categorical concept with <span class="math inline">\(M\)</span> possible categories is usually represented by <span class="math inline">\(M\)</span> logits or probabilities. Softmax converts the logits into probabilities that sum to 1:</p>
 <p><span id="eq-cbm-categorical-concept"><span class="math display">\[
 \widehat{c}_{jm}
@@ -558,35 +559,35 @@ f_\phi\!\left(g_\theta(x)\right).
 \frac{\exp\!\left(\ell_{jm}^{\mathrm{concept}}\right)}
 {\displaystyle\sum_{q=1}^{M}\exp\!\left(\ell_{jq}^{\mathrm{concept}}\right)},
 \qquad m=1,\ldots,M.
-\tag{11.4}\]</span></span></p>
+\tag{10.4}\]</span></span></p>
 <p>Continuous concepts can be represented directly using a real-valued prediction. They are often normalized when concepts use very different numerical ranges.</p>
 <p>Soft concept values preserve more information than hard values. For example, probabilities of 0.51 and 0.99 both become 1 after thresholding, even though the model treats them differently. However, a predicted probability should only be interpreted as reliable confidence when the concept predictor has been calibrated.</p>
 </section>
-<section id="task-predictor" class="level3" data-number="11.1.2">
-<h3 data-number="11.1.2" class="anchored" data-anchor-id="task-predictor"><span class="header-section-number">11.1.2</span> Task predictor</h3>
+<section id="task-predictor" class="level3" data-number="10.1.2">
+<h3 data-number="10.1.2" class="anchored" data-anchor-id="task-predictor"><span class="header-section-number">10.1.2</span> Task predictor</h3>
 <p>The task predictor <span class="math inline">\(f_\phi\)</span> receives only the predicted concept vector rather than the original input, so it is usually smaller than the concept predictor. The form of <span class="math inline">\(f_\phi\)</span> determines how the concepts are combined to produce the final prediction. Two common choices are a linear task predictor, which combines concepts using learned weights, and a nonlinear task predictor, which can also model interactions between concepts. We use <span class="math inline">\(\ell^{\mathrm{concept}}\)</span> for logits produced by the concept predictor and <span class="math inline">\(\ell^{\mathrm{task}}\)</span> for logits produced by the task predictor.</p>
 </section>
-<section id="linear-task-predictor" class="level3" data-number="11.1.3">
-<h3 data-number="11.1.3" class="anchored" data-anchor-id="linear-task-predictor"><span class="header-section-number">11.1.3</span> Linear task predictor</h3>
+<section id="linear-task-predictor" class="level3" data-number="10.1.3">
+<h3 data-number="10.1.3" class="anchored" data-anchor-id="linear-task-predictor"><span class="header-section-number">10.1.3</span> Linear task predictor</h3>
 <p>Suppose the task has <span class="math inline">\(R\)</span> classes. A linear task predictor calculates one <em>logit</em> for each class:</p>
 <p><span id="eq-cbm-general-linear-head"><span class="math display">\[
 \boldsymbol{\ell}^{\mathrm{task}}
 =
 W\widehat{\mathbf{c}}+\mathbf{b},
-\tag{11.5}\]</span></span></p>
+\tag{10.5}\]</span></span></p>
 <p>or, for class <span class="math inline">\(r\)</span>,</p>
 <p><span id="eq-cbm-linear-class-logit"><span class="math display">\[
 \ell_r^{\mathrm{task}}(\widehat{\mathbf{c}})
 =
 b_r+\sum_{j=1}^{k}w_{rj}\widehat{c}_j.
-\tag{11.6}\]</span></span></p>
+\tag{10.6}\]</span></span></p>
 <p>A logit is an unnormalized real-valued prediction. For a multiclass task, the logits are converted into class probabilities using the softmax function:</p>
 <p><span id="eq-cbm-softmax"><span class="math display">\[
 p(y=r\mid\widehat{\mathbf{c}})
 =
 \frac{\exp\!\left(\ell_r^{\mathrm{task}}\right)}
 {\displaystyle\sum_{q=1}^{R}\exp\!\left(\ell_q^{\mathrm{task}}\right)}.
-\tag{11.7}\]</span></span></p>
+\tag{10.7}\]</span></span></p>
 <p>The restaurant example is a binary task. Let <span class="math inline">\(y=1\)</span> mean <em>recommend</em> and <span class="math inline">\(y=0\)</span> mean <em>do not recommend</em>. The task predictor can calculate the recommendation logit as</p>
 <p><span id="eq-cbm-restaurant-linear-head"><span class="math display">\[
 \ell_{\mathrm{rec}}^{\mathrm{task}}(\widehat{\mathbf{c}})
@@ -595,7 +596,7 @@ b
 +w_{\mathrm{food}}\widehat{c}_{\mathrm{food}}
 +w_{\mathrm{speed}}\widehat{c}_{\mathrm{speed}}
 +w_{\mathrm{return}}\widehat{c}_{\mathrm{return}}.
-\tag{11.8}\]</span></span></p>
+\tag{10.8}\]</span></span></p>
 <p>The logit is converted into a recommendation probability using the sigmoid function:</p>
 <p><span id="eq-cbm-restaurant-probability"><span class="math display">\[
 p(y=1\mid\widehat{\mathbf{c}})
@@ -603,13 +604,13 @@ p(y=1\mid\widehat{\mathbf{c}})
 \sigma\!\left(\ell_{\mathrm{rec}}^{\mathrm{task}}(\widehat{\mathbf{c}})\right),
 \qquad
 \sigma(u)=\frac{1}{1+e^{-u}}.
-\tag{11.9}\]</span></span></p>
+\tag{10.9}\]</span></span></p>
 <p>Each weight describes how the corresponding concept changes the model’s logit while the other concepts remain fixed. For example, a positive value of <span class="math inline">\(w_{\mathrm{speed}}\)</span> means that a higher service-speed value increases the recommendation probability.</p>
 <p>Weight magnitudes can be compared directly only when the concepts use comparable scales. In the running example, all three concepts range from 0 to 1, so this comparison is reasonable.</p>
 <p>These weights describe the model’s calculation. They do not establish cause and effect in the real world. A positive value of <span class="math inline">\(w_{\mathrm{speed}}\)</span> shows that the model associates faster service with a higher recommendation probability. It does not prove that changing the restaurant’s service speed would cause the customer to recommend it.</p>
 </section>
-<section id="nonlinear-task-predictor" class="level3" data-number="11.1.4">
-<h3 data-number="11.1.4" class="anchored" data-anchor-id="nonlinear-task-predictor"><span class="header-section-number">11.1.4</span> Nonlinear task predictor</h3>
+<section id="nonlinear-task-predictor" class="level3" data-number="10.1.4">
+<h3 data-number="10.1.4" class="anchored" data-anchor-id="nonlinear-task-predictor"><span class="header-section-number">10.1.4</span> Nonlinear task predictor</h3>
 <p>A nonlinear task predictor allows the prediction to depend on more complex relationships between concepts. A common choice is a multilayer perceptron:</p>
 <p><span id="eq-cbm-general-nonlinear-head"><span class="math display">\[
 \boldsymbol{\ell}^{\mathrm{task}}
@@ -621,7 +622,7 @@ W_2
 W_1\widehat{\mathbf{c}}+\mathbf{b}_1
 \right)
 +\mathbf{b}_2,
-\tag{11.10}\]</span></span></p>
+\tag{10.10}\]</span></span></p>
 <p>where <span class="math inline">\(\rho\)</span> is a nonlinear activation function, such as ReLU or GELU. The resulting logits can be converted into probabilities using softmax for a multiclass task or sigmoid for a binary task.</p>
 <p>For the restaurant example, a simple nonlinear predictor can include an interaction between food quality and service speed:</p>
 <p><span id="eq-cbm-restaurant-nonlinear-head"><span class="math display">\[
@@ -634,7 +635,7 @@ b
 +w_{\mathrm{food,speed}}
 \widehat{c}_{\mathrm{food}}
 \widehat{c}_{\mathrm{speed}}.
-\tag{11.11}\]</span></span></p>
+\tag{10.11}\]</span></span></p>
 <p>The recommendation probability is</p>
 <p><span class="math display">\[
 p(y=1\mid\widehat{\mathbf{c}})
@@ -645,8 +646,8 @@ p(y=1\mid\widehat{\mathbf{c}})
 <p>With interactions, the contribution of one concept depends on the values of other concepts. This can capture relationships between concepts, but it becomes harder to isolate the contribution of each concept using a single weight.</p>
 </section>
 </section>
-<section id="what-does-a-cbm-explain" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="what-does-a-cbm-explain"><span class="header-section-number">11.2</span> What does a CBM explain?</h2>
+<section id="what-does-a-cbm-explain" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="what-does-a-cbm-explain"><span class="header-section-number">10.2</span> What does a CBM explain?</h2>
 <p>A CBM provides a concept-level account of the final prediction. For one input, a reader can inspect:</p>
 <ol type="1">
 <li><strong>The model’s description of the input:</strong> which concepts were predicted and their predicted scores. A score represents confidence only when it is calibrated.</li>
@@ -657,8 +658,8 @@ p(y=1\mid\widehat{\mathbf{c}})
 <p>The bottleneck does not make the whole system transparent. The concept predictor <span class="math inline">\(g_\theta\)</span> may still be a complex neural network, so the CBM does not automatically explain <em>why</em> the input produced a particular concept score. It makes the second step, from concepts to the task prediction, easier to inspect.</p>
 <p>For the running review, a predictor concept vector, (=(0.94,0.08,0.05).) suggest that model detected amazing food, slow service and no intention to return for the particular review. The task predictor combines these score to predict the recommendation. This lets a reader inspect how model percieve the review in human defined vocabulary and how it those different percieved concepts were weighted.</p>
 </section>
-<section id="training-regimes" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="training-regimes"><span class="header-section-number">11.3</span> Training regimes</h2>
+<section id="training-regimes" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="training-regimes"><span class="header-section-number">10.3</span> Training regimes</h2>
 <p>Suppose the training data contain triples <span class="math inline">\((x_i,\mathbf{c}_i,y_i)\)</span>. CBMs are commonly trained in one of three ways:</p>
 <ol type="1">
 <li><p><strong>Independent training:</strong> train <span class="math inline">\(g_\theta\)</span> to predict the annotated concepts, and separately train <span class="math inline">\(f_\phi\)</span> using the annotated concepts as input. The task predictor therefore learns from clean annotations but receives predicted concepts at inference time. See <a href="https://proceedings.mlr.press/v119/koh20a/koh20a.pdf">Koh et al.&nbsp;(2020), <em>Concept Bottleneck Models</em></a>.</p></li>
@@ -671,14 +672,14 @@ p(y=1\mid\widehat{\mathbf{c}})
   \left(g_\theta(x_i),\mathbf{c}_i\right)
 +\mathcal{L}_{\text{task}}
   \left(f_\phi(g_\theta(x_i)),y_i\right),
-\tag{11.12}\]</span></span></p>
+\tag{10.12}\]</span></span></p>
 <p>where <span class="math inline">\(\lambda\)</span> controls the importance of accurate concept prediction. Joint training can improve task performance, but it is still necessary to evaluate whether the predicted concepts match their intended meanings.</p>
 <p><a href="https://arxiv.org/pdf/2311.11108">Sheth and Kahou (2023), <em>Auxiliary Losses for Learning Generalizable Concept-based Models</em></a>, extend joint training with <strong>cooperative-CBM (coop-CBM)</strong>. Their method adds an auxiliary head that predicts the task label from the representation shared with the concept predictor. Its objective combines the concept loss, an auxiliary task loss, the final task loss, and a concept orthogonal loss. The orthogonal loss encourages within-concept similarity and separation between different concept representations. The auxiliary head helps shape the shared representation during training, while the final task predictor still receives only the predicted concepts. The paper evaluates the approach on image-classification datasets, including settings with distribution shift.</p></li>
 </ol>
 <p>The concept loss must match the concept type. Binary concepts commonly use binary cross-entropy, categorical concepts use cross-entropy, and continuous concepts use a regression loss. If only some concepts are annotated for an example, the concept loss can be calculated over the available annotations.</p>
 </section>
-<section id="concept-interventions" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="concept-interventions"><span class="header-section-number">11.4</span> Concept interventions</h2>
+<section id="concept-interventions" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="concept-interventions"><span class="header-section-number">10.4</span> Concept interventions</h2>
 <p>At inference time, a person can inspect <span class="math inline">\(\widehat{\mathbf{c}}\)</span> and correct concepts that are clearly wrong. If <span class="math inline">\(S\)</span> is the set of corrected concepts, define</p>
 <p><span id="eq-concept-intervention"><span class="math display">\[
 \widetilde{c}_j=
@@ -686,12 +687,12 @@ p(y=1\mid\widehat{\mathbf{c}})
 c_j^{\text{edit}}, &amp; j\in S,\\
 \widehat{c}_j, &amp; j\notin S.
 \end{cases}
-\tag{11.13}\]</span></span></p>
+\tag{10.13}\]</span></span></p>
 <p>The revised prediction is <span class="math inline">\(\widetilde{y}=f_\phi(\widetilde{\mathbf{c}})\)</span>. This supports questions such as: <em>Would the prediction change if the concept “contains a negation” were corrected from absent to present?</em></p>
 <p>An intervention explains the behavior of the model under a concept edit. It does not prove that changing the corresponding property in the real world would cause the same outcome. Edits can also create unlikely combinations of concepts, so their results should be interpreted carefully.</p>
 </section>
-<section id="evaluating-a-cbm" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="evaluating-a-cbm"><span class="header-section-number">11.5</span> Evaluating a CBM</h2>
+<section id="evaluating-a-cbm" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="evaluating-a-cbm"><span class="header-section-number">10.5</span> Evaluating a CBM</h2>
 <p>Task accuracy alone is not enough. A useful evaluation should check four parts of the model:</p>
 <ul>
 <li><strong>Task performance:</strong> how accurately <span class="math inline">\(\widehat{y}\)</span> predicts the task label.</li>
@@ -701,8 +702,8 @@ c_j^{\text{edit}}, &amp; j\in S,\\
 </ul>
 <p>These measurements answer different questions. A CBM may predict the task well while predicting some concepts poorly. It may also predict every annotated concept well but perform poorly because the concept set is incomplete or the task predictor is unsuitable.</p>
 </section>
-<section id="limitations-and-appropriate-use-cases" class="level2" data-number="11.6">
-<h2 data-number="11.6" class="anchored" data-anchor-id="limitations-and-appropriate-use-cases"><span class="header-section-number">11.6</span> Limitations and appropriate use cases</h2>
+<section id="limitations-and-appropriate-use-cases" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="limitations-and-appropriate-use-cases"><span class="header-section-number">10.6</span> Limitations and appropriate use cases</h2>
 <p>CBMs are most useful when a task has a stable concept vocabulary, reliable concept annotations are available, and a person can meaningfully inspect or correct the concepts. They are particularly suitable when concept-level feedback is more practical than changing the original input.</p>
 <p>Their main limitations are:</p>
 <ul>
@@ -715,8 +716,8 @@ c_j^{\text{edit}}, &amp; j\in S,\\
 </ul>
 <p>Architectures with residual features or a direct path from <span class="math inline">\(x\)</span> to <span class="math inline">\(\widehat{y}\)</span> may recover some accuracy. However, because named concepts no longer carry all the information used for the prediction, they do not provide the same explanation guarantee as a strict CBM.</p>
 </section>
-<section id="reducing-the-need-for-concept-annotations" class="level2" data-number="11.7">
-<h2 data-number="11.7" class="anchored" data-anchor-id="reducing-the-need-for-concept-annotations"><span class="header-section-number">11.7</span> Reducing the need for concept annotations</h2>
+<section id="reducing-the-need-for-concept-annotations" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="reducing-the-need-for-concept-annotations"><span class="header-section-number">10.7</span> Reducing the need for concept annotations</h2>
 <p>Recent extensions reduce the amount of per-example concept labeling. <a href="https://arxiv.org/abs/2304.06129">Label-free CBMs</a> use a chosen list of concept names together with pretrained representations to construct a concept bottleneck without manually labeling every training example. <a href="https://arxiv.org/abs/2205.15480">Post-hoc CBMs</a> project a pretrained model’s representations into a concept space rather than training the entire model from the beginning.</p>
 <p>The term <em>label-free</em> refers to concept labels: these methods can still require task labels, a human-selected concept vocabulary, and pretrained models. Their concept scores must also be validated. A concept name alone does not guarantee that the score consistently measures the intended property.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Key takeaway">
@@ -1140,12 +1141,12 @@ c_j^{\text{edit}}, &amp; j\in S,\\
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../2-xlm/taxonomy.html" class="pagination-link" aria-label="Taxonomy">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Taxonomy</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Taxonomy</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../2-xlm/method-B.html" class="pagination-link" aria-label="Method(s) Page 2">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Method(s) Page 2</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Method(s) Page 2</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
