@@ -77,5 +77,3 @@ format:
     lightbox: auto
     toc: true
     toc-depth: 3
-  pdf:
-    documentclass: scrreprt
