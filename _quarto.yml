@@ -6,7 +6,7 @@ project:
 
 book:
   title: "Learn XAI: Explainable AI for Everyone"
-  author: "Jane Doe"
+  author: "Machine Intelligence and Reasoning Lab, University of Calgary"
   date: "7/10/2026"
 
   sidebar:
