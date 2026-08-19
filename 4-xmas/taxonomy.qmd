@@ -1,7 +1,3 @@
----
-bibliography: references.bib
----
-
 ### What are agents?
 
 Generally, agents refer to *any entity capable of perceiving its environment and taking action* [@cheng2024exploring]. 
