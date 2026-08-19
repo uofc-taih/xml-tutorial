@@ -17,8 +17,8 @@ book:
   chapters:
     # --- PRELIMINARIES ---
     - index.qmd
-    - 0-1-notation.qmd
-    - 0-2-introduction.qmd
+    - 0-1-introduction.qmd
+    - 0-2-notation.qmd
 
     # --- TOPIC 1: XML BASICS ---
     - part: "Basics of Explainable Machine Learning"
@@ -47,7 +47,7 @@ book:
       chapters:
         - 3-xrl/introduction.qmd
         - 3-xrl/taxonomy.qmd
-        - 3-xrl/m1-pertubation-based-salience-maps.qmd
+        - 3-xrl/m1-perturbation-based-salience-maps.qmd
         - 3-xrl/method-B.qmd
         - 3-xrl/method-C.qmd
         - 3-xrl/applications.qmd
@@ -73,6 +73,7 @@ format:
   html:
     theme:
       - lumen
+    css: styles.css
     code-fold: true
     lightbox: auto
     toc: true

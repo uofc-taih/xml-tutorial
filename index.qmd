@@ -5,7 +5,14 @@ sidebar: false
 toc: false
 ---
 
+# Learn XAI {.unnumbered .unlisted}
+
 <style>
+/* Hide the top-level header we just created so it is not include in chapter numbering */
+h1.unnumbered {
+  display: none !important;
+}
+
 /* Nuke the default Quarto book title block, author, date, and version */
 #title-block-header {
   display: none !important;
@@ -22,7 +29,7 @@ toc: false
 An interactive tutorial and reference guide for explainable artificial intelligence.
 :::
 
-[Start Reading](0-2-introduction.qmd){.btn .btn-dark .btn-lg .px-4 .me-md-2 .mb-2} 
+[Start Reading](0-1-introduction.qmd){.btn .btn-dark .btn-lg .px-4 .me-md-2 .mb-2}
 [View Notebooks](notebooks.qmd){.btn .btn-outline-dark .btn-lg .px-4 .mb-2 .disabled aria-disabled="true" style="pointer-events: none;"}
 
 :::
