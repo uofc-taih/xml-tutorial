@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>23&nbsp; Taxonomy – Explainable ML Tutorial</title>
+<title>23&nbsp; What are agents? – Learn XAI: Explainable AI for Everyone</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -24,7 +30,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -54,15 +59,14 @@ div.csl-indent {
 <link href="../4-xmas/introduction.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-af35a17dcf6f560f80e69c72e731d520.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-154bd0a5ceb7e046316d8c993cde5dd9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -103,7 +107,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../4-xmas/introduction.html">Explainability in Multi-Agent Systems</a></li><li class="breadcrumb-item"><a href="../4-xmas/taxonomy.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Taxonomy</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../4-xmas/introduction.html">Explainability in Multi-Agent Systems</a></li><li class="breadcrumb-item"><a href="../4-xmas/taxonomy.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">What are agents?</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -118,7 +122,7 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Explainable ML Tutorial</a> 
+      <a href="../">Learn XAI: Explainable AI for Everyone</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -323,7 +327,7 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../4-xmas/taxonomy.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Taxonomy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">What are agents?</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -374,17 +378,17 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-are-agents" id="toc-what-are-agents" class="nav-link active" data-scroll-target="#what-are-agents"><span class="header-section-number">23.1</span> What are agents?</a></li>
-  <li><a href="#what-are-multi-agent-systems" id="toc-what-are-multi-agent-systems" class="nav-link" data-scroll-target="#what-are-multi-agent-systems"><span class="header-section-number">23.2</span> What are multi-agent systems?</a></li>
+  <li><a href="#what-are-multi-agent-systems" id="toc-what-are-multi-agent-systems" class="nav-link active" data-scroll-target="#what-are-multi-agent-systems"><span class="header-section-number">23.0.1</span> What are multi-agent systems?</a></li>
+  <li><a href="#why-is-explainability-in-multi-agent-systems-necessary" id="toc-why-is-explainability-in-multi-agent-systems-necessary" class="nav-link" data-scroll-target="#why-is-explainability-in-multi-agent-systems-necessary"><span class="header-section-number">23.0.2</span> Why is explainability in multi-agent systems necessary?</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../4-xmas/introduction.html">Explainability in Multi-Agent Systems</a></li><li class="breadcrumb-item"><a href="../4-xmas/taxonomy.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Taxonomy</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../4-xmas/introduction.html">Explainability in Multi-Agent Systems</a></li><li class="breadcrumb-item"><a href="../4-xmas/taxonomy.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">What are agents?</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Taxonomy</span></h1>
+<h1 class="title"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">What are agents?</span></h1>
 </div>
 
 
@@ -401,40 +405,178 @@ div.csl-indent {
 </header>
 
 
-<section id="what-are-agents" class="level2" data-number="23.1">
-<h2 data-number="23.1" class="anchored" data-anchor-id="what-are-agents"><span class="header-section-number">23.1</span> What are agents?</h2>
-<p>Generally, agents refer to <em>any entity capable of perceiving its environment and taking action</em> <span class="citation" data-cites="cheng2024exploring">(<a href="../references.html#ref-cheng2024exploring" role="doc-biblioref">Cheng et al. 2024</a>)</span>. Namely, large language model (LLM)-based agents leverage the natural language processing capabilities of LLMs (complex reasoning, text summarization, machine translation) % https://link.springer.com/article/10.1007/s11704-025-50472-3 , while attempting to address their fundamental limitations:</p>
-<p>% https://www.jair.org/index.php/jair/article/view/18675/27253 % https://dl.acm.org/doi/abs/10.1145/3787470.3787478</p>
+<p>Generally, agents refer to <em>any entity capable of perceiving its environment and taking action</em> <span class="citation" data-cites="cheng2024exploring">(<a href="../references.html#ref-cheng2024exploring" role="doc-biblioref">Cheng et al. 2024</a>)</span>. <!-- https://arxiv.org/pdf/2401.03428 <--- idk how to cite papers  --> Namely, large language model (LLM) based agents leverage the natural language processing capabilities of LLMs (complex reasoning, text summarization, machine translation) <span class="citation" data-cites="qin2026large">(<a href="../references.html#ref-qin2026large" role="doc-biblioref">Qin et al. 2026</a>)</span> <!-- https://link.springer.com/article/10.1007/s11704-025-50472-3 --> , while attempting to address their fundamental limitations: <span class="citation" data-cites="plaat2025agentic liu2025unifying">(<a href="../references.html#ref-plaat2025agentic" role="doc-biblioref">Plaat et al. 2025</a>; <a href="../references.html#ref-liu2025unifying" role="doc-biblioref">Liu and Shu 2025</a>)</span></p>
+<!-- https://www.jair.org/index.php/jair/article/view/18675/27253 -->
+<!-- https://dl.acm.org/doi/abs/10.1145/3787470.3787478 -->
 <ol type="1">
-<li><strong>Hallucination.</strong> The tendency of LLMs to produce , deriving from data misinformation, pre-training biases, over-confidence, among others. %https://dl.acm.org/doi/pdf/10.1145/3703155</li>
-<li><strong>Training data.</strong> LLM intelligence is limited by the data available during training.</li>
-<li><strong>Reasoning.</strong> Although LLMs continue to impress in natural language processing, model reasoning remains a well-reported challenge.</li>
-<li><strong>Prompt Engineering.</strong> LLMs are sensitive to minor details in prompts, making prompt improvement a tedious, manual task. % https://www.jair.org/index.php/jair/article/view/18675/27253</li>
+<li><p><strong>Hallucination</strong> The tendency of LLMs to produce <em>plausible yet factually unsupported content</em>, deriving from data misinformation, pre-training biases, and over-confidence, among others. <span class="citation" data-cites="huang2025hallucination">(<a href="../references.html#ref-huang2025hallucination" role="doc-biblioref">Huang et al. 2025</a>)</span> <!--https://dl.acm.org/doi/pdf/10.1145/3703155 --></p></li>
+<li><p><strong>Training data</strong> LLM intelligence is limited by the data available during training, which causes struggles in factual accuracy and failure to adapt to new situations.</p></li>
+<li><p><strong>Reasoning</strong> Although LLMs continue to impress in natural language processing, model reasoning remains a well-reported challenge as LLMs are designed to predict the most probable next words, rather than making logically sound claims.</p></li>
+<li><p><strong>Prompt Engineering</strong> LLMs are sensitive to minor details in prompts, making prompt improvement a tedious, manual task. <span class="citation" data-cites="plaat2025agentic">(<a href="../references.html#ref-plaat2025agentic" role="doc-biblioref">Plaat et al. 2025</a>)</span> <!-- https://www.jair.org/index.php/jair/article/view/18675/27253 --></p></li>
 </ol>
-<p>% https://arxiv.org/abs/2308.11432 Consequently, the architecture of LLM-based agents adds four fundamental modules absent from “pure LLMs”: - Profiling: Defining agent identity - Memory: Storing experience - Planning: Decomposing goals - Action: Executing plans via tools or internal knowledge</p>
-<p>% https://link.springer.com/article/10.1007/s44336-024-00009-2 Some authours argue for a fifth module, evolution, describing how agents progressively enhance their intelligence through self-reflection.</p>
-<p>Analogously, agents can be understood as whereas LLMs are . Alternatively, LLMs , and agents and . % https://www.jair.org/index.php/jair/article/view/18675/27253 % confirm claim.</p>
-<p>Ideally, the foundational agent architecture would address the concerns of LLMs through … % https://www.jair.org/index.php/jair/article/view/18675</p>
-<p>Implementations of single-agent systems can be used in … % https://arxiv.org/abs/2512.08296</p>
-<p>Nonetheless, single-agent systems have key pitfalls… % https://arxiv.org/abs/2511.01149</p>
+<!-- https://arxiv.org/abs/2308.11432 -->
+<p>Consequently, the architecture of LLM-based agents adds four fundamental modules absent from LLMs: <span class="citation" data-cites="wang2023autonomous">(<a href="../references.html#ref-wang2023autonomous" role="doc-biblioref">Wang et al. 2023</a>)</span></p>
+<p><strong>Profile</strong>: The identity, role, tendencies, and constraints that define an agent and lead to better, grounded decisions.</p>
+<p><strong>Memory</strong>: The persistent system by which agents retain, refine, and recall information while accumulating knowledge.</p>
+<p><strong>Planning</strong>: The module that decomposes complex, high-level plans into sub-tasks for a simplified sequence of actions.</p>
+<p><strong>Action</strong>: The tools that enable an agent to translate internal decisions into external executions.</p>
+<!-- https://link.springer.com/article/10.1007/s44336-024-00009-2 -->
+<p>Some authors argue for a fifth module <strong>evolution</strong>, describing how agents progressively enhance their intelligence through self-reflection. <span class="citation" data-cites="li2024survey">(<a href="../references.html#ref-li2024survey" role="doc-biblioref">Li et al. 2024</a>)</span></p>
+<p>Analogously, agents can be understood as being <em>proactive</em> whereas LLMs are <em>reactive</em>. Rather, LLMs <em>predict</em> and agents <em>reason, act</em> and <em>interact</em>. <span class="citation" data-cites="plaat2025agentic">(<a href="../references.html#ref-plaat2025agentic" role="doc-biblioref">Plaat et al. 2025</a>)</span> <!-- https://www.jair.org/index.php/jair/article/view/18675/27253 --></p>
+<p>By adopting a proactive stance, LLM-based agents address the constraints of models by integrating a model within an architectural loop with distinct modules that handle it’s limitations. <span class="citation" data-cites="liu2025unifying plaat2025agentic">(<a href="../references.html#ref-liu2025unifying" role="doc-biblioref">Liu and Shu 2025</a>; <a href="../references.html#ref-plaat2025agentic" role="doc-biblioref">Plaat et al. 2025</a>)</span> <!-- https://dl.acm.org/doi/abs/10.1145/3787470.3787478 --> <!-- https://www.jair.org/index.php/jair/article/view/18675 --></p>
+<p>Implementations of agent-based systems have rapidly evolved into a variety of industries, (arguably) justifying it’s position as the current paradigm in machine learning research. Such areas include healthcare (medical diagnosis <span class="citation" data-cites="chen2025cod">(<a href="../references.html#ref-chen2025cod" role="doc-biblioref">J. Chen et al. 2025</a>)</span>, cardiology <span class="citation" data-cites="zhou2024zodiac">(<a href="../references.html#ref-zhou2024zodiac" role="doc-biblioref">Zhou et al. 2024</a>)</span>, therapeutic counseling <span class="citation" data-cites="steenstra2025risk">(<a href="../references.html#ref-steenstra2025risk" role="doc-biblioref">Steenstra and Bickmore 2025</a>)</span>), research (survey generation <span class="citation" data-cites="liang2025surveyx">(<a href="../references.html#ref-liang2025surveyx" role="doc-biblioref">Liang et al. 2025</a>)</span>, scientific discovery <span class="citation" data-cites="gottweis2025ai">(<a href="../references.html#ref-gottweis2025ai" role="doc-biblioref">Gottweis and Natarajan 2025</a>)</span>), and software engineering (coding reasoning <span class="citation" data-cites="chen2025verbal">(<a href="../references.html#ref-chen2025verbal" role="doc-biblioref">H.-Y. Chen et al. 2025</a>)</span>, code generation <span class="citation" data-cites="endla2025autoopticode">(<a href="../references.html#ref-endla2025autoopticode" role="doc-biblioref">Endla et al. 2025</a>)</span>). The term <em>agent</em> has even become a buzzword within the tech industry, often being misused by marketing teams to excite unbeknownst customers, reflecting the prominence of single-agent systems. <span class="citation" data-cites="cheng2024exploring ferrag2026review">(<a href="../references.html#ref-cheng2024exploring" role="doc-biblioref">Cheng et al. 2024</a>; <a href="../references.html#ref-ferrag2026review" role="doc-biblioref">Ferrag et al. 2026</a>)</span> <!-- https://arxiv.org/abs/2401.03428 --></p>
+<!-- Specific implementations, in order: (all from https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=11540994) -->
+<!-- https://arxiv.org/abs/2407.13301 -->
+<!-- https://arxiv.org/abs/2410.02026 -->
+<!-- https://arxiv.org/html/2505.15108v1 -->
+<!-- https://arxiv.org/abs/2502.14776 -->
+<!-- https://research.google/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/ -->
+<!-- [179] H.-Y. Chen, C.-P. Huang, and J.-M. Yao, ‘‘Verbal process supervision elicits better coding agents,’’ 2025, arXiv:2503.18494 -->
+<!-- https://ieeexplore.ieee.org/abstract/document/11315793 -->
+<!-- https://ieeexplore.ieee.org/abstract/document/11315793 -->
+<!-- https://arxiv.org/abs/2512.08296  -->
+<p>But as the scopes and complexities of single-agent implementations grow, the more difficult is it for an agent to navigate more dynamic, complex scenarios. An underlying assumption within an abundance of single-agent implementations is static, closed environments, which, of course, is a reductive representation of nuanced, real-world scenarios. <span class="citation" data-cites="qi2026beyond pan2025modular feng2026embodied">(<a href="../references.html#ref-qi2026beyond" role="doc-biblioref">Qi et al. 2026</a>; <a href="../references.html#ref-pan2025modular" role="doc-biblioref">Pan and Wu 2025</a>; <a href="../references.html#ref-feng2026embodied" role="doc-biblioref">Feng et al. 2026</a>)</span></p>
+<!-- https://arxiv.org/pdf/2605.14892 -->
+<!-- https://arxiv.org/abs/2511.01149 -->
+<!-- https://link.springer.com/article/10.1007/s11432-025-4820-4 -->
+<section id="what-are-multi-agent-systems" class="level3" data-number="23.0.1">
+<h3 data-number="23.0.1" class="anchored" data-anchor-id="what-are-multi-agent-systems"><span class="header-section-number">23.0.1</span> What are multi-agent systems?</h3>
+<p>Multi-agent systems (MAS) are systems that enclose multiple autonomous LLM-based agents to enable more complex reasoning, problem-solving, and simulation. Leveraging collective judgment is a natural step in the evolution of agentic AI, addressing the simplistic assumed environments of single-agent systems. As singular agents reach limits in complexity, they may relapse to the initial pitfalls of LLMs (hallucination, limits of reasoning). Containing multiple agents in a cohesive framework allows for dynamic collaboration, flexibility, and emergent collective intelligence. <span class="citation" data-cites="guo2024multiagents pan2025modular">(<a href="../references.html#ref-guo2024multiagents" role="doc-biblioref">Guo et al. 2024</a>; <a href="../references.html#ref-pan2025modular" role="doc-biblioref">Pan and Wu 2025</a>)</span> As Aristotle argued, “<em>a feast to which many contribute is better than a dinner provided out of a single purse</em>”. <span class="citation" data-cites="aristotlePolitics">(<a href="../references.html#ref-aristotlePolitics" role="doc-biblioref">Aristotle 1885</a>)</span></p>
+<!-- https://arxiv.org/pdf/2402.01680 -->
+<!-- Politics - aristotle, Book iii chapter xi -->
+<!-- https://arxiv.org/abs/2511.01149 (same as above) -->
+<p>Unlike the evolution of reactive LLMs to proactive LLM-based agents, the progression of single-agent systems to multi-agent systems is more so a <em>re-contextualization</em> than an evolution. Multi-agent systems typically avoid heavily altering the architecture of single-agents, rather enabling it’s modules (profiling, memory, planning, action) to adequately handle a multi-agent context through inter-agent means. <span class="citation" data-cites="guo2024multiagents li2024survey">(<a href="../references.html#ref-guo2024multiagents" role="doc-biblioref">Guo et al. 2024</a>; <a href="../references.html#ref-li2024survey" role="doc-biblioref">Li et al. 2024</a>)</span></p>
+<p>Notably, agents within MAS are more specialized; agent profiles can, for example, contain human personas <span class="citation" data-cites="park2023generative">(<a href="../references.html#ref-park2023generative" role="doc-biblioref">Park et al. 2023</a>)</span> or possess knowledge limited to specific disciplines <span class="citation" data-cites="tang2024medagents">(<a href="../references.html#ref-tang2024medagents" role="doc-biblioref">Tang et al. 2024</a>)</span> to simulate real-world contexts or solve complex tasks. Similarly, planning modules and action modules are equipped with unique mechanisms that address multi-agent complexity, namely, task decomposition and collaborative feedback loops for planning <span class="citation" data-cites="li2025agentoriented">(<a href="../references.html#ref-li2025agentoriented" role="doc-biblioref">Li et al. 2025</a>)</span>, and environmental interaction for action. Memory modules extend further: <em>hybrid memory</em> provides agents with shared memory, capturing emergent collective intelligence. <span class="citation" data-cites="wu2026memory">(<a href="../references.html#ref-wu2026memory" role="doc-biblioref">Wu and Shu 2026</a>)</span> More exhaustive, MAS architecture surveys elaborate on the methodologies used to handle MAS complexities in distributed knowledge, coordination, communication, among others. <span class="citation" data-cites="guo2024multiagents li2024survey">(<a href="../references.html#ref-guo2024multiagents" role="doc-biblioref">Guo et al. 2024</a>; <a href="../references.html#ref-li2024survey" role="doc-biblioref">Li et al. 2024</a>)</span></p>
+<!-- find examples for action  -->
+<!-- surveys: https://arxiv.org/abs/2402.01680,  -->
+<!-- A survey on LLM-based multi-agent systems: workflow, infrastructure, and challenges -->
+<!--https://link.springer.com/chapter/10.1007/978-981-92-1468-6_10 <- memory in MAS -->
+<!-- https://proceedings.iclr.cc/paper_files/paper/2025/file/31610e68fe41a62e460e044216a10766-Paper-Conference.pdf <- planning -->
+<p>Beyond refactoring single-agent architectures, <em>orchestration</em> represents the novel mechanisms by which agents are integrated within an MAS, re-contextualizing agents to adequately perform under more complex and nuanced scenarios. <span class="citation" data-cites="adimulam2026orchestration zhou2026fragmentation">(<a href="../references.html#ref-adimulam2026orchestration" role="doc-biblioref">Adimulam et al. 2026</a>; <a href="../references.html#ref-zhou2026fragmentation" role="doc-biblioref">Zhou et al. 2026</a>)</span></p>
+<p>Orchestration can be understood as the structured coordination and collaboration of enclosed agents. <span class="citation" data-cites="adimulam2026orchestration">(<a href="../references.html#ref-adimulam2026orchestration" role="doc-biblioref">Adimulam et al. 2026</a>)</span> <!-- https://arxiv.org/pdf/2601.13671v1 --> Orchestration is defined by three key dimensions, organizational structure, communication mechanism, and collaboration pattern, through which various MAS can address unique use cases. <span class="citation" data-cites="adimulam2026orchestration zhou2026fragmentation">(<a href="../references.html#ref-adimulam2026orchestration" role="doc-biblioref">Adimulam et al. 2026</a>; <a href="../references.html#ref-zhou2026fragmentation" role="doc-biblioref">Zhou et al. 2026</a>)</span></p>
+<p><strong>Organizational Structure</strong>: Defined as the <em>interaction topology</em> of the MAS, which outlines how authority is divided and which agents interact directly . Among others, some structures are:</p>
+<p>Hierarchical: A pyramidal chain, akin to a traditional top-down business model. Higher tier agents interact with agents immediately below them, who subsequently continue the chain of command.</p>
+<p>Decentralized: Agents communicate with other agents directly, removing any need for a central coordinator. Uniquely, every agent is able to coordinate with any other agent.</p>
+<p>Flat Collaborative: Authority is distributed among all agents, but any agent can only communicate with those near it.</p>
+<p><strong>Communication Mechanism</strong>: Procedures and protocols used to transmit and synchronize information, including intent, observations, and tasks. Some forms include:</p>
+<p>Direct Channels: Communication by which information is explicitly relayed towards another agent, or a group of agents.</p>
+<p>Indirect Channels: Receivers and senders are not explicitly determined during communication, rather, communication involves modifying a shared state.</p>
+<p><strong>Collaboration Pattern</strong>: The methodologies by which agents sequence tasks, distribute responsibilities, and provide feedback. An MAS collaboration pattern defines how each agent works together, utilizing it’s structure and communication methods. The key dimensions are the following.</p>
+<p><strong>Collaborative intent</strong>: The relationship between the agents’ objectives, defining whether agents pursue a shared positive-sum objective, or mutually competing on a micro-level for a macro-level, aligned goal.</p>
+<p><strong>Collaborative workflows</strong>: The process through which information and tasks are advanced among agents, ranging from feed-forward pipelines, or parallel, aggregation.</p>
+<p><strong>Collaborative protocols</strong>: The standards that define interactions for communication. <span class="citation" data-cites="zhou2026fragmentation">(<a href="../references.html#ref-zhou2026fragmentation" role="doc-biblioref">Zhou et al. 2026</a>)</span></p>
+<!--https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.176827304.41872996/v2?download=true&redirectToLatest=false <- "orchestration" -->
+<p>Orchestration has been proven to be a necessary aspect for scalable MAS, preventing drawbacks such as conflicting goals, circular reasoning, or inconsistent memories which emerge from evolving past single-agent systems. Combined with re-contextualized agent architectures, orchestration helps MAS tackle real-world, complex tasks. <span class="citation" data-cites="dextralabs2026fail">(<a href="../references.html#ref-dextralabs2026fail" role="doc-biblioref">Dextra Labs 2026</a>)</span> <!-- https://dev.to/dextralabs/why-multi-agent-systems-fail-without-orchestration-53jl --></p>
 </section>
-<section id="what-are-multi-agent-systems" class="level2" data-number="23.2">
-<h2 data-number="23.2" class="anchored" data-anchor-id="what-are-multi-agent-systems"><span class="header-section-number">23.2</span> What are multi-agent systems?</h2>
-<p>Multi-agent systems are systems that enclose multiple autonomous LLM-based agents to enable more complex reasoning and simulation. Leveraging the foundational “wisdom of the multitude” is just a natural step in the evolution of agentic AI, addressing the pitfalls of single-agent systems as listed above.</p>
-<p>% https://arxiv.org/pdf/2402.01680 % Politics - aristotle</p>
-<p>Specifically, multi-agent systems surpass single-agent systems in… % https://arxiv.org/abs/2511.01149 (same as above)</p>
-<p>Multi-agent systems are used in … % couple examples</p>
-<p>As the implementations of multi-agent systems become more integrated into society, the need for explainability methods is just as required. % tie back to explainability</p>
-<p>% Single-agent based approaches (but in to multi-agent contexts)</p>
-<p>% SAEs, linear probes, logit/tuned lenses, etc.</p>
-<p>% Multi-agent based approaches</p>
-<p>% describe how certain behaviours occur ONLY in a multi-agent context: collusion, complex scheming</p>
-<p>% include black-box tools (LLM-as-a-judge, human-in-the-loop)#</p>
+<section id="why-is-explainability-in-multi-agent-systems-necessary" class="level3" data-number="23.0.2">
+<h3 data-number="23.0.2" class="anchored" data-anchor-id="why-is-explainability-in-multi-agent-systems-necessary"><span class="header-section-number">23.0.2</span> Why is explainability in multi-agent systems necessary?</h3>
+<p>The autonomy and powerful reasoning of agentic systems can easily be seen as a century-defining technology, grasping at the possibilities of superhuman cognitive ability. However, the excitement behind agentic AI, including the growing academic research and commercialization, may be propagating its inherent opacity, the fatal flaw of agentic systems. In the general scope of LLMs, the rapidly growing gap between the ability to interpret models and the widespread usage of these models is called the explainability crisis. <span class="citation" data-cites="decisionphysics2026crisis">(<a href="../references.html#ref-decisionphysics2026crisis" role="doc-biblioref">Decision Physics 2026</a>)</span></p>
+<!-- https://www.decisionphysics.com/articles/explainability-crisis-machine-learning/ -->
+<p>The difficulty of interpreting LLMs (as discussed in previous chapters) can be attributed to its opaque systems. As a result, agentic systems that inherit LLMs as fundamental mechanisms would inherit a potentially unintelligible model. Multi-agent systems amplifies this effect by introducing new dimensions to agentic systems, complicating explainability moreover. The most notable reasons are: <!-- (cite. also I hope this is true)  --></p>
+<ol type="1">
+<li><p><strong>Distributed information obscures attribution</strong>: Information parsed and refined between multiple agents in systematic procedures distorts the interpretability of intentions, decisions, and behaviours by introducing layers of abstraction.</p></li>
+<li><p><strong>Cascading errors and behaviours among agents</strong>: The degradation of communication introduces errors and unwanted behaviours that cascades into system-level effects, making failure attribution difficult. <span class="citation" data-cites="tanveer2026orchestration">(<a href="../references.html#ref-tanveer2026orchestration" role="doc-biblioref">Tanveer 2026</a>)</span></p></li>
+</ol>
+<!-- https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6734798 -->
+<ol start="3" type="1">
+<li><strong>The orchestration layer introduces complexity</strong>: Orchestration, beyond adding structural integrity and coordination, also adds a layer of complexity that disrupts causal attribution. <span class="citation" data-cites="adimulam2026orchestration zhou2026fragmentation">(<a href="../references.html#ref-adimulam2026orchestration" role="doc-biblioref">Adimulam et al. 2026</a>; <a href="../references.html#ref-zhou2026fragmentation" role="doc-biblioref">Zhou et al. 2026</a>)</span></li>
+</ol>
+<p>Although the explainability crisis may be generally applicable to the broader scope of black-box models, multi-agent systems experience this effect amplified. Concerns raise as MAS emerge as viable options to SAS, as to address more specialized challenges.</p>
+<p>Notably, Anthropic utilizes MAS in the <em>Claude Research</em> feature, arguing for it’s effectiveness in open-ended research questions. <span class="citation" data-cites="hadfield2025multiagent">(<a href="../references.html#ref-hadfield2025multiagent" role="doc-biblioref">Hadfield et al. 2025</a>)</span> The idea that the gradual commercialization of MAS necessitates explainability is greater than the field of ML; after all, any technology implemented without systemic understanding seems to be unethical.</p>
+<!-- https://www.anthropic.com/engineering/multi-agent-research-system -->
+<!--  -->
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-adimulam2026orchestration" class="csl-entry" role="listitem">
+Adimulam, Apoorva, Rajesh Gupta, and Sumit Kumar. 2026. <em>The Orchestration of Multi-Agent Systems: Architectures, Protocols, and Enterprise Adoption</em>. <a href="https://arxiv.org/abs/2601.13671">https://arxiv.org/abs/2601.13671</a>.
+</div>
+<div id="ref-aristotlePolitics" class="csl-entry" role="listitem">
+Aristotle. 1885. <em>The Politics of Aristotle</em>. Translated by Benjamin Jowett.
+</div>
+<div id="ref-chen2025verbal" class="csl-entry" role="listitem">
+Chen, Hao-Yuan, Cheng-Pong Huang, and Jui-Ming Yao. 2025. <em>Verbal Process Supervision Elicits Better Coding Agents</em>. <a href="https://arxiv.org/abs/2503.18494">https://arxiv.org/abs/2503.18494</a>.
+</div>
+<div id="ref-chen2025cod" class="csl-entry" role="listitem">
+Chen, Junying, Chi Gui, Anningzhe Gao, et al. 2025. <span>“CoD, Towards an Interpretable Medical Agent Using Chain of Diagnosis.”</span> <em>Findings of the Association for Computational Linguistics: ACL 2025</em>, 14345–68. <a href="https://doi.org/10.18653/v1/2025.findings-acl.740">https://doi.org/10.18653/v1/2025.findings-acl.740</a>.
+</div>
 <div id="ref-cheng2024exploring" class="csl-entry" role="listitem">
-Cheng, Yuheng, Ceyao Zhang, Zhengwen Zhang, Xiangrui Meng, Sirui Hong, Wenhao Li, Zihao Wang, et al. 2024. <span>“Exploring Large Language Model Based Intelligent Agents: Definitions, Methods, and Prospects.”</span> <em>arXiv Preprint arXiv:2401.03428</em>.
+Cheng, Yuheng, Ceyao Zhang, Zhengwen Zhang, et al. 2024. <em>Exploring Large Language Model Based Intelligent Agents: Definitions, Methods, and Prospects</em>. <a href="https://arxiv.org/abs/2401.03428">https://arxiv.org/abs/2401.03428</a>.
+</div>
+<div id="ref-decisionphysics2026crisis" class="csl-entry" role="listitem">
+Decision Physics. 2026. <em>The Explainability Crisis in Machine Learning</em>. Decision Physics. <a href="https://www.decisionphysics.com/articles/explainability-crisis-machine-learning/">https://www.decisionphysics.com/articles/explainability-crisis-machine-learning/</a>.
+</div>
+<div id="ref-dextralabs2026fail" class="csl-entry" role="listitem">
+Dextra Labs. 2026. <em>Why Multi-Agent Systems Fail Without Orchestration</em>. DEV Community. <a href="https://dev.to/dextralabs/why-multi-agent-systems-fail-without-orchestration-53jl">https://dev.to/dextralabs/why-multi-agent-systems-fail-without-orchestration-53jl</a>.
+</div>
+<div id="ref-endla2025autoopticode" class="csl-entry" role="listitem">
+Endla, Purushotham, Jayendra Gopal Thatipudi, Madhavi Latha Talluri, Pradeep K. Joshi, Amita Joshi, and M. Anuradha. 2025. <span>“AutoOptiCode-LLM: An Autonomous Large Language Model Framework for Intelligent Code Generation and Optimization.”</span> <em>2025 6th International Conference on IoT Based Control Networks and Intelligent Systems (ICICNIS)</em>. <a href="https://doi.org/10.1109/ICICNIS66685.2025.11315793">https://doi.org/10.1109/ICICNIS66685.2025.11315793</a>.
+</div>
+<div id="ref-feng2026embodied" class="csl-entry" role="listitem">
+Feng, Zhaohan, Ruiqi Xue, Lei Yuan, et al. 2026. <span>“Multi-Agent Embodied AI: Advances and Future Directions.”</span> <em>Science China Information Sciences</em> 69 (5): 151202. <a href="https://doi.org/10.1007/s11432-025-4820-4">https://doi.org/10.1007/s11432-025-4820-4</a>.
+</div>
+<div id="ref-ferrag2026review" class="csl-entry" role="listitem">
+Ferrag, Mohamed Amine, Norbert Tihanyi, and Mérouane Debbah. 2026. <span>“From LLM Reasoning to Autonomous AI Agents: A Comprehensive Review.”</span> <em>IEEE Access</em> 14: 84237–85. <a href="https://doi.org/10.1109/ACCESS.2026.3698694">https://doi.org/10.1109/ACCESS.2026.3698694</a>.
+</div>
+<div id="ref-gottweis2025ai" class="csl-entry" role="listitem">
+Gottweis, Juraj, and Vivek Natarajan. 2025. <em>Accelerating Scientific Breakthroughs with an AI Co-Scientist</em>. Google Research Blog. <a href="https://research.google/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/">https://research.google/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/</a>.
+</div>
+<div id="ref-guo2024multiagents" class="csl-entry" role="listitem">
+Guo, Taicheng, Xiuying Chen, Yaqi Wang, et al. 2024. <em>Large Language Model Based Multi-Agents: A Survey of Progress and Challenges</em>. <a href="https://arxiv.org/abs/2402.01680">https://arxiv.org/abs/2402.01680</a>.
+</div>
+<div id="ref-hadfield2025multiagent" class="csl-entry" role="listitem">
+Hadfield, Jeremy, Barry Zhang, Kenneth Lien, Florian Scholz, Jeremy Fox, and Daniel Ford. 2025. <em>How We Built Our Multi-Agent Research System</em>. Anthropic Engineering. <a href="https://www.anthropic.com/engineering/multi-agent-research-system">https://www.anthropic.com/engineering/multi-agent-research-system</a>.
+</div>
+<div id="ref-huang2025hallucination" class="csl-entry" role="listitem">
+Huang, Lei, Weijiang Yu, Weitao Ma, et al. 2025. <span>“A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions.”</span> <em>ACM Transactions on Information Systems</em> 43 (2). <a href="https://doi.org/10.1145/3703155">https://doi.org/10.1145/3703155</a>.
+</div>
+<div id="ref-li2025agentoriented" class="csl-entry" role="listitem">
+Li, Ao, Yuexiang Xie, Songze Li, Fugee Tsung, Bolin Ding, and Yaliang Li. 2025. <span>“Agent-Oriented Planning in Multi-Agent Systems.”</span> <em>International Conference on Learning Representations</em>. <a href="https://proceedings.iclr.cc/paper_files/paper/2025/hash/31610e68fe41a62e460e044216a10766-Abstract-Conference.html">https://proceedings.iclr.cc/paper_files/paper/2025/hash/31610e68fe41a62e460e044216a10766-Abstract-Conference.html</a>.
+</div>
+<div id="ref-li2024survey" class="csl-entry" role="listitem">
+Li, Xinyi, Sai Wang, Siqi Zeng, Yu Wu, and Yi Yang. 2024. <span>“A Survey on LLM-Based Multi-Agent Systems: Workflow, Infrastructure, and Challenges.”</span> <em>Vicinagearth</em> 1: 9. <a href="https://doi.org/10.1007/s44336-024-00009-2">https://doi.org/10.1007/s44336-024-00009-2</a>.
+</div>
+<div id="ref-liang2025surveyx" class="csl-entry" role="listitem">
+Liang, Xun, Jiawei Yang, Yezhaohui Wang, et al. 2025. <em>SurveyX: Academic Survey Automation via Large Language Models</em>. <a href="https://arxiv.org/abs/2502.14776">https://arxiv.org/abs/2502.14776</a>.
+</div>
+<div id="ref-liu2025unifying" class="csl-entry" role="listitem">
+Liu, Lihui, and Kai Shu. 2025. <span>“Unifying Knowledge in Agentic LLMs: Concepts, Methods, and Recent Advancements.”</span> <em>ACM SIGKDD Explorations Newsletter</em> 27 (2): 88–96. <a href="https://doi.org/10.1145/3787470.3787478">https://doi.org/10.1145/3787470.3787478</a>.
+</div>
+<div id="ref-pan2025modular" class="csl-entry" role="listitem">
+Pan, Shuaidong, and Di Wu. 2025. <em>Modular Task Decomposition and Dynamic Collaboration in Multi-Agent Systems Driven by Large Language Models</em>. <a href="https://arxiv.org/abs/2511.01149">https://arxiv.org/abs/2511.01149</a>.
+</div>
+<div id="ref-park2023generative" class="csl-entry" role="listitem">
+Park, Joon Sung, Joseph C. O’Brien, Carrie J. Cai, Meredith Ringel Morris, Percy Liang, and Michael S. Bernstein. 2023. <span>“Generative Agents: Interactive Simulacra of Human Behavior.”</span> <em>Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology</em>. <a href="https://doi.org/10.1145/3586183.3606763">https://doi.org/10.1145/3586183.3606763</a>.
+</div>
+<div id="ref-plaat2025agentic" class="csl-entry" role="listitem">
+Plaat, Aske, Max van Duijn, Niki van Stein, Mike Preuss, Peter van der Putten, and Kees Joost Batenburg. 2025. <span>“Agentic Large Language Models, a Survey.”</span> <em>Journal of Artificial Intelligence Research</em> 84 (29). <a href="https://doi.org/10.1613/jair.1.18675">https://doi.org/10.1613/jair.1.18675</a>.
+</div>
+<div id="ref-qi2026beyond" class="csl-entry" role="listitem">
+Qi, Shihao, Jie Ma, Rui Xing, et al. 2026. <em>Beyond Individual Intelligence: Surveying Collaboration, Failure Attribution, and Self-Evolution in LLM-Based Multi-Agent Systems</em>. <a href="https://arxiv.org/abs/2605.14892">https://arxiv.org/abs/2605.14892</a>.
+</div>
+<div id="ref-qin2026large" class="csl-entry" role="listitem">
+Qin, Libo, Qiguang Chen, Xiachong Feng, et al. 2026. <span>“Large Language Models Meet NLP: A Survey.”</span> <em>Frontiers of Computer Science</em> 20: 2011361. <a href="https://doi.org/10.1007/s11704-025-50472-3">https://doi.org/10.1007/s11704-025-50472-3</a>.
+</div>
+<div id="ref-steenstra2025risk" class="csl-entry" role="listitem">
+Steenstra, Ian, and Timothy W. Bickmore. 2025. <em>A Risk Ontology for Evaluating AI-Powered Psychotherapy Virtual Agents</em>. <a href="https://arxiv.org/abs/2505.15108">https://arxiv.org/abs/2505.15108</a>.
+</div>
+<div id="ref-tang2024medagents" class="csl-entry" role="listitem">
+Tang, Xiangru, Anni Zou, Zhuosheng Zhang, et al. 2024. <span>“MedAgents: Large Language Models as Collaborators for Zero-Shot Medical Reasoning.”</span> <em>Findings of the Association for Computational Linguistics: ACL 2024</em>, 599–621. <a href="https://doi.org/10.18653/v1/2024.findings-acl.33">https://doi.org/10.18653/v1/2024.findings-acl.33</a>.
+</div>
+<div id="ref-tanveer2026orchestration" class="csl-entry" role="listitem">
+Tanveer, Rizwan. 2026. <em>Multi-Agent Orchestration: Coordination, Trust, and Cascading Failures</em>. SSRN. <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6734798">https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6734798</a>.
+</div>
+<div id="ref-wang2023autonomous" class="csl-entry" role="listitem">
+Wang, Lei, Chen Ma, Xueyang Feng, et al. 2023. <em>A Survey on Large Language Model Based Autonomous Agents</em>. <a href="https://arxiv.org/abs/2308.11432">https://arxiv.org/abs/2308.11432</a>.
+</div>
+<div id="ref-wu2026memory" class="csl-entry" role="listitem">
+Wu, Shanglin, and Kai Shu. 2026. <span>“Memory in LLM-Based Multi-Agent Systems: Mechanisms, Challenges, and Collective Intelligence.”</span> In <em>Advances in Knowledge Discovery and Data Mining</em>. Springer. <a href="https://doi.org/10.1007/978-981-92-1468-6_10">https://doi.org/10.1007/978-981-92-1468-6_10</a>.
+</div>
+<div id="ref-zhou2026fragmentation" class="csl-entry" role="listitem">
+Zhou, Caishen, Yihong Tang, Kehai Chen, et al. 2026. <em>From Fragmentation to Systematic Design: Architecting LLM-Based Multi-Agent Systems</em>. TechRxiv. <a href="https://doi.org/10.36227/techrxiv.176827304.41872996/v2">https://doi.org/10.36227/techrxiv.176827304.41872996/v2</a>.
+</div>
+<div id="ref-zhou2024zodiac" class="csl-entry" role="listitem">
+Zhou, Yuan, Peng Zhang, Mengya Song, et al. 2024. <em>Zodiac: A Cardiologist-Level LLM Framework for Multi-Agent Diagnostics</em>. <a href="https://arxiv.org/abs/2410.02026">https://arxiv.org/abs/2410.02026</a>.
 </div>
 </div>
 </section>

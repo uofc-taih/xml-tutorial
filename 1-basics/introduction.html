@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Introduction – Explainable ML Tutorial</title>
+<title>1&nbsp; Introduction – Learn XAI: Explainable AI for Everyone</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -24,7 +30,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -54,15 +59,14 @@ div.csl-indent {
 <link href="../0-2-introduction.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-af35a17dcf6f560f80e69c72e731d520.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-154bd0a5ceb7e046316d8c993cde5dd9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -95,7 +99,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -150,7 +154,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Explainable ML Tutorial</a> 
+      <a href="../">Learn XAI: Explainable AI for Everyone</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -355,7 +359,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../4-xmas/taxonomy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Taxonomy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">What are agents?</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -453,9 +457,9 @@ window.Quarto = {
 <p>There are many taxonomies in which interpretability methods can be categorized, they can be categorized according to the nature of the learning algorithm or the stage at which the model becomes interpretable into Intrinsic and Post-Hoc methods, They can also be categorized into Local and Global methods according to the scope of explanations.</p>
 <section id="intrinsic-vs.-post-hoc-methods" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="intrinsic-vs.-post-hoc-methods"><span class="header-section-number">1.1</span> Intrinsic vs.&nbsp;Post-Hoc Methods</h2>
-<p>Intrinsic methods indicate that the model itself is inherently interpretable by design the algorithm itself tends to be less complex and the factors affecting the decision making process are always disentangled <span class="citation" data-cites="molnar2025">(<a href="../references.html#ref-molnar2025" role="doc-biblioref">Molnar 2025</a>)</span>. Linear Regression, Logistic Regression, Generalized linear models (GLMs) <span class="citation" data-cites="wang2025tutorialregressionanalysislinear">(<a href="../references.html#ref-wang2025tutorialregressionanalysislinear" role="doc-biblioref">Wang and Ji 2025</a>)</span> and Decision Trees are examples of models that are interpretable by design, they either show the importance of each feature, or come up with human readable decision rules <span class="citation" data-cites="MILLER20191 molnar2025">(<a href="../references.html#ref-MILLER20191" role="doc-biblioref">Miller 2019</a>; <a href="../references.html#ref-molnar2025" role="doc-biblioref">Molnar 2025</a>)</span>. While those models are extremely simple, efficient and interpretable they face many limitations when deployed to the real world, For example linear models can be interpreted by measuring the feature importance; by looking into the coefficient of each feature in the weight matrix <span class="citation" data-cites="molnar2025">(<a href="../references.html#ref-molnar2025" role="doc-biblioref">Molnar 2025</a>)</span>. However, they are built on very strict assumptions and inductive biases such as linearity, independence, and absence of heteroscedasticity which are difficult to gurantee in the real world <span class="citation" data-cites="Hastie+al:2009">(<a href="../references.html#ref-Hastie+al:2009" role="doc-biblioref">Hastie, Tibshirani, and Friedman 2009</a>)</span>, this limits the ability of such algorithms to capture true, non-linear patterns underlying the data or even model complex high dimensional data which limits the predictive performance of such models.</p>
+<p>Intrinsic methods indicate that the model itself is inherently interpretable by design the algorithm itself tends to be less complex and the factors affecting the decision making process are always disentangled <span class="citation" data-cites="molnar2025">(<a href="../references.html#ref-molnar2025" role="doc-biblioref">Molnar 2025</a>)</span>. Linear Regression, Logistic Regression, Generalized linear models (GLMs) <span class="citation" data-cites="wang2025tutorialregressionanalysislinear">(<a href="../references.html#ref-wang2025tutorialregressionanalysislinear" role="doc-biblioref">Wang and Ji 2025</a>)</span> and Decision Trees are examples of models that are interpretable by design, they either show the importance of each feature, or come up with human readable decision rules <span class="citation" data-cites="MILLER20191 molnar2025">(<a href="../references.html#ref-MILLER20191" role="doc-biblioref">Miller 2019</a>; <a href="../references.html#ref-molnar2025" role="doc-biblioref">Molnar 2025</a>)</span>. While those models are extremely simple, efficient and interpretable they face many limitations when deployed to the real world, For example linear models can be interpreted by measuring the feature importance; by looking into the coefficient of each feature in the weight matrix <span class="citation" data-cites="molnar2025">(<a href="../references.html#ref-molnar2025" role="doc-biblioref">Molnar 2025</a>)</span>. However, they are built on very strict assumptions and inductive biases such as linearity, independence, and absence of heteroscedasticity which are difficult to gurantee in the real world <span class="citation" data-cites="Hastie+al:2009">(<a href="../references.html#ref-Hastie+al:2009" role="doc-biblioref">Hastie et al. 2009</a>)</span>, this limits the ability of such algorithms to capture true, non-linear patterns underlying the data or even model complex high dimensional data which limits the predictive performance of such models.</p>
 <p>While linear models fail to model non-linear data, tree-based models come into play. They work by splitting the data multiple times according to discovered thresholds over the values of the features <span class="citation" data-cites="molnar2025">(<a href="../references.html#ref-molnar2025" role="doc-biblioref">Molnar 2025</a>)</span>. Each learning algorithm uses a different criterion to grow the optimal tree. For example, ID3 measures the Information Gain criterion to find the best splits <span class="citation" data-cites="Quinlan1986ID3">(<a href="../references.html#ref-Quinlan1986ID3" role="doc-biblioref">Quinlan 1986</a>)</span>, While CART optimizes for the Gini Impurity <span class="citation" data-cites="breiman1984cart">(<a href="../references.html#ref-breiman1984cart" role="doc-biblioref">Breiman et al. 1984</a>)</span>. All tree based algorithms are capable of modeling non-linear data. Those models are Interpretable intrinsically; you can traverse the tree starting from the root to the leaf in order to find the decision in the form of sequential If-Else statements. However, due to the greedy nature of the learning algorithm it tends to increase the depth of the tree drastically leading to a trade-off between error minimization and being easily interpretable <span class="citation" data-cites="molnar2025">(<a href="../references.html#ref-molnar2025" role="doc-biblioref">Molnar 2025</a>)</span>.</p>
-<p>On the other hand, Post-Hoc methods work by reporting how an already trained model produces its predictions, For any given input it tries to provide understandable explanations for the learned decision boundaries by the more complex black-box models <span class="citation" data-cites="arrieta2019explainableartificialintelligencexai">Molnar (<a href="../references.html#ref-molnar2025" role="doc-biblioref">2025</a>)</span>. Post-Hoc methods can be categorized into two main categories: Model-Agnostic methods, and model model-specific methods <span class="citation" data-cites="arrieta2019explainableartificialintelligencexai">(<a href="../references.html#ref-arrieta2019explainableartificialintelligencexai" role="doc-biblioref">Arrieta et al. 2019</a>)</span>, Where the former can be plugged into any model to explain its decision space, e.g perturbation based approaches like LIME <span class="citation" data-cites="ribeiro2016whyitrustyou">(<a href="../references.html#ref-ribeiro2016whyitrustyou" role="doc-biblioref">Ribeiro, Singh, and Guestrin 2016</a>)</span> and SHAP <span class="citation" data-cites="lundberg2017unifiedapproachinterpretingmodel">(<a href="../references.html#ref-lundberg2017unifiedapproachinterpretingmodel" role="doc-biblioref">Lundberg and Lee 2017</a>)</span> that predict how the decision space changes when the input data point is perturbed, While the latter is specific to a model architecture like analyzing attention maps in transformer networks, or gradient-based methods that look into the gradient of the input with respect to the loss function to provide pixel-level explanations like Saliency Maps <span class="citation" data-cites="simonyan2014deepinsideconvolutionalnetworks">(<a href="../references.html#ref-simonyan2014deepinsideconvolutionalnetworks" role="doc-biblioref">Simonyan, Vedaldi, and Zisserman 2014</a>)</span>, class activation maps (CAM) <span class="citation" data-cites="minh2023overviewclassactivationmaps">(<a href="../references.html#ref-minh2023overviewclassactivationmaps" role="doc-biblioref">Minh 2023</a>)</span> and it varients like GradCAMs <span class="citation" data-cites="Selvaraju_2019">(<a href="../references.html#ref-Selvaraju_2019" role="doc-biblioref">Selvaraju et al. 2019</a>)</span> in convolutional neural networks (CNNs) are also used to quantify the amount of input activation conditioned on the output class to provide a heat-map for the relevant regions for the predicted class.</p>
+<p>On the other hand, Post-Hoc methods work by reporting how an already trained model produces its predictions, For any given input it tries to provide understandable explanations for the learned decision boundaries by the more complex black-box models <span class="citation" data-cites="arrieta2019explainableartificialintelligencexai">Molnar (<a href="../references.html#ref-molnar2025" role="doc-biblioref">2025</a>)</span>. Post-Hoc methods can be categorized into two main categories: Model-Agnostic methods, and model model-specific methods <span class="citation" data-cites="arrieta2019explainableartificialintelligencexai">(<a href="../references.html#ref-arrieta2019explainableartificialintelligencexai" role="doc-biblioref">Arrieta et al. 2019</a>)</span>, Where the former can be plugged into any model to explain its decision space, e.g perturbation based approaches like LIME <span class="citation" data-cites="ribeiro2016whyitrustyou">(<a href="../references.html#ref-ribeiro2016whyitrustyou" role="doc-biblioref">Ribeiro et al. 2016</a>)</span> and SHAP <span class="citation" data-cites="lundberg2017unifiedapproachinterpretingmodel">(<a href="../references.html#ref-lundberg2017unifiedapproachinterpretingmodel" role="doc-biblioref">Lundberg and Lee 2017</a>)</span> that predict how the decision space changes when the input data point is perturbed, While the latter is specific to a model architecture like analyzing attention maps in transformer networks, or gradient-based methods that look into the gradient of the input with respect to the loss function to provide pixel-level explanations like Saliency Maps <span class="citation" data-cites="simonyan2014deepinsideconvolutionalnetworks">(<a href="../references.html#ref-simonyan2014deepinsideconvolutionalnetworks" role="doc-biblioref">Simonyan et al. 2014</a>)</span>, class activation maps (CAM) <span class="citation" data-cites="minh2023overviewclassactivationmaps">(<a href="../references.html#ref-minh2023overviewclassactivationmaps" role="doc-biblioref">Minh 2023</a>)</span> and it varients like GradCAMs <span class="citation" data-cites="Selvaraju_2019">(<a href="../references.html#ref-Selvaraju_2019" role="doc-biblioref">Selvaraju et al. 2019</a>)</span> in convolutional neural networks (CNNs) are also used to quantify the amount of input activation conditioned on the output class to provide a heat-map for the relevant regions for the predicted class.</p>
 <section id="linear-regression" class="level3" data-number="1.1.1">
 <h3 data-number="1.1.1" class="anchored" data-anchor-id="linear-regression"><span class="header-section-number">1.1.1</span> Linear Regression</h3>
 <p>Linear regression represents the output variable <span class="math inline">\(y\)</span> as a linear combination of the input features <span class="math inline">\(\mathbf{X}\)</span> weighted by the scaling coefficient matrix <span class="math inline">\(\boldsymbol{\beta}\)</span>. Mathematically:<span class="math display">\[\mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon},\]</span> <span class="math display">\[\mathbf{X} \in \mathbb{R}^{n \times p}, \quad \mathbf{y} \in \mathbb{R}^{n}, \quad \boldsymbol{\beta} \in \mathbb{R}^{p}, \quad \boldsymbol{\varepsilon} \in \mathbb{R}^{n}.\]</span>where <span class="math inline">\(\boldsymbol{\varepsilon}\)</span> is called the irreducible error term, it is typically considered a random variable with zero mean and constant variance. It captures the noise, and the variations in the data that the model failed to explain using the given features, <span class="math inline">\(n\)</span> is the number of training instances, and <span class="math inline">\(p\)</span> is the number of features.</p>
@@ -543,24 +547,24 @@ Figure&nbsp;1.3: When features are mutually collinear the explanations provided 
 <h3 data-number="1.4.6" class="anchored" data-anchor-id="summary"><span class="header-section-number">1.4.6</span> Summary</h3>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-arrieta2019explainableartificialintelligencexai" class="csl-entry" role="listitem">
-Arrieta, Alejandro Barredo, Natalia Díaz-Rodríguez, Javier Del Ser, Adrien Bennetot, Siham Tabik, Alberto Barbado, Salvador García, et al. 2019. <span>“Explainable Artificial Intelligence (XAI): Concepts, Taxonomies, Opportunities and Challenges Toward Responsible AI.”</span> <a href="https://arxiv.org/abs/1910.10045">https://arxiv.org/abs/1910.10045</a>.
+Arrieta, Alejandro Barredo, Natalia Díaz-Rodríguez, Javier Del Ser, et al. 2019. <em>Explainable Artificial Intelligence (XAI): Concepts, Taxonomies, Opportunities and Challenges Toward Responsible AI</em>. <a href="https://arxiv.org/abs/1910.10045">https://arxiv.org/abs/1910.10045</a>.
 </div>
 <div id="ref-breiman1984cart" class="csl-entry" role="listitem">
 Breiman, Leo, Jerome H Friedman, Richard A Olshen, and Charles J Stone. 1984. <em>Classification and Regression Trees</em>. Wadsworth &amp; Brooks/Cole Advanced Books &amp; Software.
 </div>
 <div id="ref-Hastie+al:2009" class="csl-entry" role="listitem">
-Hastie, Trevor, Robert Tibshirani, and Jerome Friedman. 2009. <em>The Elements of Statistical Learning: Data Mining, Inference and Prediction</em>. 2nd ed. springer.
+Hastie, Trevor, Robert Tibshirani, and Jerome Friedman. 2009. <em>The Elements of Statistical Learning: Data Mining, Inference and Prediction</em>. 2nd ed. Springer.
 </div>
 <div id="ref-lundberg2017unifiedapproachinterpretingmodel" class="csl-entry" role="listitem">
-Lundberg, Scott, and Su-In Lee. 2017. <span>“A Unified Approach to Interpreting Model Predictions.”</span> <a href="https://arxiv.org/abs/1705.07874">https://arxiv.org/abs/1705.07874</a>.
+Lundberg, Scott, and Su-In Lee. 2017. <em>A Unified Approach to Interpreting Model Predictions</em>. <a href="https://arxiv.org/abs/1705.07874">https://arxiv.org/abs/1705.07874</a>.
 </div>
 <div id="ref-MILLER20191" class="csl-entry" role="listitem">
 Miller, Tim. 2019. <span>“Explanation in Artificial Intelligence: Insights from the Social Sciences.”</span> <em>Artificial Intelligence</em> 267: 1–38. https://doi.org/<a href="https://doi.org/10.1016/j.artint.2018.07.007">https://doi.org/10.1016/j.artint.2018.07.007</a>.
 </div>
 <div id="ref-minh2023overviewclassactivationmaps" class="csl-entry" role="listitem">
-Minh, Anh Pham Thi. 2023. <span>“Overview of Class Activation Maps for Visualization Explainability.”</span> <a href="https://arxiv.org/abs/2309.14304">https://arxiv.org/abs/2309.14304</a>.
+Minh, Anh Pham Thi. 2023. <em>Overview of Class Activation Maps for Visualization Explainability</em>. <a href="https://arxiv.org/abs/2309.14304">https://arxiv.org/abs/2309.14304</a>.
 </div>
 <div id="ref-molnar2025" class="csl-entry" role="listitem">
 Molnar, Christoph. 2025. <em>Interpretable Machine Learning: A Guide for Making Black Box Models Explainable</em>. 3rd ed. <a href="https://christophm.github.io/interpretable-ml-book">https://christophm.github.io/interpretable-ml-book</a>.
@@ -569,19 +573,19 @@ Molnar, Christoph. 2025. <em>Interpretable Machine Learning: A Guide for Making 
 Quinlan, J. R. 1986. <span>“Induction of Decision Trees.”</span> <em>Machine Learning</em> 1 (1): 81–106. <a href="https://doi.org/10.1007/BF00116251">https://doi.org/10.1007/BF00116251</a>.
 </div>
 <div id="ref-ribeiro2016whyitrustyou" class="csl-entry" role="listitem">
-Ribeiro, Marco Tulio, Sameer Singh, and Carlos Guestrin. 2016. <span>“"Why Should i Trust You?": Explaining the Predictions of Any Classifier.”</span> <a href="https://arxiv.org/abs/1602.04938">https://arxiv.org/abs/1602.04938</a>.
+Ribeiro, Marco Tulio, Sameer Singh, and Carlos Guestrin. 2016. <em>"Why Should i Trust You?": Explaining the Predictions of Any Classifier</em>. <a href="https://arxiv.org/abs/1602.04938">https://arxiv.org/abs/1602.04938</a>.
 </div>
 <div id="ref-ruder2017overviewgradientdescentoptimization" class="csl-entry" role="listitem">
-Ruder, Sebastian. 2017. <span>“An Overview of Gradient Descent Optimization Algorithms.”</span> <a href="https://arxiv.org/abs/1609.04747">https://arxiv.org/abs/1609.04747</a>.
+Ruder, Sebastian. 2017. <em>An Overview of Gradient Descent Optimization Algorithms</em>. <a href="https://arxiv.org/abs/1609.04747">https://arxiv.org/abs/1609.04747</a>.
 </div>
 <div id="ref-Selvaraju_2019" class="csl-entry" role="listitem">
 Selvaraju, Ramprasaath R., Michael Cogswell, Abhishek Das, Ramakrishna Vedantam, Devi Parikh, and Dhruv Batra. 2019. <span>“Grad-CAM: Visual Explanations from Deep Networks via Gradient-Based Localization.”</span> <em>International Journal of Computer Vision</em> 128 (2): 336–59. <a href="https://doi.org/10.1007/s11263-019-01228-7">https://doi.org/10.1007/s11263-019-01228-7</a>.
 </div>
 <div id="ref-simonyan2014deepinsideconvolutionalnetworks" class="csl-entry" role="listitem">
-Simonyan, Karen, Andrea Vedaldi, and Andrew Zisserman. 2014. <span>“Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps.”</span> <a href="https://arxiv.org/abs/1312.6034">https://arxiv.org/abs/1312.6034</a>.
+Simonyan, Karen, Andrea Vedaldi, and Andrew Zisserman. 2014. <em>Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps</em>. <a href="https://arxiv.org/abs/1312.6034">https://arxiv.org/abs/1312.6034</a>.
 </div>
 <div id="ref-wang2025tutorialregressionanalysislinear" class="csl-entry" role="listitem">
-Wang, Jingyuan, and Jiahao Ji. 2025. <span>“A Tutorial on Regression Analysis: From Linear Models to Deep Learning – Lecture Notes on Artificial Intelligence.”</span> <a href="https://arxiv.org/abs/2512.04747">https://arxiv.org/abs/2512.04747</a>.
+Wang, Jingyuan, and Jiahao Ji. 2025. <em>A Tutorial on Regression Analysis: From Linear Models to Deep Learning – Lecture Notes on Artificial Intelligence</em>. <a href="https://arxiv.org/abs/2512.04747">https://arxiv.org/abs/2512.04747</a>.
 </div>
 </div>
 </section>

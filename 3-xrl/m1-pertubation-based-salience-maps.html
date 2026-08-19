@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>17&nbsp; Pertubation-Based Saliency Maps for RL – Explainable ML Tutorial</title>
+<title>17&nbsp; Pertubation-Based Saliency Maps for RL – Learn XAI: Explainable AI for Everyone</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -24,7 +30,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -54,15 +59,14 @@ div.csl-indent {
 <link href="../3-xrl/taxonomy.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-af35a17dcf6f560f80e69c72e731d520.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-154bd0a5ceb7e046316d8c993cde5dd9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -95,7 +99,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -150,7 +154,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Explainable ML Tutorial</a> 
+      <a href="../">Learn XAI: Explainable AI for Everyone</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -355,7 +359,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../4-xmas/taxonomy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Taxonomy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">What are agents?</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -528,19 +532,19 @@ Figure&nbsp;17.1: Tunneling strategy in Atari Breakout
 <section id="related" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="related">Related</h2>
 <ul>
-<li>Instead of pertubation-based saliency maps, prior work has used Jacobian-based ones <span class="citation" data-cites="wang2016dueling zahavy2016graying">(<a href="../references.html#ref-wang2016dueling" role="doc-biblioref">Wang et al. 2016</a>; <a href="../references.html#ref-zahavy2016graying" role="doc-biblioref">Zahavy, Ben-Zrihem, and Mannor 2016</a>)</span>.</li>
+<li>Instead of pertubation-based saliency maps, prior work has used Jacobian-based ones <span class="citation" data-cites="wang2016dueling zahavy2016graying">(<a href="../references.html#ref-wang2016dueling" role="doc-biblioref">Wang et al. 2016</a>; <a href="../references.html#ref-zahavy2016graying" role="doc-biblioref">Zahavy et al. 2016</a>)</span>.</li>
 </ul>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-greydanus2018visualizing" class="csl-entry" role="listitem">
-Greydanus, Samuel, Anurag Koul, Jonathan Dodge, and Alan Fern. 2018. <span>“Visualizing and Understanding <span>A</span>tari Agents.”</span> In <em>International Conference on Machine Learning</em>, 1792–1801. PMLR.
+Greydanus, Samuel, Anurag Koul, Jonathan Dodge, and Alan Fern. 2018. <span>“Visualizing and Understanding <span>A</span>tari Agents.”</span> <em>International Conference on Machine Learning</em>, 1792–801.
 </div>
 <div id="ref-wang2016dueling" class="csl-entry" role="listitem">
-Wang, Ziyu, Tom Schaul, Matteo Hessel, Hado Hasselt, Marc Lanctot, and Nando Freitas. 2016. <span>“Dueling Network Architectures for Deep Reinforcement Learning.”</span> In <em>International Conference on Machine Learning</em>, 1995–2003. PMLR.
+Wang, Ziyu, Tom Schaul, Matteo Hessel, Hado Hasselt, Marc Lanctot, and Nando Freitas. 2016. <span>“Dueling Network Architectures for Deep Reinforcement Learning.”</span> <em>International Conference on Machine Learning</em>, 1995–2003.
 </div>
 <div id="ref-zahavy2016graying" class="csl-entry" role="listitem">
-Zahavy, Tom, Nir Ben-Zrihem, and Shie Mannor. 2016. <span>“Graying the Black Box: Understanding <span>DQN</span>s.”</span> In <em>International Conference on Machine Learning</em>, 1899–1908. PMLR.
+Zahavy, Tom, Nir Ben-Zrihem, and Shie Mannor. 2016. <span>“Graying the Black Box: Understanding <span>DQN</span>s.”</span> <em>International Conference on Machine Learning</em>, 1899–908.
 </div>
 </div>
 </section>
