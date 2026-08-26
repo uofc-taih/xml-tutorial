@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>15&nbsp; Introduction to Explainable RL – Learn XAI: Explainable AI for Everyone</title>
+<title>15&nbsp; Introduction – Learn XAI: Explainable AI for Everyone</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,7 +26,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -89,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../3-xrl/introduction.html">Explainable Reinforcement Learning</a></li><li class="breadcrumb-item"><a href="../3-xrl/introduction.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Explainable RL</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../3-xrl/introduction.html">Explainable Reinforcement Learning</a></li><li class="breadcrumb-item"><a href="../3-xrl/introduction.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -250,7 +269,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../3-xrl/introduction.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Explainable RL</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -362,15 +381,16 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#foundations" id="toc-foundations" class="nav-link active" data-scroll-target="#foundations"><span class="header-section-number">15.1</span> Foundations</a></li>
   <li><a href="#challenges-in-xrl" id="toc-challenges-in-xrl" class="nav-link" data-scroll-target="#challenges-in-xrl"><span class="header-section-number">15.2</span> Challenges in XRL</a></li>
+  <li><a href="#overview-of-the-works-well-cover." id="toc-overview-of-the-works-well-cover." class="nav-link" data-scroll-target="#overview-of-the-works-well-cover."><span class="header-section-number">15.3</span> Overview of the works we’ll cover.</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../3-xrl/introduction.html">Explainable Reinforcement Learning</a></li><li class="breadcrumb-item"><a href="../3-xrl/introduction.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Explainable RL</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../3-xrl/introduction.html">Explainable Reinforcement Learning</a></li><li class="breadcrumb-item"><a href="../3-xrl/introduction.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction to Explainable RL</span></h1>
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
 </div>
 
 
@@ -387,37 +407,12 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Note to self:</p>
-<p>Before:</p>
-<ul>
-<li><p>Foundations and taxonomy</p>
-<ul>
-<li>split into two separate pages</li>
-</ul></li>
-<li><p>Visualization-based approaches</p>
-<ul>
-<li>mentioned in the text, doesn’t need its own section</li>
-</ul></li>
-<li><p>Policy extraction and decision trees</p>
-<ul>
-<li>polcicy-level XRL, okay</li>
-</ul></li>
-<li><p>Explaining decisions through critical states</p>
-<ul>
-<li>hmm, feature importance?</li>
-</ul></li>
-<li><p>Trajectory-based methods</p>
-<ul>
-<li>MDP and/or policy-level</li>
-</ul></li>
-<li><p>Explainability via counterfactual reasoning</p></li>
-<li><p>Evaluation of XRL methods</p></li>
-</ul>
 <section id="foundations" class="level2" data-number="15.1">
 <h2 data-number="15.1" class="anchored" data-anchor-id="foundations"><span class="header-section-number">15.1</span> Foundations</h2>
+<p>Reinforcement learning (RL) is all about the interaction of an agent with an environment. In each state, the agent chooses an action, the environment transitions to a new state and provides a scalar reward. New state only depends on current state and action (Markov property). RL methods learn behavior policies via trial-and-error to maximize the cumulative reward, a.k.a. the return.</p>
 <p>There’s value-based and policy-based RL.</p>
 <p>Why is it important? For example, deploying RL-based algorithms in finance requires algorithmic transparency to comply with regulations; in sequential human-AI collaboration process, users need to understand agent behavior to trust and cooperate.</p>
-<p>When it comes to RL, many things are desirable: fast learning (i.e., sample efficiency), high final performance, safety guarantees, transparent behavior processes, etc. To keep this tutorial focused, we consider constrained RL formulations for safe RL out of scope.</p>
+<p>When it comes to RL, many things are desirable: fast learning (i.e., sample efficiency), high final performance, safety guarantees, transparent behavior processes, etc. To keep this tutorial focused, we consider constrained RL formulations for safe RL out of scope. http://localhost:3493/3-xrl/introduction.html</p>
 </section>
 <section id="challenges-in-xrl" class="level2" data-number="15.2">
 <h2 data-number="15.2" class="anchored" data-anchor-id="challenges-in-xrl"><span class="header-section-number">15.2</span> Challenges in XRL</h2>
@@ -426,8 +421,84 @@ ul.task-list li input[type="checkbox"] {
 <li>actions are not independent of each other -&gt; explanation can’t be either</li>
 <li>no static dataset, agent-generated data</li>
 </ul>
+</section>
+<section id="overview-of-the-works-well-cover." class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="overview-of-the-works-well-cover."><span class="header-section-number">15.3</span> Overview of the works we’ll cover.</h2>
+<p>The slides that we base the XRL section on are currently structured in this way:</p>
+<ol type="1">
+<li>Foundations and taxonomy
+<ul>
+<li>MDP</li>
+<li>Policies and Values</li>
+<li>Function Approximation -&gt; <em>deep</em> RL</li>
+<li>Example scenario (high-level medical example)</li>
+<li>Why is explainability in RL important?</li>
+<li>RL != SL</li>
+<li>Taxonomy</li>
+</ul></li>
+<li>Visualization-based approaches
+<ul>
+<li>Value Function Visualization</li>
+<li>DQNViz (visulaizing DQN) <span class="citation" data-cites="wang2018dqnviz">(<a href="../references.html#ref-wang2018dqnviz" role="doc-biblioref">Wang et al. 2018</a>)</span></li>
+</ul></li>
+<li>Policy extraction and decision trees
+<ul>
+<li>VIPER (+ what decision tree policies can be used for) <span class="citation" data-cites="bastani2018verifiable">(<a href="../references.html#ref-bastani2018verifiable" role="doc-biblioref">Bastani et al. 2018</a>)</span></li>
+<li>Representation Analysis <span class="citation" data-cites="zahavy2016graying">(<a href="../references.html#ref-zahavy2016graying" role="doc-biblioref">Zahavy et al. 2016</a>)</span></li>
+</ul></li>
+<li>Explaining decisions through critical states
+<ul>
+<li>StateMask <span class="citation" data-cites="cheng2023statemask">(<a href="../references.html#ref-cheng2023statemask" role="doc-biblioref">Cheng et al. 2023</a>)</span></li>
+</ul></li>
+<li>Trajectory-based methods
+<ul>
+<li>Intro to offline RL</li>
+<li>Explaining RL Decisions Through Trajectories <span class="citation" data-cites="deshmukh2023explaining">(<a href="../references.html#ref-deshmukh2023explaining" role="doc-biblioref">Deshmukh et al. 2023</a>)</span></li>
+<li>Explaining RL Decisions Through Behaviors <span class="citation" data-cites="rishav2025behaviour">(<a href="../references.html#ref-rishav2025behaviour" role="doc-biblioref">Rishav et al. 2025</a>)</span></li>
+</ul></li>
+<li>Explainability via counterfactual reasoning
+<ul>
+<li>World models</li>
+<li>Contrastive Explanations using World Models <span class="citation" data-cites="van2018contrastive">(<a href="../references.html#ref-van2018contrastive" role="doc-biblioref">Waa et al. 2018</a>)</span></li>
+<li>Explaining RL Agents With World Models <span class="citation" data-cites="singh2025explainable">(<a href="../references.html#ref-singh2025explainable" role="doc-biblioref">Singh et al. 2025</a>)</span> -&gt; backward counterfactuals</li>
+</ul></li>
+<li>Evaluation of XRL methods
+<ul>
+<li>Three Evaluation Levels <span class="citation" data-cites="doshi2017towards">(<a href="../references.html#ref-doshi2017towards" role="doc-biblioref">Doshi-Velez and Kim 2017</a>)</span></li>
+<li>What to Measure in Human Studies?</li>
+</ul></li>
+</ol>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-bastani2018verifiable" class="csl-entry" role="listitem">
+Bastani, Osbert, Yewen Pu, and Armando Solar-Lezama. 2018. <span>“Verifiable Reinforcement Learning via Policy Extraction.”</span> <em>Advances in Neural Information Processing Systems</em> 31.
+</div>
+<div id="ref-cheng2023statemask" class="csl-entry" role="listitem">
+Cheng, Zelei, Xian Wu, Jiahao Yu, Wenhai Sun, Wenbo Guo, and Xinyu Xing. 2023. <span>“<span>S</span>tate<span>M</span>ask: Explaining Deep Reinforcement Learning Through State Mask.”</span> <em>Advances in Neural Information Processing Systems</em> 36: 62457–87.
+</div>
+<div id="ref-deshmukh2023explaining" class="csl-entry" role="listitem">
+Deshmukh, Shripad Vilasrao, Arpan Dasgupta, Balaji Krishnamurthy, et al. 2023. <span>“Explaining <span>RL</span> Decisions with Trajectories.”</span> <em>The Eleventh International Conference on Learning Representations</em>. <a href="https://openreview.net/forum?id=5Egggz1q575">https://openreview.net/forum?id=5Egggz1q575</a>.
+</div>
+<div id="ref-doshi2017towards" class="csl-entry" role="listitem">
+Doshi-Velez, Finale, and Been Kim. 2017. <span>“Towards a Rigorous Science of Interpretable Machine Learning.”</span> <em>arXiv Preprint arXiv:1702.08608</em>.
+</div>
+<div id="ref-rishav2025behaviour" class="csl-entry" role="listitem">
+Rishav, Rishav, Somjit Nath, Vincent Michalski, and Samira Ebrahimi Kahou. 2025. <span>“Behaviour Discovery and Attribution for Explainable Reinforcement Learning.”</span> <em>Transactions on Machine Learning Research</em>. <a href="https://openreview.net/forum?id=JbHtpOIH9l">https://openreview.net/forum?id=JbHtpOIH9l</a>.
+</div>
+<div id="ref-singh2025explainable" class="csl-entry" role="listitem">
+Singh, Madhuri, Amal Alabdulkarim, Gennie Mansi, and Mark O Riedl. 2025. <span>“Explainable Reinforcement Learning Agents Using World Models.”</span> <em>arXiv Preprint arXiv:2505.08073</em>.
+</div>
+<div id="ref-van2018contrastive" class="csl-entry" role="listitem">
+Waa, Jasper van der, Jurriaan van Diggelen, Karel van den Bosch, and Mark Neerincx. 2018. <span>“Contrastive Explanations for Reinforcement Learning in Terms of Expected Consequences.”</span> <em>arXiv Preprint arXiv:1807.08706</em>.
+</div>
+<div id="ref-wang2018dqnviz" class="csl-entry" role="listitem">
+Wang, Junpeng, Liang Gou, Han-Wei Shen, and Hao Yang. 2018. <span>“<span>DNQViz</span>: A Visual Analytics Approach to Understand Deep q-Networks.”</span> <em>IEEE Transactions on Visualization and Computer Graphics</em> 25 (1): 288–98.
+</div>
+<div id="ref-zahavy2016graying" class="csl-entry" role="listitem">
+Zahavy, Tom, Nir Ben-Zrihem, and Shie Mannor. 2016. <span>“Graying the Black Box: Understanding <span>DQN</span>s.”</span> <em>International Conference on Machine Learning</em>, 1899–908.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
