@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; Method(s) Page 2 – Learn XAI: Explainable AI for Everyone</title>
+<title>11&nbsp; Method B: VQ-VAE-Based Concept Discovery – Learn XAI: Explainable AI for Everyone</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -48,6 +48,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-154bd0a5ceb7e046316d8c993cde5dd9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -76,6 +79,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -89,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2-xlm/introduction.html">Explainable Language Models</a></li><li class="breadcrumb-item"><a href="../2-xlm/method-B.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Method(s) Page 2</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2-xlm/introduction.html">Explainable Language Models</a></li><li class="breadcrumb-item"><a href="../2-xlm/method-B.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Method B: VQ-VAE-Based Concept Discovery</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -215,7 +247,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2-xlm/method-B.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Method(s) Page 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Method B: VQ-VAE-Based Concept Discovery</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -355,15 +387,26 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#general-architecture" id="toc-general-architecture" class="nav-link active" data-scroll-target="#general-architecture"><span class="header-section-number">11.1</span> General architecture</a>
+  <ul class="collapse">
+  <li><a href="#discrete-codebook" id="toc-discrete-codebook" class="nav-link" data-scroll-target="#discrete-codebook"><span class="header-section-number">11.1.1</span> Discrete codebook</a></li>
+  </ul></li>
+  <li><a href="#why-can-a-code-represent-a-concept" id="toc-why-can-a-code-represent-a-concept" class="nav-link" data-scroll-target="#why-can-a-code-represent-a-concept"><span class="header-section-number">11.2</span> Why can a code represent a concept?</a></li>
+  <li><a href="#training-objective" id="toc-training-objective" class="nav-link" data-scroll-target="#training-objective"><span class="header-section-number">11.3</span> Training objective</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2-xlm/introduction.html">Explainable Language Models</a></li><li class="breadcrumb-item"><a href="../2-xlm/method-B.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Method(s) Page 2</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2-xlm/introduction.html">Explainable Language Models</a></li><li class="breadcrumb-item"><a href="../2-xlm/method-B.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Method B: VQ-VAE-Based Concept Discovery</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Method(s) Page 2</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Method B: VQ-VAE-Based Concept Discovery</span></h1>
 </div>
 
 
@@ -380,8 +423,94 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>One emerging approach to discovering concepts adapts the discrete codebook and reconstruction structure of VQ-VAE-style architectures to language-model activations. <a href="https://proceedings.neurips.cc/paper/2017/hash/7a98af17e63a0ac09ce2e96d03992fbc-Abstract.html">Oord et al.(2017)</a> put forward the original VQ-VAE as a way to learn discrete representations for images, video, and speech.</p>
+<p>Since then, VQ-VAE has been used widely for images, where the basic pipeline is straightforward. The encoder produces a grid of continuous feature vectors, which the vector quantizer then replaces with their closest entries in a learned codebook before the decoder reconstructs the image from those entries. Because the codebook is shared across images, similar recurring visual patterns can be assigned the same discrete codes. This also allows a generative model over the codes to operate in a compressed latent space rather than directly at the pixel level. <a href="https://proceedings.neurips.cc/paper/2019/hash/5f8e2fa1718d1bbcadf1cd9c7a54fb8c-Abstract.html">Razavi et al.&nbsp;(2019)</a> later built on this with VQ-VAE-2, adding a hierarchy of codebooks at multiple spatial scales for image generation.</p>
+<p>In the context of making language models more explainable, however, the objective is not to generate an image. Here, the encoder is fed an internal token activation and the quantizer maps it to a discrete code; the decoder’s job is to reconstruct a target activation. Quantization has the effect of compelling many activations to share a limited set of codes, while reconstruction encourages each selected code to retain information needed to reconstruct the target activation. One can then examine the tokens and contexts assigned to a single code and interpret their shared pattern as a putative concept.</p>
+<p>There is no need to start with concept annotations or names, as one would with a supervised concept method. Candidate concepts are discovered from the hidden states during training, and their meanings must be inferred and verified afterwards.</p>
+<section id="general-architecture" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="general-architecture"><span class="header-section-number">11.1</span> General architecture</h2>
+<p>To describe the architecture more precisely, let <span class="math inline">\(\mathbf{h}_t\)</span> be the activation of token <span class="math inline">\(t\)</span> at a chosen language-model layer. A VQ-VAE-style concept discovery model then has three main components:</p>
+<ol type="1">
+<li>An <strong>encoder</strong> maps the activation into a code space.</li>
+<li>A <strong>vector quantizer</strong> replaces the encoded activation with an entry from a learned codebook.</li>
+<li>A <strong>decoder</strong> reconstructs a target activation from the quantized representation.</li>
+</ol>
+<p>The overall pipeline is</p>
+<p><span id="eq-vqvae-concept-pipeline"><span class="math display">\[
+\mathbf{h}_t
+\xrightarrow{\;E_\theta\;}
+\mathbf{z}_{e,t}
+\xrightarrow{\;Q\;}
+\mathbf{z}_{q,t}
+\xrightarrow{\;D_\psi\;}
+\widehat{\mathbf{r}}_t.
+\tag{11.1}\]</span></span></p>
+<p>Here, <span class="math inline">\(\mathbf{z}_{e,t}\)</span> is the encoder output and <span class="math inline">\(\mathbf{z}_{q,t}\)</span> is the codebook vector selected in its place. The decoder produces <span class="math inline">\(\widehat{\mathbf{r}}_t\)</span>, which should match a target activation <span class="math inline">\(\mathbf{r}_t\)</span>. Depending on the method, that target may be the original activation or one taken from a later layer.</p>
+<p><a href="#fig-clvqvae-architecture" class="quarto-xref">Figure&nbsp;<span>11.1</span></a> shows how this pipeline is used for cross-layer reconstruction in CLVQ-VAE.</p>
+<div id="fig-clvqvae-architecture" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-clvqvae-architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/xlm/CLVQVAE-Architecture.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;11.1: CLVQ-VAE architecture. A lower-layer activation is encoded and quantized through a learned codebook, and a transformer decoder reconstructs the higher-layer activation."><img src="../figures/xlm/CLVQVAE-Architecture.png" class="img-fluid figure-img" style="width:100.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-clvqvae-architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.1: CLVQ-VAE architecture. A lower-layer activation is encoded and quantized through a learned codebook, and a transformer decoder reconstructs the higher-layer activation.
+</figcaption>
+</figure>
+</div>
+<section id="discrete-codebook" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="discrete-codebook"><span class="header-section-number">11.1.1</span> Discrete codebook</h3>
+<p>The quantizer maintains a codebook</p>
+<p><span class="math display">\[
+\mathcal{E}=\{\mathbf{e}_1,\ldots,\mathbf{e}_K\},
+\qquad
+\mathbf{e}_j\in\mathbb{R}^{d_c},
+\]</span></p>
+<p>where <span class="math inline">\(K\)</span> is the number of codes and <span class="math inline">\(d_c\)</span> is the code dimension. In the simplest form, the encoder output is assigned to its nearest entry:</p>
+<p><span id="eq-vqvae-nearest-code"><span class="math display">\[
+j_t^*
+=
+\arg\min_j
+\left\|\mathbf{z}_{e,t}-\mathbf{e}_j\right\|_2^2,
+\qquad
+\mathbf{z}_{q,t}=\mathbf{e}_{j_t^*}.
+\tag{11.2}\]</span></span></p>
+<p>The result is that every token receives a discrete code index <span class="math inline">\(j_t^*\)</span>. Since language-model activations depend on context, the same word might not receive the same code in every sentence; its assignment may change when its meaning or role changes.</p>
+</section>
+</section>
+<section id="why-can-a-code-represent-a-concept" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="why-can-a-code-represent-a-concept"><span class="header-section-number">11.2</span> Why can a code represent a concept?</h2>
+<p>The reason a code can be useful as a concept lies in the combination of reconstruction and quantization. Reconstruction requires the selected code to preserve information needed for the target activation, while quantization forces many activation vectors to share a finite set of codes. A code may therefore capture a recurring pattern that matters for reconstruction rather than a pattern that appears only once.</p>
+<p>After training, one can collect the tokens and contexts assigned to each code and look for a pattern shared across them. If that pattern is stable and has a recognizable semantic or functional role, the code can be interpreted as a latent concept. It might, for example, group positive evaluative language, location names, or tokens used in a particular syntactic role.</p>
+<p>The codebook alone does not guarantee interpretability. A code remains a candidate concept until the assigned examples are coherent and its relationship to the model’s behavior has been tested.</p>
+<p>This reconstruction objective also makes the approach closely related to sparse autoencoders (SAEs), since both learn a dictionary from internal activations. The difference lies in how an activation is represented. An SAE usually uses a sparse weighted combination of several continuous features, whereas a basic VQ-VAE assigns an encoded activation to one discrete code. This gives each code a clear set of assigned examples, although those examples still have to be interpreted before the code can be called a concept.</p>
+</section>
+<section id="training-objective" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="training-objective"><span class="header-section-number">11.3</span> Training objective</h2>
+<p>Training begins with a reconstruction loss, which asks the decoder output to match the target activation <span class="math inline">\(\mathbf{r}_t\)</span>:</p>
+<p><span id="eq-vqvae-reconstruction"><span class="math display">\[
+\mathcal{L}_{\mathrm{rec}}
+=
+\left\|\mathbf{r}_t-\widehat{\mathbf{r}}_t\right\|_2^2.
+\tag{11.3}\]</span></span></p>
+<p>This is paired with a commitment loss that keeps the encoder output close to the code selected by the quantizer:</p>
+<p><span id="eq-vqvae-commitment"><span class="math display">\[
+\mathcal{L}_{\mathrm{commit}}
+=
+\left\|\mathbf{z}_{e,t}
+-\operatorname{sg}(\mathbf{z}_{q,t})\right\|_2^2,
+\tag{11.4}\]</span></span></p>
+<p>Here, <span class="math inline">\(\operatorname{sg}(\cdot)\)</span> is the stop-gradient operator, which prevents this term from moving the selected code through backpropagation. The two losses can then be combined as</p>
+<p><span id="eq-vqvae-total-loss"><span class="math display">\[
+\mathcal{L}
+=
+\mathcal{L}_{\mathrm{rec}}
++
+\beta\mathcal{L}_{\mathrm{commit}}.
+\tag{11.5}\]</span></span></p>
+<p>The coefficient <span class="math inline">\(\beta\)</span> determines how strongly the encoder is encouraged to stay near its selected code. The codebook itself can be updated using exponential moving averages of the encoder outputs assigned to each entry, allowing a code to follow the activations routed to it without trying to backpropagate through a discrete assignment.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -797,6 +926,38 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </nav>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

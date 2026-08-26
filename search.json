@@ -351,6 +351,50 @@
     ]
   },
   {
+    "objectID": "2-xlm/method-B.html",
+    "href": "2-xlm/method-B.html",
+    "title": "11  Method B: VQ-VAE-Based Concept Discovery",
+    "section": "",
+    "text": "11.1 General architecture\nOne emerging approach to discovering concepts adapts the discrete codebook and reconstruction structure of VQ-VAE-style architectures to language-model activations. Oord et al.(2017) put forward the original VQ-VAE as a way to learn discrete representations for images, video, and speech.\nSince then, VQ-VAE has been used widely for images, where the basic pipeline is straightforward. The encoder produces a grid of continuous feature vectors, which the vector quantizer then replaces with their closest entries in a learned codebook before the decoder reconstructs the image from those entries. Because the codebook is shared across images, similar recurring visual patterns can be assigned the same discrete codes. This also allows a generative model over the codes to operate in a compressed latent space rather than directly at the pixel level. Razavi et al. (2019) later built on this with VQ-VAE-2, adding a hierarchy of codebooks at multiple spatial scales for image generation.\nIn the context of making language models more explainable, however, the objective is not to generate an image. Here, the encoder is fed an internal token activation and the quantizer maps it to a discrete code; the decoder’s job is to reconstruct a target activation. Quantization has the effect of compelling many activations to share a limited set of codes, while reconstruction encourages each selected code to retain information needed to reconstruct the target activation. One can then examine the tokens and contexts assigned to a single code and interpret their shared pattern as a putative concept.\nThere is no need to start with concept annotations or names, as one would with a supervised concept method. Candidate concepts are discovered from the hidden states during training, and their meanings must be inferred and verified afterwards.\nTo describe the architecture more precisely, let \\(\\mathbf{h}_t\\) be the activation of token \\(t\\) at a chosen language-model layer. A VQ-VAE-style concept discovery model then has three main components:\nThe overall pipeline is\n\\[\n\\mathbf{h}_t\n\\xrightarrow{\\;E_\\theta\\;}\n\\mathbf{z}_{e,t}\n\\xrightarrow{\\;Q\\;}\n\\mathbf{z}_{q,t}\n\\xrightarrow{\\;D_\\psi\\;}\n\\widehat{\\mathbf{r}}_t.\n\\tag{11.1}\\]\nHere, \\(\\mathbf{z}_{e,t}\\) is the encoder output and \\(\\mathbf{z}_{q,t}\\) is the codebook vector selected in its place. The decoder produces \\(\\widehat{\\mathbf{r}}_t\\), which should match a target activation \\(\\mathbf{r}_t\\). Depending on the method, that target may be the original activation or one taken from a later layer.\nFigure 11.1 shows how this pipeline is used for cross-layer reconstruction in CLVQ-VAE.",
+    "crumbs": [
+      "Explainable Language Models",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Method B: VQ-VAE-Based Concept Discovery</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/method-B.html#general-architecture",
+    "href": "2-xlm/method-B.html#general-architecture",
+    "title": "11  Method B: VQ-VAE-Based Concept Discovery",
+    "section": "",
+    "text": "An encoder maps the activation into a code space.\nA vector quantizer replaces the encoded activation with an entry from a learned codebook.\nA decoder reconstructs a target activation from the quantized representation.\n\n\n\n\n\n\n\n\n\n\n\nFigure 11.1: CLVQ-VAE architecture. A lower-layer activation is encoded and quantized through a learned codebook, and a transformer decoder reconstructs the higher-layer activation.\n\n\n\n\n11.1.1 Discrete codebook\nThe quantizer maintains a codebook\n\\[\n\\mathcal{E}=\\{\\mathbf{e}_1,\\ldots,\\mathbf{e}_K\\},\n\\qquad\n\\mathbf{e}_j\\in\\mathbb{R}^{d_c},\n\\]\nwhere \\(K\\) is the number of codes and \\(d_c\\) is the code dimension. In the simplest form, the encoder output is assigned to its nearest entry:\n\\[\nj_t^*\n=\n\\arg\\min_j\n\\left\\|\\mathbf{z}_{e,t}-\\mathbf{e}_j\\right\\|_2^2,\n\\qquad\n\\mathbf{z}_{q,t}=\\mathbf{e}_{j_t^*}.\n\\tag{11.2}\\]\nThe result is that every token receives a discrete code index \\(j_t^*\\). Since language-model activations depend on context, the same word might not receive the same code in every sentence; its assignment may change when its meaning or role changes.",
+    "crumbs": [
+      "Explainable Language Models",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Method B: VQ-VAE-Based Concept Discovery</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/method-B.html#why-can-a-code-represent-a-concept",
+    "href": "2-xlm/method-B.html#why-can-a-code-represent-a-concept",
+    "title": "11  Method B: VQ-VAE-Based Concept Discovery",
+    "section": "11.2 Why can a code represent a concept?",
+    "text": "11.2 Why can a code represent a concept?\nThe reason a code can be useful as a concept lies in the combination of reconstruction and quantization. Reconstruction requires the selected code to preserve information needed for the target activation, while quantization forces many activation vectors to share a finite set of codes. A code may therefore capture a recurring pattern that matters for reconstruction rather than a pattern that appears only once.\nAfter training, one can collect the tokens and contexts assigned to each code and look for a pattern shared across them. If that pattern is stable and has a recognizable semantic or functional role, the code can be interpreted as a latent concept. It might, for example, group positive evaluative language, location names, or tokens used in a particular syntactic role.\nThe codebook alone does not guarantee interpretability. A code remains a candidate concept until the assigned examples are coherent and its relationship to the model’s behavior has been tested.\nThis reconstruction objective also makes the approach closely related to sparse autoencoders (SAEs), since both learn a dictionary from internal activations. The difference lies in how an activation is represented. An SAE usually uses a sparse weighted combination of several continuous features, whereas a basic VQ-VAE assigns an encoded activation to one discrete code. This gives each code a clear set of assigned examples, although those examples still have to be interpreted before the code can be called a concept.",
+    "crumbs": [
+      "Explainable Language Models",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Method B: VQ-VAE-Based Concept Discovery</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/method-B.html#training-objective",
+    "href": "2-xlm/method-B.html#training-objective",
+    "title": "11  Method B: VQ-VAE-Based Concept Discovery",
+    "section": "11.3 Training objective",
+    "text": "11.3 Training objective\nTraining begins with a reconstruction loss, which asks the decoder output to match the target activation \\(\\mathbf{r}_t\\):\n\\[\n\\mathcal{L}_{\\mathrm{rec}}\n=\n\\left\\|\\mathbf{r}_t-\\widehat{\\mathbf{r}}_t\\right\\|_2^2.\n\\tag{11.3}\\]\nThis is paired with a commitment loss that keeps the encoder output close to the code selected by the quantizer:\n\\[\n\\mathcal{L}_{\\mathrm{commit}}\n=\n\\left\\|\\mathbf{z}_{e,t}\n-\\operatorname{sg}(\\mathbf{z}_{q,t})\\right\\|_2^2,\n\\tag{11.4}\\]\nHere, \\(\\operatorname{sg}(\\cdot)\\) is the stop-gradient operator, which prevents this term from moving the selected code through backpropagation. The two losses can then be combined as\n\\[\n\\mathcal{L}\n=\n\\mathcal{L}_{\\mathrm{rec}}\n+\n\\beta\\mathcal{L}_{\\mathrm{commit}}.\n\\tag{11.5}\\]\nThe coefficient \\(\\beta\\) determines how strongly the encoder is encouraged to stay near its selected code. The codebook itself can be updated using exponential moving averages of the encoder outputs assigned to each entry, allowing a code to follow the activations routed to it without trying to backpropagate through a discrete assignment.",
+    "crumbs": [
+      "Explainable Language Models",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Method B: VQ-VAE-Based Concept Discovery</span>"
+    ]
+  },
+  {
     "objectID": "3-xrl/introduction.html",
     "href": "3-xrl/introduction.html",
     "title": "15  Introduction to Explainable RL",
