@@ -120,6 +120,16 @@
     ]
   },
   {
+    "objectID": "0-3-acronyms.html",
+    "href": "0-3-acronyms.html",
+    "title": "List of Acronyms",
+    "section": "",
+    "text": "LLM\n\nlarge language model\n\nMAS\n\nmulti-agent system\n\nRL\n\nreinforcement learning\n\nXAI\n\nexplainable artificial intelligence",
+    "crumbs": [
+      "List of Acronyms"
+    ]
+  },
+  {
     "objectID": "1-basics/introduction.html",
     "href": "1-basics/introduction.html",
     "title": "1  Introduction",
