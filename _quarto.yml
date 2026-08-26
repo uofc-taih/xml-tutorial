@@ -78,3 +78,13 @@ format:
     lightbox: auto
     toc: true
     toc-depth: 3
+
+filters:
+  - acronyms
+
+acronyms:
+  insert_loa: false
+  insert_links: false
+  loa_title: ""
+  sorting: alphabetical
+  fromfile: ./acronyms.yml

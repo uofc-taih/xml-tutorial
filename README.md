@@ -20,3 +20,18 @@ Each topic follows the same file structure:
 ## Setup
 
 Install Quarto and compile with `quarto preview` for a quick view on how things look.
+
+## Acronyms
+
+We use the Quarto extension `rchaput/acronyms` to manage acronyms, similar to `\gls` in LaTeX. The first occurence *on each Quarto page* will be spelled out in its long form.
+
+**Defining Acronyms:**
+Add new acronyms to the `acronyms.yml` file at the root of the project.
+
+**Usage in Text:**
+Use the following Quarto shortcodes in your .qmd files instead of standard LaTeX commands. Here are some examples:
+
+* Standard: `\acr{rl}` $\rightarrow$ reinforcement learning (RL)
+* Sentence case: `\acr[case=sentence]{rl}` $\rightarrow$ Reinforcement learning (RL)
+* Plural: `\acr[plural=true]{llm}` $\rightarrow$ large language models (LLMs)
+* Sentence case plural: `\acr[case=sentence, plural=true]{llm}` $\rightarrow$ Large language models (LLMs)
