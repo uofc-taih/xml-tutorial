@@ -17,6 +17,13 @@ h1.unnumbered {
 #title-block-header {
   display: none !important;
 }
+
+/* Center the citation box */
+.citation-box {
+  max-width: 650px;
+  margin: 0 auto;
+  text-align: left;
+}
 </style>
 
 ::: {.container .text-center .py-5 .mt-5}
@@ -32,4 +39,16 @@ An interactive tutorial and reference guide for explainable artificial intellige
 [Start Reading](0-1-introduction.qmd){.btn .btn-dark .btn-lg .px-4 .me-md-2 .mb-2}
 [View Notebooks](notebooks.qmd){.btn .btn-outline-dark .btn-lg .px-4 .mb-2 .disabled aria-disabled="true" style="pointer-events: none;"}
 
+::: {.citation-box .mt-5 .pt-4}
+<h5 class="text-muted mb-3 text-center">Cite this work:</h5>
+```bibtex
+@book{learnxai2026,
+  title = {Learn XAI: Explainable AI for Everyone},
+  author = {Arellano, Aaron and Garg, Ankur and Kiele, Nils and Mahmoud, Mohamed and Mehri, Niki and Michalski, Vincent and Ebrahimi Kahou, Samira},
+  year = {2026},
+  url = {[https://learn-xai.com](https://learn-xai.com)},
+  note = {Work in progress (Version 0.1.0)}
+}
+```
+:::
 :::

@@ -21,7 +21,7 @@ book:
     - 0-2-notation.qmd
 
     # --- TOPIC 1: XML BASICS ---
-    - part: "Basics of Explainable Machine Learning"
+    - part: "Basics of XAI"
       chapters:
         - 1-basics/introduction.qmd
         - 1-basics/taxonomy.qmd
@@ -32,7 +32,7 @@ book:
         - 1-basics/conclusion.qmd
 
     # --- TOPIC 2: XLLM ---
-    - part: "Explainability for Language Models"
+    - part: "Explainable Language Models"
       chapters:
         - 2-xlm/introduction.qmd
         - 2-xlm/taxonomy.qmd
@@ -54,7 +54,7 @@ book:
         - 3-xrl/conclusion.qmd
 
     # --- TOPIC 4: XMAS ---
-    - part: "Explainability in Multi-Agent Systems"
+    - part: "Explainable Multi-Agent Systems"
       chapters:
         - 4-xmas/introduction.qmd
         - 4-xmas/taxonomy.qmd

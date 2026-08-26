@@ -1,3 +1,13 @@
 # Introduction {.unnumbered}
 
-Welcome to the tutorial!
+In this tutorial book, we aim to provide an overview of the field of explainable artificial intelligence (XAI). We will cover various methods for making AI models more interpretable and understandable to humans. The book is structured into the following chapters:
+
+* [Basics of XAI](1-basics/introduction.qmd)
+* [Explainable large language models](2-xlm/introduction.qmd)
+* [Explainable reinforcement learning](3-xrl/introduction.qmd)
+* [Explainable multi-agent systems](4-xmas/introduction.qmd)
+
+This is a work in progress, actively developed by the Machine Intelligence and Reasoning Lab (MIRL) at the University of Calgary. 
+
+The authors (in alphabetical order by last name + supervisor), \
+Aaron Arellano, Ankur Garg, Nils Kiele, Mohamed Mahmoud, Niki Mehri, Vincent Michalski, and Samira Ebrahimi Kahou
