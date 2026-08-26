@@ -19,6 +19,7 @@ book:
     - index.qmd
     - 0-1-introduction.qmd
     - 0-2-notation.qmd
+    - 0-3-acronyms.qmd
 
     # --- TOPIC 1: XML BASICS ---
     - part: "Basics of XAI"
