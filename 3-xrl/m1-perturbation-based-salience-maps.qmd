@@ -8,21 +8,11 @@ Key reference: @greydanus2018visualizing --- [paper](https://arxiv.org/abs/1711.
 
 ## Introduction {.unnumbered}
 
-::: {layout="[65, 35]" layout-valign="center"}
-
-::: {#intro-text}
 @greydanus2018visualizing use saliency maps to visualize RL policies in pixel-based environments and evalute they framework on Atari 2600 games.
 
 In particular, they use a perturbation-based approach, witih the leading question: "How much does removing information from the region around location (i, j) change the policy?"
 
 The saliency maps can be applied at different stages: (1) during training to understand how an agent learns and (2) after training, observing what parts of the state space the agent's final policy attends to.
-:::
-
-![Tunneling strategy in Atari Breakout](../figures/xrl-m1.png){#fig-xrl-m1-example width=85%}
-
-:::
-
-
 
 ## Method: Perturbation-Based Saliency Maps {.unnumbered}
 
