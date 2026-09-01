@@ -4,7 +4,7 @@
     "href": "0-1-introduction.html",
     "title": "Introduction",
     "section": "",
-    "text": "In this tutorial book, we aim to provide an overview of the field of explainable artificial intelligence (XAI). We will cover various methods for making AI models more interpretable and understandable to humans. The book is structured into the following chapters:\n\nBasics of XAI\nExplainable large language models\nExplainable reinforcement learning\nExplainable multi-agent systems\n\nThis is a work in progress, actively developed by the Machine Intelligence and Reasoning Lab (MIRL) at the University of Calgary.\nThe authors (in alphabetical order by last name + supervisor),\nAaron Arellano, Ankur Garg, Nils Kiele, Mohamed Mahmoud, Niki Mehri, Vincent Michalski, and Samira Ebrahimi Kahou",
+    "text": "In this tutorial book, we aim to provide an overview of the field of explainable artificial intelligence (XAI). We will cover various methods for making AI models more interpretable and understandable to humans. The book is structured into the following chapters:\n\nBasics of XAI\nExplainable large language models\nExplainable reinforcement learning\nExplainable multi-agent systems\n\nThis is a work in progress, actively developed by the Machine Intelligence and Reasoning Lab (MIRL) at the University of Calgary.\nThe authors (in alphabetical order by last name + supervisor),\nAaron Arellano, Ankur Garg, Niki Mehri, Vincent Michalski, and Samira Ebrahimi Kahou",
     "crumbs": [
       "Introduction"
     ]
@@ -497,18 +497,7 @@
     "href": "3-xrl/m1-perturbation-based-salience-maps.html",
     "title": "17  Perturbation-Based Saliency Maps for RL",
     "section": "",
-    "text": "Introduction\nKey reference: Greydanus et al. (2018) — paper and code",
-    "crumbs": [
-      "Explainable Reinforcement Learning",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Perturbation-Based Saliency Maps for RL</span>"
-    ]
-  },
-  {
-    "objectID": "3-xrl/m1-perturbation-based-salience-maps.html#introduction",
-    "href": "3-xrl/m1-perturbation-based-salience-maps.html#introduction",
-    "title": "17  Perturbation-Based Saliency Maps for RL",
-    "section": "",
-    "text": "Greydanus et al. (2018) use saliency maps to visualize RL policies in pixel-based environments and evalute they framework on Atari 2600 games.\nIn particular, they use a perturbation-based approach, witih the leading question: “How much does removing information from the region around location (i, j) change the policy?”\nThe saliency maps can be applied at different stages: (1) during training to understand how an agent learns and (2) after training, observing what parts of the state space the agent’s final policy attends to.\n\n\n\n\n\n\n\n\nFigure 17.1: Tunneling strategy in Atari Breakout",
+    "text": "Introduction\nKey reference: Greydanus et al. (2018) — paper and code\nGreydanus et al. (2018) use saliency maps to visualize RL policies in pixel-based environments and evalute they framework on Atari 2600 games.\nIn particular, they use a perturbation-based approach, witih the leading question: “How much does removing information from the region around location (i, j) change the policy?”\nThe saliency maps can be applied at different stages: (1) during training to understand how an agent learns and (2) after training, observing what parts of the state space the agent’s final policy attends to.",
     "crumbs": [
       "Explainable Reinforcement Learning",
       "<span class='chapter-number'>17</span>  <span class='chapter-title'>Perturbation-Based Saliency Maps for RL</span>"

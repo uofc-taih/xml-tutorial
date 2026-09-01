@@ -67,9 +67,6 @@ div.csl-indent {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-154bd0a5ceb7e046316d8c993cde5dd9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -462,27 +459,9 @@ window.Quarto = {
 </div>
 <section id="introduction" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="introduction">Introduction</h2>
-<div class="quarto-layout-panel" data-layout="[65, 35]">
-<div class="quarto-layout-row quarto-layout-valign-center">
-<div id="intro-text" class="quarto-layout-cell" style="flex-basis: 65.0%;justify-content: flex-start;">
 <p><span class="citation" data-cites="greydanus2018visualizing">Greydanus et al. (<a href="../references.html#ref-greydanus2018visualizing" role="doc-biblioref">2018</a>)</span> use saliency maps to visualize RL policies in pixel-based environments and evalute they framework on Atari 2600 games.</p>
 <p>In particular, they use a perturbation-based approach, witih the leading question: “How much does removing information from the region around location (i, j) change the policy?”</p>
 <p>The saliency maps can be applied at different stages: (1) during training to understand how an agent learns and (2) after training, observing what parts of the state space the agent’s final policy attends to.</p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 35.0%;justify-content: flex-start;">
-<div id="fig-xrl-m1-example" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-xrl-m1-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/xrl-m1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;17.1: Tunneling strategy in Atari Breakout"><img src="../figures/xrl-m1.png" class="img-fluid figure-img" style="width:85.0%"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-xrl-m1-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17.1: Tunneling strategy in Atari Breakout
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
 </section>
 <section id="method-perturbation-based-saliency-maps" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="method-perturbation-based-saliency-maps">Method: Perturbation-Based Saliency Maps</h2>
@@ -970,38 +949,6 @@ Zahavy, Tom, Nir Ben-Zrihem, and Shie Mannor. 2016. <span>“Graying the Black B
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 
