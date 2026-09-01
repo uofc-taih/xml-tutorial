@@ -10,4 +10,4 @@ In this tutorial book, we aim to provide an overview of the field of explainable
 This is a work in progress, actively developed by the Machine Intelligence and Reasoning Lab (MIRL) at the University of Calgary. 
 
 The authors (in alphabetical order by last name + supervisor), \
-Aaron Arellano, Ankur Garg, Nils Kiele, Mohamed Mahmoud, Niki Mehri, Vincent Michalski, and Samira Ebrahimi Kahou
+Aaron Arellano, Ankur Garg, Niki Mehri, Vincent Michalski, and Samira Ebrahimi Kahou
