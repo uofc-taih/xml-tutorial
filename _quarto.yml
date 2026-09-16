@@ -3,6 +3,7 @@ project:
   output-dir: _book
   resources:
     - "CNAME"
+    - "robots.txt"
 
 book:
   title: "Learn XAI: Explainable AI for Everyone"
@@ -72,8 +73,8 @@ bibliography: references.bib
 
 format:
   html:
-    theme:
-      - lumen
+    theme: lumen
+    include-in-header: noindex.html
     css: styles.css
     code-fold: true
     lightbox: auto

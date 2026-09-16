@@ -17,9 +17,24 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Render and Publish
-        uses: quarto-dev/quarto-actions/publish@v2
+      - name: Render Quarto Project
+        run: quarto render
+
+      - name: Obscure URL path
+        run: |
+          cd _book
+          # Add .nojekyll so GitHub Pages doesn't ignore folders starting with underscores (like _site_libs)
+          touch .nojekyll
+
+          # Create "random" directory
+          mkdir AYff0i3d1Aryx76QtA79GsFIj9LNMATq
+
+          # Move everything into the secret folder EXCEPT the folder itself, CNAME, and .nojekyll
+          find . -maxdepth 1 ! -name '.' ! -name 'AYff0i3d1Aryx76QtA79GsFIj9LNMATq' ! -name 'CNAME' ! -name '.nojekyll' -exec mv {} AYff0i3d1Aryx76QtA79GsFIj9LNMATq/ \;
+          cd ..
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_book
