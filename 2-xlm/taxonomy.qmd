@@ -1,5 +1,9 @@
 # Taxonomy
 
+::: {style="text-align: center;"}
+![A taxonomy of LLM explainability.](../figures/xlm/llm_explanability_taxanomy.drawio.svg){#fig-llm-explainability-taxonomy width=100%}
+:::
+
 ## Activation-Based Explanations
 
 ## Concept-Based Explanations
