@@ -370,15 +370,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#activation-based-explanations" id="toc-activation-based-explanations" class="nav-link active" data-scroll-target="#activation-based-explanations"><span class="header-section-number">9.1</span> Activation-Based Explanations</a></li>
-  <li><a href="#concept-based-explanations" id="toc-concept-based-explanations" class="nav-link" data-scroll-target="#concept-based-explanations"><span class="header-section-number">9.2</span> Concept-Based Explanations</a>
-  <ul class="collapse">
-  <li><a href="#preliminaries-and-notation" id="toc-preliminaries-and-notation" class="nav-link" data-scroll-target="#preliminaries-and-notation"><span class="header-section-number">9.2.1</span> Preliminaries and Notation</a></li>
-  <li><a href="#human-defined-concepts-supervised" id="toc-human-defined-concepts-supervised" class="nav-link" data-scroll-target="#human-defined-concepts-supervised"><span class="header-section-number">9.2.2</span> Human-Defined Concepts (Supervised)</a></li>
-  </ul></li>
-  <li><a href="#concept-discovery" id="toc-concept-discovery" class="nav-link" data-scroll-target="#concept-discovery"><span class="header-section-number">9.3</span> Concept Discovery</a></li>
-  <li><a href="#mechanistic-interpretability" id="toc-mechanistic-interpretability" class="nav-link" data-scroll-target="#mechanistic-interpretability"><span class="header-section-number">9.4</span> Mechanistic Interpretability</a></li>
-  <li><a href="#attention-visualization-methods" id="toc-attention-visualization-methods" class="nav-link" data-scroll-target="#attention-visualization-methods"><span class="header-section-number">9.5</span> Attention-Visualization Methods</a></li>
+  <li><a href="#what-explanation-target" id="toc-what-explanation-target" class="nav-link active" data-scroll-target="#what-explanation-target"><span class="header-section-number">9.1</span> What? Explanation Target</a></li>
+  <li><a href="#where-evidence-location" id="toc-where-evidence-location" class="nav-link" data-scroll-target="#where-evidence-location"><span class="header-section-number">9.2</span> Where? Evidence Location</a></li>
+  <li><a href="#how-explanation-method" id="toc-how-explanation-method" class="nav-link" data-scroll-target="#how-explanation-method"><span class="header-section-number">9.3</span> How? Explanation Method</a></li>
+  <li><a href="#when-stage-of-use" id="toc-when-stage-of-use" class="nav-link" data-scroll-target="#when-stage-of-use"><span class="header-section-number">9.4</span> When? Stage of Use</a></li>
+  <li><a href="#which-explanation-quality" id="toc-which-explanation-quality" class="nav-link" data-scroll-target="#which-explanation-quality"><span class="header-section-number">9.5</span> Which? Explanation Quality</a></li>
+  <li><a href="#why-intended-purpose" id="toc-why-intended-purpose" class="nav-link" data-scroll-target="#why-intended-purpose"><span class="header-section-number">9.6</span> Why? Intended Purpose</a></li>
+  <li><a href="#who-intended-audience" id="toc-who-intended-audience" class="nav-link" data-scroll-target="#who-intended-audience"><span class="header-section-number">9.7</span> Who? Intended Audience</a></li>
   </ul>
 </nav>
     </div>
@@ -404,6 +402,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>We organize LLM explainability around seven guiding questions: <strong>What, Where, How, When, Which, Why, and Who</strong>, as illustrated in <a href="#fig-llm-explainability-taxonomy" class="quarto-xref">Figure&nbsp;<span>9.1</span></a>. These questions help organize LLM explainability methods based on what they explain, how they work, and how they are used and evaluated.</p>
 <div style="text-align: center;">
 <div id="fig-llm-explainability-taxonomy" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -416,36 +415,73 @@ Figure&nbsp;9.1: A taxonomy of LLM explainability.
 </figure>
 </div>
 </div>
-<section id="activation-based-explanations" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="activation-based-explanations"><span class="header-section-number">9.1</span> Activation-Based Explanations</h2>
+<section id="what-explanation-target" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="what-explanation-target"><span class="header-section-number">9.1</span> What? Explanation Target</h2>
+<ul>
+<li><strong>Predictions and outputs:</strong></li>
+<li><strong>Learned knowledge:</strong></li>
+<li><strong>Internal representations:</strong></li>
+<li><strong>Computational mechanisms:</strong></li>
+<li><strong>Model behaviour:</strong></li>
+</ul>
 </section>
-<section id="concept-based-explanations" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="concept-based-explanations"><span class="header-section-number">9.2</span> Concept-Based Explanations</h2>
-<p>TODO: One-paragraph bridge from the previous section</p>
-<p>TODO: Define concept formally: a function, what is a concept space.</p>
-<section id="preliminaries-and-notation" class="level3" data-number="9.2.1">
-<h3 data-number="9.2.1" class="anchored" data-anchor-id="preliminaries-and-notation"><span class="header-section-number">9.2.1</span> Preliminaries and Notation</h3>
-<p>TODO: Shared notation used by every subsection below — define once, reuse.</p>
+<section id="where-evidence-location" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="where-evidence-location"><span class="header-section-number">9.2</span> Where? Evidence Location</h2>
+<ul>
+<li><strong>Input and output tokens:</strong></li>
+<li><strong>Attention patterns:</strong></li>
+<li><strong>Hidden activations:</strong></li>
+<li><strong>Neurons, heads, and layers:</strong></li>
+<li><strong>Parameters and training data:</strong></li>
+</ul>
 </section>
-<section id="human-defined-concepts-supervised" class="level3" data-number="9.2.2">
-<h3 data-number="9.2.2" class="anchored" data-anchor-id="human-defined-concepts-supervised"><span class="header-section-number">9.2.2</span> Human-Defined Concepts (Supervised)</h3>
-<p>TODO: These methods relies on human annotated concepts</p>
-<section id="concept-bottleneck-models-cbms" class="level4" data-number="9.2.2.1">
-<h4 data-number="9.2.2.1" class="anchored" data-anchor-id="concept-bottleneck-models-cbms"><span class="header-section-number">9.2.2.1</span> Concept Bottleneck Models (CBMs)</h4>
-<p>TODO: ADD A DIAGRAMS {TRAINING AND INFERENCE}</p>
-<p>TODO: whether it is joint, sequential or indiependent</p>
-<p>TODO: at inference, how does editing the concepts affect y and similar things</p>
+<section id="how-explanation-method" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="how-explanation-method"><span class="header-section-number">9.3</span> How? Explanation Method</h2>
+<ul>
+<li><strong>Feature attribution:</strong></li>
+<li><strong>Probing:</strong></li>
+<li><strong>Concept discovery:</strong></li>
+<li><strong>Mechanistic analysis:</strong></li>
+<li><strong>Counterfactual intervention:</strong></li>
+</ul>
 </section>
+<section id="when-stage-of-use" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="when-stage-of-use"><span class="header-section-number">9.4</span> When? Stage of Use</h2>
+<ul>
+<li><strong>During training:</strong></li>
+<li><strong>Post-training analysis:</strong></li>
+<li><strong>During inference and generation:</strong></li>
+<li><strong>After generation:</strong></li>
+</ul>
 </section>
+<section id="which-explanation-quality" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="which-explanation-quality"><span class="header-section-number">9.5</span> Which? Explanation Quality</h2>
+<ul>
+<li><strong>Faithfulness:</strong></li>
+<li><strong>Causal validity:</strong></li>
+<li><strong>Stability:</strong></li>
+<li><strong>Completeness:</strong></li>
+<li><strong>Human interpretability:</strong></li>
+</ul>
 </section>
-<section id="concept-discovery" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="concept-discovery"><span class="header-section-number">9.3</span> Concept Discovery</h2>
+<section id="why-intended-purpose" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="why-intended-purpose"><span class="header-section-number">9.6</span> Why? Intended Purpose</h2>
+<ul>
+<li><strong>Understanding:</strong></li>
+<li><strong>Debugging:</strong></li>
+<li><strong>Auditing and safety:</strong></li>
+<li><strong>Robustness:</strong></li>
+<li><strong>Control and steering:</strong></li>
+</ul>
 </section>
-<section id="mechanistic-interpretability" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="mechanistic-interpretability"><span class="header-section-number">9.4</span> Mechanistic Interpretability</h2>
-</section>
-<section id="attention-visualization-methods" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="attention-visualization-methods"><span class="header-section-number">9.5</span> Attention-Visualization Methods</h2>
+<section id="who-intended-audience" class="level2" data-number="9.7">
+<h2 data-number="9.7" class="anchored" data-anchor-id="who-intended-audience"><span class="header-section-number">9.7</span> Who? Intended Audience</h2>
+<ul>
+<li><strong>Researchers:</strong></li>
+<li><strong>Model developers:</strong></li>
+<li><strong>Auditors:</strong></li>
+<li><strong>End users:</strong></li>
+</ul>
 
 
 </section>

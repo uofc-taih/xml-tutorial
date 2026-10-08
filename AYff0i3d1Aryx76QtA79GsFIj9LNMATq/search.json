@@ -222,51 +222,84 @@
     "href": "2-xlm/taxonomy.html",
     "title": "9  Taxonomy",
     "section": "",
-    "text": "9.1 Activation-Based Explanations",
+    "text": "9.1 What? Explanation Target\nWe organize LLM explainability around seven guiding questions: What, Where, How, When, Which, Why, and Who, as illustrated in Figure 9.1. These questions help organize LLM explainability methods based on what they explain, how they work, and how they are used and evaluated.",
     "crumbs": [
       "Explainable Language Models",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Taxonomy</span>"
     ]
   },
   {
-    "objectID": "2-xlm/taxonomy.html#concept-based-explanations",
-    "href": "2-xlm/taxonomy.html#concept-based-explanations",
+    "objectID": "2-xlm/taxonomy.html#what-explanation-target",
+    "href": "2-xlm/taxonomy.html#what-explanation-target",
     "title": "9  Taxonomy",
-    "section": "9.2 Concept-Based Explanations",
-    "text": "9.2 Concept-Based Explanations\nTODO: One-paragraph bridge from the previous section\nTODO: Define concept formally: a function, what is a concept space.\n\n9.2.1 Preliminaries and Notation\nTODO: Shared notation used by every subsection below — define once, reuse.\n\n\n9.2.2 Human-Defined Concepts (Supervised)\nTODO: These methods relies on human annotated concepts\n\n9.2.2.1 Concept Bottleneck Models (CBMs)\nTODO: ADD A DIAGRAMS {TRAINING AND INFERENCE}\nTODO: whether it is joint, sequential or indiependent\nTODO: at inference, how does editing the concepts affect y and similar things",
+    "section": "",
+    "text": "Predictions and outputs:\nLearned knowledge:\nInternal representations:\nComputational mechanisms:\nModel behaviour:",
     "crumbs": [
       "Explainable Language Models",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Taxonomy</span>"
     ]
   },
   {
-    "objectID": "2-xlm/taxonomy.html#concept-discovery",
-    "href": "2-xlm/taxonomy.html#concept-discovery",
+    "objectID": "2-xlm/taxonomy.html#where-evidence-location",
+    "href": "2-xlm/taxonomy.html#where-evidence-location",
     "title": "9  Taxonomy",
-    "section": "9.3 Concept Discovery",
-    "text": "9.3 Concept Discovery",
+    "section": "9.2 Where? Evidence Location",
+    "text": "9.2 Where? Evidence Location\n\nInput and output tokens:\nAttention patterns:\nHidden activations:\nNeurons, heads, and layers:\nParameters and training data:",
     "crumbs": [
       "Explainable Language Models",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Taxonomy</span>"
     ]
   },
   {
-    "objectID": "2-xlm/taxonomy.html#mechanistic-interpretability",
-    "href": "2-xlm/taxonomy.html#mechanistic-interpretability",
+    "objectID": "2-xlm/taxonomy.html#how-explanation-method",
+    "href": "2-xlm/taxonomy.html#how-explanation-method",
     "title": "9  Taxonomy",
-    "section": "9.4 Mechanistic Interpretability",
-    "text": "9.4 Mechanistic Interpretability",
+    "section": "9.3 How? Explanation Method",
+    "text": "9.3 How? Explanation Method\n\nFeature attribution:\nProbing:\nConcept discovery:\nMechanistic analysis:\nCounterfactual intervention:",
     "crumbs": [
       "Explainable Language Models",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Taxonomy</span>"
     ]
   },
   {
-    "objectID": "2-xlm/taxonomy.html#attention-visualization-methods",
-    "href": "2-xlm/taxonomy.html#attention-visualization-methods",
+    "objectID": "2-xlm/taxonomy.html#when-stage-of-use",
+    "href": "2-xlm/taxonomy.html#when-stage-of-use",
     "title": "9  Taxonomy",
-    "section": "9.5 Attention-Visualization Methods",
-    "text": "9.5 Attention-Visualization Methods",
+    "section": "9.4 When? Stage of Use",
+    "text": "9.4 When? Stage of Use\n\nDuring training:\nPost-training analysis:\nDuring inference and generation:\nAfter generation:",
+    "crumbs": [
+      "Explainable Language Models",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Taxonomy</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/taxonomy.html#which-explanation-quality",
+    "href": "2-xlm/taxonomy.html#which-explanation-quality",
+    "title": "9  Taxonomy",
+    "section": "9.5 Which? Explanation Quality",
+    "text": "9.5 Which? Explanation Quality\n\nFaithfulness:\nCausal validity:\nStability:\nCompleteness:\nHuman interpretability:",
+    "crumbs": [
+      "Explainable Language Models",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Taxonomy</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/taxonomy.html#why-intended-purpose",
+    "href": "2-xlm/taxonomy.html#why-intended-purpose",
+    "title": "9  Taxonomy",
+    "section": "9.6 Why? Intended Purpose",
+    "text": "9.6 Why? Intended Purpose\n\nUnderstanding:\nDebugging:\nAuditing and safety:\nRobustness:\nControl and steering:",
+    "crumbs": [
+      "Explainable Language Models",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Taxonomy</span>"
+    ]
+  },
+  {
+    "objectID": "2-xlm/taxonomy.html#who-intended-audience",
+    "href": "2-xlm/taxonomy.html#who-intended-audience",
+    "title": "9  Taxonomy",
+    "section": "9.7 Who? Intended Audience",
+    "text": "9.7 Who? Intended Audience\n\nResearchers:\nModel developers:\nAuditors:\nEnd users:",
     "crumbs": [
       "Explainable Language Models",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Taxonomy</span>"
