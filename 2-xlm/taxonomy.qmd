@@ -1,43 +1,61 @@
 # Taxonomy
 
+We organize LLM explainability around seven guiding questions: **What, Where, How, When, Which, Why, and Who**, as illustrated in @fig-llm-explainability-taxonomy. These questions help organize LLM explainability methods based on what they explain, how they work, and how they are used and evaluated.
+
 ::: {style="text-align: center;"}
 ![A taxonomy of LLM explainability.](../figures/xlm/llm_explanability_taxanomy.drawio.svg){#fig-llm-explainability-taxonomy width=100%}
 :::
 
-## Activation-Based Explanations
+## What? Explanation Target
 
-## Concept-Based Explanations
+- **Predictions and outputs:**
+- **Learned knowledge:**
+- **Internal representations:**
+- **Computational mechanisms:**
+- **Model behaviour:**
 
-TODO: One-paragraph bridge from the previous section
+## Where? Evidence Location
 
-TODO: Define concept formally: a function, what is a concept space.
+- **Input and output tokens:**
+- **Attention patterns:**
+- **Hidden activations:**
+- **Neurons, heads, and layers:**
+- **Parameters and training data:**
 
-### Preliminaries and Notation
+## How? Explanation Method
 
-TODO: Shared notation used by every subsection below — define once, reuse.
+- **Feature attribution:**
+- **Probing:**
+- **Concept discovery:**
+- **Mechanistic analysis:**
+- **Counterfactual intervention:**
 
-### Human-Defined Concepts (Supervised)
+## When? Stage of Use
 
-TODO: These methods relies on human annotated concepts
+- **During training:**
+- **Post-training analysis:**
+- **During inference and generation:**
+- **After generation:**
 
-#### Concept Bottleneck Models (CBMs)
+## Which? Explanation Quality
 
-TODO: ADD A DIAGRAMS {TRAINING AND INFERENCE}
+- **Faithfulness:**
+- **Causal validity:**
+- **Stability:**
+- **Completeness:**
+- **Human interpretability:**
 
-\paragraph{training regimes}
-TODO: whether it is joint, sequential or indiependent
+## Why? Intended Purpose
 
-\paragraph{intervention}
-TODO: at inference, how does editing the concepts affect y and similar things
+- **Understanding:**
+- **Debugging:**
+- **Auditing and safety:**
+- **Robustness:**
+- **Control and steering:**
 
-\paragraph{limitaions and apprpriate use cases}
+## Who? Intended Audience
 
-\paragraph{Future/emerging advancements: label free cbms?}
-
-\paragraph{key take away}
-
-## Concept Discovery
-
-## Mechanistic Interpretability
-
-## Attention-Visualization Methods
+- **Researchers:**
+- **Model developers:**
+- **Auditors:**
+- **End users:**
