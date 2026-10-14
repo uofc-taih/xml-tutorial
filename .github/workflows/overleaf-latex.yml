@@ -1,0 +1,93 @@
+name: Render LaTeX for Overleaf
+
+# Renders the Quarto book to LaTeX (no PDF compile), splits the single combined
+# .tex into per-chapter files mirroring the book's source layout, and commits a
+# clean, self-contained `latex/` folder back to this repo. Point Overleaf's
+# GitHub import at this repo (main document: latex/main.tex) and click "Pull" to
+# pick up new renders.
+
+on:
+  push:
+    branches: [main]
+    # Only re-render when source changes. Note `latex/**` is intentionally NOT
+    # listed, so the bot's own commit below never re-triggers this workflow.
+    paths:
+      - '**.qmd'
+      - '**.bib'
+      - 'figures/**'
+      - '_extensions/**'
+      - 'acronyms.yml'
+      - '_quarto.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: overleaf-latex
+  cancel-in-progress: true
+
+jobs:
+  render-latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render book to LaTeX
+        run: quarto render --to latex
+
+      - name: Collect LaTeX output into latex/
+        run: |
+          set -euo pipefail
+          # Locate the single combined .tex Quarto produced under _book/.
+          texfile="$(find _book -name '*.tex' -print -quit)"
+          if [ -z "$texfile" ]; then
+            echo "::error::No .tex file found under _book/ after render"
+            exit 1
+          fi
+          srcdir="$(dirname "$texfile")"
+          echo "LaTeX output dir: $srcdir"
+
+          rm -rf latex
+          mkdir -p latex
+          # Copy the rendered bundle (.tex + figures).
+          cp -R "$srcdir"/. latex/
+
+          # Quarto writes SVG/remote figures as PDFs under <stem>_files/mediabag
+          # at the PROJECT ROOT (e.g. index_files/mediabag/...), referenced by the
+          # .tex. Copy those dirs so the bundle is self-contained for Overleaf.
+          for d in *_files; do
+            [ -d "$d" ] && cp -R "$d" latex/
+          done
+
+          # Strip website-only resources and OS cruft that don't belong in Overleaf.
+          find latex -name '.DS_Store' -delete
+          rm -f latex/CNAME latex/robots.txt latex/noindex.html
+          rm -rf latex/docs
+
+      - name: Split into per-chapter files
+        # Quarto emits one monolithic .tex; split it into main.tex + chapters/
+        # mirroring the source layout so co-authors edit separate files.
+        # Pure-stdlib Python, no dependencies to install.
+        run: |
+          set -euo pipefail
+          python3 scripts/split_latex.py _quarto.yml latex
+          echo "latex/ contents:"
+          find latex -maxdepth 2 ! -path 'latex/figures/*' | sort
+
+      - name: Commit LaTeX back to repo
+        run: |
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add latex
+          if git diff --cached --quiet; then
+            echo "No LaTeX changes to commit."
+            exit 0
+          fi
+          git commit -m "Render LaTeX from ${GITHUB_SHA::7} [skip ci]"
+          git push
