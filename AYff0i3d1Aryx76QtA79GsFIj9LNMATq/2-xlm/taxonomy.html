@@ -402,7 +402,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>We organize LLM explainability around seven guiding questions: <strong>What, Where, How, When, Which, Why, and Who</strong>, as illustrated in <a href="#fig-llm-explainability-taxonomy" class="quarto-xref">Figure&nbsp;<span>9.1</span></a>. These questions help organize LLM explainability methods based on what they explain, how they work, and how they are used and evaluated.</p>
+<p>We organize LLM explainability around seven questions: <strong>What, Where, How, When, Which, Why, and Who</strong>, as shown in <a href="#fig-llm-explainability-taxonomy" class="quarto-xref">Figure&nbsp;<span>9.1</span></a>. These questions help us describe what each method explains, how it works, and how it is used and evaluated.</p>
+<p>The chapters that follow will each focus on an explanation method from <strong>How</strong>. We will use the other six questions to discuss what the method explains, where its evidence comes from, when and why to use it, how to evaluate it, and who it is useful for.</p>
 <div style="text-align: center;">
 <div id="fig-llm-explainability-taxonomy" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -418,69 +419,267 @@ Figure&nbsp;9.1: A taxonomy of LLM explainability.
 <section id="what-explanation-target" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="what-explanation-target"><span class="header-section-number">9.1</span> What? Explanation Target</h2>
 <ul>
-<li><strong>Predictions and outputs:</strong></li>
-<li><strong>Learned knowledge:</strong></li>
-<li><strong>Internal representations:</strong></li>
-<li><strong>Computational mechanisms:</strong></li>
-<li><strong>Model behaviour:</strong></li>
+<li><p><strong>Predictions and outputs:</strong></p>
+<ul>
+<li>One answer, predicted class, or generated token; the particular decision being explained</li>
+<li>Words or phrases behind that decision, such as positive or negative wording in a restaurant review</li>
+<li>Reasons tied to that input and output; possibly different reasons for another example</li>
+<li>Reading: <a href="https://proceedings.mlr.press/v70/sundararajan17a.html">Axiomatic Attribution for Deep Networks</a></li>
+</ul></li>
+<li><p><strong>Learned knowledge:</strong></p>
+<ul>
+<li>Facts and associations picked up during training, such as a person’s occupation or a country’s capital</li>
+<li>Different prompts for the same fact; checks across types of facts and versions of the model</li>
+<li>Correct answers under one wording versus consistent answers across prompts; possible effects of memorization</li>
+<li>Reading: <a href="https://aclanthology.org/D19-1250/">Language Models as Knowledge Bases?</a></li>
+</ul></li>
+<li><p><strong>Internal representations:</strong></p>
+<ul>
+<li>Information in hidden states about grammar, word meaning, and the context of a sentence</li>
+<li>Comparisons across layers and token positions; properties becoming easier or harder to recover</li>
+<li>Information present in a representation versus information used for prediction; separate tests for actual use</li>
+<li>Reading: <a href="https://aclanthology.org/P19-1452/">BERT Rediscovers the Classical NLP Pipeline</a></li>
+</ul></li>
+<li><p><strong>Computational mechanisms:</strong></p>
+<ul>
+<li>Steps inside the model that connect an input to an output; the parts involved at each step</li>
+<li>Induction heads as an example: attention heads using an earlier token pattern to help continue a repeated one</li>
+<li>Tests of the proposed steps by changing or disabling the relevant components</li>
+<li>Reading: <a href="https://arxiv.org/abs/2209.11895">In-context Learning and Induction Heads</a></li>
+</ul></li>
+<li><p><strong>Model behaviour:</strong></p>
+<ul>
+<li>Tasks the model handles well and cases where it fails; patterns hidden by overall test accuracy</li>
+<li>Input edits that should preserve the prediction and edits that should change it</li>
+<li>Examples involving negation, names, or distracting text; observed behaviour as a starting point for investigating its causes</li>
+<li>Reading: <a href="https://aclanthology.org/2020.acl-main.442/">Beyond Accuracy: Behavioral Testing of NLP Models with CheckList</a></li>
+</ul></li>
 </ul>
 </section>
 <section id="where-evidence-location" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="where-evidence-location"><span class="header-section-number">9.2</span> Where? Evidence Location</h2>
 <ul>
-<li><strong>Input and output tokens:</strong></li>
-<li><strong>Attention patterns:</strong></li>
-<li><strong>Hidden activations:</strong></li>
-<li><strong>Neurons, heads, and layers:</strong></li>
-<li><strong>Parameters and training data:</strong></li>
+<li><p><strong>Input and output tokens:</strong></p>
+<ul>
+<li>Evidence in prompt words, earlier generated tokens, or longer spans of text</li>
+<li>Contributions to a particular output; different effects of the same word in different contexts</li>
+<li>Highlights over individual tokens or whole phrases; subword tokens grouped into readable words where appropriate</li>
+<li>Reading: <a href="https://proceedings.mlr.press/v70/sundararajan17a.html">Axiomatic Attribution for Deep Networks</a></li>
+</ul></li>
+<li><p><strong>Attention patterns:</strong></p>
+<ul>
+<li>Token positions receiving attention, including earlier mentions, nearby words, and special tokens</li>
+<li>Patterns across heads and layers; possible roles in passing information between positions</li>
+<li>Attention weights as clues; separate tests of how changing them affects the prediction</li>
+<li>Reading: <a href="https://aclanthology.org/N19-1357/">Attention is not Explanation</a></li>
+</ul></li>
+<li><p><strong>Hidden activations:</strong></p>
+<ul>
+<li>Vectors produced at chosen layers and token positions; a view of information beyond the final answer</li>
+<li>Recurring patterns in these vectors; dictionaries and codebooks for examining features spread across dimensions</li>
+<li>CLVQ-VAE example: lower-layer activations assigned to discrete codes, then used to reconstruct higher-layer activations</li>
+<li>Reading: <a href="https://proceedings.iclr.cc/paper_files/paper/2024/hash/1fa1ab11f4bd5f94b2ec20e794dbfa3b-Abstract-Conference.html">Sparse Autoencoders Find Highly Interpretable Features in Language Models</a>; <a href="https://arxiv.org/abs/2506.20040v3">Cross-Layer Discrete Concept Discovery for Interpreting Language Models</a></li>
+</ul></li>
+<li><p><strong>Neurons, heads, and layers:</strong></p>
+<ul>
+<li>Roles of particular neurons, attention heads, or layers; checks on what changes when their outputs are removed or replaced</li>
+<li>Several components working together in a circuit; a computation spread across heads or layers</li>
+<li>Roles tied to the tested task and inputs; possible changes in another context</li>
+<li>Reading: <a href="https://arxiv.org/abs/2209.11895">In-context Learning and Induction Heads</a></li>
+</ul></li>
+<li><p><strong>Parameters and training data:</strong></p>
+<ul>
+<li>Weight edits to test a factual association; checks for unwanted changes to unrelated predictions</li>
+<li>Training examples linked to a prediction; estimates of the effect of removing them or changing their training weight</li>
+<li>Limits of these estimates, especially when tracing a generated answer to individual training examples</li>
+<li>Reading: <a href="https://papers.neurips.cc/paper_files/paper/2022/hash/6f1d43d5a82a37e89b0665b33bf3a182-Abstract-Conference.html">Locating and Editing Factual Associations in GPT</a>; <a href="https://proceedings.mlr.press/v70/koh17a.html">Understanding Black-box Predictions via Influence Functions</a></li>
+</ul></li>
 </ul>
 </section>
 <section id="how-explanation-method" class="level2" data-number="9.3">
 <h2 data-number="9.3" class="anchored" data-anchor-id="how-explanation-method"><span class="header-section-number">9.3</span> How? Explanation Method</h2>
 <ul>
-<li><strong>Feature attribution:</strong></li>
-<li><strong>Probing:</strong></li>
-<li><strong>Concept discovery:</strong></li>
-<li><strong>Mechanistic analysis:</strong></li>
-<li><strong>Counterfactual intervention:</strong></li>
+<li><p><strong>Feature attribution:</strong></p>
+<ul>
+<li>Importance values for words or other input features, tied to the output being explained</li>
+<li>Positive and negative contributions; effects of the attribution method and chosen reference input</li>
+<li>Hybrid example: the structure of Neural Classification Trees (NCT), supplemented by LayerGradCAM maps showing relevant image regions</li>
+<li>Reading: <a href="https://proceedings.mlr.press/v70/sundararajan17a.html">Axiomatic Attribution for Deep Networks</a>; <a href="https://arxiv.org/abs/2606.23609v2">Discovering Latent Groups for Robust Classification</a></li>
+</ul></li>
+<li><p><strong>Probing:</strong></p>
+<ul>
+<li>A separate predictor trained on the model’s hidden states to recover a known property, such as a grammatical relation</li>
+<li>Comparisons across layers and with simple baselines; checks on how much the probe itself can learn</li>
+<li>Information available to the probe versus information used by the original model for its task</li>
+<li>Reading: <a href="https://aclanthology.org/N19-1419/">A Structural Probe for Finding Syntax in Word Representations</a>; <a href="https://proceedings.neurips.cc/paper_files/paper/2021/hash/4f5c422f4d49a5a807eda27434231040-Abstract.html">Causal Abstractions of Neural Networks</a></li>
+</ul></li>
+<li><p><strong>Concept discovery:</strong></p>
+<ul>
+<li>Recurring patterns learned from activations without starting with named concepts or concept annotations</li>
+<li>Sparse combinations of continuous features in SAEs; discrete code assignments in CLVQ-VAE</li>
+<li>Meaning inferred from the tokens and contexts associated with a feature; checks on shared meaning and effects on model behaviour</li>
+<li>Reading: <a href="https://proceedings.iclr.cc/paper_files/paper/2024/hash/1fa1ab11f4bd5f94b2ec20e794dbfa3b-Abstract-Conference.html">Sparse Autoencoders Find Highly Interpretable Features in Language Models</a>; <a href="https://arxiv.org/abs/2506.20040v3">Cross-Layer Discrete Concept Discovery for Interpreting Language Models</a></li>
+</ul></li>
+<li><p><strong>Mechanistic analysis:</strong></p>
+<ul>
+<li>A proposed circuit for a particular task; the components involved and the information passed between them</li>
+<li>Tests of the circuit by removing or replacing component outputs and checking the resulting prediction</li>
+<li>Tasks and inputs covered by the explanation; parts of the computation still unexplained</li>
+<li>Reading: <a href="https://arxiv.org/abs/2209.11895">In-context Learning and Induction Heads</a></li>
+</ul></li>
+<li><p><strong>Counterfactual intervention:</strong></p>
+<ul>
+<li>A deliberate change to an input or internal state; comparison with a model run kept otherwise the same</li>
+<li>Example: replacing an activation with the activation at the same position and layer from another input</li>
+<li>Expected changes in the answer if the explanation is right; checks on the choice of intervention and comparison</li>
+<li>Reading: <a href="https://proceedings.neurips.cc/paper_files/paper/2021/hash/4f5c422f4d49a5a807eda27434231040-Abstract.html">Causal Abstractions of Neural Networks</a></li>
+</ul></li>
 </ul>
 </section>
 <section id="when-stage-of-use" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="when-stage-of-use"><span class="header-section-number">9.4</span> When? Stage of Use</h2>
 <ul>
-<li><strong>During training:</strong></li>
-<li><strong>Post-training analysis:</strong></li>
-<li><strong>During inference and generation:</strong></li>
-<li><strong>After generation:</strong></li>
+<li><p><strong>During training:</strong></p>
+<ul>
+<li>Concepts, selected evidence, or visible groups built into the model design or training objective</li>
+<li>Rationale models: learning to select evidence and predict from it together, with penalties for long or scattered selections</li>
+<li>NCT example: easy/hard groups built into the architecture, with post-hoc attribution used to inspect its neural components</li>
+<li>Reading: <a href="https://aclanthology.org/D16-1011/">Rationalizing Neural Predictions</a>; <a href="https://arxiv.org/abs/2606.23609v2">Discovering Latent Groups for Robust Classification</a></li>
+</ul></li>
+<li><p><strong>Post-training analysis:</strong></p>
+<ul>
+<li>Analysis of an already trained model, with its original weights held fixed</li>
+<li>Separate probes or feature dictionaries learned from its activations; comparisons across layers and examples</li>
+<li>CLVQ-VAE example: training an additional model on extracted activations to discover discrete concepts</li>
+<li>Reading: <a href="https://aclanthology.org/N19-1419/">A Structural Probe for Finding Syntax in Word Representations</a>; <a href="https://arxiv.org/abs/2506.20040v3">Cross-Layer Discrete Concept Discovery for Interpreting Language Models</a></li>
+</ul></li>
+<li><p><strong>During inference and generation:</strong></p>
+<ul>
+<li>Access to hidden states as tokens are generated; monitoring or edits before the response is complete</li>
+<li>TRACE example: risk estimates from current and earlier activations and their assigned concepts</li>
+<li>Activation edits affecting the next tokens; extra computation and possible effects on otherwise safe responses</li>
+<li>Reading: <a href="https://proceedings.neurips.cc/paper_files/paper/2023/hash/81b8390039b7302c909cb769f8b6cd93-Abstract-Conference.html">Inference-Time Intervention: Eliciting Truthful Answers from a Language Model</a>; <a href="https://arxiv.org/html/2610.15365v1">TRACE: Temporal Risk Assessment and Concept Editing for Safer Language Generation</a></li>
+</ul></li>
+<li><p><strong>After generation:</strong></p>
+<ul>
+<li>Review of a completed answer using supporting text, token attributions, or saved internal states</li>
+<li>Checks on the proposed explanation by removing evidence or making other controlled changes</li>
+<li>A convincing written justification versus an explanation of the model’s actual computation</li>
+<li>Reading: <a href="https://aclanthology.org/2020.acl-main.408/">ERASER: A Benchmark to Evaluate Rationalized NLP Models</a>; <a href="https://arxiv.org/abs/2305.04388">Language Models Don’t Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting</a></li>
+</ul></li>
 </ul>
 </section>
 <section id="which-explanation-quality" class="level2" data-number="9.5">
 <h2 data-number="9.5" class="anchored" data-anchor-id="which-explanation-quality"><span class="header-section-number">9.5</span> Which? Explanation Quality</h2>
 <ul>
-<li><strong>Faithfulness:</strong></li>
-<li><strong>Causal validity:</strong></li>
-<li><strong>Stability:</strong></li>
-<li><strong>Completeness:</strong></li>
-<li><strong>Human interpretability:</strong></li>
+<li><p><strong>Faithfulness:</strong></p>
+<ul>
+<li>Reasons in the explanation matching what the model actually used for its prediction</li>
+<li>Tests that remove or change the claimed evidence, with suitable comparisons such as random changes</li>
+<li>CLVQ-VAE example: removal of a concept direction tested through a linear probe; evidence about the representation, not a direct test of the original prediction head</li>
+<li>Reading: <a href="https://aclanthology.org/2020.acl-main.386/">Towards Faithfully Interpretable NLP Systems: How Should We Define and Evaluate Faithfulness?</a>; <a href="https://arxiv.org/abs/2506.20040v3">Cross-Layer Discrete Concept Discovery for Interpreting Language Models</a></li>
+</ul></li>
+<li><p><strong>Causal validity:</strong></p>
+<ul>
+<li>Changes to a model component followed by the output change expected from the explanation</li>
+<li>A feature associated with an answer versus a feature whose alteration changes that answer</li>
+<li>Conclusions tied to the tested intervention; causes inside the model separate from causes in the real world</li>
+<li>Reading: <a href="https://papers.neurips.cc/paper_files/paper/2020/hash/92650b2e92217715fe312e6fa7b90d82-Abstract.html">Investigating Gender Bias in Language Models Using Causal Mediation Analysis</a></li>
+</ul></li>
+<li><p><strong>Stability:</strong></p>
+<ul>
+<li>Similar explanations for inputs with similar meaning and comparable model predictions</li>
+<li>Checks under small wording changes, irrelevant context, or repeated runs of the explanation method</li>
+<li>Unexplained variation versus reasonable changes when the model’s prediction itself changes</li>
+<li>Reading: <a href="https://papers.nips.cc/paper/2018/hash/3e9f0fc9b2f89e043bc6233994dfcf76-Abstract.html">Towards Robust Interpretability with Self-Explaining Neural Networks</a></li>
+</ul></li>
+<li><p><strong>Completeness:</strong></p>
+<ul>
+<li>How much of the selected prediction the explanation accounts for; contributions left out of a short feature list</li>
+<li>Integrated Gradients example: contributions adding up to the difference in a selected output value from a reference input</li>
+<li>Accounting for an output difference; no guarantee of covering every step inside the model</li>
+<li>Reading: <a href="https://proceedings.mlr.press/v70/sundararajan17a.html">Axiomatic Attribution for Deep Networks</a></li>
+</ul></li>
+<li><p><strong>Human interpretability:</strong></p>
+<ul>
+<li>Familiar concepts and enough detail for the reader’s task and background</li>
+<li>Tests of whether readers can predict model outputs or spot errors using the explanation</li>
+<li>Demonstrated understanding alongside ratings of readability, satisfaction, or persuasiveness</li>
+<li>Reading: <a href="https://arxiv.org/abs/1702.08608">Towards A Rigorous Science of Interpretable Machine Learning</a></li>
+</ul></li>
 </ul>
 </section>
 <section id="why-intended-purpose" class="level2" data-number="9.6">
 <h2 data-number="9.6" class="anchored" data-anchor-id="why-intended-purpose"><span class="header-section-number">9.6</span> Why? Intended Purpose</h2>
 <ul>
-<li><strong>Understanding:</strong></li>
-<li><strong>Debugging:</strong></li>
-<li><strong>Auditing and safety:</strong></li>
-<li><strong>Robustness:</strong></li>
-<li><strong>Control and steering:</strong></li>
+<li><p><strong>Understanding:</strong></p>
+<ul>
+<li>Reasons behind particular predictions and patterns shared across several examples</li>
+<li>Questions about what the model represents, which evidence matters, or how an answer is produced</li>
+<li>A clear distinction between findings about one answer and claims about the model more generally</li>
+<li>Reading: <a href="https://arxiv.org/abs/1602.04938">“Why Should I Trust You?”: Explaining the Predictions of Any Classifier</a></li>
+</ul></li>
+<li><p><strong>Debugging:</strong></p>
+<ul>
+<li>Reliance on misleading clues, overlooked evidence, or unexpected changes after simple input edits</li>
+<li>Shared problems across failed examples; possible issues in the data, training, or model</li>
+<li>Changes aimed at those problems, followed by checks on both failed examples and previously correct ones</li>
+<li>Reading: <a href="https://aclanthology.org/P18-1079/">Semantically Equivalent Adversarial Rules for Debugging NLP models</a></li>
+</ul></li>
+<li><p><strong>Auditing and safety:</strong></p>
+<ul>
+<li>Investigation of bias, harmful answers, and false alarms; reasons behind a safeguard’s decisions</li>
+<li>TRACE example: records of concepts encountered during detection and concepts targeted by activation edits</li>
+<li>Concept names added after training for inspection; associations with harmful responses insufficient to establish causation or safety</li>
+<li>Reading: <a href="https://papers.neurips.cc/paper_files/paper/2020/hash/92650b2e92217715fe312e6fa7b90d82-Abstract.html">Investigating Gender Bias in Language Models Using Causal Mediation Analysis</a>; <a href="https://arxiv.org/html/2610.15365v1">TRACE: Temporal Risk Assessment and Concept Editing for Safer Language Generation</a></li>
+</ul></li>
+<li><p><strong>Robustness:</strong></p>
+<ul>
+<li>Prediction changes after edits that preserve meaning, or when training-set shortcuts no longer hold</li>
+<li>Weak cases and subgroups hidden by average performance; tests of reliance on misleading clues</li>
+<li>NCT example: separate neural heads for learned easy/hard groups; group information retained alongside the class prediction</li>
+<li>Reading: <a href="https://aclanthology.org/P18-1079/">Semantically Equivalent Adversarial Rules for Debugging NLP models</a>; <a href="https://arxiv.org/abs/2606.23609v2">Discovering Latent Groups for Robust Classification</a></li>
+</ul></li>
+<li><p><strong>Control and steering:</strong></p>
+<ul>
+<li>Changes to activation directions or discovered concepts to influence the generated response</li>
+<li>TRACE example: selected activation edits toward nearby benign concept targets, based on the current token’s assignment</li>
+<li>Checks on edit strength, the intended behaviour change, and unwanted effects on useful responses</li>
+<li>Reading: <a href="https://proceedings.neurips.cc/paper_files/paper/2023/hash/81b8390039b7302c909cb769f8b6cd93-Abstract-Conference.html">Inference-Time Intervention: Eliciting Truthful Answers from a Language Model</a>; <a href="https://arxiv.org/html/2610.15365v1">TRACE: Temporal Risk Assessment and Concept Editing for Safer Language Generation</a></li>
+</ul></li>
 </ul>
 </section>
 <section id="who-intended-audience" class="level2" data-number="9.7">
 <h2 data-number="9.7" class="anchored" data-anchor-id="who-intended-audience"><span class="header-section-number">9.7</span> Who? Intended Audience</h2>
 <ul>
-<li><strong>Researchers:</strong></li>
-<li><strong>Model developers:</strong></li>
-<li><strong>Auditors:</strong></li>
-<li><strong>End users:</strong></li>
+<li><p><strong>Researchers:</strong></p>
+<ul>
+<li>Questions about what the model has learned and how its components produce a behaviour</li>
+<li>Controlled experiments and comparisons with simple baselines or alternative explanations</li>
+<li>Enough detail to repeat the analysis, including the tested models, inputs, and remaining uncertainties</li>
+<li>Reading: <a href="https://proceedings.neurips.cc/paper_files/paper/2021/hash/4f5c422f4d49a5a807eda27434231040-Abstract.html">Causal Abstractions of Neural Networks</a></li>
+</ul></li>
+<li><p><strong>Model developers:</strong></p>
+<ul>
+<li>Reasons for model errors, including misleading clues or relevant evidence the model overlooks</li>
+<li>Findings that help decide what data to collect, which model to use, or what to change in training</li>
+<li>Checks after each change, including previously correct examples and possible new errors</li>
+<li>Reading: <a href="https://aclanthology.org/2020.acl-main.442/">Beyond Accuracy: Behavioral Testing of NLP Models with CheckList</a></li>
+</ul></li>
+<li><p><strong>Auditors:</strong></p>
+<ul>
+<li>Evidence of bias, harm, and model limitations in the setting where the model will be used</li>
+<li>Comparisons across groups and conditions; explanation records alongside other evaluation results</li>
+<li>Records of the checks performed, assumptions made, problems found, and changes that followed</li>
+<li>Reading: <a href="https://arxiv.org/abs/2001.00973">Closing the AI Accountability Gap: Defining an End-to-End Framework for Internal Algorithmic Auditing</a></li>
+</ul></li>
+<li><p><strong>End users:</strong></p>
+<ul>
+<li>Reasons for a particular answer, using familiar terms and evidence relevant to the user’s question</li>
+<li>Help with deciding when to rely on an answer, question it, or check another source</li>
+<li>Enough detail for the user’s task and knowledge; checks on actual understanding as well as confidence</li>
+<li>Reading: <a href="https://arxiv.org/abs/1602.04938">“Why Should I Trust You?”: Explaining the Predictions of Any Classifier</a></li>
+</ul></li>
 </ul>
 
 
