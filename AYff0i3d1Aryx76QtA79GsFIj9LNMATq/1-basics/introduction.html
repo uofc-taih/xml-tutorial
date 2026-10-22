@@ -422,19 +422,29 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression"><span class="header-section-number">1.1.1</span> Linear Regression</a></li>
   <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression"><span class="header-section-number">1.1.2</span> Logistic Regression</a></li>
-  <li><a href="#decision-trees" id="toc-decision-trees" class="nav-link" data-scroll-target="#decision-trees"><span class="header-section-number">1.1.3</span> Decision Trees</a></li>
-  <li><a href="#k-nearest-neighbors" id="toc-k-nearest-neighbors" class="nav-link" data-scroll-target="#k-nearest-neighbors"><span class="header-section-number">1.1.4</span> K-Nearest Neighbors</a></li>
   </ul></li>
-  <li><a href="#global-vs.-local-explainability" id="toc-global-vs.-local-explainability" class="nav-link" data-scroll-target="#global-vs.-local-explainability"><span class="header-section-number">1.2</span> Global vs.&nbsp;Local Explainability</a></li>
-  <li><a href="#model-agnostic-vs.-model-specific" id="toc-model-agnostic-vs.-model-specific" class="nav-link" data-scroll-target="#model-agnostic-vs.-model-specific"><span class="header-section-number">1.3</span> Model-Agnostic vs.&nbsp;Model-Specific</a></li>
-  <li><a href="#practical-considerations" id="toc-practical-considerations" class="nav-link" data-scroll-target="#practical-considerations"><span class="header-section-number">1.4</span> Practical Considerations</a>
+  <li><a href="#model-and-inference" id="toc-model-and-inference" class="nav-link" data-scroll-target="#model-and-inference"><span class="header-section-number">1.2</span> Model and inference</a>
   <ul class="collapse">
-  <li><a href="#selecting-an-explainability-method" id="toc-selecting-an-explainability-method" class="nav-link" data-scroll-target="#selecting-an-explainability-method"><span class="header-section-number">1.4.1</span> Selecting an Explainability Method</a></li>
-  <li><a href="#selecting-an-explainability-method-1" id="toc-selecting-an-explainability-method-1" class="nav-link" data-scroll-target="#selecting-an-explainability-method-1"><span class="header-section-number">1.4.2</span> Selecting an Explainability Method</a></li>
-  <li><a href="#evaluating-explanations" id="toc-evaluating-explanations" class="nav-link" data-scroll-target="#evaluating-explanations"><span class="header-section-number">1.4.3</span> Evaluating Explanations</a></li>
-  <li><a href="#common-pitfalls" id="toc-common-pitfalls" class="nav-link" data-scroll-target="#common-pitfalls"><span class="header-section-number">1.4.4</span> Common Pitfalls</a></li>
-  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">1.4.5</span> Best Practices</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">1.4.6</span> Summary</a></li>
+  <li><a href="#features-and-the-importance-of-linear-scoring" id="toc-features-and-the-importance-of-linear-scoring" class="nav-link" data-scroll-target="#features-and-the-importance-of-linear-scoring"><span class="header-section-number">1.2.1</span> Features and the importance of linear scoring</a></li>
+  <li><a href="#obtaining-probabilities-from-scores" id="toc-obtaining-probabilities-from-scores" class="nav-link" data-scroll-target="#obtaining-probabilities-from-scores"><span class="header-section-number">1.2.2</span> Obtaining probabilities from scores</a></li>
+  <li><a href="#log-odds" id="toc-log-odds" class="nav-link" data-scroll-target="#log-odds"><span class="header-section-number">1.2.3</span> Log-odds</a></li>
+  <li><a href="#making-decisions-through-probabilities" id="toc-making-decisions-through-probabilities" class="nav-link" data-scroll-target="#making-decisions-through-probabilities"><span class="header-section-number">1.2.4</span> Making decisions through probabilities</a></li>
+  <li><a href="#what-if-there-is-more-than-two-classes" id="toc-what-if-there-is-more-than-two-classes" class="nav-link" data-scroll-target="#what-if-there-is-more-than-two-classes"><span class="header-section-number">1.2.5</span> What if there is more than two classes?</a></li>
+  <li><a href="#evaluation-of-logistic-regression" id="toc-evaluation-of-logistic-regression" class="nav-link" data-scroll-target="#evaluation-of-logistic-regression"><span class="header-section-number">1.2.6</span> Evaluation of logistic regression</a></li>
+  <li><a href="#limitations-and-use-cases-of-logistic-regression" id="toc-limitations-and-use-cases-of-logistic-regression" class="nav-link" data-scroll-target="#limitations-and-use-cases-of-logistic-regression"><span class="header-section-number">1.2.7</span> Limitations and use cases of logistic regression</a></li>
+  <li><a href="#decision-trees" id="toc-decision-trees" class="nav-link" data-scroll-target="#decision-trees"><span class="header-section-number">1.2.8</span> Decision Trees</a></li>
+  <li><a href="#k-nearest-neighbors" id="toc-k-nearest-neighbors" class="nav-link" data-scroll-target="#k-nearest-neighbors"><span class="header-section-number">1.2.9</span> K-Nearest Neighbors</a></li>
+  </ul></li>
+  <li><a href="#global-vs.-local-explainability" id="toc-global-vs.-local-explainability" class="nav-link" data-scroll-target="#global-vs.-local-explainability"><span class="header-section-number">1.3</span> Global vs.&nbsp;Local Explainability</a></li>
+  <li><a href="#model-agnostic-vs.-model-specific" id="toc-model-agnostic-vs.-model-specific" class="nav-link" data-scroll-target="#model-agnostic-vs.-model-specific"><span class="header-section-number">1.4</span> Model-Agnostic vs.&nbsp;Model-Specific</a></li>
+  <li><a href="#practical-considerations" id="toc-practical-considerations" class="nav-link" data-scroll-target="#practical-considerations"><span class="header-section-number">1.5</span> Practical Considerations</a>
+  <ul class="collapse">
+  <li><a href="#selecting-an-explainability-method" id="toc-selecting-an-explainability-method" class="nav-link" data-scroll-target="#selecting-an-explainability-method"><span class="header-section-number">1.5.1</span> Selecting an Explainability Method</a></li>
+  <li><a href="#selecting-an-explainability-method-1" id="toc-selecting-an-explainability-method-1" class="nav-link" data-scroll-target="#selecting-an-explainability-method-1"><span class="header-section-number">1.5.2</span> Selecting an Explainability Method</a></li>
+  <li><a href="#evaluating-explanations" id="toc-evaluating-explanations" class="nav-link" data-scroll-target="#evaluating-explanations"><span class="header-section-number">1.5.3</span> Evaluating Explanations</a></li>
+  <li><a href="#common-pitfalls" id="toc-common-pitfalls" class="nav-link" data-scroll-target="#common-pitfalls"><span class="header-section-number">1.5.4</span> Common Pitfalls</a></li>
+  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">1.5.5</span> Best Practices</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">1.5.6</span> Summary</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -508,56 +518,240 @@ Figure&nbsp;1.3: When features are mutually collinear the explanations provided 
 </section>
 <section id="logistic-regression" class="level3" data-number="1.1.2">
 <h3 data-number="1.1.2" class="anchored" data-anchor-id="logistic-regression"><span class="header-section-number">1.1.2</span> Logistic Regression</h3>
-<p>Logistic regression is a supervised machine learning algorithm used for classification, meaning it predicts the probability that an observation belongs to a particular class (such as whether an email is spam or not spam). Logistic regression works by combining input features through a linear function and passing the result through a sigmoid function to return a probability between 0 and 1. A classification threshold, typically 0.5, is then used to assign a class label. Logistic regression can be considered as easy to interpret because its coefficients indicate how individual features influence the predicted odds of an outcome.</p>
+<p>Logistic regression is a supervised machine learning algorithm used for classification, despite the name leading one to believe it would predict continuous values (regression). Logistic regression predicts the probability that an input belongs to a class by passing a weighted sum of the input features through a sigmoid function.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Running example: restaurant recommendation">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Running example: restaurant recommendation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Throughout the logistic regression section, we will use a running example of a logistic regression model that predicts whether a customer will recommend a resturant based on a number of factors, including food rating, waiting time, and price. For a visit <em>“The pasta was excellent (5 stars), we waited 60 minutes, and paid $30 per person,”</em> the model should combine a strong positive signal (food) with negative signals (a long wait and the price) and output a probability that the customer recommends the restaurant.</p>
+</div>
+</div>
 </section>
-<section id="decision-trees" class="level3" data-number="1.1.3">
-<h3 data-number="1.1.3" class="anchored" data-anchor-id="decision-trees"><span class="header-section-number">1.1.3</span> Decision Trees</h3>
+</section>
+<section id="model-and-inference" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="model-and-inference"><span class="header-section-number">1.2</span> Model and inference</h2>
+<p>Logistic regression makes a prediction in three steps:</p>
+<p><span id="eq-lr-pipeline"><span class="math display">\[
+\mathbf{x}
+\xrightarrow{\;\text{linear score}\;}
+z
+\xrightarrow{\;\sigma\;}
+\widehat{p}
+\xrightarrow{\;\text{threshold}\;}
+\widehat{y}.
+\tag{1.1}\]</span></span></p>
+<p>The model starts by computing a single real-valued score <span class="math inline">\(z\)</span> from the aforementioned input features. The sigmoid function <span class="math inline">\(\sigma\)</span> converts this real-valued score into a probability <span class="math inline">\(\widehat{p}\)</span>, which is then thresholded to produce a binary classification prediction <span class="math inline">\(\widehat{y}\)</span>.</p>
+<p>In the running example, <span class="math inline">\(\mathbf{x}\)</span> consists of the three input features, which the model uses to compute a score and converts the score into a recommendation probability, which will then predict <em>recommend</em> if the probability is above a threshold (e.g., 0.5) and <em>not recommend</em> otherwise.</p>
+<section id="features-and-the-importance-of-linear-scoring" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="features-and-the-importance-of-linear-scoring"><span class="header-section-number">1.2.1</span> Features and the importance of linear scoring</h3>
+<p>If <span class="math inline">\(d\)</span> is the number of features, the input is a feature vector</p>
+<p><span class="math display">\[
+\mathbf{x}
+=
+(x_1,\ldots,x_d),
+\]</span></p>
+<p>where <span class="math inline">\(x_j\)</span> denotes the value of feature <span class="math inline">\(j\)</span>. The model has one weight <span class="math inline">\(w_j\)</span> for each feature and a bias <span class="math inline">\(b\)</span>. Combining them into a linear score;</p>
+<p><span id="eq-lr-linear-score"><span class="math display">\[
+z
+=
+\mathbf{w}^\top\mathbf{x}+b
+=
+b+\sum_{j=1}^{d}w_j x_j.
+\tag{1.2}\]</span></span></p>
+<p>The score <span class="math inline">\(z\in\mathbb{R}\)</span> is referred to as the <em>logit</em>. Logits are large values that when positive, favour the positive class, and when negative, favour the negative class. Going back to our running example of the resturant, the logit is</p>
+<p><span id="eq-lr-restaurant-score"><span class="math display">\[
+z
+=
+b
++w_{\mathrm{food}}x_{\mathrm{food}}
++w_{\mathrm{wait}}x_{\mathrm{wait}}
++w_{\mathrm{price}}x_{\mathrm{price}}.
+\tag{1.3}\]</span></span></p>
+</section>
+<section id="obtaining-probabilities-from-scores" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="obtaining-probabilities-from-scores"><span class="header-section-number">1.2.2</span> Obtaining probabilities from scores</h3>
+<p>A probability is a value between 0 and 1, but the logit can be any real value. The sigmoid, or logistic, function maps the logit to a range:</p>
+<p><span id="eq-lr-sigmoid"><span class="math display">\[
+\widehat{p}
+=
+p(y=1\mid\mathbf{x})
+=
+\sigma(z)
+=
+\frac{1}{1+e^{-z}}.
+\tag{1.4}\]</span></span></p>
+<p>Some properties of sigmoid include:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\sigma(0)=0.5\)</span></td>
+<td>A logit of zero means the model is undecided</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\sigma(-z)=1-\sigma(z)\)</span></td>
+<td>The function is symmetric around <span class="math inline">\(z=0\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\sigma'(z)=\sigma(z)\bigl(1-\sigma(z)\bigr)\)</span></td>
+<td>The slope is largest at <span class="math inline">\(z=0\)</span> and shrinks toward 0 and 1</td>
+</tr>
+</tbody>
+</table>
+<p>Combining <a href="#eq-lr-linear-score" class="quarto-xref">Equation&nbsp;<span>1.2</span></a> and <a href="#eq-lr-sigmoid" class="quarto-xref">Equation&nbsp;<span>1.4</span></a> gives the full model:</p>
+<p><span id="eq-lr-model"><span class="math display">\[
+\widehat{p}
+=
+\sigma\!\left(\mathbf{w}^\top\mathbf{x}+b\right).
+\tag{1.5}\]</span></span></p>
+<p>Suppose the trained model has the parameters</p>
+<p><span class="math display">\[
+b=-2.0,\qquad
+w_{\mathrm{food}}=1.2,\qquad
+w_{\mathrm{wait}}=-0.04,\qquad
+w_{\mathrm{price}}=-0.01.
+\]</span></p>
+<p>For the running review, <span class="math inline">\(x_{\mathrm{food}}=5\)</span>, <span class="math inline">\(x_{\mathrm{wait}}=60\)</span>, and <span class="math inline">\(x_{\mathrm{price}}=30\)</span>. The logit is</p>
+<p><span class="math display">\[
+z
+=
+-2.0+1.2(5)-0.04(60)-0.01(30)
+=
+-2.0+6.0-2.4-0.3
+=
+1.3,
+\]</span></p>
+<p>with the recommendation probability being <span class="math inline">\(\sigma(1.3)\approx 0.79\)</span>.</p>
+</section>
+<section id="log-odds" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="log-odds"><span class="header-section-number">1.2.3</span> Log-odds</h3>
+<p>The <em>odds</em> of the positive class is the ratio <span class="math inline">\(\widehat{p}/(1-\widehat{p})\)</span>. For example, a probability of 0.8 would correspond to odds of 4:1, meaning that the positive class if four times more likely than the negative class. Inverting <a href="#eq-lr-sigmoid" class="quarto-xref">Equation&nbsp;<span>1.4</span></a> would show that the logit measures:</p>
+<p><span id="eq-lr-log-odds"><span class="math display">\[
+\log\frac{\widehat{p}}{1-\widehat{p}}
+=
+\mathbf{w}^\top\mathbf{x}+b.
+\tag{1.6}\]</span></span></p>
+<p>By this logic, logistic regression is a linear model of the log-odds, meaning the model is linear in the logit and not the probability.</p>
+</section>
+<section id="making-decisions-through-probabilities" class="level3" data-number="1.2.4">
+<h3 data-number="1.2.4" class="anchored" data-anchor-id="making-decisions-through-probabilities"><span class="header-section-number">1.2.4</span> Making decisions through probabilities</h3>
+<p>To create a class label, a probability is compared with a threshold <span class="math inline">\(t\)</span>:</p>
+<p><span id="eq-lr-decision"><span class="math display">\[
+\widehat{y}
+=
+\begin{cases}
+1, &amp; \widehat{p}\ge t,\\
+0, &amp; \widehat{p}&lt;t.
+\end{cases}
+\tag{1.7}\]</span></span></p>
+<p>The threshold should not be learned from the likelihood and should instead be chosen according to the relative costs of the false positives and false negatives. In our running example, <span class="math inline">\(\widehat{p}\approx 0.79\ge 0.5\)</span>, so the model will predict recommend.</p>
+</section>
+<section id="what-if-there-is-more-than-two-classes" class="level3" data-number="1.2.5">
+<h3 data-number="1.2.5" class="anchored" data-anchor-id="what-if-there-is-more-than-two-classes"><span class="header-section-number">1.2.5</span> What if there is more than two classes?</h3>
+<p>A multinomial logistic regression learns one weight vector <span class="math inline">\(\mathbf{w}_r\)</span> and bias <span class="math inline">\(b_r\)</span> for each class <span class="math inline">\(R\)</span>, and calculates one logit per class. Softmax then converts the logits into class probabilities that sum to 1;</p>
+<p><span id="eq-lr-softmax"><span class="math display">\[
+p(y=r\mid\mathbf{x})
+=
+\frac{\exp(z_r)}
+{\displaystyle\sum_{q=1}^{R}\exp(z_q)},
+\qquad r=1,\ldots,R.
+\tag{1.8}\]</span></span></p>
+<p>Adding the same vectr to every <span class="math inline">\(\mathbf{w}_r\)</span> leaves the probabilities unchanges, meaning one class can be fixed as a reference with zero weights. So, if <span class="math inline">\(R=2\)</span>, <a href="#eq-lr-softmax" class="quarto-xref">Equation&nbsp;<span>1.8</span></a> reduces to the sigmoid model in <a href="#eq-lr-model" class="quarto-xref">Equation&nbsp;<span>1.5</span></a>.</p>
+</section>
+<section id="evaluation-of-logistic-regression" class="level3" data-number="1.2.6">
+<h3 data-number="1.2.6" class="anchored" data-anchor-id="evaluation-of-logistic-regression"><span class="header-section-number">1.2.6</span> Evaluation of logistic regression</h3>
+<p>Given the fact that models can achieve high accuracy on an imbalanced datatset by predicting only the majority class, the following metrics are can provide a more comprehensive evaluation of the model’s performance, beyond accuracy:</p>
+<ul>
+<li><strong>Classification performance:</strong> how often <span class="math inline">\(\widehat{y}\)</span> matches the label. Accuracy, precision, recall, and F1 all depend on the threshold <span class="math inline">\(t\)</span>, so the threshold used should be reported.</li>
+<li><strong>Ranking performance:</strong> whether positive examples receive higher probabilities than negative examples, regardless of threshold. The area under the ROC curve (ROC-AUC) measures this.</li>
+<li><strong>Coefficient stability:</strong> whether the weights stay similar across resamples of the training data. This is because unstable weights indicate that individual coefficients should be dealth with cautiously, even if predictions are accurate.</li>
+</ul>
+</section>
+<section id="limitations-and-use-cases-of-logistic-regression" class="level3" data-number="1.2.7">
+<h3 data-number="1.2.7" class="anchored" data-anchor-id="limitations-and-use-cases-of-logistic-regression"><span class="header-section-number">1.2.7</span> Limitations and use cases of logistic regression</h3>
+<ul>
+<li><strong>Linear decision boundary:</strong> the model cannot represent nonlinear relationships unless they are supplied with manually made features, such as interactions or polynomial terms.</li>
+<li><strong>Raw, unstructured inputs:</strong> on images, audio, or text represented as raw pixels or tokens, individual features carry little meaning on their own and a linear boundary is not truly sufficient.</li>
+<li><strong>Correlated features:</strong> individual weights become unstable and can be misread, even when predictions are accurate.</li>
+<li><strong>Class imbalance:</strong> with a rare positive class, the default threshold of 0.5 can yield few or no positive predictions, and so, the threshold should be adjusted.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled" title="Key takeaway">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Key takeaway
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Logistic regression models the log-odds of a class as a weighted sum of the input features and converts it into a probability with the sigmoid function, with each weight stating how a change in a feature shifts the log-odds.</p>
+</div>
+</div>
+</section>
+<section id="decision-trees" class="level3" data-number="1.2.8">
+<h3 data-number="1.2.8" class="anchored" data-anchor-id="decision-trees"><span class="header-section-number">1.2.8</span> Decision Trees</h3>
 <p>Decision trees are also supervised machine learning algorithms, but are used for both classification and regression tasks. Decision trees make predictions by repeatedly splitting data into smaller groups based on feature values, creating a tree-like structure of decision rules. Each internal node represents a decision about a feature, each branch represents a possible outcome, and each leaf node gives the final prediction. For example, a decision tree predicting whether a student will pass an exam might consider previous behaviour such as study hours, attendance, and previous grades. Decision trees are interpretable because we can follow the sequence of decisions leading to a prediction. However, very deep trees can overfit to the training data and struggle with generalizing to new data.</p>
 </section>
-<section id="k-nearest-neighbors" class="level3" data-number="1.1.4">
-<h3 data-number="1.1.4" class="anchored" data-anchor-id="k-nearest-neighbors"><span class="header-section-number">1.1.4</span> K-Nearest Neighbors</h3>
+<section id="k-nearest-neighbors" class="level3" data-number="1.2.9">
+<h3 data-number="1.2.9" class="anchored" data-anchor-id="k-nearest-neighbors"><span class="header-section-number">1.2.9</span> K-Nearest Neighbors</h3>
 <p>K-Nearest Neighbours (KNN) is a supervised machine learning algorithm used for classification and regression by storeing training data and making predictions through comparison between new observations and existing examples. KNN identifies the K closest data points using a distance metric, such as euclidean distance. For classification, the most common class among these neighbours becomes the prediction, while regression typically uses the average of their target values. For example, if a new observation’s five nearest neighbours include three cats and two dogs, KNN would classify it as a cat. The choice of “K” is important because smaller values can be sensitive to noise, while larger values may overlook local relationships.</p>
 </section>
 </section>
-<section id="global-vs.-local-explainability" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="global-vs.-local-explainability"><span class="header-section-number">1.2</span> Global vs.&nbsp;Local Explainability</h2>
+<section id="global-vs.-local-explainability" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="global-vs.-local-explainability"><span class="header-section-number">1.3</span> Global vs.&nbsp;Local Explainability</h2>
 <p>Explainability in machine learning refers to understanding how a model comes up with its predictions. Global explainability focuses on understanding the model’s overall behavior, including which features are generally important and how they influence predictions across a dataset. For example, global explanations might reveal that income and credit history are the most influential features in a loan approval model. However, local explainability focuses on understanding why the model made a particular prediction for a specific observation, an example being local explanations showing that an individual’s loan application was rejected primarily because of their high debt-to-income ratio. Overall, global explainability helps us understand the model as a whole, while local explainability helps us understand individual decisions.</p>
 </section>
-<section id="model-agnostic-vs.-model-specific" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="model-agnostic-vs.-model-specific"><span class="header-section-number">1.3</span> Model-Agnostic vs.&nbsp;Model-Specific</h2>
+<section id="model-agnostic-vs.-model-specific" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="model-agnostic-vs.-model-specific"><span class="header-section-number">1.4</span> Model-Agnostic vs.&nbsp;Model-Specific</h2>
 <p>Explainability methods can further be categorized based on whether they depend on a model’s internal architecture. Model-agnostic explainability methods can be applied to almost any machine learning model because they examine the relationship between inputs and outputs without requiring access to the model’s internal structure. SUch examples include LIME and SHAP. In contrast, model-specific methods are designed for particular model types and use their internal structure to generate explanations. For example, examining coefficients in logistic regression or tracing decision paths in decision trees provides specific explanations. The key distinction here is that model-agnostic methods come with greater flexibility across different algorithms, while model-specific methods use a model’s structure to provide explanations.</p>
 </section>
-<section id="practical-considerations" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="practical-considerations"><span class="header-section-number">1.4</span> Practical Considerations</h2>
-<section id="selecting-an-explainability-method" class="level3" data-number="1.4.1">
-<h3 data-number="1.4.1" class="anchored" data-anchor-id="selecting-an-explainability-method"><span class="header-section-number">1.4.1</span> Selecting an Explainability Method</h3>
+<section id="practical-considerations" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="practical-considerations"><span class="header-section-number">1.5</span> Practical Considerations</h2>
+<section id="selecting-an-explainability-method" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="selecting-an-explainability-method"><span class="header-section-number">1.5.1</span> Selecting an Explainability Method</h3>
 </section>
-<section id="selecting-an-explainability-method-1" class="level3" data-number="1.4.2">
-<h3 data-number="1.4.2" class="anchored" data-anchor-id="selecting-an-explainability-method-1"><span class="header-section-number">1.4.2</span> Selecting an Explainability Method</h3>
+<section id="selecting-an-explainability-method-1" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="selecting-an-explainability-method-1"><span class="header-section-number">1.5.2</span> Selecting an Explainability Method</h3>
 </section>
-<section id="evaluating-explanations" class="level3" data-number="1.4.3">
-<h3 data-number="1.4.3" class="anchored" data-anchor-id="evaluating-explanations"><span class="header-section-number">1.4.3</span> Evaluating Explanations</h3>
-<section id="fidelity" class="level4" data-number="1.4.3.1">
-<h4 data-number="1.4.3.1" class="anchored" data-anchor-id="fidelity"><span class="header-section-number">1.4.3.1</span> Fidelity</h4>
+<section id="evaluating-explanations" class="level3" data-number="1.5.3">
+<h3 data-number="1.5.3" class="anchored" data-anchor-id="evaluating-explanations"><span class="header-section-number">1.5.3</span> Evaluating Explanations</h3>
+<section id="fidelity" class="level4" data-number="1.5.3.1">
+<h4 data-number="1.5.3.1" class="anchored" data-anchor-id="fidelity"><span class="header-section-number">1.5.3.1</span> Fidelity</h4>
 </section>
-<section id="robustness" class="level4" data-number="1.4.3.2">
-<h4 data-number="1.4.3.2" class="anchored" data-anchor-id="robustness"><span class="header-section-number">1.4.3.2</span> Robustness</h4>
+<section id="robustness" class="level4" data-number="1.5.3.2">
+<h4 data-number="1.5.3.2" class="anchored" data-anchor-id="robustness"><span class="header-section-number">1.5.3.2</span> Robustness</h4>
 </section>
-<section id="stability" class="level4" data-number="1.4.3.3">
-<h4 data-number="1.4.3.3" class="anchored" data-anchor-id="stability"><span class="header-section-number">1.4.3.3</span> Stability</h4>
+<section id="stability" class="level4" data-number="1.5.3.3">
+<h4 data-number="1.5.3.3" class="anchored" data-anchor-id="stability"><span class="header-section-number">1.5.3.3</span> Stability</h4>
 </section>
-<section id="human-interpretability" class="level4" data-number="1.4.3.4">
-<h4 data-number="1.4.3.4" class="anchored" data-anchor-id="human-interpretability"><span class="header-section-number">1.4.3.4</span> Human Interpretability</h4>
+<section id="human-interpretability" class="level4" data-number="1.5.3.4">
+<h4 data-number="1.5.3.4" class="anchored" data-anchor-id="human-interpretability"><span class="header-section-number">1.5.3.4</span> Human Interpretability</h4>
 </section>
 </section>
-<section id="common-pitfalls" class="level3" data-number="1.4.4">
-<h3 data-number="1.4.4" class="anchored" data-anchor-id="common-pitfalls"><span class="header-section-number">1.4.4</span> Common Pitfalls</h3>
+<section id="common-pitfalls" class="level3" data-number="1.5.4">
+<h3 data-number="1.5.4" class="anchored" data-anchor-id="common-pitfalls"><span class="header-section-number">1.5.4</span> Common Pitfalls</h3>
 </section>
-<section id="best-practices" class="level3" data-number="1.4.5">
-<h3 data-number="1.4.5" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">1.4.5</span> Best Practices</h3>
+<section id="best-practices" class="level3" data-number="1.5.5">
+<h3 data-number="1.5.5" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">1.5.5</span> Best Practices</h3>
 </section>
-<section id="summary" class="level3" data-number="1.4.6">
-<h3 data-number="1.4.6" class="anchored" data-anchor-id="summary"><span class="header-section-number">1.4.6</span> Summary</h3>
+<section id="summary" class="level3" data-number="1.5.6">
+<h3 data-number="1.5.6" class="anchored" data-anchor-id="summary"><span class="header-section-number">1.5.6</span> Summary</h3>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
