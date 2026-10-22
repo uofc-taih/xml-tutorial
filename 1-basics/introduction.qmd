@@ -37,7 +37,174 @@ Also, Linear Regression models assumes independence between features. Feature co
 
 ### Logistic Regression
 
-Logistic regression is a supervised machine learning algorithm used for classification, meaning it predicts the probability that an observation belongs to a particular class (such as whether an email is spam or not spam). Logistic regression works by combining input features through a linear function and passing the result through a sigmoid function to return a probability between 0 and 1. A classification threshold, typically 0.5, is then used to assign a class label. Logistic regression can be considered as easy to interpret because its coefficients indicate how individual features influence the predicted odds of an outcome.
+Logistic regression is a supervised machine learning algorithm used for classification, despite the name leading one to believe it would predict continuous values (regression). Logistic regression predicts the probability that an input belongs to a class by passing a weighted sum of the input features through a sigmoid function. 
+
+::: {.callout-note title="Running example: restaurant recommendation"}
+Throughout the logistic regression section, we will use a running example of a logistic regression model that predicts whether a customer will recommend a resturant based on a number of factors, including food rating, waiting time, and price. For a visit *“The pasta was excellent (5 stars), we waited 60 minutes, and paid \$30 per person,”* the model should combine a strong positive signal (food) with negative signals (a long wait and the price) and output a probability that the customer recommends the restaurant.
+:::
+
+## Model and inference 
+
+Logistic regression makes a prediction in three steps: 
+
+$$
+\mathbf{x}
+\xrightarrow{\;\text{linear score}\;}
+z
+\xrightarrow{\;\sigma\;}
+\widehat{p}
+\xrightarrow{\;\text{threshold}\;}
+\widehat{y}.
+$$ {#eq-lr-pipeline}
+
+The model starts by computing a single real-valued score $z$ from the aforementioned input features. The sigmoid function $\sigma$ converts this real-valued score into a probability $\widehat{p}$, which is then thresholded to produce a binary classification prediction $\widehat{y}$. 
+
+In the running example, $\mathbf{x}$ consists of the three input features, which the model uses to compute a score and converts the score into a recommendation probability, which will then predict *recommend* if the probability is above a threshold (e.g., 0.5) and *not recommend* otherwise.
+
+### Features and the importance of linear scoring 
+
+If $d$ is the number of features, the input is a feature vector
+
+$$
+\mathbf{x}
+=
+(x_1,\ldots,x_d),
+$$
+
+where $x_j$ denotes the value of feature $j$. The model has one weight $w_j$ for each feature and a bias $b$. Combining them into a linear score;
+
+$$
+z
+=
+\mathbf{w}^\top\mathbf{x}+b
+=
+b+\sum_{j=1}^{d}w_j x_j.
+$$ {#eq-lr-linear-score}
+
+The score $z\in\mathbb{R}$ is referred to as the *logit*. Logits are large values that when positive, favour the positive class, and when negative, favour the negative class. Going back to our running example of the resturant, the logit is
+
+$$
+z
+=
+b
++w_{\mathrm{food}}x_{\mathrm{food}}
++w_{\mathrm{wait}}x_{\mathrm{wait}}
++w_{\mathrm{price}}x_{\mathrm{price}}.
+$$ {#eq-lr-restaurant-score}
+
+### Obtaining probabilities from scores
+
+A probability is a value between 0 and 1, but the logit can be any real value. The sigmoid, or logistic, function maps the logit to a range:
+
+$$
+\widehat{p}
+=
+p(y=1\mid\mathbf{x})
+=
+\sigma(z)
+=
+\frac{1}{1+e^{-z}}.
+$$ {#eq-lr-sigmoid}
+
+Some properties of sigmoid include: 
+
+| Property | Meaning |
+|---|---|
+| $\sigma(0)=0.5$ | A logit of zero means the model is undecided |
+| $\sigma(-z)=1-\sigma(z)$ | The function is symmetric around $z=0$ |
+| $\sigma'(z)=\sigma(z)\bigl(1-\sigma(z)\bigr)$ | The slope is largest at $z=0$ and shrinks toward 0 and 1 |
+
+Combining @eq-lr-linear-score and @eq-lr-sigmoid gives the full model:
+
+$$
+\widehat{p}
+=
+\sigma\!\left(\mathbf{w}^\top\mathbf{x}+b\right).
+$$ {#eq-lr-model}
+
+Suppose the trained model has the parameters
+
+$$
+b=-2.0,\qquad
+w_{\mathrm{food}}=1.2,\qquad
+w_{\mathrm{wait}}=-0.04,\qquad
+w_{\mathrm{price}}=-0.01.
+$$
+
+For the running review, $x_{\mathrm{food}}=5$, $x_{\mathrm{wait}}=60$, and $x_{\mathrm{price}}=30$. The logit is
+
+$$
+z
+=
+-2.0+1.2(5)-0.04(60)-0.01(30)
+=
+-2.0+6.0-2.4-0.3
+=
+1.3,
+$$
+
+with the recommendation probability being $\sigma(1.3)\approx 0.79$.
+
+### Log-odds
+
+The *odds* of the positive class is the ratio $\widehat{p}/(1-\widehat{p})$. For example, a probability of 0.8 would correspond to odds of 4:1, meaning that the positive class if four times more likely than the negative class. Inverting @eq-lr-sigmoid would show that the logit measures:
+
+$$
+\log\frac{\widehat{p}}{1-\widehat{p}}
+=
+\mathbf{w}^\top\mathbf{x}+b.
+$$ {#eq-lr-log-odds}
+
+By this logic, logistic regression is a linear model of the log-odds, meaning the model is linear in the logit and not the probability. 
+
+### Making decisions through probabilities
+
+To create a class label, a probability is compared with a threshold $t$:
+
+$$
+\widehat{y}
+=
+\begin{cases}
+1, & \widehat{p}\ge t,\\
+0, & \widehat{p}<t.
+\end{cases}
+$$ {#eq-lr-decision}
+
+The threshold should not be learned from the likelihood and should instead be chosen according to the relative costs of the false positives and false negatives. In our running example, $\widehat{p}\approx 0.79\ge 0.5$, so the model will predict recommend. 
+
+### What if there is more than two classes?
+
+A multinomial logistic regression learns one weight vector $\mathbf{w}_r$ and bias $b_r$ for each class $R$, and calculates one logit per class. Softmax then converts the logits into class probabilities that sum to 1;
+
+$$
+p(y=r\mid\mathbf{x})
+=
+\frac{\exp(z_r)}
+{\displaystyle\sum_{q=1}^{R}\exp(z_q)},
+\qquad r=1,\ldots,R.
+$$ {#eq-lr-softmax}
+
+Adding the same vectr to every $\mathbf{w}_r$ leaves the probabilities unchanges, meaning one class can be fixed as a reference with zero weights. So, if $R=2$, @eq-lr-softmax reduces to the sigmoid model in @eq-lr-model.
+
+### Evaluation of logistic regression
+
+Given the fact that models can achieve high accuracy on an imbalanced datatset by predicting only the majority class, the following metrics are can provide a more comprehensive evaluation of the model's performance, beyond accuracy:
+
+- **Classification performance:** how often $\widehat{y}$ matches the label. Accuracy, precision, recall, and F1 all depend on the threshold $t$, so the threshold used should be reported.
+- **Ranking performance:** whether positive examples receive higher probabilities than negative examples, regardless of threshold. The area under the ROC curve (ROC-AUC) measures this. 
+- **Coefficient stability:** whether the weights stay similar across resamples of the training data. This is because unstable weights indicate that individual coefficients should be dealth with cautiously, even if predictions are accurate.
+
+### Limitations and use cases of logistic regression
+
+- **Linear decision boundary:** the model cannot represent nonlinear relationships unless they are supplied with manually made features, such as interactions or polynomial terms.
+- **Raw, unstructured inputs:** on images, audio, or text represented as raw pixels or tokens, individual features carry little meaning on their own and a linear boundary is not truly sufficient.
+- **Correlated features:** individual weights become unstable and can be misread, even when predictions are accurate.
+- **Class imbalance:** with a rare positive class, the default threshold of 0.5 can yield few or no positive predictions, and so, the threshold should be adjusted.
+
+::: {.callout-tip title="Key takeaway"}
+Logistic regression models the log-odds of a class as a weighted sum of the input features and converts it into a probability with the sigmoid function, with each weight stating how a change in a feature shifts the log-odds. 
+:::
+
 
 ### Decision Trees
 
