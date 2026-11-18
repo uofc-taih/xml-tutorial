@@ -27,6 +27,7 @@ book:
       chapters:
         - 1-basics/introduction.qmd
         - 1-basics/taxonomy.qmd
+        - 1-basics/basics-ml.qmd
         - 1-basics/method-A.qmd
         - 1-basics/method-B.qmd
         - 1-basics/method-C.qmd

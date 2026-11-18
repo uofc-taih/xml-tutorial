@@ -21,6 +21,11 @@ Each topic follows the same file structure:
 
 Install Quarto and compile with `quarto preview` for a quick view on how things look.
 
+## Contributing
+
+* Committs committed to the `main` branch and pushed onto Github are automatically deployed to the live website (stable "hidden" work-in-progress URL: https://learn-xai.com/AYff0i3d1Aryx76QtA79GsFIj9LNMATq/).
+* When creating new files, be sure they are referenced in `_quarto.yml`, otherwise they won't show up.
+
 ## Acronyms
 
 We use the Quarto extension `rchaput/acronyms` to manage acronyms, similar to `\gls` in LaTeX. The first occurence *on each Quarto page* will be spelled out in its long form.
