@@ -23,8 +23,10 @@ Install Quarto and compile with `quarto preview` for a quick view on how things 
 
 ## Contributing
 
-* Committs committed to the `main` branch and pushed onto Github are automatically deployed to the live website (stable "hidden" work-in-progress URL: https://learn-xai.com/AYff0i3d1Aryx76QtA79GsFIj9LNMATq/).
-* When creating new files, be sure they are referenced in `_quarto.yml`, otherwise they won't show up.
+* Pushes to the main branch auto-build and auto-deploy the site, see `.github/workflows/publish.yaml` for details The stable "hidden" work-in-progress URL where the website currently lives is: https://learn-xai.com/AYff0i3d1Aryx76QtA79GsFIj9LNMATq/).
+* Run `quarto preview` locally before commit to catch formatting/render issues early.
+* Do not manually edit generated files in _book; the source of truth is .qmd and config files.
+* When creating new files, add them to `_quarto.yml`; otherwise they won't show up in the rendered version.
 
 ## Acronyms
 
