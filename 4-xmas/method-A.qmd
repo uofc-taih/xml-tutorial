@@ -9,4 +9,15 @@ Christoph Gabaue
 
 The question of explainablility for multi-agent systems may remain an open problem, but multi-agent interpretability may provide some answers, or at least, a practical approach. If you recall the distinctions between the two, interpretability focuses more so on exposing hidden or latent spaces in machine learning, whereas explainability attaches an explanation with it. Roughly speaking, interpretability answers "What is going on?" whereas explainability answers "why does it do that?". For multi-agent systems, although "why?" may not come with a standard response, "what?" can be addressed more directly. 
 
+LangGraph is an orchestration framework common in LLM-based multi-agent system deployment. Rather than explicitly providing explainability, LangGraph builds off of the LangChain family that "provides open source, model-agnostic harnesses for building agents", which inadvertently enables explainability through interpretability. LangGraph's most notable capabilities are:
 
+1. Stateful Graph Orchestration: Visualizations that model multi-agent workflows by contextualizing deterministic state machines (i.e. finite state machines) with LLM-based logic, shared states, dynamic transitions, and checkpointing. 
+2. Human-in-the-loop: Regular human review, moderation, or approval is supported through state inspection and integration tracing, enabling interpretability and safe usage
+3. Multi-Agent Coordination: Coordinates agents, subgraphs or hierarchical agent dynamics
+
+The functionalities of LangGraph are defined by the practicality of their usages for the developers, that is, interpretability is desirable for ensuring workflow quality, whereas explainability may be seen as more trivial. For developers, understanding the high-level operation of the system may be more important than investigating the reasoning and causalities within each system. In LangGraph, structural and behavioral interpretability are supported, but decision-level explainability remains limited. Other frameworks condition explainability than LangGraph, such as CrewAI.
+
+
+
+https://docs.langchain.com/oss/python/langgraph/overview
+https://docs.langchain.com/
