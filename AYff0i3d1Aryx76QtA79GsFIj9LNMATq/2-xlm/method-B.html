@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>12&nbsp; Method B: VQ-VAE-Based Concept Discovery – Learn XAI: Explainable AI for Everyone</title>
+<title>12&nbsp; Method B: VQ-VAE-based interpretability – Learn XAI: Explainable AI for Everyone</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -48,10 +48,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-4d7921456ae93ab23e92299efdc16c51.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-9a2fd95bb7c6788cb6c9f6e2df559463.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -123,7 +120,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2-xlm/introduction.html">Explainable Language Models</a></li><li class="breadcrumb-item"><a href="../2-xlm/method-B.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Method B: VQ-VAE-Based Concept Discovery</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2-xlm/introduction.html">Explainable Language Models</a></li><li class="breadcrumb-item"><a href="../2-xlm/method-B.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Method B: VQ-VAE-based interpretability</span></a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -255,7 +252,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2-xlm/method-B.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Method B: VQ-VAE-Based Concept Discovery</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Method B: VQ-VAE-based interpretability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -394,21 +391,24 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#general-architecture" id="toc-general-architecture" class="nav-link active" data-scroll-target="#general-architecture"><span class="header-section-number">12.1</span> General architecture</a>
+  <li><a href="#what-do-the-codes-explain" id="toc-what-do-the-codes-explain" class="nav-link active" data-scroll-target="#what-do-the-codes-explain"><span class="header-section-number">12.1</span> What do the codes explain?</a></li>
+  <li><a href="#where-does-the-evidence-come-from" id="toc-where-does-the-evidence-come-from" class="nav-link" data-scroll-target="#where-does-the-evidence-come-from"><span class="header-section-number">12.2</span> Where does the evidence come from?</a></li>
+  <li><a href="#general-architecture" id="toc-general-architecture" class="nav-link" data-scroll-target="#general-architecture"><span class="header-section-number">12.3</span> How do VQ-VAE-based methods work?</a>
   <ul class="collapse">
-  <li><a href="#discrete-codebook" id="toc-discrete-codebook" class="nav-link" data-scroll-target="#discrete-codebook"><span class="header-section-number">12.1.1</span> Discrete codebook</a></li>
+  <li><a href="#discrete-codebook" id="toc-discrete-codebook" class="nav-link" data-scroll-target="#discrete-codebook"><span class="header-section-number">12.3.1</span> Learning a discrete codebook</a></li>
+  <li><a href="#training-objective" id="toc-training-objective" class="nav-link" data-scroll-target="#training-objective"><span class="header-section-number">12.3.2</span> Reconstruction and training</a></li>
+  <li><a href="#interpreting-code-groups" id="toc-interpreting-code-groups" class="nav-link" data-scroll-target="#interpreting-code-groups"><span class="header-section-number">12.3.3</span> Giving codes a concept meaning</a></li>
+  <li><a href="#explaining-with-code-groups" id="toc-explaining-with-code-groups" class="nav-link" data-scroll-target="#explaining-with-code-groups"><span class="header-section-number">12.3.4</span> Using codes to explain a prediction</a></li>
   </ul></li>
-  <li><a href="#why-can-a-code-represent-a-concept" id="toc-why-can-a-code-represent-a-concept" class="nav-link" data-scroll-target="#why-can-a-code-represent-a-concept"><span class="header-section-number">12.2</span> Why can a code represent a concept?</a></li>
-  <li><a href="#training-objective" id="toc-training-objective" class="nav-link" data-scroll-target="#training-objective"><span class="header-section-number">12.3</span> Training objective</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2-xlm/introduction.html">Explainable Language Models</a></li><li class="breadcrumb-item"><a href="../2-xlm/method-B.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Method B: VQ-VAE-Based Concept Discovery</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2-xlm/introduction.html">Explainable Language Models</a></li><li class="breadcrumb-item"><a href="../2-xlm/method-B.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Method B: VQ-VAE-based interpretability</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Method B: VQ-VAE-Based Concept Discovery</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Method B: VQ-VAE-based interpretability</span></h1>
 </div>
 
 
@@ -425,21 +425,51 @@ window.Quarto = {
 </header>
 
 
-<p>One emerging approach to discovering concepts adapts the discrete codebook and reconstruction structure of VQ-VAE-style architectures to language-model activations. <a href="https://proceedings.neurips.cc/paper/2017/hash/7a98af17e63a0ac09ce2e96d03992fbc-Abstract.html">Oord et al.(2017)</a> put forward the original VQ-VAE as a way to learn discrete representations for images, video, and speech.</p>
-<p>Since then, VQ-VAE has been used widely for images, where the basic pipeline is straightforward. The encoder produces a grid of continuous feature vectors, which the vector quantizer then replaces with their closest entries in a learned codebook before the decoder reconstructs the image from those entries. Because the codebook is shared across images, similar recurring visual patterns can be assigned the same discrete codes. This also allows a generative model over the codes to operate in a compressed latent space rather than directly at the pixel level. <a href="https://proceedings.neurips.cc/paper/2019/hash/5f8e2fa1718d1bbcadf1cd9c7a54fb8c-Abstract.html">Razavi et al.&nbsp;(2019)</a> later built on this with VQ-VAE-2, adding a hierarchy of codebooks at multiple spatial scales for image generation.</p>
-<p>In the context of making language models more explainable, however, the objective is not to generate an image. Here, the encoder is fed an internal token activation and the quantizer maps it to a discrete code; the decoder’s job is to reconstruct a target activation. Quantization has the effect of compelling many activations to share a limited set of codes, while reconstruction encourages each selected code to retain information needed to reconstruct the target activation. One can then examine the tokens and contexts assigned to a single code and interpret their shared pattern as a putative concept.</p>
-<p>There is no need to start with concept annotations or names, as one would with a supervised concept method. Candidate concepts are discovered from the hidden states during training, and their meanings must be inferred and verified afterwards.</p>
-<section id="general-architecture" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="general-architecture"><span class="header-section-number">12.1</span> General architecture</h2>
-<p>To describe the architecture more precisely, let <span class="math inline">\(\mathbf{h}_t\)</span> be the activation of token <span class="math inline">\(t\)</span> at a chosen language-model layer. A VQ-VAE-style concept discovery model then has three main components:</p>
-<ol type="1">
-<li>An <strong>encoder</strong> maps the activation into a code space.</li>
-<li>A <strong>vector quantizer</strong> replaces the encoded activation with an entry from a learned codebook.</li>
-<li>A <strong>decoder</strong> reconstructs a target activation from the quantized representation.</li>
-</ol>
-<p>The overall pipeline is</p>
+<p>An attribution method like layer GradCam can estimate which token’s representation contributed the most to the model’s prediction or generated output. However, due to the contexualized nature of the token representation, it becomes harder to understand which information in that representation was actually relevant to the prediction. Furthermore, according to superposition hypothesis as visited in SAE, many concepts can simultaneously activate same neuron. This makes reasoning based off the attributed neuron/representation in the network difficult.</p>
+<p>Lets look at a new running example which shows how model can behaves when the sentence said not very directly.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Running example: toxicity classification
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider a language model used to classify comments as toxic or non-toxic. We will follow two illustrative comments:</p>
+<ul>
+<li>“I’ll destroy you in our next chess match. Same time tomorrow?”</li>
+<li>“Brilliant point. The discussion was better before you joined.”</li>
+</ul>
+<p>In the above example, the first comment is a friendly competitive banter. Suppose the classifier labels it as toxic. We want to check whether if model groups “destroy” activation with activations which are similar to literal threat. Similarily, the second comment is an example of hostile sarcasm where “brilliant” should ideally be grouped with a sarcastic attack instead of sincere praise.</p>
+</div>
+</div>
+<p>The hidden activation for “destroy” may carry information about both violent wording and a competitive setting. So while we have a position to inspect because of attribution methods, we still need figure out which specific meaning the activation align with. In the second example, mdoel can interpret the word “brilliant” as a strong positive statement which undermines the actual sarcastic and hostile nature of the comment</p>
+<p>One way to tackle above problem is to group examples with similar intentions together and then try to explain the inference example based on the semantic associations with the group it is closest to. While clustering based approached may be the first thing that comes into the mind, they have few problems. Firstly, clustering based approaches do not scale well with dataset size. As shown in this work [https://arxiv.org/abs/2602.02726], clustering based approaches like K-means and hierarchial clustering have higher runtime or memory complexity as dataset size increases. Secondly, their training objective cannot capture concepts that maybe be split across layers as their objective is limited to clustering single layer activations. This is where VQVAE comes in.</p>
+<p>VQ-VAEs have been extensively explored in computer vision to discretize the continuous representations of images into codebook vectors. But what exactly is a VQ-VAE? Think of it like taking a continuous audio recording and converting it into a sequence of simple MIDI notes. The audio is first broken down into tiny, individual time slices. We take each slice (the continuous representation), encode it, and map it to the closest match from a fixed, finite set of piano keys (the codebook). Then, we decode that sequence of discrete notes to reconstruct the original audio. By squeezing the data through this bottleneck beat-by-beat, it naturally produces the effect of removing background static and minor variations from the representation, forcing the codebook vectors to only encode the core, defining features of that sound.</p>
+<p>A codebook vector can be imagined as one of those fundamental notes. When the VQ-VAE training objective of reconstruction is applied to language model activations, these codebook vectors tend to capture interpretable linguistic concepts, spanning both syntactic patterns and semantic categories. While the reconstruction objective might look similar to Sparse Autoencoders (SAEs), their approaches are fundamentally different. VQ-VAEs snap each complex activation to a single, high-level concept. SAEs, in contrast, reconstruct it by blending a sparse mix of highly specific notes.</p>
+<section id="what-do-the-codes-explain" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="what-do-the-codes-explain"><span class="header-section-number">12.1</span> What do the codes explain?</h2>
+<p>In our <a href="../2-xlm/taxonomy.html">taxonomy</a>, VQ-VAE-based methods help us examine the information in a language model’s internal representations. Each code groups encoded activations that the reconstruction model treats as similar, and we inspect their associated words and contexts to look for a shared meaning. Some groups may describe threatening language, sarcasm, or grammatical patterns, while others may contain several meanings that do not fit one clear concept name. <a href="https://arxiv.org/abs/2602.02726v2">VQLC</a> uses these assignments to construct and inspect latent concepts.</p>
+<p>For our chess example, suppose the activation for “destroy” is assigned to a code whose other examples mostly contain literal threats. This places its encoded representation alongside threatening contexts, despite the competitive setting. It gives us a possible explanation for the classifier’s mistake. We can test this by changing the relevant activations and checking whether the prediction changes. The assignment alone does not show which information the classifier used.</p>
+<p>The same codebook can be used across comments. Looking at its groups across the dataset gives us a global view of the patterns it has learned. For a local explanation, we inspect the codes assigned to relevant tokens in one comment and retrieve examples from those groups.</p>
+<p>Unlike the standard supervised <a href="../2-xlm/method-A.html">Concept Bottleneck Model (CBM) in Method A</a>, these methods learn their groups without predefined concept annotations. The original language model continues to make predictions through its own network, without passing through the discovered codes. The groups help us interpret its activations, but explaining a particular prediction also requires checking how the information they represent affects the output.</p>
+</section>
+<section id="where-does-the-evidence-come-from" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="where-does-the-evidence-come-from"><span class="header-section-number">12.2</span> Where does the evidence come from?</h2>
+<p>We start with hidden activations at selected layers and token positions. These are contextual representations, so the same word can receive different codes in different sentences. The code assigned to “brilliant” in our example need not be the code it receives in a sincere compliment.</p>
+<p>The choice of layer and position determines what we are grouping. A token activation describes that token in context, while a pooled sentence activation summarizes several positions. The equations below use token activations. Comparing layers lets us investigate where a pattern appears, but a code learned at one layer should not automatically be treated as the same concept at another.</p>
+<p>For each assignment, retain the source text and mark the token whose activation was encoded. If a word is split into subword tokens, either keep those positions separate or specify how their activations are combined. CLVQ-VAE aggregates subwords into word-level activations for analysis. Our running example uses whole words for readability.</p>
+<p>This analysis requires access to internal activations and a corpus covering varied contexts. Generated text or predicted labels alone are insufficient to train an activation-reconstruction model.</p>
+</section>
+<section id="general-architecture" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="general-architecture"><span class="header-section-number">12.3</span> How do VQ-VAE-based methods work?</h2>
+<p>The original <a href="https://proceedings.neurips.cc/paper/2017/hash/7a98af17e63a0ac09ce2e96d03992fbc-Abstract.html">VQ-VAE</a> learned discrete representations for images, video, and speech. For an image, an encoder produces a grid of feature vectors, a quantizer replaces each vector with a codebook entry, and a decoder reconstructs the image. A generative model can learn a distribution over codes in this compressed space. <a href="https://proceedings.neurips.cc/paper/2019/hash/5f8e2fa1718d1bbcadf1cd9c7a54fb8c-Abstract.html">VQ-VAE-2</a> added a hierarchy of codebooks at different spatial scales.</p>
+<p>For language-model interpretation, both the input and the reconstruction target are activation vectors. The encoder learns a transformation of those activations, the quantizer replaces each transformed vector with a shared entry, and the decoder tries to recover the target from the selected entries. Here, the encoder and decoder belong to the additional reconstruction model, not the original language model.</p>
+<p>Let <span class="math inline">\(\mathbf{h}_t^{(l)}\in\mathbb{R}^{d}\)</span> be the <span class="math inline">\(d\)</span>-dimensional activation at position <span class="math inline">\(t\)</span> in layer <span class="math inline">\(l\)</span>. With encoder <span class="math inline">\(E_\theta\)</span>, quantizer <span class="math inline">\(Q\)</span>, and decoder <span class="math inline">\(D_\psi\)</span>, the per-position reconstruction path is</p>
 <p><span id="eq-vqvae-concept-pipeline"><span class="math display">\[
-\mathbf{h}_t
+\mathbf{h}_t^{(l)}
 \xrightarrow{\;E_\theta\;}
 \mathbf{z}_{e,t}
 \xrightarrow{\;Q\;}
@@ -447,71 +477,98 @@ window.Quarto = {
 \xrightarrow{\;D_\psi\;}
 \widehat{\mathbf{r}}_t.
 \tag{12.1}\]</span></span></p>
-<p>Here, <span class="math inline">\(\mathbf{z}_{e,t}\)</span> is the encoder output and <span class="math inline">\(\mathbf{z}_{q,t}\)</span> is the codebook vector selected in its place. The decoder produces <span class="math inline">\(\widehat{\mathbf{r}}_t\)</span>, which should match a target activation <span class="math inline">\(\mathbf{r}_t\)</span>. Depending on the method, that target may be the original activation or one taken from a later layer.</p>
-<p><a href="#fig-clvqvae-architecture" class="quarto-xref">Figure&nbsp;<span>12.1</span></a> shows how this pipeline is used for cross-layer reconstruction in CLVQ-VAE.</p>
-<div id="fig-clvqvae-architecture" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-clvqvae-architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/xlm/CLVQVAE-Architecture.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;12.1: CLVQ-VAE architecture. A lower-layer activation is encoded and quantized through a learned codebook, and a transformer decoder reconstructs the higher-layer activation."><img src="../figures/xlm/CLVQVAE-Architecture.png" class="img-fluid figure-img" style="width:100.0%"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-clvqvae-architecture-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12.1: CLVQ-VAE architecture. A lower-layer activation is encoded and quantized through a learned codebook, and a transformer decoder reconstructs the higher-layer activation.
-</figcaption>
-</figure>
-</div>
-<section id="discrete-codebook" class="level3" data-number="12.1.1">
-<h3 data-number="12.1.1" class="anchored" data-anchor-id="discrete-codebook"><span class="header-section-number">12.1.1</span> Discrete codebook</h3>
-<p>The quantizer maintains a codebook</p>
+<p>Here, <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\psi\)</span> are the encoder and decoder parameters. The continuous encoder output <span class="math inline">\(\mathbf{z}_{e,t}\)</span> is replaced by the selected codebook vector <span class="math inline">\(\mathbf{z}_{q,t}\)</span>, from which the decoder produces an approximation <span class="math inline">\(\widehat{\mathbf{r}}_t\)</span> to the target activation <span class="math inline">\(\mathbf{r}_t\)</span>. Its training target is internal information, rather than a toxicity label or the original sentence. This per-position path supplies only the selected vector to the decoder. A decoder can also be designed to receive sequence context.</p>
+<p>For a single-layer objective, the target is the input activation, <span class="math inline">\(\mathbf{r}_t=\mathbf{h}_t^{(l)}\)</span>, as in <a href="https://arxiv.org/abs/2602.02726v2">Vector Quantized Latent Concepts (VQLC)</a>. The decoder reconstructs this activation from its coarse codebook representation, so training encourages the codes to retain patterns needed to recover information at the same layer.</p>
+<p>A cross-layer objective uses an upper-layer activation as the target, <span class="math inline">\(\mathbf{r}_t=\mathbf{h}_t^{(u)}\)</span>, where <span class="math inline">\(u&gt;l\)</span>, as in <a href="https://arxiv.org/abs/2506.20040v4">Cross-Layer Vector Quantized-Variational Autoencoder (CLVQ-VAE)</a>. The goal is to predict the higher-layer activation using the coarse representation of the lower-layer input. This encourages the codebook to capture patterns useful for the transformation from the lower to the higher layer.</p>
+<section id="discrete-codebook" class="level3" data-number="12.3.1">
+<h3 data-number="12.3.1" class="anchored" data-anchor-id="discrete-codebook"><span class="header-section-number">12.3.1</span> Learning a discrete codebook</h3>
+<p>The quantizer uses a shared codebook</p>
 <p><span class="math display">\[
 \mathcal{E}=\{\mathbf{e}_1,\ldots,\mathbf{e}_K\},
 \qquad
 \mathbf{e}_j\in\mathbb{R}^{d_c},
 \]</span></p>
-<p>where <span class="math inline">\(K\)</span> is the number of codes and <span class="math inline">\(d_c\)</span> is the code dimension. In the simplest form, the encoder output is assigned to its nearest entry:</p>
+<p>where <span class="math inline">\(K\)</span> is the number of codes and <span class="math inline">\(d_c\)</span> is their dimension. The encoder output also has dimension <span class="math inline">\(d_c\)</span>. Nearest-code lookup compares that output with every entry and returns the index of the closest one:</p>
 <p><span id="eq-vqvae-nearest-code"><span class="math display">\[
 j_t^*
 =
-\arg\min_j
+\arg\min_{1\leq j\leq K}
 \left\|\mathbf{z}_{e,t}-\mathbf{e}_j\right\|_2^2,
 \qquad
 \mathbf{z}_{q,t}=\mathbf{e}_{j_t^*}.
 \tag{12.2}\]</span></span></p>
-<p>The result is that every token receives a discrete code index <span class="math inline">\(j_t^*\)</span>. Since language-model activations depend on context, the same word might not receive the same code in every sentence; its assignment may change when its meaning or role changes.</p>
+<p>For a two-dimensional illustration, suppose <span class="math inline">\(\mathbf{z}_{e,t}=(0.8,0.2)\)</span> and the codebook contains <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((0,1)\)</span>. Their squared distances from the encoder output are <span class="math inline">\(0.2^2+0.2^2=0.08\)</span> and <span class="math inline">\(0.8^2+0.8^2=1.28\)</span>, respectively. The quantizer replaces the output with the first entry. The index is discrete, although the selected vector still contains real-valued coordinates. The index identifies a group. It does not measure the strength or probability of a concept.</p>
+<p>Replacing different encoder outputs with the same entry discards their differences at the quantizer. In the per-position path above, the decoder receives the same vector for all of them, so it must produce the same reconstruction. Training balances the reuse of entries with the information needed to reconstruct their targets. The groups are learned for reconstruction and may not match human concept names.</p>
+<p>A larger codebook gives the encoder more entries to choose from, but each lookup has more distances to compare. Mini-batching limits the comparisons to one batch and the codebook. Collecting language-model activations and training the extra networks add computation too.</p>
 </section>
-</section>
-<section id="why-can-a-code-represent-a-concept" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="why-can-a-code-represent-a-concept"><span class="header-section-number">12.2</span> Why can a code represent a concept?</h2>
-<p>The reason a code can be useful as a concept lies in the combination of reconstruction and quantization. Reconstruction requires the selected code to preserve information needed for the target activation, while quantization forces many activation vectors to share a finite set of codes. A code may therefore capture a recurring pattern that matters for reconstruction rather than a pattern that appears only once.</p>
-<p>After training, one can collect the tokens and contexts assigned to each code and look for a pattern shared across them. If that pattern is stable and has a recognizable semantic or functional role, the code can be interpreted as a latent concept. It might, for example, group positive evaluative language, location names, or tokens used in a particular syntactic role.</p>
-<p>The codebook alone does not guarantee interpretability. A code remains a candidate concept until the assigned examples are coherent and its relationship to the model’s behavior has been tested.</p>
-<p>This reconstruction objective also makes the approach closely related to sparse autoencoders (SAEs), since both learn a dictionary from internal activations. The difference lies in how an activation is represented. An SAE usually uses a sparse weighted combination of several continuous features, whereas a basic VQ-VAE assigns an encoded activation to one discrete code. This gives each code a clear set of assigned examples, although those examples still have to be interpreted before the code can be called a concept.</p>
-</section>
-<section id="training-objective" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="training-objective"><span class="header-section-number">12.3</span> Training objective</h2>
-<p>Training begins with a reconstruction loss, which asks the decoder output to match the target activation <span class="math inline">\(\mathbf{r}_t\)</span>:</p>
+<section id="training-objective" class="level3" data-number="12.3.2">
+<h3 data-number="12.3.2" class="anchored" data-anchor-id="training-objective"><span class="header-section-number">12.3.2</span> Reconstruction and training</h3>
+<p>The decoder learns to recover the target activation from the selected codes. We measure its error with</p>
 <p><span id="eq-vqvae-reconstruction"><span class="math display">\[
 \mathcal{L}_{\mathrm{rec}}
 =
 \left\|\mathbf{r}_t-\widehat{\mathbf{r}}_t\right\|_2^2.
 \tag{12.3}\]</span></span></p>
-<p>This is paired with a commitment loss that keeps the encoder output close to the code selected by the quantizer:</p>
+<p>A small change to the encoder output can leave the selected code unchanged. The decoder then receives the same vector, so ordinary backpropagation through the lookup cannot guide the encoder. A straight-through estimator works around this by using the selected code in the forward pass and passing the decoder’s gradient back to the encoder as if quantization had not changed its output.</p>
+<p>We use a commitment loss to pull encoder outputs toward their selected codes. For this loss, we want the encoder to move and the selected code to stay fixed. The stop-gradient trick, written <span class="math inline">\(\operatorname{sg}\)</span>, does this by treating the code as a constant during backpropagation. Its value still counts when we calculate the loss</p>
 <p><span id="eq-vqvae-commitment"><span class="math display">\[
 \mathcal{L}_{\mathrm{commit}}
 =
 \left\|\mathbf{z}_{e,t}
--\operatorname{sg}(\mathbf{z}_{q,t})\right\|_2^2,
+-\operatorname{sg}(\mathbf{z}_{q,t})\right\|_2^2.
 \tag{12.4}\]</span></span></p>
-<p>Here, <span class="math inline">\(\operatorname{sg}(\cdot)\)</span> is the stop-gradient operator, which prevents this term from moving the selected code through backpropagation. The two losses can then be combined as</p>
+<section id="gradient-based-codebook-updates" class="level4" data-number="12.3.2.1">
+<h4 data-number="12.3.2.1" class="anchored" data-anchor-id="gradient-based-codebook-updates"><span class="header-section-number">12.3.2.1</span> Gradient-based codebook updates</h4>
+<p>Codebook vectors are learned parameters too. With the usual straight-through estimator, the reconstruction gradient is passed to the encoder, so the entries need their own update. The <a href="https://proceedings.neurips.cc/paper/2017/hash/7a98af17e63a0ac09ce2e96d03992fbc-Abstract.html">original VQ-VAE</a> uses a codebook loss that holds the encoder output fixed and trains the selected entry to move toward it</p>
+<p><span id="eq-vqvae-codebook-loss"><span class="math display">\[
+\mathcal{L}_{\mathrm{codebook}}
+=
+\left\|\operatorname{sg}(\mathbf{z}_{e,t})
+-\mathbf{e}_{j_t^*}\right\|_2^2.
+\tag{12.5}\]</span></span></p>
+<p>Both distance losses are <span class="math inline">\(0.08\)</span> for the vectors in our earlier example, but their stop-gradient placement decides which side learns. The commitment loss pulls the encoder output toward <span class="math inline">\((1,0)\)</span>, while the codebook loss pulls the entry toward <span class="math inline">\((0.8,0.2)\)</span>. In a batch, an entry receives codebook gradients from the examples assigned to it.</p>
+<p>The full gradient-based objective combines the three losses</p>
 <p><span id="eq-vqvae-total-loss"><span class="math display">\[
 \mathcal{L}
 =
 \mathcal{L}_{\mathrm{rec}}
 +
-\beta\mathcal{L}_{\mathrm{commit}}.
-\tag{12.5}\]</span></span></p>
-<p>The coefficient <span class="math inline">\(\beta\)</span> determines how strongly the encoder is encouraged to stay near its selected code. The codebook itself can be updated using exponential moving averages of the encoder outputs assigned to each entry, allowing a code to follow the activations routed to it without trying to backpropagate through a discrete assignment.</p>
+\mathcal{L}_{\mathrm{codebook}}
++
+\beta\mathcal{L}_{\mathrm{commit}},
+\qquad \beta\geq 0.
+\tag{12.6}\]</span></span></p>
+<p>The losses are averaged over training positions, and <span class="math inline">\(\beta\)</span> controls the commitment penalty.</p>
+</section>
+<section id="moving-average-codebook-updates" class="level4" data-number="12.3.2.2">
+<h4 data-number="12.3.2.2" class="anchored" data-anchor-id="moving-average-codebook-updates"><span class="header-section-number">12.3.2.2</span> Moving-average codebook updates</h4>
+<p>Another option is to update each entry using an exponential moving average (EMA) of the encoder outputs assigned to it. The entry follows a smoothed mean that retains information from earlier batches while giving recent batches more weight.</p>
+<p>EMA replaces the gradient-based codebook update, so we leave <span class="math inline">\(\mathcal{L}_{\mathrm{codebook}}\)</span> out of the objective. The encoder and decoder still learn through backpropagation using the reconstruction and commitment losses. <a href="https://arxiv.org/abs/2602.02726v2">VQLC</a> and <a href="https://arxiv.org/abs/2506.20040v4">CLVQ-VAE</a> use this choice.</p>
+</section>
+</section>
+<section id="interpreting-code-groups" class="level3" data-number="12.3.3">
+<h3 data-number="12.3.3" class="anchored" data-anchor-id="interpreting-code-groups"><span class="header-section-number">12.3.3</span> Giving codes a concept meaning</h3>
+<p>To understand a codebook vector, we look for patterns in the examples assigned to it, as in <a href="https://arxiv.org/abs/2602.02726v2">VQLC</a>. We can describe the same group using common words, longer contexts, or a short concept name. These descriptions can be used together.</p>
+<ol type="1">
+<li><p>The most common words give a quick summary of the group. If “destroy” and similar words occur often, we might describe the vector as related to aggressive language. The words alone may not tell us whether the language is threatening or playful.</p></li>
+<li><p>Phrases and full sentences help us distinguish different uses of the same word. For example, “in our next chess match” changes how we read “destroy”. If this kind of context appears across the group, “competitive banter” may be a better description than “literal threats”.</p></li>
+<li><p>A large language model (LLM) can suggest a concept name and description from the grouped words, phrases, or sentences. <a href="https://proceedings.mlr.press/v267/paulo25a.html">Automatically Interpreting Millions of Features in Large Language Models</a> uses this idea for SAE features, and we can apply it to code groups too. The suggested meaning still needs checking.</p></li>
+</ol>
+<p>A description should fit a mix of common and less common examples, including examples that were not used to choose it. If a code mixes threats and friendly competition, a single label may hide that difference. Some groups need several descriptions or have no clear shared meaning.</p>
+<p>For a model-generated name, several other LLM judges can check whether it fits new examples. We record where they agree or disagree, and human reviewers can also check a sample. Disagreements help us see where the name may need changing. Agreement alone does not guarantee that the name is correct.</p>
+</section>
+<section id="explaining-with-code-groups" class="level3" data-number="12.3.4">
+<h3 data-number="12.3.4" class="anchored" data-anchor-id="explaining-with-code-groups"><span class="header-section-number">12.3.4</span> Using codes to explain a prediction</h3>
+<p>We can use these groups to inspect a prediction. For the chess comment, we look at other examples assigned to the same code as “destroy”. Do they contain threats, friendly competition, or both?</p>
+<ol type="1">
+<li><p>For the chess comment, we assume the model predicts toxic. We can look at several token positions or use attribution to choose one. <a href="https://arxiv.org/abs/2506.20040v4">CLVQ-VAE</a> uses Layer Integrated Gradients for this. For our example, the attribution estimates each token’s contribution to the toxic-class output.</p></li>
+<li><p>Suppose we choose “destroy”. We take its activation from the chosen layer, pass it through the trained encoder, and find the nearest code using <a href="#eq-vqvae-nearest-code" class="quarto-xref">Equation&nbsp;<span>12.2</span></a>. We can then look up the examples and suggested meaning for that code. This lookup uses the encoder and codebook, not the decoder.</p></li>
+<li><p>Suppose most examples in that group are threats. The reconstruction model has grouped this use of “destroy” with threatening language, even though the comment is about chess. If the group also contains playful competition, “literal threats” may not describe it well. These examples suggest a possible reason for the mistake, but we still need to test whether the classifier used that information.</p></li>
+</ol>
+<p>The same steps apply to “brilliant” in the second comment and to positions in the dismissive sentence. A causal language model can only use earlier and current tokens at each position, so its activation for “brilliant” cannot use the sentence that follows. A bidirectional model such as <a href="https://aclanthology.org/N19-1423/">BERT</a> can use that later context. A praise-like code at the earlier position does not by itself show that the classifier missed the sarcasm when processing the full comment.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1004,38 +1061,6 @@ j_t^*
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 
