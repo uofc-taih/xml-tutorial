@@ -1,0 +1,22 @@
+---
+acronyms:
+  keys:
+    - key: rl
+      shortname: RL
+      longname: reinforcement learning
+
+    - key: xai
+      shortname: XAI
+      longname: explainable artificial intelligence
+
+    - key: llm
+      shortname: LLM
+      longname: large language model
+
+    - key: mas
+      shortname: MAS
+      longname: multi-agent system
+      plural:
+        shortname: MAS
+        longname: multi-agent systems
+---

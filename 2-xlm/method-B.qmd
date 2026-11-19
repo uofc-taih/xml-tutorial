@@ -1,1 +1,99 @@
-# Method(s) Page 2
+# Method B: VQ-VAE-Based Concept Discovery
+
+One emerging approach to discovering concepts adapts the discrete codebook and reconstruction structure of VQ-VAE-style architectures to language-model activations. [Oord et al.(2017)](https://proceedings.neurips.cc/paper/2017/hash/7a98af17e63a0ac09ce2e96d03992fbc-Abstract.html) put forward the original VQ-VAE as a way to learn discrete representations for images, video, and speech.
+
+Since then, VQ-VAE has been used widely for images, where the basic pipeline is straightforward. The encoder produces a grid of continuous feature vectors, which the vector quantizer then replaces with their closest entries in a learned codebook before the decoder reconstructs the image from those entries. Because the codebook is shared across images, similar recurring visual patterns can be assigned the same discrete codes. This also allows a generative model over the codes to operate in a compressed latent space rather than directly at the pixel level. [Razavi et al. (2019)](https://proceedings.neurips.cc/paper/2019/hash/5f8e2fa1718d1bbcadf1cd9c7a54fb8c-Abstract.html) later built on this with VQ-VAE-2, adding a hierarchy of codebooks at multiple spatial scales for image generation.
+
+In the context of making language models more explainable, however, the objective is not to generate an image. Here, the encoder is fed an internal token activation and the quantizer maps it to a discrete code; the decoder’s job is to reconstruct a target activation. Quantization has the effect of compelling many activations to share a limited set of codes, while reconstruction encourages each selected code to retain information needed to reconstruct the target activation. One can then examine the tokens and contexts assigned to a single code and interpret their shared pattern as a putative concept.
+
+There is no need to start with concept annotations or names, as one would with a supervised concept method. Candidate concepts are discovered from the hidden states during training, and their meanings must be inferred and verified afterwards.
+
+## General architecture
+
+To describe the architecture more precisely, let $\mathbf{h}_t$ be the activation of token $t$ at a chosen language-model layer. A VQ-VAE-style concept discovery model then has three main components:
+
+1. An **encoder** maps the activation into a code space.
+2. A **vector quantizer** replaces the encoded activation with an entry from a learned codebook.
+3. A **decoder** reconstructs a target activation from the quantized representation.
+
+The overall pipeline is
+
+$$
+\mathbf{h}_t
+\xrightarrow{\;E_\theta\;}
+\mathbf{z}_{e,t}
+\xrightarrow{\;Q\;}
+\mathbf{z}_{q,t}
+\xrightarrow{\;D_\psi\;}
+\widehat{\mathbf{r}}_t.
+$$ {#eq-vqvae-concept-pipeline}
+
+Here, $\mathbf{z}_{e,t}$ is the encoder output and $\mathbf{z}_{q,t}$ is the codebook vector selected in its place. The decoder produces $\widehat{\mathbf{r}}_t$, which should match a target activation $\mathbf{r}_t$. Depending on the method, that target may be the original activation or one taken from a later layer.
+
+@fig-clvqvae-architecture shows how this pipeline is used for cross-layer reconstruction in CLVQ-VAE.
+
+![CLVQ-VAE architecture. A lower-layer activation is encoded and quantized through a learned codebook, and a transformer decoder reconstructs the higher-layer activation.](../figures/xlm/CLVQVAE-Architecture.png){#fig-clvqvae-architecture width=100%}
+
+### Discrete codebook
+
+The quantizer maintains a codebook
+
+$$
+\mathcal{E}=\{\mathbf{e}_1,\ldots,\mathbf{e}_K\},
+\qquad
+\mathbf{e}_j\in\mathbb{R}^{d_c},
+$$
+
+where $K$ is the number of codes and $d_c$ is the code dimension. In the simplest form, the encoder output is assigned to its nearest entry:
+
+$$
+j_t^*
+=
+\arg\min_j
+\left\|\mathbf{z}_{e,t}-\mathbf{e}_j\right\|_2^2,
+\qquad
+\mathbf{z}_{q,t}=\mathbf{e}_{j_t^*}.
+$$ {#eq-vqvae-nearest-code}
+
+The result is that every token receives a discrete code index $j_t^*$. Since language-model activations depend on context, the same word might not receive the same code in every sentence; its assignment may change when its meaning or role changes.
+
+## Why can a code represent a concept?
+
+The reason a code can be useful as a concept lies in the combination of reconstruction and quantization. Reconstruction requires the selected code to preserve information needed for the target activation, while quantization forces many activation vectors to share a finite set of codes. A code may therefore capture a recurring pattern that matters for reconstruction rather than a pattern that appears only once.
+
+After training, one can collect the tokens and contexts assigned to each code and look for a pattern shared across them. If that pattern is stable and has a recognizable semantic or functional role, the code can be interpreted as a latent concept. It might, for example, group positive evaluative language, location names, or tokens used in a particular syntactic role.
+
+The codebook alone does not guarantee interpretability. A code remains a candidate concept until the assigned examples are coherent and its relationship to the model's behavior has been tested.
+
+This reconstruction objective also makes the approach closely related to sparse autoencoders (SAEs), since both learn a dictionary from internal activations. The difference lies in how an activation is represented. An SAE usually uses a sparse weighted combination of several continuous features, whereas a basic VQ-VAE assigns an encoded activation to one discrete code. This gives each code a clear set of assigned examples, although those examples still have to be interpreted before the code can be called a concept.
+
+## Training objective
+
+Training begins with a reconstruction loss, which asks the decoder output to match the target activation $\mathbf{r}_t$:
+
+$$
+\mathcal{L}_{\mathrm{rec}}
+=
+\left\|\mathbf{r}_t-\widehat{\mathbf{r}}_t\right\|_2^2.
+$$ {#eq-vqvae-reconstruction}
+
+This is paired with a commitment loss that keeps the encoder output close to the code selected by the quantizer:
+
+$$
+\mathcal{L}_{\mathrm{commit}}
+=
+\left\|\mathbf{z}_{e,t}
+-\operatorname{sg}(\mathbf{z}_{q,t})\right\|_2^2,
+$$ {#eq-vqvae-commitment}
+
+Here, $\operatorname{sg}(\cdot)$ is the stop-gradient operator, which prevents this term from moving the selected code through backpropagation. The two losses can then be combined as
+
+$$
+\mathcal{L}
+=
+\mathcal{L}_{\mathrm{rec}}
++
+\beta\mathcal{L}_{\mathrm{commit}}.
+$$ {#eq-vqvae-total-loss}
+
+The coefficient $\beta$ determines how strongly the encoder is encouraged to stay near its selected code. The codebook itself can be updated using exponential moving averages of the encoder outputs assigned to each entry, allowing a code to follow the activations routed to it without trying to backpropagate through a discrete assignment.

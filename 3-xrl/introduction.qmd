@@ -1,35 +1,50 @@
-# Introduction to Explainable RL
-
-Note to self:
-
-Before:
-
-- Foundations and taxonomy
-    - split into two separate pages
-- Visualization-based approaches
-    - mentioned in the text, doesn't need its own section
-- Policy extraction and decision trees
-    - polcicy-level XRL, okay
-- Explaining decisions through critical states
-    - hmm, feature importance?
-- Trajectory-based methods
-    - MDP and/or policy-level
-- Explainability via counterfactual reasoning
-
-
-- Evaluation of XRL methods
+# Introduction
 
 ## Foundations
+
+\acr[case=sentence]{rl} is all about the interaction of an agent with an environment. In each state, the agent chooses an action, the environment transitions to a new state and provides a scalar reward. New state only depends on current state and action (Markov property). \acr[case=sentence]{rl} methods learn behavior policies via trial-and-error to maximize the cumulative reward, a.k.a. the return.
+
 
 There's value-based and policy-based RL.
 
 Why is it important? For example, deploying RL-based algorithms in finance requires algorithmic transparency to comply with regulations; in sequential human-AI collaboration process, users need to understand agent behavior to trust and cooperate.
 
-When it comes to RL, many things are desirable: fast learning (i.e., sample efficiency), high final performance, safety guarantees, transparent behavior processes, etc. To keep this tutorial focused, we consider constrained RL formulations for safe RL out of scope.
-
+When it comes to RL, many things are desirable: fast learning (i.e., sample efficiency), high final performance, safety guarantees, transparent behavior processes, etc. To keep this tutorial focused, we consider constrained RL formulations for safe RL out of scope. http://localhost:3493/3-xrl/introduction.html
 
 ## Challenges in XRL
 
 - large number of decisions over a period of time
 - actions are not independent of each other -> explanation can't be either
 - no static dataset, agent-generated data
+
+## Overview of the works we'll cover.
+
+The slides that we base the XRL section on are currently structured in this way:
+
+1. Foundations and taxonomy
+    - MDP
+    - Policies and Values
+    - Function Approximation -> *deep* RL
+    - Example scenario (high-level medical example)
+    - Why is explainability in RL important?
+    - RL != SL
+    - Taxonomy
+2. Visualization-based approaches
+    - Value Function Visualization
+    - DQNViz (visulaizing DQN) [@wang2018dqnviz]
+3. Policy extraction and decision trees
+    - VIPER (+ what decision tree policies can be used for) [@bastani2018verifiable]
+    - Representation Analysis [@zahavy2016graying]
+4. Explaining decisions through critical states
+    - StateMask [@cheng2023statemask]
+5. Trajectory-based methods
+    - Intro to offline RL
+    - Explaining RL Decisions Through Trajectories [@deshmukh2023explaining]
+    - Explaining RL Decisions Through Behaviors [@rishav2025behaviour]
+6. Explainability via counterfactual reasoning
+    - World models
+    - Contrastive Explanations using World Models [@van2018contrastive]
+    - Explaining RL Agents With World Models [@singh2025explainable] -> backward counterfactuals
+7. Evaluation of XRL methods
+    - Three Evaluation Levels [@doshi2017towards]
+    - What to Measure in Human Studies?
