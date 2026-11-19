@@ -1,0 +1,4 @@
+/* Hide the first item in the sidebar list to remove duplicated link to index */
+#quarto-sidebar .sidebar-menu-container > ul > li:first-child {
+    display: none !important;
+}
