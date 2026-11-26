@@ -365,11 +365,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-explanation-target" id="toc-what-explanation-target" class="nav-link active" data-scroll-target="#what-explanation-target"><span class="header-section-number">10.1</span> What? Explanation Target</a></li>
-  <li><a href="#where-evidence-location" id="toc-where-evidence-location" class="nav-link" data-scroll-target="#where-evidence-location"><span class="header-section-number">10.2</span> Where? Evidence Location</a></li>
-  <li><a href="#how-explanation-method" id="toc-how-explanation-method" class="nav-link" data-scroll-target="#how-explanation-method"><span class="header-section-number">10.3</span> How? Explanation Method</a></li>
+  <li><a href="#which-explanation-method" id="toc-which-explanation-method" class="nav-link active" data-scroll-target="#which-explanation-method"><span class="header-section-number">10.1</span> Which? Explanation Method</a></li>
+  <li><a href="#what-explanation-target" id="toc-what-explanation-target" class="nav-link" data-scroll-target="#what-explanation-target"><span class="header-section-number">10.2</span> What? Explanation Target</a></li>
+  <li><a href="#where-evidence-location" id="toc-where-evidence-location" class="nav-link" data-scroll-target="#where-evidence-location"><span class="header-section-number">10.3</span> Where? Evidence Location</a></li>
   <li><a href="#when-stage-of-use" id="toc-when-stage-of-use" class="nav-link" data-scroll-target="#when-stage-of-use"><span class="header-section-number">10.4</span> When? Stage of Use</a></li>
-  <li><a href="#which-explanation-quality" id="toc-which-explanation-quality" class="nav-link" data-scroll-target="#which-explanation-quality"><span class="header-section-number">10.5</span> Which? Explanation Quality</a></li>
+  <li><a href="#how-evaluation-criteria" id="toc-how-evaluation-criteria" class="nav-link" data-scroll-target="#how-evaluation-criteria"><span class="header-section-number">10.5</span> How? Evaluation Criteria</a></li>
   <li><a href="#why-intended-purpose" id="toc-why-intended-purpose" class="nav-link" data-scroll-target="#why-intended-purpose"><span class="header-section-number">10.6</span> Why? Intended Purpose</a></li>
   <li><a href="#who-intended-audience" id="toc-who-intended-audience" class="nav-link" data-scroll-target="#who-intended-audience"><span class="header-section-number">10.7</span> Who? Intended Audience</a></li>
   </ul>
@@ -397,13 +397,13 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>We organize LLM explainability around seven questions: <strong>What, Where, How, When, Which, Why, and Who</strong>, as shown in <a href="#fig-llm-explainability-taxonomy" class="quarto-xref">Figure&nbsp;<span>10.1</span></a>. These questions help us describe what each method explains, how it works, and how it is used and evaluated.</p>
-<p>The chapters that follow will each focus on an explanation method from <strong>How</strong>. We will use the other six questions to discuss what the method explains, where its evidence comes from, when and why to use it, how to evaluate it, and who it is useful for.</p>
+<p>We organize LLM explainability around seven questions: <strong>which, what, where, when, how, how, why, and who</strong>, as shown in <a href="#fig-llm-explainability-taxonomy" class="quarto-xref">Figure&nbsp;<span>10.1</span></a>. These questions help us describe what each method explains, how it works, and how it is used and evaluated.</p>
+<p>The chapters that follow will each focus on an explanation method from the “<strong>Which</strong>” column, highlighted in yellow. We will use the other six questions to discuss what the method explains, where its evidence comes from, when and why to use it, how to evaluate it, and who it is useful for.</p>
 <div style="text-align: center;">
 <div id="fig-llm-explainability-taxonomy" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-llm-explainability-taxonomy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/xlm/llm_explanability_taxanomy.drawio.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;10.1: A taxonomy of LLM explainability."><img src="../figures/xlm/llm_explanability_taxanomy.drawio.svg" class="img-fluid figure-img" style="width:100.0%"></a>
+<a href="../figures/xlm/llm_explanability_taxanomy.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;10.1: A taxonomy of LLM explainability."><img src="../figures/xlm/llm_explanability_taxanomy.svg" class="img-fluid figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-llm-explainability-taxonomy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;10.1: A taxonomy of LLM explainability.
@@ -411,88 +411,8 @@ Figure&nbsp;10.1: A taxonomy of LLM explainability.
 </figure>
 </div>
 </div>
-<section id="what-explanation-target" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="what-explanation-target"><span class="header-section-number">10.1</span> What? Explanation Target</h2>
-<ul>
-<li><p><strong>Predictions and outputs:</strong></p>
-<ul>
-<li>One answer, predicted class, or generated token; the particular decision being explained</li>
-<li>Words or phrases behind that decision, such as positive or negative wording in a restaurant review</li>
-<li>Reasons tied to that input and output; possibly different reasons for another example</li>
-<li>Reading: <a href="https://proceedings.mlr.press/v70/sundararajan17a.html">Axiomatic Attribution for Deep Networks</a></li>
-</ul></li>
-<li><p><strong>Learned knowledge:</strong></p>
-<ul>
-<li>Facts and associations picked up during training, such as a person’s occupation or a country’s capital</li>
-<li>Different prompts for the same fact; checks across types of facts and versions of the model</li>
-<li>Correct answers under one wording versus consistent answers across prompts; possible effects of memorization</li>
-<li>Reading: <a href="https://aclanthology.org/D19-1250/">Language Models as Knowledge Bases?</a></li>
-</ul></li>
-<li><p><strong>Internal representations:</strong></p>
-<ul>
-<li>Information in hidden states about grammar, word meaning, and the context of a sentence</li>
-<li>Comparisons across layers and token positions; properties becoming easier or harder to recover</li>
-<li>Information present in a representation versus information used for prediction; separate tests for actual use</li>
-<li>Reading: <a href="https://aclanthology.org/P19-1452/">BERT Rediscovers the Classical NLP Pipeline</a></li>
-</ul></li>
-<li><p><strong>Computational mechanisms:</strong></p>
-<ul>
-<li>Steps inside the model that connect an input to an output; the parts involved at each step</li>
-<li>Induction heads as an example: attention heads using an earlier token pattern to help continue a repeated one</li>
-<li>Tests of the proposed steps by changing or disabling the relevant components</li>
-<li>Reading: <a href="https://arxiv.org/abs/2209.11895">In-context Learning and Induction Heads</a></li>
-</ul></li>
-<li><p><strong>Model behaviour:</strong></p>
-<ul>
-<li>Tasks the model handles well and cases where it fails; patterns hidden by overall test accuracy</li>
-<li>Input edits that should preserve the prediction and edits that should change it</li>
-<li>Examples involving negation, names, or distracting text; observed behaviour as a starting point for investigating its causes</li>
-<li>Reading: <a href="https://aclanthology.org/2020.acl-main.442/">Beyond Accuracy: Behavioral Testing of NLP Models with CheckList</a></li>
-</ul></li>
-</ul>
-</section>
-<section id="where-evidence-location" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="where-evidence-location"><span class="header-section-number">10.2</span> Where? Evidence Location</h2>
-<ul>
-<li><p><strong>Input and output tokens:</strong></p>
-<ul>
-<li>Evidence in prompt words, earlier generated tokens, or longer spans of text</li>
-<li>Contributions to a particular output; different effects of the same word in different contexts</li>
-<li>Highlights over individual tokens or whole phrases; subword tokens grouped into readable words where appropriate</li>
-<li>Reading: <a href="https://proceedings.mlr.press/v70/sundararajan17a.html">Axiomatic Attribution for Deep Networks</a></li>
-</ul></li>
-<li><p><strong>Attention patterns:</strong></p>
-<ul>
-<li>Token positions receiving attention, including earlier mentions, nearby words, and special tokens</li>
-<li>Patterns across heads and layers; possible roles in passing information between positions</li>
-<li>Attention weights as clues; separate tests of how changing them affects the prediction</li>
-<li>Reading: <a href="https://aclanthology.org/N19-1357/">Attention is not Explanation</a></li>
-</ul></li>
-<li><p><strong>Hidden activations:</strong></p>
-<ul>
-<li>Vectors produced at chosen layers and token positions; a view of information beyond the final answer</li>
-<li>Recurring patterns in these vectors; dictionaries and codebooks for examining features spread across dimensions</li>
-<li>CLVQ-VAE example: lower-layer activations assigned to discrete codes, then used to reconstruct higher-layer activations</li>
-<li>Reading: <a href="https://proceedings.iclr.cc/paper_files/paper/2024/hash/1fa1ab11f4bd5f94b2ec20e794dbfa3b-Abstract-Conference.html">Sparse Autoencoders Find Highly Interpretable Features in Language Models</a>; <a href="https://arxiv.org/abs/2506.20040v3">Cross-Layer Discrete Concept Discovery for Interpreting Language Models</a></li>
-</ul></li>
-<li><p><strong>Neurons, heads, and layers:</strong></p>
-<ul>
-<li>Roles of particular neurons, attention heads, or layers; checks on what changes when their outputs are removed or replaced</li>
-<li>Several components working together in a circuit; a computation spread across heads or layers</li>
-<li>Roles tied to the tested task and inputs; possible changes in another context</li>
-<li>Reading: <a href="https://arxiv.org/abs/2209.11895">In-context Learning and Induction Heads</a></li>
-</ul></li>
-<li><p><strong>Parameters and training data:</strong></p>
-<ul>
-<li>Weight edits to test a factual association; checks for unwanted changes to unrelated predictions</li>
-<li>Training examples linked to a prediction; estimates of the effect of removing them or changing their training weight</li>
-<li>Limits of these estimates, especially when tracing a generated answer to individual training examples</li>
-<li>Reading: <a href="https://papers.neurips.cc/paper_files/paper/2022/hash/6f1d43d5a82a37e89b0665b33bf3a182-Abstract-Conference.html">Locating and Editing Factual Associations in GPT</a>; <a href="https://proceedings.mlr.press/v70/koh17a.html">Understanding Black-box Predictions via Influence Functions</a></li>
-</ul></li>
-</ul>
-</section>
-<section id="how-explanation-method" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="how-explanation-method"><span class="header-section-number">10.3</span> How? Explanation Method</h2>
+<section id="which-explanation-method" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="which-explanation-method"><span class="header-section-number">10.1</span> Which? Explanation Method</h2>
 <ul>
 <li><p><strong>Feature attribution:</strong></p>
 <ul>
@@ -531,6 +451,86 @@ Figure&nbsp;10.1: A taxonomy of LLM explainability.
 </ul></li>
 </ul>
 </section>
+<section id="what-explanation-target" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="what-explanation-target"><span class="header-section-number">10.2</span> What? Explanation Target</h2>
+<ul>
+<li><p><strong>Predictions and outputs:</strong></p>
+<ul>
+<li>One answer, predicted class, or generated token; the particular decision being explained</li>
+<li>Words or phrases behind that decision, such as positive or negative wording in a restaurant review</li>
+<li>Reasons tied to that input and output; possibly different reasons for another example</li>
+<li>Reading: <a href="https://proceedings.mlr.press/v70/sundararajan17a.html">Axiomatic Attribution for Deep Networks</a></li>
+</ul></li>
+<li><p><strong>Learned knowledge:</strong></p>
+<ul>
+<li>Facts and associations picked up during training, such as a person’s occupation or a country’s capital</li>
+<li>Different prompts for the same fact; checks across types of facts and versions of the model</li>
+<li>Correct answers under one wording versus consistent answers across prompts; possible effects of memorization</li>
+<li>Reading: <a href="https://aclanthology.org/D19-1250/">Language Models as Knowledge Bases?</a></li>
+</ul></li>
+<li><p><strong>Internal representations:</strong></p>
+<ul>
+<li>Information in hidden states about grammar, word meaning, and the context of a sentence</li>
+<li>Comparisons across layers and token positions; properties becoming easier or harder to recover</li>
+<li>Information present in a representation versus information used for prediction; separate tests for actual use</li>
+<li>Reading: <a href="https://aclanthology.org/P19-1452/">BERT Rediscovers the Classical NLP Pipeline</a></li>
+</ul></li>
+<li><p><strong>Computational mechanisms:</strong></p>
+<ul>
+<li>Steps inside the model that connect an input to an output; the parts involved at each step</li>
+<li>Induction heads as an example: attention heads using an earlier token pattern to help continue a repeated one</li>
+<li>Tests of the proposed steps by changing or disabling the relevant components</li>
+<li>Reading: <a href="https://arxiv.org/abs/2209.11895">In-context Learning and Induction Heads</a></li>
+</ul></li>
+<li><p><strong>Model behaviour:</strong></p>
+<ul>
+<li>Tasks the model handles well and cases where it fails; patterns hidden by overall test accuracy</li>
+<li>Input edits that should preserve the prediction and edits that should change it</li>
+<li>Examples involving negation, names, or distracting text; observed behaviour as a starting point for investigating its causes</li>
+<li>Reading: <a href="https://aclanthology.org/2020.acl-main.442/">Beyond Accuracy: Behavioral Testing of NLP Models with CheckList</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="where-evidence-location" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="where-evidence-location"><span class="header-section-number">10.3</span> Where? Evidence Location</h2>
+<ul>
+<li><p><strong>Input and output tokens:</strong></p>
+<ul>
+<li>Evidence in prompt words, earlier generated tokens, or longer spans of text</li>
+<li>Contributions to a particular output; different effects of the same word in different contexts</li>
+<li>Highlights over individual tokens or whole phrases; subword tokens grouped into readable words where appropriate</li>
+<li>Reading: <a href="https://proceedings.mlr.press/v70/sundararajan17a.html">Axiomatic Attribution for Deep Networks</a></li>
+</ul></li>
+<li><p><strong>Attention patterns:</strong></p>
+<ul>
+<li>Token positions receiving attention, including earlier mentions, nearby words, and special tokens</li>
+<li>Patterns across heads and layers; possible roles in passing information between positions</li>
+<li>Attention weights as clues; separate tests of how changing them affects the prediction</li>
+<li>Reading: <a href="https://aclanthology.org/N19-1357/">Attention is not Explanation</a></li>
+</ul></li>
+<li><p><strong>Hidden activations:</strong></p>
+<ul>
+<li>Vectors produced at chosen layers and token positions; a view of information beyond the final answer</li>
+<li>Recurring patterns in these vectors; dictionaries and codebooks for examining features spread across dimensions</li>
+<li>CLVQ-VAE example: lower-layer activations assigned to discrete codes, then used to reconstruct higher-layer activations</li>
+<li>Reading: <a href="https://proceedings.iclr.cc/paper_files/paper/2024/hash/1fa1ab11f4bd5f94b2ec20e794dbfa3b-Abstract-Conference.html">Sparse Autoencoders Find Highly Interpretable Features in Language Models</a>; <a href="https://arxiv.org/abs/2506.20040v3">Cross-Layer Discrete Concept Discovery for Interpreting Language Models</a></li>
+</ul></li>
+<li><p><strong>Neurons, heads, and layers:</strong></p>
+<ul>
+<li>Roles of particular neurons, attention heads, or layers; checks on what changes when their outputs are removed or replaced</li>
+<li>Several components working together in a circuit; a computation spread across heads or layers</li>
+<li>Roles tied to the tested task and inputs; possible changes in another context</li>
+<li>Reading: <a href="https://arxiv.org/abs/2209.11895">In-context Learning and Induction Heads</a></li>
+</ul></li>
+<li><p><strong>Parameters and training data:</strong></p>
+<ul>
+<li>Weight edits to test a factual association; checks for unwanted changes to unrelated predictions</li>
+<li>Training examples linked to a prediction; estimates of the effect of removing them or changing their training weight</li>
+<li>Limits of these estimates, especially when tracing a generated answer to individual training examples</li>
+<li>Reading: <a href="https://papers.neurips.cc/paper_files/paper/2022/hash/6f1d43d5a82a37e89b0665b33bf3a182-Abstract-Conference.html">Locating and Editing Factual Associations in GPT</a>; <a href="https://proceedings.mlr.press/v70/koh17a.html">Understanding Black-box Predictions via Influence Functions</a></li>
+</ul></li>
+</ul>
+</section>
 <section id="when-stage-of-use" class="level2" data-number="10.4">
 <h2 data-number="10.4" class="anchored" data-anchor-id="when-stage-of-use"><span class="header-section-number">10.4</span> When? Stage of Use</h2>
 <ul>
@@ -564,8 +564,8 @@ Figure&nbsp;10.1: A taxonomy of LLM explainability.
 </ul></li>
 </ul>
 </section>
-<section id="which-explanation-quality" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="which-explanation-quality"><span class="header-section-number">10.5</span> Which? Explanation Quality</h2>
+<section id="how-evaluation-criteria" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="how-evaluation-criteria"><span class="header-section-number">10.5</span> How? Evaluation Criteria</h2>
 <ul>
 <li><p><strong>Faithfulness:</strong></p>
 <ul>
