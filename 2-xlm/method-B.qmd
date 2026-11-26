@@ -47,6 +47,12 @@ The original [VQ-VAE](https://proceedings.neurips.cc/paper/2017/hash/7a98af17e63
 
 For language-model interpretation, both the input and the reconstruction target are activation vectors. The encoder learns a transformation of those activations, the quantizer replaces each transformed vector with a shared entry, and the decoder tries to recover the target from the selected entries. Here, the encoder and decoder belong to the additional reconstruction model, not the original language model.
 
+Follow “chess” across @fig-vqvae-single-layer. Its encoded activation is closest to the vector for code 3. The decoder receives that vector.
+
+::: {.text-center}
+![Single-layer reconstruction for “next chess match.” Each bar shows one coordinate of an illustrative vector.](../figures/xlm/method-diagrams/vq-vae-architecture.svg){#fig-vqvae-single-layer width=100% fig-alt="The quantizer assigns codes 2, 3 and 1 to next, chess and match. The decoder uses the corresponding codebook vectors to reconstruct the activations from the same language-model layer."}
+:::
+
 Let $\mathbf{h}_t^{(l)}\in\mathbb{R}^{d}$ be the $d$-dimensional activation at position $t$ in layer $l$. With encoder $E_\theta$, quantizer $Q$, and decoder $D_\psi$, the per-position reconstruction path is
 
 $$
@@ -63,7 +69,11 @@ Here, $\theta$ and $\psi$ are the encoder and decoder parameters. The continuous
 
 For a single-layer objective, the target is the input activation, $\mathbf{r}_t=\mathbf{h}_t^{(l)}$, as in [Vector Quantized Latent Concepts (VQLC)](https://arxiv.org/abs/2602.02726v2). The decoder reconstructs this activation from its coarse codebook representation, so training encourages the codes to retain patterns needed to recover information at the same layer.
 
-A cross-layer objective uses an upper-layer activation as the target, $\mathbf{r}_t=\mathbf{h}_t^{(u)}$, where $u>l$, as in [Cross-Layer Vector Quantized-Variational Autoencoder (CLVQ-VAE)](https://arxiv.org/abs/2506.20040v4). The goal is to predict the higher-layer activation using the coarse representation of the lower-layer input. This encourages the codebook to capture patterns useful for the transformation from the lower to the higher layer.
+A cross-layer objective uses an upper-layer activation as the target, $\mathbf{r}_t=\mathbf{h}_t^{(u)}$, where $u>l$, as in [Cross-Layer Vector Quantized-Variational Autoencoder (CLVQ-VAE)](https://arxiv.org/abs/2506.20040v4). The goal is to predict the higher-layer activation using the coarse representation of the lower-layer input, as shown in @fig-clvqvae-cross-layer. This encourages the codebook to capture patterns useful for the transformation from the lower to the higher layer.
+
+::: {.text-center}
+![For “chess,” self-attention receives the vector for code 3 (teal), while cross-attention reads the continuous encoder outputs (amber). Compare the blue bars for “chess” in the reconstruction and the higher layer. Bar heights are illustrative. Adapted from [Garg et al., Figure 1](https://arxiv.org/html/2506.20040v4).](../figures/xlm/method-diagrams/clvq-vae-architecture.svg){#fig-clvqvae-cross-layer width=100% fig-alt="The quantizer assigns codes 2, 3 and 1 to next, chess and match. The decoder uses their codebook vectors and the continuous encoder outputs to reconstruct the higher-layer activations for those tokens."}
+:::
 
 ### Learning a discrete codebook {#discrete-codebook}
 
@@ -150,6 +160,12 @@ EMA replaces the gradient-based codebook update, so we leave $\mathcal{L}_{\math
 ### Giving codes a concept meaning {#interpreting-code-groups}
 
 To understand a codebook vector, we look for patterns in the examples assigned to it, as in [VQLC](https://arxiv.org/abs/2602.02726v2). We can describe the same group using common words, longer contexts, or a short concept name. These descriptions can be used together.
+
+Compare the two uses of “Brilliant” in @fig-vqvae-code-groups. What other comments share a code with each one?
+
+::: {.text-center}
+![The other comments assigned to each code suggest a possible meaning: sarcasm for code 1 and sincere praise for code 2. Both groups are illustrative.](../figures/xlm/method-diagrams/reading-a-codebook.svg){#fig-vqvae-code-groups width=100% fig-alt="After a missed train, Brilliant is assigned code 1, which it shares with sarcastic remarks. After a winning move, the same word is assigned code 2, which it shares with compliments."}
+:::
 
 1. The most common words give a quick summary of the group. If "destroy" and similar words occur often, we might describe the vector as related to aggressive language. The words alone may not tell us whether the language is threatening or playful.
 

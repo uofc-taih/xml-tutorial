@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1152" height="480" viewBox="0 0 1152 480" role="img" aria-labelledby="figure-title figure-description">
+  <title id="figure-title">Cross-layer VQ-VAE</title>
+  <desc id="figure-description">Illustrative trace for next, chess and match. Blue bars show lower-layer activations, actual higher-layer targets and their reconstructions. The adaptive residual encoder mixes each lower-layer activation with a learned transformation. Amber bars show its continuous outputs. During training the quantizer samples a code for each token from its top-k candidates. The teal bars show the stored vector for that code. Decoder self-attention uses the sequence of sampled vectors; cross-attention reads the original amber sequence without quantization. The decoder reconstructs the higher-layer states of the same tokens. Bar heights are illustrative coordinates, not measured activations. Adapted from Garg et al., Figure 1 and Section 2. Source: https://arxiv.org/html/2506.20040v4</desc>
+  <defs>
+    <marker id="arrow-285f8f" markerUnits="userSpaceOnUse" viewBox="0 0 9 8" refX="8.5" refY="4" markerWidth="9" markerHeight="8" orient="auto"><path d="M0,0 9,4 0,8 Z" fill="#285f8f"/></marker>
+    <marker id="arrow-637784" markerUnits="userSpaceOnUse" viewBox="0 0 9 8" refX="8.5" refY="4" markerWidth="9" markerHeight="8" orient="auto"><path d="M0,0 9,4 0,8 Z" fill="#637784"/></marker>
+    <marker id="arrow-18766f" markerUnits="userSpaceOnUse" viewBox="0 0 9 8" refX="8.5" refY="4" markerWidth="9" markerHeight="8" orient="auto"><path d="M0,0 9,4 0,8 Z" fill="#18766f"/></marker>
+    <marker id="arrow-985b10" markerUnits="userSpaceOnUse" viewBox="0 0 9 8" refX="8.5" refY="4" markerWidth="9" markerHeight="8" orient="auto"><path d="M0,0 9,4 0,8 Z" fill="#985b10"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="white"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect id="frozen-lm" x="20" y="20" width="150" height="416" rx="8" fill="#f7f9fa" stroke="#c6d2d9" stroke-width="1.3"/>
+    <text id="frozen-title" x="95" y="43" font-size="17" font-weight="bold" fill="#285f8f" text-anchor="middle">Frozen LM</text>
+    <rect id="upper-layer" x="32" y="54" width="126" height="122" rx="8" fill="#f1f6fa" stroke="#93aec1" stroke-width="1.3"/>
+    <text id="upper-title" x="95" y="75" font-size="16" font-weight="bold" fill="#285f8f" text-anchor="middle">Higher layer</text>
+    <text id="higher-token-next" x="43" y="96" font-size="15" fill="#24313d">next</text>
+    <rect id="higher-next-0" x="108" y="94.36" width="7" height="10.64" rx="1.7" fill="#487c9e"/>
+    <rect id="higher-next-1" x="118" y="85.68" width="7" height="19.32" rx="1.7" fill="#487c9e"/>
+    <rect id="higher-next-2" x="128" y="82.6" width="7" height="22.400000000000002" rx="1.7" fill="#487c9e"/>
+    <rect id="higher-next-3" x="138" y="96.88" width="7" height="8.12" rx="1.7" fill="#487c9e"/>
+    <text id="higher-token-chess" x="43" y="128" font-size="15" font-weight="bold" fill="#24313d">chess</text>
+    <rect id="higher-chess-0" x="108" y="114.04" width="7" height="22.959999999999997" rx="1.7" fill="#487c9e"/>
+    <rect id="higher-chess-1" x="118" y="129.72" width="7" height="7.28" rx="1.7" fill="#487c9e"/>
+    <rect id="higher-chess-2" x="128" y="117.68" width="7" height="19.32" rx="1.7" fill="#487c9e"/>
+    <rect id="higher-chess-3" x="138" y="126.08" width="7" height="10.92" rx="1.7" fill="#487c9e"/>
+    <text id="higher-token-match" x="43" y="160" font-size="15" fill="#24313d">match</text>
+    <rect id="higher-match-0" x="108" y="160.88" width="7" height="8.12" rx="1.7" fill="#487c9e"/>
+    <rect id="higher-match-1" x="118" y="144.92000000000002" width="7" height="24.08" rx="1.7" fill="#487c9e"/>
+    <rect id="higher-match-2" x="128" y="158.08" width="7" height="10.92" rx="1.7" fill="#487c9e"/>
+    <rect id="higher-match-3" x="138" y="150.8" width="7" height="18.2" rx="1.7" fill="#487c9e"/>
+    <rect id="lower-layer" x="32" y="248" width="126" height="176" rx="8" fill="#f1f6fa" stroke="#93aec1" stroke-width="1.3"/>
+    <text id="lower-title" x="95" y="274" font-size="16" font-weight="bold" fill="#285f8f" text-anchor="middle">Lower layer</text>
+    <text id="lower-token-next" x="43" y="315" font-size="15" fill="#24313d">next</text>
+    <rect id="lower-next-0" x="108" y="301.6" width="7" height="22.400000000000002" rx="1.7" fill="#487c9e"/>
+    <rect id="lower-next-1" x="118" y="316.72" width="7" height="7.28" rx="1.7" fill="#487c9e"/>
+    <rect id="lower-next-2" x="128" y="307.76" width="7" height="16.24" rx="1.7" fill="#487c9e"/>
+    <rect id="lower-next-3" x="138" y="311.68" width="7" height="12.32" rx="1.7" fill="#487c9e"/>
+    <text id="lower-token-chess" x="43" y="357" font-size="15" font-weight="bold" fill="#24313d">chess</text>
+    <rect id="lower-chess-0" x="108" y="357.32" width="7" height="8.68" rx="1.7" fill="#487c9e"/>
+    <rect id="lower-chess-1" x="118" y="344.16" width="7" height="21.84" rx="1.7" fill="#487c9e"/>
+    <rect id="lower-chess-2" x="128" y="352.84" width="7" height="13.16" rx="1.7" fill="#487c9e"/>
+    <rect id="lower-chess-3" x="138" y="340.52" width="7" height="25.48" rx="1.7" fill="#487c9e"/>
+    <text id="lower-token-match" x="43" y="399" font-size="15" fill="#24313d">match</text>
+    <rect id="lower-match-0" x="108" y="392.04" width="7" height="15.959999999999999" rx="1.7" fill="#487c9e"/>
+    <rect id="lower-match-1" x="118" y="396.52" width="7" height="11.479999999999999" rx="1.7" fill="#487c9e"/>
+    <rect id="lower-match-2" x="128" y="384.48" width="7" height="23.52" rx="1.7" fill="#487c9e"/>
+    <rect id="lower-match-3" x="138" y="399.88" width="7" height="8.12" rx="1.7" fill="#487c9e"/>
+    <polyline id="lm-forward" points="95,248 95,177" fill="none" stroke="#285f8f" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-285f8f)"/>
+    <rect id="reconstruction" x="936" y="54" width="154" height="122" rx="8" fill="#f1f6fa" stroke="#93aec1" stroke-width="1.3"/>
+    <text id="recon-title" x="1013" y="75" font-size="16" font-weight="bold" fill="#285f8f" text-anchor="middle">Reconstruction</text>
+    <text id="recon-token-next" x="950" y="96" font-size="15" fill="#24313d">next</text>
+    <rect id="recon-next-0" x="1038" y="92.96000000000001" width="7" height="12.04" rx="1.7" fill="#487c9e"/>
+    <rect id="recon-next-1" x="1048" y="87.64" width="7" height="17.36" rx="1.7" fill="#487c9e"/>
+    <rect id="recon-next-2" x="1058" y="80.92" width="7" height="24.08" rx="1.7" fill="#487c9e"/>
+    <rect id="recon-next-3" x="1068" y="95.48" width="7" height="9.520000000000001" rx="1.7" fill="#487c9e"/>
+    <text id="recon-token-chess" x="950" y="128" font-size="15" font-weight="bold" fill="#24313d">chess</text>
+    <rect id="recon-chess-0" x="1038" y="116.28" width="7" height="20.72" rx="1.7" fill="#487c9e"/>
+    <rect id="recon-chess-1" x="1048" y="127.48" width="7" height="9.520000000000001" rx="1.7" fill="#487c9e"/>
+    <rect id="recon-chess-2" x="1058" y="119.36" width="7" height="17.64" rx="1.7" fill="#487c9e"/>
+    <rect id="recon-chess-3" x="1068" y="124.4" width="7" height="12.6" rx="1.7" fill="#487c9e"/>
+    <text id="recon-token-match" x="950" y="160" font-size="15" fill="#24313d">match</text>
+    <rect id="recon-match-0" x="1038" y="159.2" width="7" height="9.799999999999999" rx="1.7" fill="#487c9e"/>
+    <rect id="recon-match-1" x="1048" y="147.16" width="7" height="21.84" rx="1.7" fill="#487c9e"/>
+    <rect id="recon-match-2" x="1058" y="155.84" width="7" height="13.16" rx="1.7" fill="#487c9e"/>
+    <rect id="recon-match-3" x="1068" y="151.64" width="7" height="17.36" rx="1.7" fill="#487c9e"/>
+    <rect id="loss" x="450" y="88" width="194" height="44" rx="8" fill="#f9efeb" stroke="#bd8979" stroke-width="1.5"/>
+    <text id="loss-text" x="547" y="115.28" font-size="16" font-weight="bold" fill="#24313d" text-anchor="middle">Reconstruction loss</text>
+    <polyline id="compare-target" points="158,110 449,110" fill="none" stroke="#285f8f" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-285f8f)"/>
+    <polyline id="compare-reconstruction" points="936,110 645,110" fill="none" stroke="#285f8f" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-285f8f)"/>
+    <rect id="encoder" x="194" y="248" width="196" height="176" rx="8" fill="#fff7e8" stroke="#bc8b48" stroke-width="1.3"/>
+    <text id="encoder-title" x="292" y="274" font-size="14" font-weight="bold" fill="#24313d" text-anchor="middle">Adaptive residual encoder</text>
+    <rect id="transform" x="220" y="291" width="149" height="31" rx="8" fill="#fff7e8" stroke="#bc8b48" stroke-width="1.5"/>
+    <text id="transform-text" x="294.5" y="310.79" font-size="13" font-weight="bold" fill="#24313d" text-anchor="middle">Linear + layer norm</text>
+    <rect id="mix" x="309" y="335" width="60" height="34" rx="8" fill="#fff7e8" stroke="#bc8b48" stroke-width="1.5"/>
+    <text id="mix-text" x="339" y="356.95" font-size="15" font-weight="bold" fill="#24313d" text-anchor="middle">Mix</text>
+    <polyline id="read-layer" points="158,352 207,352" fill="none" stroke="#285f8f" stroke-width="2" stroke-linejoin="round"/>
+    <ellipse id="input-fork" cx="207" cy="352" rx="2.8" ry="2.8" fill="#285f8f"/>
+    <polyline id="transform-input" points="207,352 207,306.5 219,306.5" fill="none" stroke="#285f8f" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-285f8f)"/>
+    <polyline id="transform-output" points="339,322 339,334" fill="none" stroke="#637784" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-637784)"/>
+    <polyline id="residual" points="207,352 308,352" fill="none" stroke="#285f8f" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-285f8f)"/>
+    <text id="residual-caption" x="257.5" y="343" font-size="15" fill="#285f8f" text-anchor="middle">Input</text>
+    <rect id="encoded" x="414" y="248" width="132" height="176" rx="8" fill="#fcf8f1" stroke="#ddc7a7" stroke-width="1.3"/>
+    <text id="encoded-title" x="480" y="274" font-size="14" font-weight="bold" fill="#985b10" text-anchor="middle">Encoded vectors</text>
+    <polyline id="encode-sequence" points="369,352 413,352" fill="none" stroke="#637784" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-637784)"/>
+    <rect id="encoded-next-0" x="461.5" y="303.56" width="7" height="20.439999999999998" rx="1.7" fill="#aa782e"/>
+    <rect id="encoded-next-1" x="471.5" y="314.48" width="7" height="9.520000000000001" rx="1.7" fill="#aa782e"/>
+    <rect id="encoded-next-2" x="481.5" y="305.8" width="7" height="18.2" rx="1.7" fill="#aa782e"/>
+    <rect id="encoded-next-3" x="491.5" y="311.4" width="7" height="12.6" rx="1.7" fill="#aa782e"/>
+    <rect id="encoded-chess-0" x="461.5" y="355.08" width="7" height="10.92" rx="1.7" fill="#aa782e"/>
+    <rect id="encoded-chess-1" x="471.5" y="347.52" width="7" height="18.48" rx="1.7" fill="#aa782e"/>
+    <rect id="encoded-chess-2" x="481.5" y="350.04" width="7" height="15.959999999999999" rx="1.7" fill="#aa782e"/>
+    <rect id="encoded-chess-3" x="491.5" y="342.2" width="7" height="23.8" rx="1.7" fill="#aa782e"/>
+    <rect id="encoded-match-0" x="461.5" y="392.6" width="7" height="15.400000000000002" rx="1.7" fill="#aa782e"/>
+    <rect id="encoded-match-1" x="471.5" y="393.44" width="7" height="14.56" rx="1.7" fill="#aa782e"/>
+    <rect id="encoded-match-2" x="481.5" y="386.72" width="7" height="21.28" rx="1.7" fill="#aa782e"/>
+    <rect id="encoded-match-3" x="491.5" y="398.2" width="7" height="9.799999999999999" rx="1.7" fill="#aa782e"/>
+    <rect id="codebook" x="472" y="145" width="356" height="81" rx="8" fill="#f7faf9" stroke="#93b8ae" stroke-width="1.3"/>
+    <text id="bank-title" x="650" y="167" font-size="16" font-weight="bold" fill="#18766f" text-anchor="middle">Shared codebook (K entries)</text>
+    <rect id="bank-1" x="485" y="180" width="68" height="36" rx="5" fill="#ebf6f3" stroke="#8bb6af" stroke-width="1"/>
+    <text id="bank-1-index" x="497" y="203" font-size="14" font-weight="bold" fill="#245f5a" text-anchor="middle">1</text>
+    <rect id="bank-1-vector-0" x="510" y="194.07999999999998" width="7" height="17.92" rx="1.7" fill="#328276"/>
+    <rect id="bank-1-vector-1" x="520" y="200.8" width="7" height="11.200000000000001" rx="1.7" fill="#328276"/>
+    <rect id="bank-1-vector-2" x="530" y="187.92000000000002" width="7" height="24.08" rx="1.7" fill="#328276"/>
+    <rect id="bank-1-vector-3" x="540" y="204.72" width="7" height="7.28" rx="1.7" fill="#328276"/>
+    <rect id="bank-2" x="562" y="180" width="68" height="36" rx="5" fill="#ebf6f3" stroke="#8bb6af" stroke-width="1"/>
+    <text id="bank-2-index" x="574" y="203" font-size="14" font-weight="bold" fill="#245f5a" text-anchor="middle">2</text>
+    <rect id="bank-2-vector-0" x="587" y="188.48" width="7" height="23.52" rx="1.7" fill="#328276"/>
+    <rect id="bank-2-vector-1" x="597" y="205.56" width="7" height="6.44" rx="1.7" fill="#328276"/>
+    <rect id="bank-2-vector-2" x="607" y="196.04" width="7" height="15.959999999999999" rx="1.7" fill="#328276"/>
+    <rect id="bank-2-vector-3" x="617" y="196.88" width="7" height="15.120000000000001" rx="1.7" fill="#328276"/>
+    <rect id="bank-3" x="639" y="180" width="68" height="36" rx="5" fill="#ebf6f3" stroke="#8bb6af" stroke-width="1"/>
+    <text id="bank-3-index" x="651" y="203" font-size="14" font-weight="bold" fill="#245f5a" text-anchor="middle">3</text>
+    <rect id="bank-3-vector-0" x="664" y="203.88" width="7" height="8.12" rx="1.7" fill="#328276"/>
+    <rect id="bank-3-vector-1" x="674" y="190.44" width="7" height="21.560000000000002" rx="1.7" fill="#328276"/>
+    <rect id="bank-3-vector-2" x="684" y="198.84" width="7" height="13.16" rx="1.7" fill="#328276"/>
+    <rect id="bank-3-vector-3" x="694" y="185.68" width="7" height="26.32" rx="1.7" fill="#328276"/>
+    <rect id="bank-K" x="748" y="180" width="68" height="36" rx="5" fill="#ebf6f3" stroke="#8bb6af" stroke-width="1"/>
+    <text id="bank-K-index" x="760" y="203" font-size="14" font-weight="bold" fill="#245f5a" text-anchor="middle">K</text>
+    <rect id="bank-K-vector-0" x="773" y="203.88" width="7" height="8.12" rx="1.7" fill="#328276"/>
+    <rect id="bank-K-vector-1" x="783" y="199.96" width="7" height="12.04" rx="1.7" fill="#328276"/>
+    <rect id="bank-K-vector-2" x="793" y="201.36" width="7" height="10.64" rx="1.7" fill="#328276"/>
+    <rect id="bank-K-vector-3" x="803" y="189.04" width="7" height="22.959999999999997" rx="1.7" fill="#328276"/>
+    <text id="omitted-rows" x="730" y="203" font-size="19" font-weight="bold" fill="#536573" text-anchor="middle">…</text>
+    <rect id="quantizer" x="570" y="248" width="160" height="176" rx="8" fill="#f0f8f5" stroke="#68a69f" stroke-width="1.3"/>
+    <text id="quantizer-title" x="650" y="274" font-size="16" font-weight="bold" fill="#24313d" text-anchor="middle">Vector quantizer</text>
+    <rect id="sample" x="582" y="335" width="136" height="34" rx="8" fill="#eaf7f4" stroke="#68a69f" stroke-width="1.5"/>
+    <text id="sample-text" x="650" y="356.95" font-size="15" font-weight="bold" fill="#24313d" text-anchor="middle">Top-k sampling</text>
+    <polyline id="bank-to-q" points="650,226 650,247" fill="none" stroke="#18766f" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-18766f)"/>
+    <polyline id="to-lookup" points="546,352 581,352" fill="none" stroke="#985b10" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-985b10)"/>
+    <rect id="selected" x="754" y="248" width="140" height="176" rx="8" fill="#f7faf9" stroke="#a8c8c1" stroke-width="1.3"/>
+    <text id="selected-title" x="824" y="274" font-size="14" font-weight="bold" fill="#18766f" text-anchor="middle">Quantized vectors</text>
+    <rect id="selected-2" x="790" y="292" width="68" height="36" rx="5" fill="#ebf6f3" stroke="#8bb6af" stroke-width="1"/>
+    <text id="selected-2-index" x="802" y="315" font-size="14" font-weight="bold" fill="#245f5a" text-anchor="middle">2</text>
+    <rect id="selected-2-vector-0" x="815" y="300.48" width="7" height="23.52" rx="1.7" fill="#328276"/>
+    <rect id="selected-2-vector-1" x="825" y="317.56" width="7" height="6.44" rx="1.7" fill="#328276"/>
+    <rect id="selected-2-vector-2" x="835" y="308.04" width="7" height="15.959999999999999" rx="1.7" fill="#328276"/>
+    <rect id="selected-2-vector-3" x="845" y="308.88" width="7" height="15.120000000000001" rx="1.7" fill="#328276"/>
+    <rect id="selected-3" x="790" y="334" width="68" height="36" rx="5" fill="#ebf6f3" stroke="#8bb6af" stroke-width="1"/>
+    <text id="selected-3-index" x="802" y="357" font-size="14" font-weight="bold" fill="#245f5a" text-anchor="middle">3</text>
+    <rect id="selected-3-vector-0" x="815" y="357.88" width="7" height="8.12" rx="1.7" fill="#328276"/>
+    <rect id="selected-3-vector-1" x="825" y="344.44" width="7" height="21.560000000000002" rx="1.7" fill="#328276"/>
+    <rect id="selected-3-vector-2" x="835" y="352.84" width="7" height="13.16" rx="1.7" fill="#328276"/>
+    <rect id="selected-3-vector-3" x="845" y="339.68" width="7" height="26.32" rx="1.7" fill="#328276"/>
+    <rect id="selected-1" x="790" y="376" width="68" height="36" rx="5" fill="#ebf6f3" stroke="#8bb6af" stroke-width="1"/>
+    <text id="selected-1-index" x="802" y="399" font-size="14" font-weight="bold" fill="#245f5a" text-anchor="middle">1</text>
+    <rect id="selected-1-vector-0" x="815" y="390.08" width="7" height="17.92" rx="1.7" fill="#328276"/>
+    <rect id="selected-1-vector-1" x="825" y="396.8" width="7" height="11.200000000000001" rx="1.7" fill="#328276"/>
+    <rect id="selected-1-vector-2" x="835" y="383.92" width="7" height="24.08" rx="1.7" fill="#328276"/>
+    <rect id="selected-1-vector-3" x="845" y="400.72" width="7" height="7.28" rx="1.7" fill="#328276"/>
+    <polyline id="selected-sequence" points="718,352 753,352" fill="none" stroke="#18766f" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-18766f)"/>
+    <rect id="decoder" x="918" y="248" width="190" height="176" rx="8" fill="#fff7e8" stroke="#bc8b48" stroke-width="1.3"/>
+    <text id="decoder-title" x="1013" y="274" font-size="16" font-weight="bold" fill="#24313d" text-anchor="middle">Transformer decoder</text>
+    <rect id="cross" x="932" y="290" width="162" height="31" rx="8" fill="#fff7e8" stroke="#bc8b48" stroke-width="1.5"/>
+    <text id="cross-text" x="1013" y="310.45" font-size="15" font-weight="bold" fill="#24313d" text-anchor="middle">Cross-attention</text>
+    <rect id="self" x="932" y="335" width="162" height="34" rx="8" fill="#fff7e8" stroke="#bc8b48" stroke-width="1.5"/>
+    <text id="self-text" x="1013" y="356.95" font-size="15" font-weight="bold" fill="#24313d" text-anchor="middle">Self-attention</text>
+    <polyline id="to-self" points="894,352 931,352" fill="none" stroke="#18766f" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-18766f)"/>
+    <polyline id="self-to-cross" points="1013,335 1013,322" fill="none" stroke="#637784" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-637784)"/>
+    <polyline id="decoder-readout" points="1013,248 1013,177" fill="none" stroke="#285f8f" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-285f8f)"/>
+    <polyline id="context" points="480,424 480,460 1132,460 1132,305.5 1095,305.5" fill="none" stroke="#985b10" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-985b10)"/>
+    <text id="memory-title" x="806" y="450" font-size="16" fill="#985b10" text-anchor="middle">Continuous encoder outputs</text>
+  </g>
+</svg>

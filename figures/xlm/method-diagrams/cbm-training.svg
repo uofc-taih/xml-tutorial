@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1056" height="710" viewBox="0 0 1056 710" role="img" aria-labelledby="figure-title figure-description">
+  <title id="figure-title">CBM training regimes</title>
+  <desc id="figure-description">Training graphs for a strict concept bottleneck model. Independent training fits the concept predictor on reviews and concept annotations; the task predictor is fit separately on annotated concepts and task labels. Sequential training fits the concept predictor first, then fixes it and trains the task predictor on predicted concepts. Joint training adds task loss and a weighted concept loss; task gradients reach both predictors. At inference all three use the same path: review to concept predictor to predicted concepts to task predictor. Source: https://proceedings.mlr.press/v119/koh20a.html</desc>
+  <defs>
+    <marker id="arrow-637784" markerUnits="userSpaceOnUse" viewBox="0 0 9 8" refX="8.5" refY="4" markerWidth="9" markerHeight="8" orient="auto"><path d="M0,0 9,4 0,8 Z" fill="#637784"/></marker>
+    <marker id="arrow-285f8f" markerUnits="userSpaceOnUse" viewBox="0 0 9 8" refX="8.5" refY="4" markerWidth="9" markerHeight="8" orient="auto"><path d="M0,0 9,4 0,8 Z" fill="#285f8f"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="white"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text id="independent" x="26" y="35" font-size="22" font-weight="bold" fill="#24313d">Independent</text>
+    <text id="i-input" x="56" y="99" font-size="17" fill="#24313d" text-anchor="middle">Review</text>
+    <polyline id="i-in-g" points="100,93 125,93" fill="none" stroke="#637784" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-637784)"/>
+    <rect id="i-g" x="126" y="69" width="162" height="48" rx="8" fill="#fff7e8" stroke="#bc8b48" stroke-width="1.5"/>
+    <text id="i-g-text" x="207" y="98.28" font-size="16" font-weight="bold" fill="#24313d" text-anchor="middle">Concept predictor</text>
+    <polyline id="i-predicted" points="288,93 407,93" fill="none" stroke="#637784" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-637784)"/>
+    <text id="i-pred-top" x="348" y="62" font-size="14" fill="#536573" text-anchor="middle">Predicted</text>
+    <text id="i-pred-bottom" x="348" y="80" font-size="14" fill="#536573" text-anchor="middle">concepts</text>
+    <rect id="i-cl" x="408" y="69" width="114" height="48" rx="8" fill="#f9efeb" stroke="#bd8979" stroke-width="1.5"/>
+    <text id="i-cl-text" x="465" y="98.28" font-size="16" font-weight="bold" fill="#24313d" text-anchor="middle">Concept loss</text>
+    <text id="i-annotations-name" x="465" y="171" font-size="16" fill="#285f8f" text-anchor="middle">Concept annotations</text>
+    <polyline id="i-annotations-path" points="465,148 465,118" fill="none" stroke="#285f8f" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-285f8f)"/>
+    <polyline id="separate-fits" points="548,54 548,178" fill="none" stroke="#dce3e8" stroke-width="1.2" stroke-linejoin="round"/>
+    <text id="i-annotated-input-top" x="609" y="90" font-size="16" fill="#285f8f" text-anchor="middle">Annotated</text>
+    <text id="i-annotated-input-bottom" x="609" y="110" font-size="16" fill="#285f8f" text-anchor="middle">concepts</text>
+    <polyline id="i-in-f" points="661,93 691,93" fill="none" stroke="#637784" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-637784)"/>
+    <rect id="i-f" x="692" y="69" width="144" height="48" rx="8" fill="#fff7e8" stroke="#bc8b48" stroke-width="1.5"/>
+    <text id="i-f-text" x="764" y="98.28" font-size="16" font-weight="bold" fill="#24313d" text-anchor="middle">Task predictor</text>
+    <polyline id="i-logit" points="836,93 913,93" fill="none" stroke="#637784" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-637784)"/>
+    <text id="i-logit-caption" x="874.5" y="84" font-size="15" fill="#536573" text-anchor="middle">Logit</text>
+    <rect id="i-tl" x="914" y="69" width="116" height="48" rx="8" fill="#f9efeb" stroke="#bd8979" stroke-width="1.5"/>
+    <text id="i-tl-text" x="972" y="98.28" font-size="16" font-weight="bold" fill="#24313d" text-anchor="middle">Task loss</text>
+    <text id="i-task-label-name" x="972" y="171" font-size="16" fill="#285f8f" text-anchor="middle">Task label</text>
+    <polyline id="i-task-label-path" points="972,148 972,118" fill="none" stroke="#285f8f" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-285f8f)"/>
+    <polyline id="line-1" points="26,193 1030,193" fill="none" stroke="#dce3e8" stroke-width="1.2" stroke-linejoin="round"/>
+    <text id="sequential" x="26" y="230" font-size="22" font-weight="bold" fill="#24313d">Sequential</text>
+    <text id="stage-1" x="26" y="282" font-size="15" font-weight="bold" fill="#536573">Stage 1</text>
+    <text id="s-review-1-text" x="126" y="283" font-size="17" fill="#24313d" text-anchor="middle">Review</text>
+    <polyline id="s-review-1-g" points="164,277 181,277" fill="none" stroke="#637784" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-637784)"/>
+    <text id="stage-2" x="26" y="378" font-size="15" font-weight="bold" fill="#536573">Stage 2</text>
+    <text id="s-review-2-text" x="126" y="379" font-size="17" fill="#24313d" text-anchor="middle">Review</text>
+    <polyline id="s-review-2-g" points="164,373 181,373" fill="none" stroke="#637784" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-637784)"/>
+    <rect id="s-g" x="182" y="253" width="173" height="48" rx="8" fill="#fff7e8" stroke="#bc8b48" stroke-width="1.5"/>
+    <text id="s-g-text" x="268.5" y="282.28" font-size="16" font-weight="bold" fill="#24313d" text-anchor="middle">Concept predictor</text>
+    <polyline id="s-estimates-1" points="355,277 517,277" fill="none" stroke="#637784" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-637784)"/>
+    <text id="s-estimates-1-caption" x="436" y="268" font-size="15" fill="#536573" text-anchor="middle">Predicted concepts</text>
+    <rect id="s-cl" x="518" y="253" width="156" height="48" rx="8" fill="#f9efeb" stroke="#bd8979" stroke-width="1.5"/>
+    <text id="s-cl-text" x="596" y="282.28" font-size="16" font-weight="bold" fill="#24313d" text-anchor="middle">Concept loss</text>
+    <text id="s-annotation" x="855" y="282" font-size="16" fill="#285f8f" text-anchor="middle">Concept annotations</text>
+    <polyline id="s-annotate" points="761,277 675,277" fill="none" stroke="#285f8f" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-285f8f)"/>
+    <rect id="s-fixed" x="182" y="349" width="173" height="48" rx="8" fill="#f0f3f5" stroke="#82909b" stroke-width="1.5"/>
+    <text id="s-fixed-name" x="268.5" y="371" font-size="16" font-weight="bold" fill="#24313d" text-anchor="middle">Concept predictor</text>
+    <text id="s-fixed-fixed" x="268.5" y="388" font-size="14" fill="#536573" text-anchor="middle">frozen</text>
+    <polyline id="reuse" points="268.5,301 268.5,348" fill="none" stroke="#637784" stroke-width="1.5" stroke-linejoin="round" stroke-dasharray="3 3" marker-end="url(#arrow-637784)"/>
+    <text id="weights" x="282" y="331" font-size="14" fill="#536573">Reuse weights</text>
+    <polyline id="s-estimates-2" points="355,373 517,373" fill="none" stroke="#637784" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-637784)"/>
+    <text id="s-estimates-2-caption" x="436" y="364" font-size="15" fill="#536573" text-anchor="middle">Predicted concepts</text>
+    <rect id="s-f" x="518" y="349" width="156" height="48" rx="8" fill="#fff7e8" stroke="#bc8b48" stroke-width="1.5"/>
+    <text id="s-f-text" x="596" y="378.28" font-size="16" font-weight="bold" fill="#24313d" text-anchor="middle">Task predictor</text>
+    <polyline id="s-logit" points="674,373 752,373" fill="none" stroke="#637784" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-637784)"/>
+    <text id="s-logit-caption" x="713" y="364" font-size="15" fill="#536573" text-anchor="middle">Logit</text>
+    <rect id="s-tl" x="753" y="349" width="125" height="48" rx="8" fill="#f9efeb" stroke="#bd8979" stroke-width="1.5"/>
+    <text id="s-tl-text" x="815.5" y="378.28" font-size="16" font-weight="bold" fill="#24313d" text-anchor="middle">Task loss</text>
+    <text id="s-task-label" x="983" y="378" font-size="16" fill="#285f8f" text-anchor="middle">Task label</text>
+    <polyline id="s-truth" points="930,373 879,373" fill="none" stroke="#285f8f" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-285f8f)"/>
+    <polyline id="line-2" points="26,421 1030,421" fill="none" stroke="#dce3e8" stroke-width="1.2" stroke-linejoin="round"/>
+    <text id="joint" x="26" y="458" font-size="22" font-weight="bold" fill="#24313d">Joint</text>
+    <text id="j-review-text" x="126" y="543" font-size="17" fill="#24313d" text-anchor="middle">Review</text>
+    <polyline id="j-review-g" points="164,537 181,537" fill="none" stroke="#637784" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-637784)"/>
+    <rect id="j-g" x="182" y="513" width="173" height="48" rx="8" fill="#fff7e8" stroke="#bc8b48" stroke-width="1.5"/>
+    <text id="j-g-text" x="268.5" y="542.28" font-size="16" font-weight="bold" fill="#24313d" text-anchor="middle">Concept predictor</text>
+    <polyline id="j-estimates" points="355,537 517,537" fill="none" stroke="#637784" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-637784)"/>
+    <text id="j-estimates-caption" x="436" y="528" font-size="15" fill="#536573" text-anchor="middle">Predicted concepts</text>
+    <rect id="j-f" x="518" y="513" width="156" height="48" rx="8" fill="#fff7e8" stroke="#bc8b48" stroke-width="1.5"/>
+    <text id="j-f-text" x="596" y="542.28" font-size="16" font-weight="bold" fill="#24313d" text-anchor="middle">Task predictor</text>
+    <polyline id="j-logit" points="674,537 752,537" fill="none" stroke="#637784" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-637784)"/>
+    <text id="j-logit-caption" x="713" y="528" font-size="15" fill="#536573" text-anchor="middle">Logit</text>
+    <rect id="j-tl" x="753" y="513" width="125" height="48" rx="8" fill="#f9efeb" stroke="#bd8979" stroke-width="1.5"/>
+    <text id="j-tl-text" x="815.5" y="542.28" font-size="16" font-weight="bold" fill="#24313d" text-anchor="middle">Task loss</text>
+    <text id="j-task-target-name" x="815.5" y="465" font-size="16" fill="#285f8f" text-anchor="middle">Task label</text>
+    <polyline id="j-task-target-path" points="815.5,476 815.5,512" fill="none" stroke="#285f8f" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-285f8f)"/>
+    <ellipse id="j-fork" cx="421" cy="537" rx="3.1" ry="3.1" fill="#657785"/>
+    <polyline id="j-supervise" points="421,537 421,606 517,606" fill="none" stroke="#637784" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-637784)"/>
+    <rect id="j-cl" x="518" y="582" width="156" height="48" rx="8" fill="#f9efeb" stroke="#bd8979" stroke-width="1.5"/>
+    <text id="j-cl-text" x="596" y="611.28" font-size="16" font-weight="bold" fill="#24313d" text-anchor="middle">Concept loss</text>
+    <text id="j-annotations-name" x="596" y="684" font-size="16" fill="#285f8f" text-anchor="middle">Concept annotations</text>
+    <polyline id="j-annotations-path" points="596,661 596,631" fill="none" stroke="#285f8f" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-285f8f)"/>
+    <rect id="j-sum" x="753" y="582" width="125" height="48" rx="8" fill="#f9efeb" stroke="#bd8979" stroke-width="1.5"/>
+    <text id="j-sum-text" x="815.5" y="611.28" font-size="16" font-weight="bold" fill="#24313d" text-anchor="middle">Joint loss</text>
+    <polyline id="j-task-sum" points="815.5,561 815.5,581" fill="none" stroke="#637784" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-637784)"/>
+    <polyline id="j-concept-sum" points="674,606 752,606" fill="none" stroke="#637784" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow-637784)"/>
+    <text id="j-concept-sum-caption" x="713" y="597" font-size="15" fill="#536573" text-anchor="middle">weight λ</text>
+  </g>
+</svg>
