@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1152" height="480" viewBox="0 0 1152 480" role="img" aria-labelledby="figure-title figure-description">
   <title id="figure-title">Cross-layer VQ-VAE</title>
-  <desc id="figure-description">Illustrative trace for next, chess and match. Blue bars show lower-layer activations, actual higher-layer targets and their reconstructions. The adaptive residual encoder mixes each lower-layer activation with a learned transformation. Amber bars show its continuous outputs. During training the quantizer samples a code for each token from its top-k candidates. The teal bars show the stored vector for that code. Decoder self-attention uses the sequence of sampled vectors; cross-attention reads the original amber sequence without quantization. The decoder reconstructs the higher-layer states of the same tokens. Bar heights are illustrative coordinates, not measured activations. Adapted from Garg et al., Figure 1 and Section 2. Source: https://arxiv.org/html/2506.20040v4</desc>
+  <desc id="figure-description">The residual encoder mixes each lower-layer activation with a learned transformation. During training, the quantizer samples a code for each token from its top-k candidates. Decoder self-attention uses the sequence of codebook vectors, while cross-attention reads the continuous encoder outputs. The reconstruction is compared with the higher-layer activations of the same tokens. Adapted from Garg et al., Figure 1 and Section 2. Source: https://arxiv.org/html/2506.20040v4</desc>
   <defs>
     <marker id="arrow-285f8f" markerUnits="userSpaceOnUse" viewBox="0 0 9 8" refX="8.5" refY="4" markerWidth="9" markerHeight="8" orient="auto"><path d="M0,0 9,4 0,8 Z" fill="#285f8f"/></marker>
     <marker id="arrow-637784" markerUnits="userSpaceOnUse" viewBox="0 0 9 8" refX="8.5" refY="4" markerWidth="9" markerHeight="8" orient="auto"><path d="M0,0 9,4 0,8 Z" fill="#637784"/></marker>
     <marker id="arrow-18766f" markerUnits="userSpaceOnUse" viewBox="0 0 9 8" refX="8.5" refY="4" markerWidth="9" markerHeight="8" orient="auto"><path d="M0,0 9,4 0,8 Z" fill="#18766f"/></marker>
     <marker id="arrow-985b10" markerUnits="userSpaceOnUse" viewBox="0 0 9 8" refX="8.5" refY="4" markerWidth="9" markerHeight="8" orient="auto"><path d="M0,0 9,4 0,8 Z" fill="#985b10"/></marker>
   </defs>
-  <rect width="100%" height="100%" fill="white"/>
+  <rect id="figure-frame" x="1" y="1" width="1150" height="478" rx="18" fill="#fbfcfd" stroke="#dce3e8" stroke-width="1.5" aria-hidden="true"/>
   <g font-family="Arial, Helvetica, sans-serif">
     <rect id="frozen-lm" x="20" y="20" width="150" height="416" rx="8" fill="#f7f9fa" stroke="#c6d2d9" stroke-width="1.3"/>
     <text id="frozen-title" x="95" y="43" font-size="17" font-weight="bold" fill="#285f8f" text-anchor="middle">Frozen LM</text>

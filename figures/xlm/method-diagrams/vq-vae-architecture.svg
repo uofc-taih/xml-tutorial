@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1084" height="388" viewBox="0 0 1084 388" role="img" aria-labelledby="figure-title figure-description">
   <title id="figure-title">Single-layer VQ-VAE</title>
-  <desc id="figure-description">Illustrative vectors for the three token positions next, chess and match. The blue bars are original and reconstructed frozen-language-model activations. Amber bars are continuous encoder outputs. The quantizer replaces each of these with the nearest vector in the shared codebook. For chess, the quantizer assigns code 3. The teal bars show the vector stored for code 3, which is what the decoder receives. Bar height represents the value of one vector coordinate; values and assignments are illustrative, not measured. Source: https://arxiv.org/abs/2602.02726v2</desc>
+  <desc id="figure-description">For next, chess and match, the encoder transforms the token activations and the quantizer assigns the nearest codebook vector to each. For chess, the decoder receives the vector for code 3 and reconstructs the activation from the same language-model layer. Source: https://arxiv.org/abs/2602.02726v2</desc>
   <defs>
     <marker id="arrow-18766f" markerUnits="userSpaceOnUse" viewBox="0 0 9 8" refX="8.5" refY="4" markerWidth="9" markerHeight="8" orient="auto"><path d="M0,0 9,4 0,8 Z" fill="#18766f"/></marker>
     <marker id="arrow-657785" markerUnits="userSpaceOnUse" viewBox="0 0 9 8" refX="8.5" refY="4" markerWidth="9" markerHeight="8" orient="auto"><path d="M0,0 9,4 0,8 Z" fill="#657785"/></marker>
     <marker id="arrow-285f8f" markerUnits="userSpaceOnUse" viewBox="0 0 9 8" refX="8.5" refY="4" markerWidth="9" markerHeight="8" orient="auto"><path d="M0,0 9,4 0,8 Z" fill="#285f8f"/></marker>
   </defs>
-  <rect width="100%" height="100%" fill="white"/>
+  <rect id="figure-frame" x="1" y="1" width="1082" height="386" rx="18" fill="#fbfcfd" stroke="#dce3e8" stroke-width="1.5" aria-hidden="true"/>
   <g font-family="Arial, Helvetica, sans-serif">
     <rect id="bank" x="382" y="17" width="356" height="88" rx="8" fill="#f7faf9" stroke="#93b8ae" stroke-width="1.3"/>
     <text id="bank-title" x="560" y="41" font-size="17" font-weight="bold" fill="#18766f" text-anchor="middle">Shared codebook (K entries)</text>
