@@ -440,7 +440,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Consider a language model used to classify comments as toxic or non-toxic. We will follow two illustrative comments:</p>
+<p>Consider a language model that classifies comments as toxic or non-toxic. How might it read these two comments?</p>
 <ul>
 <li>“I’ll destroy you in our next chess match. Same time tomorrow?”</li>
 <li>“Brilliant point. The discussion was better before you joined.”</li>
@@ -470,15 +470,15 @@ window.Quarto = {
 <h2 data-number="12.3" class="anchored" data-anchor-id="general-architecture"><span class="header-section-number">12.3</span> How do VQ-VAE-based methods work?</h2>
 <p>The original <a href="https://proceedings.neurips.cc/paper/2017/hash/7a98af17e63a0ac09ce2e96d03992fbc-Abstract.html">VQ-VAE</a> learned discrete representations for images, video, and speech. For an image, an encoder produces a grid of feature vectors, a quantizer replaces each vector with a codebook entry, and a decoder reconstructs the image. A generative model can learn a distribution over codes in this compressed space. <a href="https://proceedings.neurips.cc/paper/2019/hash/5f8e2fa1718d1bbcadf1cd9c7a54fb8c-Abstract.html">VQ-VAE-2</a> added a hierarchy of codebooks at different spatial scales.</p>
 <p>For language-model interpretation, both the input and the reconstruction target are activation vectors. The encoder learns a transformation of those activations, the quantizer replaces each transformed vector with a shared entry, and the decoder tries to recover the target from the selected entries. Here, the encoder and decoder belong to the additional reconstruction model, not the original language model.</p>
-<p>Follow “chess” across <a href="#fig-vqvae-single-layer" class="quarto-xref">Figure&nbsp;<span>12.1</span></a>. Its encoded activation is closest to the vector for code 3. The decoder receives that vector.</p>
+<p>Suppose the encoded activation for “chess” is closest to the vector for code 3, as in <a href="#fig-vqvae-single-layer" class="quarto-xref">Figure&nbsp;<span>12.1</span></a>. The decoder receives that vector.</p>
 <div class="text-center">
 <div id="fig-vqvae-single-layer" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The quantizer assigns codes 2, 3 and 1 to next, chess and match. The decoder uses the corresponding codebook vectors to reconstruct the activations from the same language-model layer.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-vqvae-single-layer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/xlm/method-diagrams/vq-vae-architecture.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;12.1: Single-layer reconstruction for “next chess match.” Each bar shows one coordinate of an illustrative vector."><img src="../figures/xlm/method-diagrams/vq-vae-architecture.svg" class="img-fluid figure-img" style="width:100.0%" alt="The quantizer assigns codes 2, 3 and 1 to next, chess and match. The decoder uses the corresponding codebook vectors to reconstruct the activations from the same language-model layer."></a>
+<a href="../figures/xlm/method-diagrams/vq-vae-architecture.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;12.1: Single-layer reconstruction for “next chess match.” Each bar shows one vector coordinate."><img src="../figures/xlm/method-diagrams/vq-vae-architecture.svg" class="img-fluid figure-img" style="width:100.0%" alt="The quantizer assigns codes 2, 3 and 1 to next, chess and match. The decoder uses the corresponding codebook vectors to reconstruct the activations from the same language-model layer."></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vqvae-single-layer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12.1: Single-layer reconstruction for “next chess match.” Each bar shows one coordinate of an illustrative vector.
+Figure&nbsp;12.1: Single-layer reconstruction for “next chess match.” Each bar shows one vector coordinate.
 </figcaption>
 </figure>
 </div>
@@ -500,10 +500,10 @@ Figure&nbsp;12.1: Single-layer reconstruction for “next chess match.” Each b
 <div id="fig-clvqvae-cross-layer" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The quantizer assigns codes 2, 3 and 1 to next, chess and match. The decoder uses their codebook vectors and the continuous encoder outputs to reconstruct the higher-layer activations for those tokens.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-clvqvae-cross-layer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/xlm/method-diagrams/clvq-vae-architecture.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;12.2: For “chess,” self-attention receives the vector for code 3 (teal), while cross-attention reads the continuous encoder outputs (amber). Compare the blue bars for “chess” in the reconstruction and the higher layer. Bar heights are illustrative. Adapted from Garg et al., Figure 1."><img src="../figures/xlm/method-diagrams/clvq-vae-architecture.svg" class="img-fluid figure-img" style="width:100.0%" alt="The quantizer assigns codes 2, 3 and 1 to next, chess and match. The decoder uses their codebook vectors and the continuous encoder outputs to reconstruct the higher-layer activations for those tokens."></a>
+<a href="../figures/xlm/method-diagrams/clvq-vae-architecture.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;12.2: In CLVQ-VAE, self-attention uses the codebook vectors and cross-attention reads the continuous encoder outputs. The decoder reconstructs each token’s higher-layer activation. Adapted from Garg et al., Figure 1."><img src="../figures/xlm/method-diagrams/clvq-vae-architecture.svg" class="img-fluid figure-img" style="width:100.0%" alt="The quantizer assigns codes 2, 3 and 1 to next, chess and match. The decoder uses their codebook vectors and the continuous encoder outputs to reconstruct the higher-layer activations for those tokens."></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-clvqvae-cross-layer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12.2: For “chess,” self-attention receives the vector for code 3 (teal), while cross-attention reads the continuous encoder outputs (amber). Compare the blue bars for “chess” in the reconstruction and the higher layer. Bar heights are illustrative. Adapted from <a href="https://arxiv.org/html/2506.20040v4">Garg et al., Figure 1</a>.
+Figure&nbsp;12.2: In CLVQ-VAE, self-attention uses the codebook vectors and cross-attention reads the continuous encoder outputs. The decoder reconstructs each token’s higher-layer activation. Adapted from <a href="https://arxiv.org/html/2506.20040v4">Garg et al., Figure 1</a>.
 </figcaption>
 </figure>
 </div>
@@ -525,7 +525,7 @@ j_t^*
 \qquad
 \mathbf{z}_{q,t}=\mathbf{e}_{j_t^*}.
 \tag{12.2}\]</span></span></p>
-<p>For a two-dimensional illustration, suppose <span class="math inline">\(\mathbf{z}_{e,t}=(0.8,0.2)\)</span> and the codebook contains <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((0,1)\)</span>. Their squared distances from the encoder output are <span class="math inline">\(0.2^2+0.2^2=0.08\)</span> and <span class="math inline">\(0.8^2+0.8^2=1.28\)</span>, respectively. The quantizer replaces the output with the first entry. The index is discrete, although the selected vector still contains real-valued coordinates. The index identifies a group. It does not measure the strength or probability of a concept.</p>
+<p>Suppose <span class="math inline">\(\mathbf{z}_{e,t}=(0.8,0.2)\)</span> and the codebook contains <span class="math inline">\((1,0)\)</span> and <span class="math inline">\((0,1)\)</span>. Their squared distances from the encoder output are <span class="math inline">\(0.2^2+0.2^2=0.08\)</span> and <span class="math inline">\(0.8^2+0.8^2=1.28\)</span>, respectively. The quantizer replaces the output with the first entry. The index is discrete, although the selected vector still contains real-valued coordinates. The index identifies a group. It does not measure the strength or probability of a concept.</p>
 <p>Replacing different encoder outputs with the same entry discards their differences at the quantizer. In the per-position path above, the decoder receives the same vector for all of them, so it must produce the same reconstruction. Training balances the reuse of entries with the information needed to reconstruct their targets. The groups are learned for reconstruction and may not match human concept names.</p>
 <p>A larger codebook gives the encoder more entries to choose from, but each lookup has more distances to compare. Mini-batching limits the comparisons to one batch and the codebook. Collecting language-model activations and training the extra networks add computation too.</p>
 </section>
@@ -577,15 +577,15 @@ j_t^*
 <section id="interpreting-code-groups" class="level3" data-number="12.3.3">
 <h3 data-number="12.3.3" class="anchored" data-anchor-id="interpreting-code-groups"><span class="header-section-number">12.3.3</span> Giving codes a concept meaning</h3>
 <p>To understand a codebook vector, we look for patterns in the examples assigned to it, as in <a href="https://arxiv.org/abs/2602.02726v2">VQLC</a>. We can describe the same group using common words, longer contexts, or a short concept name. These descriptions can be used together.</p>
-<p>Compare the two uses of “Brilliant” in <a href="#fig-vqvae-code-groups" class="quarto-xref">Figure&nbsp;<span>12.3</span></a>. What other comments share a code with each one?</p>
+<p>Compare the two uses of “Brilliant” in <a href="#fig-vqvae-code-groups" class="quarto-xref">Figure&nbsp;<span>12.3</span></a>. Which other words share a code with each one?</p>
 <div class="text-center">
 <div id="fig-vqvae-code-groups" class="quarto-float quarto-figure quarto-figure-center anchored" alt="After a missed train, Brilliant is assigned code 1, which it shares with sarcastic remarks. After a winning move, the same word is assigned code 2, which it shares with compliments.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-vqvae-code-groups-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="../figures/xlm/method-diagrams/reading-a-codebook.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;12.3: The other comments assigned to each code suggest a possible meaning: sarcasm for code 1 and sincere praise for code 2. Both groups are illustrative."><img src="../figures/xlm/method-diagrams/reading-a-codebook.svg" class="img-fluid figure-img" style="width:100.0%" alt="After a missed train, Brilliant is assigned code 1, which it shares with sarcastic remarks. After a winning move, the same word is assigned code 2, which it shares with compliments."></a>
+<a href="../figures/xlm/method-diagrams/reading-a-codebook.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;12.3: “Great” appears in both groups. After a cancellation it suggests sarcasm (code 1), but after a successful fix it reads as praise (code 2)."><img src="../figures/xlm/method-diagrams/reading-a-codebook.svg" class="img-fluid figure-img" style="width:100.0%" alt="After a missed train, Brilliant is assigned code 1, which it shares with sarcastic remarks. After a winning move, the same word is assigned code 2, which it shares with compliments."></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vqvae-code-groups-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12.3: The other comments assigned to each code suggest a possible meaning: sarcasm for code 1 and sincere praise for code 2. Both groups are illustrative.
+Figure&nbsp;12.3: “Great” appears in both groups. After a cancellation it suggests sarcasm (code 1), but after a successful fix it reads as praise (code 2).
 </figcaption>
 </figure>
 </div>
