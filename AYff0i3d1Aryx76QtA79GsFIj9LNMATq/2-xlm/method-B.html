@@ -49,6 +49,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-c6996704a8058c51d3b7f01f08f08d21.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -467,6 +470,19 @@ window.Quarto = {
 <h2 data-number="12.3" class="anchored" data-anchor-id="general-architecture"><span class="header-section-number">12.3</span> How do VQ-VAE-based methods work?</h2>
 <p>The original <a href="https://proceedings.neurips.cc/paper/2017/hash/7a98af17e63a0ac09ce2e96d03992fbc-Abstract.html">VQ-VAE</a> learned discrete representations for images, video, and speech. For an image, an encoder produces a grid of feature vectors, a quantizer replaces each vector with a codebook entry, and a decoder reconstructs the image. A generative model can learn a distribution over codes in this compressed space. <a href="https://proceedings.neurips.cc/paper/2019/hash/5f8e2fa1718d1bbcadf1cd9c7a54fb8c-Abstract.html">VQ-VAE-2</a> added a hierarchy of codebooks at different spatial scales.</p>
 <p>For language-model interpretation, both the input and the reconstruction target are activation vectors. The encoder learns a transformation of those activations, the quantizer replaces each transformed vector with a shared entry, and the decoder tries to recover the target from the selected entries. Here, the encoder and decoder belong to the additional reconstruction model, not the original language model.</p>
+<p>Follow “chess” across <a href="#fig-vqvae-single-layer" class="quarto-xref">Figure&nbsp;<span>12.1</span></a>. Its encoded activation is closest to the vector for code 3. The decoder receives that vector.</p>
+<div class="text-center">
+<div id="fig-vqvae-single-layer" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The quantizer assigns codes 2, 3 and 1 to next, chess and match. The decoder uses the corresponding codebook vectors to reconstruct the activations from the same language-model layer.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vqvae-single-layer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/xlm/method-diagrams/vq-vae-architecture.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;12.1: Single-layer reconstruction for “next chess match.” Each bar shows one coordinate of an illustrative vector."><img src="../figures/xlm/method-diagrams/vq-vae-architecture.svg" class="img-fluid figure-img" style="width:100.0%" alt="The quantizer assigns codes 2, 3 and 1 to next, chess and match. The decoder uses the corresponding codebook vectors to reconstruct the activations from the same language-model layer."></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vqvae-single-layer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.1: Single-layer reconstruction for “next chess match.” Each bar shows one coordinate of an illustrative vector.
+</figcaption>
+</figure>
+</div>
+</div>
 <p>Let <span class="math inline">\(\mathbf{h}_t^{(l)}\in\mathbb{R}^{d}\)</span> be the <span class="math inline">\(d\)</span>-dimensional activation at position <span class="math inline">\(t\)</span> in layer <span class="math inline">\(l\)</span>. With encoder <span class="math inline">\(E_\theta\)</span>, quantizer <span class="math inline">\(Q\)</span>, and decoder <span class="math inline">\(D_\psi\)</span>, the per-position reconstruction path is</p>
 <p><span id="eq-vqvae-concept-pipeline"><span class="math display">\[
 \mathbf{h}_t^{(l)}
@@ -479,7 +495,19 @@ window.Quarto = {
 \tag{12.1}\]</span></span></p>
 <p>Here, <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\psi\)</span> are the encoder and decoder parameters. The continuous encoder output <span class="math inline">\(\mathbf{z}_{e,t}\)</span> is replaced by the selected codebook vector <span class="math inline">\(\mathbf{z}_{q,t}\)</span>, from which the decoder produces an approximation <span class="math inline">\(\widehat{\mathbf{r}}_t\)</span> to the target activation <span class="math inline">\(\mathbf{r}_t\)</span>. Its training target is internal information, rather than a toxicity label or the original sentence. This per-position path supplies only the selected vector to the decoder. A decoder can also be designed to receive sequence context.</p>
 <p>For a single-layer objective, the target is the input activation, <span class="math inline">\(\mathbf{r}_t=\mathbf{h}_t^{(l)}\)</span>, as in <a href="https://arxiv.org/abs/2602.02726v2">Vector Quantized Latent Concepts (VQLC)</a>. The decoder reconstructs this activation from its coarse codebook representation, so training encourages the codes to retain patterns needed to recover information at the same layer.</p>
-<p>A cross-layer objective uses an upper-layer activation as the target, <span class="math inline">\(\mathbf{r}_t=\mathbf{h}_t^{(u)}\)</span>, where <span class="math inline">\(u&gt;l\)</span>, as in <a href="https://arxiv.org/abs/2506.20040v4">Cross-Layer Vector Quantized-Variational Autoencoder (CLVQ-VAE)</a>. The goal is to predict the higher-layer activation using the coarse representation of the lower-layer input. This encourages the codebook to capture patterns useful for the transformation from the lower to the higher layer.</p>
+<p>A cross-layer objective uses an upper-layer activation as the target, <span class="math inline">\(\mathbf{r}_t=\mathbf{h}_t^{(u)}\)</span>, where <span class="math inline">\(u&gt;l\)</span>, as in <a href="https://arxiv.org/abs/2506.20040v4">Cross-Layer Vector Quantized-Variational Autoencoder (CLVQ-VAE)</a>. The goal is to predict the higher-layer activation using the coarse representation of the lower-layer input, as shown in <a href="#fig-clvqvae-cross-layer" class="quarto-xref">Figure&nbsp;<span>12.2</span></a>. This encourages the codebook to capture patterns useful for the transformation from the lower to the higher layer.</p>
+<div class="text-center">
+<div id="fig-clvqvae-cross-layer" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The quantizer assigns codes 2, 3 and 1 to next, chess and match. The decoder uses their codebook vectors and the continuous encoder outputs to reconstruct the higher-layer activations for those tokens.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-clvqvae-cross-layer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/xlm/method-diagrams/clvq-vae-architecture.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;12.2: For “chess,” self-attention receives the vector for code 3 (teal), while cross-attention reads the continuous encoder outputs (amber). Compare the blue bars for “chess” in the reconstruction and the higher layer. Bar heights are illustrative. Adapted from Garg et al., Figure 1."><img src="../figures/xlm/method-diagrams/clvq-vae-architecture.svg" class="img-fluid figure-img" style="width:100.0%" alt="The quantizer assigns codes 2, 3 and 1 to next, chess and match. The decoder uses their codebook vectors and the continuous encoder outputs to reconstruct the higher-layer activations for those tokens."></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-clvqvae-cross-layer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.2: For “chess,” self-attention receives the vector for code 3 (teal), while cross-attention reads the continuous encoder outputs (amber). Compare the blue bars for “chess” in the reconstruction and the higher layer. Bar heights are illustrative. Adapted from <a href="https://arxiv.org/html/2506.20040v4">Garg et al., Figure 1</a>.
+</figcaption>
+</figure>
+</div>
+</div>
 <section id="discrete-codebook" class="level3" data-number="12.3.1">
 <h3 data-number="12.3.1" class="anchored" data-anchor-id="discrete-codebook"><span class="header-section-number">12.3.1</span> Learning a discrete codebook</h3>
 <p>The quantizer uses a shared codebook</p>
@@ -549,6 +577,19 @@ j_t^*
 <section id="interpreting-code-groups" class="level3" data-number="12.3.3">
 <h3 data-number="12.3.3" class="anchored" data-anchor-id="interpreting-code-groups"><span class="header-section-number">12.3.3</span> Giving codes a concept meaning</h3>
 <p>To understand a codebook vector, we look for patterns in the examples assigned to it, as in <a href="https://arxiv.org/abs/2602.02726v2">VQLC</a>. We can describe the same group using common words, longer contexts, or a short concept name. These descriptions can be used together.</p>
+<p>Compare the two uses of “Brilliant” in <a href="#fig-vqvae-code-groups" class="quarto-xref">Figure&nbsp;<span>12.3</span></a>. What other comments share a code with each one?</p>
+<div class="text-center">
+<div id="fig-vqvae-code-groups" class="quarto-float quarto-figure quarto-figure-center anchored" alt="After a missed train, Brilliant is assigned code 1, which it shares with sarcastic remarks. After a winning move, the same word is assigned code 2, which it shares with compliments.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vqvae-code-groups-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/xlm/method-diagrams/reading-a-codebook.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;12.3: The other comments assigned to each code suggest a possible meaning: sarcasm for code 1 and sincere praise for code 2. Both groups are illustrative."><img src="../figures/xlm/method-diagrams/reading-a-codebook.svg" class="img-fluid figure-img" style="width:100.0%" alt="After a missed train, Brilliant is assigned code 1, which it shares with sarcastic remarks. After a winning move, the same word is assigned code 2, which it shares with compliments."></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vqvae-code-groups-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.3: The other comments assigned to each code suggest a possible meaning: sarcasm for code 1 and sincere praise for code 2. Both groups are illustrative.
+</figcaption>
+</figure>
+</div>
+</div>
 <ol type="1">
 <li><p>The most common words give a quick summary of the group. If “destroy” and similar words occur often, we might describe the vector as related to aggressive language. The words alone may not tell us whether the language is threatening or playful.</p></li>
 <li><p>Phrases and full sentences help us distinguish different uses of the same word. For example, “in our next chess match” changes how we read “destroy”. If this kind of context appears across the group, “competitive banter” may be a better description than “literal threats”.</p></li>
@@ -1061,6 +1102,38 @@ j_t^*
   </div>
 </nav>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
