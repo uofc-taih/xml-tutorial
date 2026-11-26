@@ -1,12 +1,50 @@
 # Taxonomy
 
-We organize LLM explainability around seven questions: **What, Where, How, When, Which, Why, and Who**, as shown in @fig-llm-explainability-taxonomy. These questions help us describe what each method explains, how it works, and how it is used and evaluated.
+We organize LLM explainability around seven questions: **which, what, where, when, how, how, why, and who**, as shown in @fig-llm-explainability-taxonomy. These questions help us describe what each method explains, how it works, and how it is used and evaluated.
 
-The chapters that follow will each focus on an explanation method from **How**. We will use the other six questions to discuss what the method explains, where its evidence comes from, when and why to use it, how to evaluate it, and who it is useful for.
+The chapters that follow will each focus on an explanation method from the "**Which**" column, highlighted in yellow. We will use the other six questions to discuss what the method explains, where its evidence comes from, when and why to use it, how to evaluate it, and who it is useful for.
 
 ::: {style="text-align: center;"}
-![A taxonomy of LLM explainability.](../figures/xlm/llm_explanability_taxanomy.drawio.svg){#fig-llm-explainability-taxonomy width=100%}
+![A taxonomy of LLM explainability.](../figures/xlm/llm_explanability_taxanomy.svg){#fig-llm-explainability-taxonomy width=100%}
 :::
+
+
+## Which? Explanation Method
+
+- **Feature attribution:**
+
+  - Importance values for words or other input features, tied to the output being explained
+  - Positive and negative contributions; effects of the attribution method and chosen reference input
+  - Hybrid example: the structure of Neural Classification Trees (NCT), supplemented by LayerGradCAM maps showing relevant image regions
+  - Reading: [Axiomatic Attribution for Deep Networks](https://proceedings.mlr.press/v70/sundararajan17a.html); [Discovering Latent Groups for Robust Classification](https://arxiv.org/abs/2606.23609v2)
+
+- **Probing:**
+
+  - A separate predictor trained on the model's hidden states to recover a known property, such as a grammatical relation
+  - Comparisons across layers and with simple baselines; checks on how much the probe itself can learn
+  - Information available to the probe versus information used by the original model for its task
+  - Reading: [A Structural Probe for Finding Syntax in Word Representations](https://aclanthology.org/N19-1419/); [Causal Abstractions of Neural Networks](https://proceedings.neurips.cc/paper_files/paper/2021/hash/4f5c422f4d49a5a807eda27434231040-Abstract.html)
+
+- **Concept discovery:**
+
+  - Recurring patterns learned from activations without starting with named concepts or concept annotations
+  - Sparse combinations of continuous features in SAEs; discrete code assignments in CLVQ-VAE
+  - Meaning inferred from the tokens and contexts associated with a feature; checks on shared meaning and effects on model behaviour
+  - Reading: [Sparse Autoencoders Find Highly Interpretable Features in Language Models](https://proceedings.iclr.cc/paper_files/paper/2024/hash/1fa1ab11f4bd5f94b2ec20e794dbfa3b-Abstract-Conference.html); [Cross-Layer Discrete Concept Discovery for Interpreting Language Models](https://arxiv.org/abs/2506.20040v3)
+
+- **Mechanistic analysis:**
+
+  - A proposed circuit for a particular task; the components involved and the information passed between them
+  - Tests of the circuit by removing or replacing component outputs and checking the resulting prediction
+  - Tasks and inputs covered by the explanation; parts of the computation still unexplained
+  - Reading: [In-context Learning and Induction Heads](https://arxiv.org/abs/2209.11895)
+
+- **Counterfactual intervention:**
+
+  - A deliberate change to an input or internal state; comparison with a model run kept otherwise the same
+  - Example: replacing an activation with the activation at the same position and layer from another input
+  - Expected changes in the answer if the explanation is right; checks on the choice of intervention and comparison
+  - Reading: [Causal Abstractions of Neural Networks](https://proceedings.neurips.cc/paper_files/paper/2021/hash/4f5c422f4d49a5a807eda27434231040-Abstract.html)
 
 ## What? Explanation Target
 
@@ -82,43 +120,6 @@ The chapters that follow will each focus on an explanation method from **How**. 
   - Limits of these estimates, especially when tracing a generated answer to individual training examples
   - Reading: [Locating and Editing Factual Associations in GPT](https://papers.neurips.cc/paper_files/paper/2022/hash/6f1d43d5a82a37e89b0665b33bf3a182-Abstract-Conference.html); [Understanding Black-box Predictions via Influence Functions](https://proceedings.mlr.press/v70/koh17a.html)
 
-## How? Explanation Method
-
-- **Feature attribution:**
-
-  - Importance values for words or other input features, tied to the output being explained
-  - Positive and negative contributions; effects of the attribution method and chosen reference input
-  - Hybrid example: the structure of Neural Classification Trees (NCT), supplemented by LayerGradCAM maps showing relevant image regions
-  - Reading: [Axiomatic Attribution for Deep Networks](https://proceedings.mlr.press/v70/sundararajan17a.html); [Discovering Latent Groups for Robust Classification](https://arxiv.org/abs/2606.23609v2)
-
-- **Probing:**
-
-  - A separate predictor trained on the model's hidden states to recover a known property, such as a grammatical relation
-  - Comparisons across layers and with simple baselines; checks on how much the probe itself can learn
-  - Information available to the probe versus information used by the original model for its task
-  - Reading: [A Structural Probe for Finding Syntax in Word Representations](https://aclanthology.org/N19-1419/); [Causal Abstractions of Neural Networks](https://proceedings.neurips.cc/paper_files/paper/2021/hash/4f5c422f4d49a5a807eda27434231040-Abstract.html)
-
-- **Concept discovery:**
-
-  - Recurring patterns learned from activations without starting with named concepts or concept annotations
-  - Sparse combinations of continuous features in SAEs; discrete code assignments in CLVQ-VAE
-  - Meaning inferred from the tokens and contexts associated with a feature; checks on shared meaning and effects on model behaviour
-  - Reading: [Sparse Autoencoders Find Highly Interpretable Features in Language Models](https://proceedings.iclr.cc/paper_files/paper/2024/hash/1fa1ab11f4bd5f94b2ec20e794dbfa3b-Abstract-Conference.html); [Cross-Layer Discrete Concept Discovery for Interpreting Language Models](https://arxiv.org/abs/2506.20040v3)
-
-- **Mechanistic analysis:**
-
-  - A proposed circuit for a particular task; the components involved and the information passed between them
-  - Tests of the circuit by removing or replacing component outputs and checking the resulting prediction
-  - Tasks and inputs covered by the explanation; parts of the computation still unexplained
-  - Reading: [In-context Learning and Induction Heads](https://arxiv.org/abs/2209.11895)
-
-- **Counterfactual intervention:**
-
-  - A deliberate change to an input or internal state; comparison with a model run kept otherwise the same
-  - Example: replacing an activation with the activation at the same position and layer from another input
-  - Expected changes in the answer if the explanation is right; checks on the choice of intervention and comparison
-  - Reading: [Causal Abstractions of Neural Networks](https://proceedings.neurips.cc/paper_files/paper/2021/hash/4f5c422f4d49a5a807eda27434231040-Abstract.html)
-
 ## When? Stage of Use
 
 - **During training:**
@@ -149,7 +150,7 @@ The chapters that follow will each focus on an explanation method from **How**. 
   - A convincing written justification versus an explanation of the model's actual computation
   - Reading: [ERASER: A Benchmark to Evaluate Rationalized NLP Models](https://aclanthology.org/2020.acl-main.408/); [Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting](https://arxiv.org/abs/2305.04388)
 
-## Which? Explanation Quality
+## How? Evaluation Criteria
 
 - **Faithfulness:**
 
