@@ -48,7 +48,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9a2fd95bb7c6788cb6c9f6e2df559463.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c6996704a8058c51d3b7f01f08f08d21.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -383,7 +383,11 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>As multi-agent systems inherit language models as a fundamental building block for cognitive function, they likewise inherit their respective explainability methods. These methods largely define the current state of multi-agent explainability, addressing the black-box language models that scale into multi-agent systems. However, this approach overlooks the aspects of multi-agent systems that are fundamentally unique—that is, aspects that aren’t inherited but are acquired. For example, LLM-based planning—a uniquely agentic system feature—is yet to have a standard framework which completes its explainability. Similar cases can be found for self-reflection mechanisms, and other dimensions of multi-agent systems.</p>
-<p>LLM-based agent systems: a systematic literature review and position on hybrid architectures and evaluation frameworks Christoph Gabaue</p>
+<!--
+LLM-based agent systems: a systematic literature review and position
+on hybrid architectures and evaluation frameworks
+Christoph Gabaue
+-->
 <p>The question of explainablility for multi-agent systems may remain an open problem, but multi-agent interpretability may provide some answers, or at least, a practical approach. If you recall the distinctions between the two, interpretability focuses more so on exposing hidden or latent spaces in machine learning, whereas explainability attaches an explanation with it. Roughly speaking, interpretability answers “What is going on?” whereas explainability answers “why does it do that?”. For multi-agent systems, although “why?” may not come with a standard response, “what?” can be addressed more directly.</p>
 <p>LangGraph is an orchestration framework common in LLM-based multi-agent system deployment. Rather than explicitly providing explainability, LangGraph builds off of the LangChain family that “provides open source, model-agnostic harnesses for building agents”, which inadvertently enables explainability through interpretability. LangGraph’s most notable capabilities are:</p>
 <ol type="1">
@@ -391,8 +395,25 @@ ul.task-list li input[type="checkbox"] {
 <li>Human-in-the-loop: Regular human review, moderation, or approval is supported through state inspection and integration tracing, enabling interpretability and safe usage</li>
 <li>Multi-Agent Coordination: Coordinates agents, subgraphs or hierarchical agent dynamics</li>
 </ol>
-<p>The functionalities of LangGraph are defined by the practicality of their usages for the developers, that is, interpretability is desirable for ensuring workflow quality, whereas explainability may be seen as more trivial. For developers, understanding the high-level operation of the system may be more important than investigating the reasoning and causalities within each system. In LangGraph, structural and behavioral interpretability are supported, but decision-level explainability remains limited. Other frameworks condition explainability than LangGraph, such as CrewAI.</p>
-<p>https://docs.langchain.com/oss/python/langgraph/overview https://docs.langchain.com/</p>
+<p>The functionalities of LangGraph are defined by the practicality of their usages for the developers, that is, interpretability is desirable for ensuring workflow quality, whereas explainability may be seen as more trivial. For developers, understanding the high-level operation of the system may be more important than investigating the reasoning and causalities within each system. In LangGraph, structural and behavioral interpretability are supported, but decision-level explainability remains limited. Other frameworks condition explainability more clearly than LangGraph, such as CrewAI.</p>
+<p>CrewAI is a similar open-source framework for developing AI-agent systems. Rather than explicitly detailing the operation of the workflow, CrewAI takes an “agent” focus for its transparency. Notably, it abstracts multi-agent systems by <strong>agents, tasks, crews, and flows</strong>, emphasizing more comprehensive transparency than LangGraph. Although CrewAI does not explicitly enable explainability directly, it indirectly supports explainability slightly more than other frameworks. CrewAI’s key features are:</p>
+<ol type="1">
+<li>Explicit Agent Planning: CrewAI enables and exposes the structured plans generated by each agent before execution. It should be noted that the agent planning is dynamic, responding to observations and replanning when conditions evolve. For explainability, the intended actions, plan evaluations, and reasoning of each agent are revealed.<br>
+</li>
+<li>Hierarchical Delegation and Role-based Coordination: The hierarchy of agents are explicitly defined, including agent roles, goals and responsibilities. These include, but are not limited to, the “manager” agent and the subordinate agents, and their written roles. Thus, the causalities of agent behavior can be traced more clearly.</li>
+<li>Task Validation: Predefined output expectation and validation mechanisms which assess agent outputs (that is, whether they satisfy requirements), are included in CrewAI. Traceable acceptance or rejection decisions are exposed through comprehensible criteria.</li>
+</ol>
+<p>Overall, CrewAI extends upon revealing the workflow of the agents by including agent-specific details, supporting transparency and interpretability. Nevertheless, the limitations of interpretable frameworks are</p>
+<!--
+limitations
+future work
+examples?
+-->
+<!--
+https://docs.langchain.com/oss/python/langgraph/overview
+https://docs.langchain.com/
+https://docs.crewai.com/
+-->
 
 
 

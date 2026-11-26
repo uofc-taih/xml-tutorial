@@ -48,7 +48,10 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9a2fd95bb7c6788cb6c9f6e2df559463.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c6996704a8058c51d3b7f01f08f08d21.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -367,20 +370,41 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>The extension of an LLM’s isolated outputs into an LLM-based agent’s extended decision trajectory demands a similar evolution towards more holistic Explainable AI. Although several taxonomies for single-agent system explainability exist in current literature, the motivations behind the definition of each dimensions fall out of scope for this work. Taxonomies that characterize agentic explainability based on human interaction (1), abstraction (2), or methodologies (3) can provide merit in their respective fields, but for the sake of practicality a “journalist” distinction of agentic explainability is used in this work, taking inspiration from (4). Namely, the five W’s (with “Where” replaced with “How”) provide a practical overview of the dimensions within the field of agent explainability. Although these dimensions may not be collectively exhaustive, there are practical advantages of approaching agentic xAI through this lens. Note that the larger scope of “transparency” is scoped down into “explainability” for this work.</p>
-<p>Consider figure (??), which illustrates the orthogonal distinctions within agentic explainability:</p>
+<p>Consider <a href="#fig-xmas-explainability-taxonomy" class="quarto-xref">Figure&nbsp;<span>1</span></a>, which illustrates the orthogonal distinctions within agentic explainability:</p>
+<div style="text-align: center;">
+<div id="fig-xmas-explainability-taxonomy" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-xmas-explainability-taxonomy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="../figures/xmas/multi-agent-system-taxonomy.drawio.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: A taxonomy of multi-agent explainability."><img src="../figures/xmas/multi-agent-system-taxonomy.drawio.svg" class="img-fluid figure-img" style="width:100.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-xmas-explainability-taxonomy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: A taxonomy of multi-agent explainability.
+</figcaption>
+</figure>
+</div>
+</div>
 <ul>
-<li>Cognitive objects are defined as the internal components that cause an agent’s behaviour, including the intent, beliefs, plans, memory, tool inputs/outputs, policies, and outcomes.</li>
-<li>Assurance objectives represent the objectives of explainability, including faithfulness, usefulness, compliance, robustness, equity, and auditability. In practical cases, explainability is not an end in and of itself, “rather an enabler of assurance” (4).</li>
-<li>Mechanisms represent the methods by which explainability is achieved, including intrinsic, post-hoc, mechanistic, operational, and social.</li>
-<li>Temporal stages define when explainability takes place, either design-time, process-time, and outcome-time.</li>
-<li>Lastly, stakeholders are the users that require explainability. Raza et al.&nbsp;define five different categories, grounded on their typical use cases: end users, developers, auditors, regulators, and third parties.</li>
+<li>What: Cognitive objects are defined as the internal components that cause an agent’s behaviour, including the intent, beliefs, plans, memory, tool inputs/outputs, policies, and outcomes.</li>
+<li>Why: Assurance objectives represent the objectives of explainability, including faithfulness, usefulness, compliance, robustness, equity, and auditability. In practical cases, explainability is not an end in and of itself, “rather an enabler of assurance” (4).</li>
+<li>How: Mechanisms represent the methods by which explainability is achieved, including intrinsic, post-hoc, mechanistic, operational, and social.</li>
+<li>When: Temporal stages define when explainability takes place, either design-time, process-time, and outcome-time.</li>
+<li>Who: Lastly, stakeholders are the users that require explainability. Raza et al.&nbsp;define five different categories, grounded on their typical use cases: end users, developers, auditors, regulators, and third parties.</li>
 </ul>
-<p>Throughout this chapter, certain multi-agent explainability methods will be explored, typically expanding upon previously mentioned methods. Linear probes are logistic classifiers (as explored in section ??) trained on behavioural signals within streams in an LLM. Sparse autoencoders, as used in LLMs (cite earlier section), can be applied into a multi-agent context. Both methods represent a focus on low-level activation representations.</p>
-<p>However, natural language based analysis provides an alternative to a focus on lower level representations of LLM-based agents. LLM-as-a-judge platforms such as Petri or LangSmith represent practical and scalable explainability methods, detecting signals within an LLMs message. Agent-level internal reasoning (chain-of-thought, …, etc.) correspond to similar kinds of interpretability.</p>
-<p>Exclusively multi-agent level explainability (that is, methods that are not extensions of LLM-based or agent-based methods) include visualizations that display architecures of communication, such as dynamic execution and communication graphs.</p>
+<p>Throughout this chapter, certain multi-agent explainability methods will be explored, typically expanding upon previously mentioned methods. Linear probes are logistic classifiers (as explored in section ??) trained on behavioural signals within streams in an LLM. Sparse autoencoders, as used in LLMs (cite earlier section), can be applied into a multi-agent context. Both methods represent a focus on low-level activation representations. However, natural language based analysis provides an alternative to a focus on lower level representations of LLM-based agents. LLM-as-a-judge platforms such as Petri or LangSmith represent practical and scalable explainability methods, detecting signals within an LLMs message. Agent-level internal reasoning (chain-of-thought, …, etc.) correspond to similar kinds of interpretability. Exclusively multi-agent level explainability (that is, methods that are not extensions of LLM-based or agent-based methods) include visualizations that display architecures of communication, such as dynamic execution and communication graphs.</p>
 <p>Consider the following figure, depicting the described methods on the previously mentioned taxonomy.</p>
-<p>don’t redefine the following: - linear probes, with agentic focus! don’t re-explain logistic regression - llm-as-a-judge - saes, with agentic focus! don’t re-explain concept - shap/lime</p>
-<p>1 - https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=11607607 2 - https://arxiv.org/pdf/2509.05199 3 - https://arxiv.org/pdf/2602.06841v4 4 - https://engrxiv.org/preprint/view/6451/10564</p>
+<!--
+don't redefine the following:
+    - linear probes, with agentic focus! don't re-explain logistic regression
+    - llm-as-a-judge
+    - saes, with agentic focus! don't re-explain concept
+    - shap/lime
+
+
+1 - https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=11607607
+2 - https://arxiv.org/pdf/2509.05199
+3 - https://arxiv.org/pdf/2602.06841v4
+4 - https://engrxiv.org/preprint/view/6451/10564
+-->
 
 
 
@@ -874,6 +898,38 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </nav>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
